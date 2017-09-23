@@ -1,0 +1,13 @@
+<!--pages/Recommend/Recommend.wxml-->
+<import src="../template/template.wxml"/>
+<view class="container">
+    <image class="teacher" src="https://hepulan.playonwechat.com/static/teacher_recommend.png"></image>
+    <view class="teach_recommend">
+      <button wx:if="{{true}}" class="ask_btn" open-type="contact">老师推荐</button>
+      <view wx:else="" bindtap="applyBtn" class="taacher_btn">老师推荐</view>
+    </view>
+    <block wx:for="{{templateData}}">
+    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
+    </block>
+    <template is="share_icon"/>
+</view>

@@ -1,0 +1,12 @@
+<import src="../template/template.wxml"/>
+<view class="container">
+    <view class="body_bg"><image src="https://hepulan.playonwechat.com/static/question_bg.png"></image></view>
+    <view class="page_title"><image src="../img/skin_text.png"></image></view>
+    <view class="question_box {{item.aShow}}" wx:for="{{question}}" bindtap="quPage" data-opidx="{{index}}">
+        <view class="question">{{item.quesTitle}}</view>
+        <label class="fac_item" bindtap="clickBtn" data-idx="{{index+1}}" wx:for="{{item._Options}}" wx:for-item="_Options">
+            <radio class="click_item" color="#365742" value="{{item.name}}" checked="{{item.checked}}"/>{{_Options.op}}
+        </label>
+    </view>
+<template is="share_icon"/>
+</view>

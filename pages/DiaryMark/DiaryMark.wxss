@@ -1,0 +1,327 @@
+/* pages/DiaryMark/DiaryMark.wxss */
+page{
+	background-image: url(https://qncdn.playonwechat.com/hupulan/DiaryMarkdaka-input-bg.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.diry_box{
+	width: 620rpx;
+	height: 1100rpx;
+	background: #52aeed;
+	border-radius: 10px;
+  box-shadow: 0 3px #145b89;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	padding-top: 10rpx;
+}
+
+.diry_in_box{
+	width: 600rpx;
+	height: 94%;
+	background: #fff;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 3px #4695cc;
+}
+
+.diry_in_box textarea{
+	  box-sizing: border-box;
+    width: 540rpx;
+    height: 200rpx;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 10rpx;
+    resize: none;
+    outline: 0;
+		margin:0 auto;
+		margin-top: 30rpx;
+    color: #9a9a9a;
+    font-size: 30rpx;
+    line-height: 1.2;
+}
+
+.img_title{
+	font-size: 30rpx;
+	display: flex;
+	justify-content: space-between;
+	width: 540rpx;
+	box-sizing: border-box;
+	padding:20rpx 0;
+	margin:0 auto;
+}
+
+.upload_btn{
+	display: block;
+	width: 127rpx;
+	height: 127rpx;
+	border:1px solid #999;
+	position: relative;
+}
+
+.upload_btn::after{
+	content: " ";
+	display: block;
+	width: 70rpx;
+	border-bottom: 1px solid #999;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	transform: translateX(-50%);
+}
+
+.upload_btn::before{
+	content: " ";
+	display: block;
+	height: 70rpx;
+	border-left: 1px solid #999;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	transform: translateY(-50%);
+}
+
+.upimg_box{
+	width: 540rpx;
+	height: 410rpx;
+	margin:0 auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.uploadimg{
+	display: block;
+	width: 127rpx;
+	height: 127rpx;
+	margin-right: 10rpx;
+	margin-bottom: 10rpx;
+}
+
+.uploadimg:nth-of-type(4n){
+	margin-right: 0;
+}
+
+.img_tip{
+	color: #999;
+}
+
+.submit_btn{
+	display: flex;
+	width: 350rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	background-color: #6fd693;
+	border-radius:60rpx;
+	box-shadow: 0 4px #3e945c;
+	color: #fff;
+	font-size: 34rpx;
+	font-weight: 700;
+	margin: 0 auto;
+}
+
+.submit_btn::before{
+	display: none;
+}
+
+.submit_btn::after{
+	display: none;
+}
+
+.daka_icon{
+	display: block;
+	width: 21rpx;
+	height: 26rpx;
+	background: url(https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-daka.png);
+}
+
+.jion_hot{
+	font-size: 23rpx;
+	color: #999;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	padding:10rpx 0;
+}
+
+.jion_hot .radio{
+	 border:1px solid #888;
+	 border-radius: 8rpx;
+	 width: 24rpx;
+	 height: 24rpx;
+	 display: inline-block;
+	 margin-right: 10rpx;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 position: relative;
+}
+
+.check_icon {
+  color: #6fd693;
+	display: block;
+  position: absolute;
+  width: 16rpx;
+  height: 8rpx;
+	left: 4rpx;
+	top: 8rpx;
+	margin-top: -3rpx;
+  border-bottom: solid 1px currentColor;
+  border-left: solid 1px currentColor;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.status_icon{
+	font-size: 30rpx;
+	display: inline-block;
+	color: #f2c811;
+}
+
+.status_img{
+	display: inline-block;
+	width: 30rpx;
+	height: 30rpx;
+}
+
+.daka_jifen{
+	font-size: 30rpx;
+	color: #6fd693;
+}
+
+
+.status_box{
+   display: flex;
+	 justify-content: center;
+}
+
+.daka_status{
+	margin-top: 50rpx;
+}
+
+.submit_btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20rpx;
+}
+
+.submit_btn:active{
+	background-color: #5ec682;
+}
+
+.daka_icon{
+	display: inline-block;
+	width: 34rpx;
+	height: 42rpx;
+	background-image: url(https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-daka.png);
+	background-size: 100%;
+	margin-right: 20rpx;
+}
+
+/*打卡成功弹窗*/
+.daka_success{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.win_top{
+	width: 100%;
+	height: 100%;
+	background-image: -webkit-linear-gradient(-90deg, #57dcff 0, #72c2ff 100%);
+  background-image: linear-gradient(180deg, #57dcff 0, #72c2ff 100%);
+	position: relative;
+	overflow: hidden;
+}
+
+.win_bottom{
+	height: 100rpx;
+	width: 100%;
+	background: #fff;
+	line-height: 100rpx;
+	text-align: center;
+	color: #69caff;
+}
+
+.circle{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+}
+
+.circle1{
+	width: 400rpx;
+	height: 400rpx;
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.circle2{
+	width: 300rpx;
+	height: 300rpx;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.circle3{
+	width: 200rpx;
+	height: 200rpx;
+	background-color: rgba(255, 255, 255, 0.7);
+	background-image: url(https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-hm.png);
+	background-size: 100%;
+	background-position: center;
+}
+
+.circle_box{
+	position: absolute;
+	bottom: -130rpx;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.win_box{
+	width: 600rpx;
+	height: 590rpx;
+	background: #fff;
+	border-radius: 20rpx;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.win_content view:nth-of-type(1){
+	text-align: center;
+	color: #fff;
+	line-height: 90rpx;
+	font-size: 34rpx;
+}
+
+.win_content view:nth-of-type(2){
+	text-align: center;
+	color: #fff;
+	line-height: 90rpx;
+	font-size: 80rpx;
+}
+
+.img_tip_text{
+	font-size: 22rpx;
+	color: #999;
+	box-sizing: border-box;
+	padding:0 30rpx;
+}

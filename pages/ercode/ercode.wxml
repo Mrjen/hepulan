@@ -1,0 +1,2 @@
+<!--pages/ercode/ercode.wxml-->
+<button bindtap="getCode">获取二维码</button>

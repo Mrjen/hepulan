@@ -1,0 +1,42 @@
+<!--pages/heChartTeach/heChartTeach.wxml-->
+<import src="../template/template.wxml"/>
+<view class="container">
+  <image class="teacher_img" src="{{teacherImg}}"></image>
+  <view class="video_title">{{videoTitle}}</view>
+<view class="main_box">
+  <view class="room_itle">
+     <text class="bold_text">来自直播间</text> <view class="teach_room">{{roomName}}</view><!--<view class="follow">关注</view>-->
+  </view>
+  <view class="room_itle">
+     <text class="bold_text">主讲人</text> <view class="teach_room">{{teacher}}</view>
+  </view>
+  <view class="item_tip">
+     <view class="bold_text introduct">主讲人介绍</view>
+     <view class="teach_introduct">{{introduct}}</view>
+  </view>
+
+  <view class="item_tip">
+     <view class="bold_text introduct">开始时间</view>
+     <view class="teach_introduct">{{teachTime}}</view>
+     <view wx:if="{{countDown_tatic}}" class="countDown">
+         <view class="count_down">倒计时</view>
+         <view class="time_box" wx:for="{{Countdown}}">
+           <view class="time_item">{{item.day}}<text>天</text></view>
+           <view class="time_item">{{item.hr}}<text>时</text></view>
+           <view class="time_item">{{item.min}}<text>分</text></view>
+           <view class="time_item">{{item.sec}}<text>秒</text></view>
+         </view>
+     </view>
+  </view>
+  <view class="sign_box">
+     <view class="bold_text has_sign">已报名人数<text>{{hasSign}}人</text></view>
+     <view class="persion_img"><image wx:for="{{persionImg}}" src="{{item.avatar}}"></image><view wx:if="{{moreIcon}}" class="more_persion"></view></view>
+  </view>
+  <view class="course">
+     <view class="bold_text">课程介绍：</view>
+     <view class="course_intro">{{courseIntroduct}}</view>
+  </view>
+<navigator class="navto" url="../heChartRoom/heChartRoom?topicId={{topicId}}" hover-class="none">进入直播</navigator>
+</view>
+<template is="share_icon"/>
+</view>

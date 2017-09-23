@@ -1,0 +1,24 @@
+<!--pages/friendShare/friendShare.wxml-->
+<import src="../template/template.wxml"/>
+<view class="container">
+  <!-- 页面内容 -->
+   <view class="persion">
+    <image class="persion_img" src="{{avatarUrl}}"></image>
+    <view class="persion_name">{{userName}}</view>
+    <view class="persion_gold">热力总数:{{hot_points}}</view>
+    <view>赶紧点击助力好友提升热力总数</view>
+    <view class="gold_tip">我通过分享禾葡兰小程序赚到{{boostCoins}}热力</view>
+    <view>
+                                            <!-- wx:if="{{!hashelp}}" -->
+        <view class="shre_btn" bindtap="helpHe" wx:if="{{!hashelp}}">为他助力</view>
+        <view class="hasshre_btn" wx:else="">已为他助力</view>
+    </view>
+
+    <view class="share_daty_tip">今日共有{{tadybootsts}}人为他助力</view>
+   </view>
+   <view class="navto" bindtap="navTo">看一看TA在领取什么大礼</view>
+   <view class="danmu">
+      <view class="danmu_item dan{{index}}" style="top:{{item.topMargin}}rpx" wx:for="{{danList}}"><image src="{{item.avatarurl}}"></image>{{item.nickname}}向{{userName}}捐赠了1热力</view>
+   </view>
+   <template is="share_icon"/>
+</view>

@@ -1,0 +1,38 @@
+<!--pages/heChart/heChart.wxml-->
+<import src="../template/template.wxml"/>
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="top_nav">
+    <view><image src="../img/heChart_icon_search.png"></image></view>
+    <view class="top_nav_keyworld">
+       <view  wx:for="{{topNav}}" bindtap="topNav" data-sort="{{index+1}}" data-navtext="{{item.navText}}">{{item.navText}}</view>
+    </view>
+  </view>
+  <!-- 轮播图 -->
+  <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#fff">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+         <image src="{{item.img}}" class="slide-image" width="355" height="150" />
+         <view class="img_tip">{{item.imgtip}}</view>
+      </swiper-item>
+    </block>
+  </swiper>
+<!-- 标签 -->
+<view class="label_nav">
+   <view class="label_item {{item.select==0?'':'active'}}" wx:for="{{labelItem}}" bindtap="labelItem" data-text="{{item.worlds}}" data-idx="{{index}}">{{item.worlds}}</view>
+</view>
+<!-- 视频列表 -->
+<view class="video_list">
+  <view class="video_box" wx:for="{{videoList}}">
+    <navigator class="video_item"  style="background-image:url({{item.videoPoster}})" url="../heChartTeach/heChartTeach?topicId={{item.id}}" hover-class="none">
+      <!-- <view class="video_static">{{item.videoStatic}}</view> -->
+      <view class="video_describe">
+        <view>{{item.persion_num}}人正在参加</view>
+        <!-- <view>免费</view> -->
+      </view>
+    </navigator>
+    <view class="video_title">{{item.videoTitle}}</view>
+  </view>
+</view>
+<template is="share_icon"/>
+</view>

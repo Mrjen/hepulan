@@ -1,0 +1,32 @@
+<!--pages/pointMall/pointMall.wxml-->
+<image class="avatarUrl" src="{{avatarUrl}}"></image>
+<view class="nickName">{{nickName}}</view>
+<view class="point_count">可兑换积分{{pointCount}}</view>
+<view class="point_detail">点击查看积分详情</view>
+<!-- 功能导航 -->
+ <view class="opation_nav">
+    <navigator url=""><text></text>我的收藏</navigator>
+    <navigator url=""><text></text>购物车</navigator>
+    <navigator url=""><text></text>地址管理</navigator>
+</view> 
+<!-- 轮播区 -->
+<!-- <view class=""></view> -->
+
+<!-- 商品兑换区 -->
+<view class="shop_list">
+    <view class="list_item" wx:for="{{shopList}}">
+          <image class="item_img" src="{{item.img}}"></image>
+          <view class="item_info">
+              <view class="item_title">{{item.title}}</view>
+              <!-- <view class="item_type">{{item.type}}</view> -->
+              <view class="item_bottom">
+                  <view class="item_jifen">{{item.count}}积分</view>
+                   <view class="item_zan">{{item.zan}}人点赞<text class="zan_icon"></text></view> 
+                  <view class="exchange_box">
+                     <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
+                     <view class="exchange_btn" bindtap="exchangeBtn" data-jifen="{{item.count}}" data-id="{{item.id}}">兑换</view>
+                  </view>
+              </view>
+          </view>
+    </view>
+</view>

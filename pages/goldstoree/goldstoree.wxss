@@ -1,0 +1,138 @@
+/* pages/goldsote1/goldstore1.wxss */
+.container{
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.swiper{
+    width: 750rpx;
+    height: 100%;
+}
+
+.productIm{
+  width: 338rpx;
+  height: 466rpx;
+  margin:0 auto;
+}
+
+.shop_img{
+    width: 338rpx;
+    height: 466rpx;
+    margin: 150rpx auto 40rpx auto;
+}
+
+.shop_img image{
+    width: 338rpx;
+    height: 466rpx;
+    margin:0 auto;
+}
+
+.shop_title {
+    font-size: 34rpx;
+    line-height: 40rpx;
+    box-sizing: border-box;
+    padding:0 40rpx;
+}
+
+.shop_tip{
+    font-size: 30rpx;
+    margin-bottom: 50rpx;
+}
+
+.shop_price{
+    font-size: 74rpx;
+    color: #ce4141;
+}
+
+.shop_gold{
+    font-size: 40rpx;
+    color: #ce4141;
+    margin-bottom: 80rpx;
+}
+
+.mine_coins{
+  font-size: 20rpx;
+  margin-bottom: 30rpx;
+  margin-top: 50rpx;
+}
+
+.exchenge_btn{
+    width: 278rpx;
+    height: 64rpx;
+    border-radius: 32rpx;
+    line-height: 64rpx;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+    background: -webkit-linear-gradient(-90deg, #10ca98 0, #0ba178 100%);
+    background: linear-gradient(180deg, #10ca98 0, #0ba178 100%);
+    background-position: 50% 50%;
+    -webkit-box-shadow: 0 0 4px 4px rgba(16, 203, 153, 0.3) ;
+    box-shadow: 0 0 4px 4px rgba(16, 203, 153, 0.3) ;
+}
+
+.hot_btn{
+  color: #10ca98;
+  font-size:34rpx;
+  margin-top:30rpx;
+}
+
+.img_pre{
+  width: 70rpx;
+  height: 110rpx;
+  box-sizing: border-box;
+  padding:55rpx 0;
+  position: fixed;
+  top: 310rpx;
+  left: 30rpx;
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAxCAYAAAAm/aJCAAAB10lEQVRYhb3Y0XWCMBTG8X89fZcR3EC6gZ2gbCBO0HaCuoFu0DiBdoJ2BNyg3QA36EPCIQ0pkJDLfUKPnN+5wXwkuTscDsxUG6AC6sVM4AvwadD8fgZQAVtznQFId2qDVyAHKik084Ab4BtAYngz4AtYO2Dd/CB1py54csHU6MoDli4I6YY3N+DSAb2VolMXfO0DU6CFA+6A49BNU9ASODugGnNj7DMtgXdzfaPN1VEV0+l+CgjhnSralIkCIaxTG7yi52UwOBbNgAvdHO1M+rE1NLyDORpTfZ36cjSfCvahTcq4OZqkfMMblKMx5XbqgrvUoIv6clSlBm20pM3RmyQI+pkWtLEGbcditUBP/JP13RGzVJREQQ9vA6/Rna6kUR9cof/NomgD78z1Et1xctiXSMoDF9KoDz6TMCT6Al8BD+h5C3paJYGH3qcV+lVmw3tp1Ae/MTGtxi5XKvS8vZrP2ylwyBqpRndswxci0it0CerCT+gpFQTHrHtrdGC4sTkanrqtcOFR6TV1AxUFp9gqlgTmdaqduPLApTRqwzcD/xubqQ86FN3Y7MAS50i+vP6zO5c6vGrgH/P5GSs2JY/pmuVOJ6+lzwZ9eV3McfTawB/AI3D5BTZJfT7zPM3xAAAAAElFTkSuQmCC');
+  background-size: 29rpx 49rpx;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.img_next{
+  width: 70rpx;
+  height: 110rpx;
+  box-sizing: border-box;
+  padding:55rpx 0;
+  position: fixed;
+  top: 310rpx;
+  right: 30rpx;
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAxCAYAAAAm/aJCAAAByElEQVRYhb3X31HCQBDH8a+M76QEOgA7iBVIB4YK1Aqkg9CBoQKwAlMCdIAdQAc+bHYMxw3JXW6zTzkG5jN7f34XHsqyBMiABVAzQk0a7AD8AO9joSCdApRANQZ6QLo9Np+9WsPa6QnIPXB284uEKMDZA9cW8MQZK7xtxnML2EUVLjzwzBLVcmHdcKaowh/N8xTpeDDchQJsgJUDL61RkOPThnfILJiiCj8Bl2b8FQuHoCCbKXfgtTXqgz8JjM0YVOEZkXkdi4I/Nvf0SK8hqA9+oUdsDkUVXhCQ1ylQrcIDe9MrJdobTo0q7MbmFWyBwm1s1rTy2gptwxecvH40RBU+Ia+3ILF5tuwU5NhsWuMtsLdEZ8hazltgAXbTq39Rpi4INhvJBVc4925qdOkBK/dLqWNw1wVCujUtkOMAci5z5M71VopO1yEgDO+0Qi7v3iAM67QNHpFz2QnGohnyWtIGc+Qy71Wh05txnTLBIIR16oJbJAiCwBBUU+YmR2Oqz/TezdGY6uq0M0dTo4UHrIaC99ACSZkpcuiTgeBfUwUhIGVCyu10Yw26aAW8Nc+/ViD8T2/FgFgLrQly248GKroHnoHvMUCAP9rtfs2z9H7WAAAAAElFTkSuQmCC');
+  background-size: 29rpx 49rpx;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.dots .dot{
+  margin: 0 8rpx;
+  width: 14rpx;
+  height: 14rpx;
+  background: #11c795;
+  border-radius: 50%;
+  transition: all .6s;
+  opacity: .5;
+}
+.dots .dot.active{
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 50%;
+  background: #11c795;
+  opacity: 1;
+}
+
+.dots{
+    position: absolute;
+    top: 80rpx;
+    height: 32rpx;
+    display: flex;
+    margin:0 auto;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+}

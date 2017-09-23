@@ -1,0 +1,19 @@
+/* pages/goldList/goldList.wxss */
+.container{
+	padding: 0;
+	margin: 0;
+	padding-bottom: 150rpx;
+}
+
+.container .nav_to{
+	margin-top: 68rpx;
+	-webkit-box-shadow:0px 0px 20px rgba(0,0,0,.5);
+	box-shadow:0px 0px 20px  rgba(0,0,0,.5);
+	border-radius: 10rpx;
+}
+
+.container .nav_to image{
+    width: 714rpx;
+    height: 337rpx;
+    display: block;
+}

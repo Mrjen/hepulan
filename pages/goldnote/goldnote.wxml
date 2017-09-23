@@ -1,0 +1,22 @@
+<import src="../template/template.wxml"/>
+<view class="container">
+  <view class="goldnote" wx:for="{{ goldnote }}">
+    <view class="goldnote_category">
+      <text>{{ item.goldnote_month }}月</text>
+    </view>
+    <view class="goldnote_list">
+      <view class="goldnote_edit">
+        <image src="../img/goldnote_icon.png" />
+      </view>
+      <view class="goldnote_time">
+        <text class="time">{{ item.goldnote_month }} - {{ item.goldnote_day }}</text>
+        <text class="minute">{{ item.goldnote_minute }}</text>
+      </view>
+      <view class="goldnote_extra">
+        <text>金币记录：{{ item.goldnote_report }}</text>
+        <text>金币来源：{{ item.goldnote_from }} </text>
+      </view>
+    </view>
+  </view>
+  <template is="share_icon"/>
+</view>

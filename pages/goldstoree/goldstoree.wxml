@@ -1,0 +1,40 @@
+<import src="../template/template.wxml"/>
+<view class="container">
+  <swiper class="swiper" autoplay="{{autoplay}}" interval="{{interval}}" current="{{swiperCurrent}}" duration="{{duration}}" bindchange="swiperChange">
+    <block wx:for="{{swiperTab}}" wx:key="unique">
+      <swiper-item>
+        <view class="shop_img">
+          <swiper class="productIm" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <block>
+              <swiper-item>
+                <image src="{{item.img}}" class="slide-image" />
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+        <view>
+          <view class="shop_title">{{item.prod_name}}</view>
+          <view class="shop_tip">{{item.description}}</view>
+        </view>
+        <view>
+          <!-- <view class="shop_price">${{item.price}}</view> -->
+          <view class="shop_gold">金币{{item.coins}} <text class="hot_num" hidden="{{item.is_exchange == 0}}">/ 热力{{item.hot_points}}</text></view>
+        </view>
+        <view class="mine_coins">我的金币：{{coins}}<text hidden="{{item.is_exchange == 0}}"> / 我的热力: {{hot_points}}</text></view>
+        <view class="exchenge_btn" bindtap="check" data-id="{{item.prod_id}}" data-hot="{{item.hot_points}}" data-price="{{item.coins}}" data-exchange="{{item.is_exchange}}">立即兑换</view>
+
+        <view class="hot_btn" bindtap="getHot" data-price="{{item.coins}}" hidden="{{item.is_exchange == 0}}">获取热力</view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 切换标识圆点 -->
+  <view class="dots">
+    <block wx:for="{{swiperTab}}" wx:key="unique">
+      <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+    </block>
+  </view>
+<!-- 切换箭头 -->
+<view class="img_pre" bindtap="imgPre"></view>
+<view class="img_next" bindtap="imgNext"></view>
+<template is="share_icon"/>
+</view>

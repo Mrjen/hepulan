@@ -1,0 +1,137 @@
+/* pages/friendShare/friendShare.wxss */
+.container{
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	line-height: 1;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-size: 750rpx 800rpx;
+	background-image:url('background-image: url("https://hepulan.playonwechat.com/static/sharePoster/share.png");');
+}
+
+.persion_img{
+	width: 364rpx;
+	height: 364rpx;
+	border-radius: 50%;
+	display: block;
+	margin: 135rpx auto 0 auto;
+}
+
+.persion_name{
+	margin: 44rpx 0 12rpx 0;
+	font-size: 48rpx;
+}
+
+.gold_tip{
+	font-size: 26rpx;
+	margin:12rpx 0 86rpx 0;
+}
+
+.persion_gold{
+	margin-bottom: 112rpx;
+}
+
+.shre_btn{
+	width: 276rpx;
+	height: 62rpx;
+	margin: 0 auto 20rpx auto;
+	line-height: 62rpx;
+	border-radius: 31rpx;
+  box-sizing: border-box;
+  color: #fff;
+	background: -webkit-linear-gradient(-90deg, #10ca98 0, #0ba178 100%);
+  background: linear-gradient(180deg, #10ca98 0, #0ba178 100%);
+  background-position: 50% 50%;
+  -webkit-box-shadow: 0 1px 8px 2px rgba(0,0,0,0.4);
+}
+
+.shre_btn:hover{
+	width: 276rpx;
+	height: 62rpx;
+  border-radius: 31rpx;
+  color:#fff;
+	margin:20rpx auto;
+	background: -webkit-linear-gradient(-90deg, #10ca98 0, #0ba178 100%);
+  background: linear-gradient(180deg, #10ca98 0, #0ba178 100%);
+  background-position: 50% 50%;
+  -webkit-box-shadow: 0 1px 8px 2px rgba(0,0,0,0.4);
+}
+
+.hasshre_btn{
+	width: 276rpx;
+	height: 62rpx;
+	line-height: 62rpx;
+	text-align: center;
+  border-radius: 31rpx;
+  color:#fff;
+	margin:20rpx auto;
+	background: -webkit-linear-gradient(-90deg, #ebebeb 0, rgba(173,173,173,1) 100%);
+  background: linear-gradient(180deg, #ebebeb 0, rgba(173,173,173,1) 100%);
+  background-position: 50% 50%;
+  -webkit-box-shadow: 0 1px 8px 2px rgba(0,0,0,0.4);
+}
+
+.navto{
+	width: 750rpx;
+	height: 96rpx;
+	background: #1b1a20;
+	text-align: center;
+	line-height: 96rpx;
+	color: #fff;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+}
+
+.danmu{
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 400rpx;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.danmu image{
+	width: 44rpx;
+	height: 44rpx;
+	border-radius: 50%;
+}
+
+.danmu_item{
+	position: absolute;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	align-items: center;
+	height: 60rpx;
+	background: rgba(0,0,0,.2);
+	border-radius: 30rpx;
+	box-sizing: border-box;
+	padding: 0 5rpx;
+	display: flex;
+	align-items: center;
+	margin:10rpx 50rpx 10rpx 0;
+	animation:first 10s  infinite;
+	-webkit-animation:first 15s  infinite;
+}
+
+@keyframes first{
+  from{
+		 left:200%;
+  }
+  to{
+		left: -200%;
+  }
+}
+
+@-webkit-keyframes first{
+  from{
+		 left:200%;
+  }
+  to{
+		left: -200%;
+  }
+}

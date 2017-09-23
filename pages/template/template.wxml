@@ -1,0 +1,29 @@
+<!--pages/template/template.wxml-->
+<template name="teachInfo">
+	<view class="teach_info">
+	  <view class="teach_info_in">
+			 <view class="title">提示</view>
+			 <view class="title_tip">{{title_tip}}</view>
+			 <view class="teach_id">{{teacher_id}}</view>
+	      <!-- <view>
+	         <view class="list">1.点击复制微信号</view>
+	         <view class="list">2.到微信添加好友粘贴搜索</view>
+			 <view class="list">3.添加老师为好友</view>
+	      </view> -->
+			 <view class="opation_box">
+            <view bindtap="cencelBbtn">取消</view>
+			<view bindtap="sureBtn">确定</view>
+			 </view>
+	  </view>
+	</view>
+</template>
+
+<!-- 分享按钮 -->
+<template name="share_icon">
+	<button class="share_icon" open-type="share">
+   <image src="https://hepulan.playonwechat.com/static/share_icon.png"></image>
+ </button>
+ <button class="home_icon"  bindtap="backHome">
+	 <image src="https://hepulan.playonwechat.com/static/home_icon.png"></image>
+</button>
+</template>

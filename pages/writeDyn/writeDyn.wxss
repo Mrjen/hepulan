@@ -1,0 +1,84 @@
+/* pages/writeDyn/writeDyn.wxss */
+.container{
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+	font-size: 30rpx;
+	box-sizing: border-box;
+	padding: 28rpx;
+}
+
+.container textarea{
+	display: block;
+	min-height: 300rpx;
+	background: #f4f4f4;
+	width: 100%;
+	font-size: 36rpx;
+	line-height: 1.3rpx;
+	margin-top: 30rpx;
+	box-sizing: border-box;
+	padding: 28rpx;
+}
+
+.container form{
+	width: 100%;
+}
+
+.upfile_btn{
+	display: block;
+	width: 146rpx;
+	height: 146rpx;
+}
+
+.upfile_box{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.upfile_box image{
+	margin: 5rpx;
+}
+
+.send_btn{
+	margin-top: 100rpx;
+	width: 100%;
+}
+
+.tip_text{
+	box-sizing: border-box;
+	padding: 20rpx 0;
+}
+
+.join_active{
+	width: 20rpx;
+	height: 20rpx;
+	border:1px solid #666;
+	border-radius: 6rpx;
+	display: block;
+	margin-right: 10rpx;
+	position: relative;
+}
+
+.getJiFen{
+	display: flex;
+	align-items: center;
+	font-size: 24rpx;
+	margin:20rpx 0;
+	color: #555;
+}
+
+.join_text:before{
+  color: #000;
+  position: absolute;
+  display: block;
+  content: "";
+  margin-left: 3rpx;
+  margin-top: 4rpx;
+  width: 14rpx;
+  height: 8rpx;
+  border-bottom: solid 1px currentColor;
+  border-left: solid 1px currentColor;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}

@@ -1,0 +1,38 @@
+<!--pages/integralList/integralList.wxml-->
+<import src="../template/template.wxml"/>
+<view class="main">
+   <view class="top_banner">
+      <!-- <image src="../img/home_logo.png"></image> -->
+      <view class="persion_box">
+          <view class="circle1"><view class="circle2"><image src="{{avatarUrl}}"></image></view></view>
+          <view class="gold_box">
+             <view class="mine_list">我的金币：{{coins}}<view class="helpCoins" bindtap="helpCoins">?</view></view>
+             <view class="mine_list">我的排名：{{topIndex}}</view>
+          </view>
+       </view>
+   </view>
+   <!-- <view class="list_nav">
+       <view>排行</view>
+       <view>昵称</view>
+       <view>金币</view>
+   </view> -->
+   <view class="persion_list" wx:for="{{persionList}}">
+       <view><image src="{{item.pUrl}}"></image></view>
+       <view>{{item.name}}</view>
+       <view>{{item.integral}}</view>
+       <view>NO.{{index+1}}</view>
+   </view>
+
+   <!-- 弹窗 -->
+   <view class="help_win" wx:if="{{helpWin}}">
+       <view class="help_win_in">
+           <view class="help_title">金币获取方式<view bindtap="close_help" class="close_help"></view></view>
+           <view class="help_content">
+              <view>签到领取，第一天领取10个，连续签到领取金币数量增加5个，每天最高可领40个金币，签到中断则重新从第一天开始计算</view>
+              <view>助力奖励，每位好友助力增加3金币，每天最高增加30金币</view>
+              <view>完善手机信息奖励100金币</view>
+           </view>
+       </view>
+   </view>
+   <template is="share_icon"/>
+</view>

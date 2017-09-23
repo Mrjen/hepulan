@@ -1,0 +1,5 @@
+<!--pages/IconPage/IconPage.wxml-->
+<image class="page_icon" src="{{pageIcon}}"></image>
+<text>{{page_text}}</text>
+<button class="page_btn" type="primary" bindtap="MainUrl">返回商城</button>
+<button class="page_btn" bindtap="viceUrl">返回首页</button>

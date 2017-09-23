@@ -1,0 +1,83 @@
+{
+  "pages": [
+    "pages/circle/circle",
+    "pages/pointMall/pointMall",
+    "pages/pointMallCar/pointMallCar",
+    "pages/mine/mine",
+    "pages/DiaryMark/DiaryMark",
+    "pages/index/index",
+    "pages/login/login",
+    "pages/qiandao/qiandao",
+    
+    "pages/knowledge/knowledge",
+    "pages/writeDyn/writeDyn",
+    "pages/sureExchange/sureExchange",
+    "pages/IconPage/IconPage",
+    "pages/ercode/ercode",
+    "pages/heChart/heChart",
+    "pages/heChartRoom/heChartRoom",
+    "pages/heChartTeach/heChartTeach",
+    "pages/apply/apply",
+    "pages/member/member",
+    "pages/sharePoster/sharePoster",
+    "pages/goldList/goldList",
+    "pages/friendShare/friendShare",
+    "pages/sharePage/sharePage",
+    "pages/applyDetail/applyDetail",
+    "pages/calendar/calendar",
+    "pages/integralList/integralList",
+    
+    "pages/Recommend/Recommend",
+    "pages/skinTest/skinTest",
+    "pages/skinResult/skinResult",
+    "pages/tip/tip",
+    "pages/single/single",
+    "pages/template/template",
+    "pages/shareHot/shareHot",
+    "pages/friendHot/friendHot",
+    "pages/goldnote/goldnote",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1b1a20",
+    "navigationBarTitleText": "禾葡兰护肤中心",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "backgroundColor": "#1b1a20",
+    "color": "#fff",
+    "selectedColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/img/home_icon_home.png",
+        "selectedIconPath": "pages/img/home_icon_home_hover.png"
+      },
+      {
+        "pagePath": "pages/knowledge/knowledge",
+        "text": "知识",
+        "iconPath": "pages/img/home_icon_beauti.png",
+        "selectedIconPath": "pages/img/home_icon_beauti_hover.png"
+      },
+      {
+        "pagePath": "pages/circle/circle",
+        "text": "禾圈",
+        "iconPath": "pages/img/home_icon_circle.png",
+        "selectedIconPath": "pages/img/home_icon_circle.png"
+      },{
+        "pagePath": "pages/heChart/heChart",
+        "text": "课程",
+        "iconPath": "pages/img/home_icon_circle.png",
+        "selectedIconPath": "pages/img/home_icon_circle.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "pages/img/home_icon_mine.png",
+        "selectedIconPath": "pages/img/home_icon_mine_hover.png"
+      }
+    ]
+  }
+}

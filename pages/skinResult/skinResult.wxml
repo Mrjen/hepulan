@@ -1,0 +1,21 @@
+<!--pages/skinResult/skinResult.wxml-->
+<import src="../template/template.wxml"/>
+<view class="container">
+     <view class="body_bg"><image src="https://hepulan.playonwechat.com/static/question_reslute.png"></image></view>
+     <view class="title_text">肌肤鉴定书</view>
+     <view class="result_box">
+	     <view class="resule_text"><view class="text_title">皮肤：属于</view><view>{{skinType}}</view></view>
+	     <view class="resule_text"><view class="text_title">隐患：</view><view>{{danger}}</view></view>
+	     <view class="resule_text"><view class="text_title">日常注意：</view><view>{{dailyAttention}}</view></view>
+	     <view class="resule_text"><view class="text_title">改善方案：</view><view>{{improvePlan}}</view></view>
+     </view>
+     <image class="seal" src="../img/result_seal.png"></image>
+     <view class="btn_btn">
+        <button wx:if="{{teach_static}}" class="ask_btn" open-type="contact">点击咨询</button>
+        <button wx:else="" bindtap="applyBtn" class="kefu">点击咨询</button>
+     </view>
+<block wx:for="{{templateData}}">
+    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
+</block>
+<template is="share_icon"/>
+</view>

@@ -1,0 +1,135 @@
+<!--pages/heChartRoom/heChartRoom.wxml-->
+<import src="../template/template.wxml"/>
+<import src="../../utils/wxParse.wxml"/>
+<view class="container">
+  <view class="ppt" animation="{{pptHeight}}">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="changeCurrent">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" bindtap="bindchange" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="ppt_dots">{{current+1}}/{{imgLen}}</view>
+  </view>
+  <scroll-view class="scroll_box" >
+    <!-- 老师及观众 -->
+    <view class="persion_opation">
+      <view class="teacher_box">
+        <image wx:for="{{teacher_img}}" src="{{item.guest_avatar}}"></image>
+      </view>
+      <view class="barrage_btn">
+        <block>
+          <view class="close_pop" wx:if="{{popStatic}}" bindtap="colsePop">关</view>
+          <view class="close_pop" wx:else="" bindtap="openPop">弹</view>
+        </block>
+        <view class="pop_nav_out" animation="{{popWidth}}">
+          <view class="pop_nav">
+            <view class="edit_btn"></view>
+            <view class="persion_pop">当前人气</view>
+            <view>{{persion_pop}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 直播间功能按钮 -->
+    <view class="opation_box">
+      <!-- <block>
+        <view wx:if="{{pptShow}}" bindtap="pptShow">PPT</view>
+        <view wx:else="" bindtap="pptHide">PPT</view>
+      </block> -->
+      <!-- <view>直播间</view>
+      <view>刷新</view> -->
+    </view>
+    <!-- 直播间老师聊天记录 -->
+    <scroll-view class="main_content"  scroll-y="true"  bindscrolltoupper="pageTop"  scroll-into-view="chart{{scrollId}}"  scroll-top="{{scrollTop}}">
+      <!-- 课程状态 -->
+    <view class="course_static">{{course_static}}</view>
+
+      <view class="chart_item" id="chart{{item.id}}" wx:for="{{mainContent}}">
+        <view class="teach_img">
+          <image src="{{item.persion_img}}"></image>
+        </view>
+        <view>
+          <view class="teach_time">{{item.contentTime}}</view>
+          <view class="teach_name">{{item.persionName}}</view>
+          <view class="chart_content">
+            <view>                                                                                <!--wx:if="{{!item.playStatic}}"-->
+              <view class="audio_chart" data-audio_id="audio{{item.id}}" data-id_idx="{{item.id}}" data-play_static="{{!item.playStatic}}" data-audiosrc="{{item.content}}" bindtap="audioControl" style="width:{{item.audioLen*7.3}}rpx" wx:if="{{item.contentType=='voice'?true:false}}">
+                <audio src="{{item.content}}" id="audio{{item.id}}" class="myAudio"><view wx:if="{{!item.playStatic}}" class="play_bg"></view><view wx:else="" class="play_audio"></view></audio>
+              </view>
+              <block wx:elif="{{item.contentType=='image'||item.contentType=='text'?true:false}}">
+                <view wx:if="{{item.contentType=='image'?true:false}}"  class="persion_content">
+                  <image class="content_img" bindtap="prewImg" data-src="{{item.content}}" src="{{item.content}}" mode="widthFix"></image>
+                </view>
+                <view wx:if="{{item.contentType=='text'?true:false}}" class="persion_content">{{item.content}}
+                  <image class="content_img" bindtap="prewImg" data-src="{{item.content_img}}" wx:if="{{item.content_img.length > 0}}" src="{{item.content_img}}" mode="widthFix"></image>
+                </view>
+              </block>
+              <view  class="persion_content" wx:elif="{{item.contentType=='ask'?true:false}}">
+                  <block wx:for="{{item.content}}" wx:for-item="content">
+                    <view><view class="ask_name"><text>{{content.name}}:</text><text class="quest">{{content.quest}}</text></view></view>
+                    <view>回复：{{content.replay}}</view>
+                  </block>
+              </view>
+            </view>
+            <view class="audio_len" wx:if="{{item.audioLen > 0}}">{{item.audioLen}}"</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  <!-- 底部导航 -->
+  <view class="bottom_nav">
+     <!-- <view class="follow_fix"><view></view>关注</view> -->
+     <view class="discuss" bindtap="openDiscuss"><view></view>讨论</view>
+  </view>
+
+  <!-- 讨论弹屏 -->
+  <view class="discuss_win" wx:if="{{discussStatic}}">
+      <view class="callback_btn" bindtap="backLive">回到直播</view>
+      <scroll-view class="discuss_main"  scroll-y="true">
+        <block>
+         <view class="discuss_item" wx:for="{{discuss}}">
+           <image class="dis_pers_img" src="{{item.dis_pers_img}}"></image>
+           <view class="discuss_cotent_item">
+              <view class="dis_cussname">{{item.dis_pers_name}}</view>
+              <view>{{item.dis_pers_time}}</view>
+              <view class="pers_content"><template is="wxParse" data="{{wxParseData:item.article.nodes}}"></template></view>
+           </view>
+         </view>
+      </block>
+      </scroll-view>
+      <!-- 来说点什么吧 -->
+
+      <block>
+        <view wx:if="{{disscussWrite}}" class="disscuss_write" bindtap="switchWrite"><view class="write_btn"><view class="write_icon"></view>来说点什么吧...</view></view>
+        <view wx:else="" class="write_box">
+          <view class="zhan_wei" style="width:750rpx;height:{{position_static}}rpx"></view>
+          <view class="write_box_in">
+             <view class="emoji_box" wx:if="{{switchEmoji}}">
+                 <image wx:for="{{emoji}}" src="{{item.emoji_src}}" bindtap="inputEmoji" data-alt="{{item.tip}}"></image>
+             </view>
+             <view class="write_opation"><view class="opation_btn" bindtap="cencelWrite">取消</view><view class="opation_btn" bindtap="sureWrite">发送</view></view>
+             <textarea class="write_input" bindinput="bindTextArea" bindfocus="bindTextFouce" bindblur="bindTextBlur" focus="{{textAreaFocus}}" value="{{writeVlue}}" placeholder="提问或者发表你的看法"/>
+            <view class="switch_box">
+                <!-- <label class="radio" bindtap="radioChange">
+                   <view class="radio_radio"><view wx:if="{{checked}}"></view></view><view style="display:inline-block">向嘉宾或主持人提问</view>
+                </label> -->
+                <view class="switch_emoji" bindtap="switchEmoji"></view>
+            </view>
+           </view>
+
+        </view>
+      </block>
+  </view>
+
+  <!-- 评论弹屏 -->
+  <view class="barrage_box"  animation="{{barrgeAnimate}}">
+      <view class="barrage_item" wx:for="{{barrageData}}">
+         <view class="barrage_content">{{item.dis_content}}</view>
+         <image class="barrage_persion" src="{{item.owner_avatar}}"></image>
+      </view>
+  </view>
+  </scroll-view>
+  <template is="share_icon"/>
+</view>

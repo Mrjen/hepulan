@@ -1,0 +1,75 @@
+/* pages/single/single.wxss */
+
+@import "../../utils/wxParse.wxss";
+
+.single-container {
+	padding: 10rpx 20rpx;
+	color: #333;
+}
+.single-title {
+	margin-bottom: 16rpx;
+	font-size: 48rpx;
+	font-weight: 700;
+	line-height: 1.4;
+}
+.single-extra {
+	padding-bottom: 24rpx;
+	font-size: 32rpx;
+	color: #777;
+}
+.single-extra text {
+	padding-right: 24rpx;
+}
+
+
+.page_views{
+	display: flex;
+	color: #999;
+	justify-content: flex-end;
+	padding-top: 20rpx;
+	box-sizing: border-box;
+	padding-right: 100rpx;
+	padding-top: 80rpx;
+	padding-bottom: 200rpx;
+}
+
+
+.page_views view{
+	width: 220rpx;
+	font-size: 34rpx;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.page_views .like_btn{
+	content: "";
+	display: inline-block;
+	width: 40rpx;
+	height: 32rpx;
+	background-image: url(https://hepulan.playonwechat.com/static/icon/home_icon_zan.png);
+	background-size: 40rpx 32rpx;
+	margin-right: 16rpx;
+}
+
+
+.page_views .has_like_btn{
+	content: "";
+	display: inline-block;
+	width: 40rpx;
+	height: 32rpx;
+	background-image: url(https://hepulan.playonwechat.com/static/icon/home_icon_haszan.png);
+	background-size: 40rpx 32rpx;
+	margin-right: 16rpx;
+}
+
+.page_views .title_view::before{
+	content: "";
+	display: inline-block;
+	width: 40rpx;
+	height: 32rpx;
+	background-image: url(https://hepulan.playonwechat.com/static/icon/home_icon_view.png);
+	background-size: 40rpx 32rpx;
+	margin-right: 16rpx;
+}

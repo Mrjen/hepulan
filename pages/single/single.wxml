@@ -1,0 +1,19 @@
+<!--pages/single/single.wxml-->
+<import src="../../utils/wxParse.wxml"/>
+<import src="../template/template.wxml"/>
+<view class="single-container">
+<view class="single-title">{{ single.title }}</view>
+<view class="single-extra">
+	<text>{{ single.publishtime }}</text>
+	<text>{{ single.author }}</text>
+</view>
+<template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+<!-- <view class="page_views">
+	 <view class="title_view">{{single.visit_num}}</view>
+	 <view>
+    <view class="like_btn" bindtap="likeBtn" wx:if="{{single.is_thumb<1?true:false}}"></view>
+    <view wx:else=""  bindtap="hasLike" class="has_like_btn"></view>{{single.thumb_num}}
+  </view>
+</view> -->
+<template is="share_icon"/>
+</view>

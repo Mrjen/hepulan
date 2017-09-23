@@ -1,0 +1,6 @@
+<!--pages/goldList/goldList.wxml-->
+<import src="../template/template.wxml"/>
+<view class="container">
+  <view class="nav_to" wx:for="{{navData}}" bindtap="checkTo" hover-class="none" data-idx="{{index}}"><image src="{{item.icon}}"></image></view>
+  <template is="share_icon"/>
+</view>

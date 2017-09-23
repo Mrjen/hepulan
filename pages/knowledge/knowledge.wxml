@@ -1,0 +1,61 @@
+<!-- pages/knowledge/knowledge.wxml -->
+<import src="../template/template.wxml"/>
+<import src="../tmpl/tmpl.wxml"  />
+<view class="container">
+    <!-- 顶部导航 -->
+    <view class="scroll_main">
+        <!-- 搜索导航 -->
+        <view class="search_nav">
+          <view class="search_nav_search">
+            <image class="logo" src="https://hepulan.playonwechat.com/static/icon/home_logo.png"></image>
+            <input placeholder="让天下女人，没有不美丽的肌肤" type="text" bindinput="inputValue" />
+            <view class="search_nav_btn" bindtap="searchBtn">
+              <image src="../img/home_search_light.png"></image>
+            </view>
+          </view>
+          <scroll-view class="search_world" scroll-x="true">
+            <view class="search_w_box" style="width:{{w_width}}rpx">
+              <view wx:for="{{search_word}}" class="search_item {{item.active?'click_btn':''}}" bindtap="tapKeyWorld" data-id="{{item.id}}" data-inx="{{index}}">{{item.ma_desc}}</view>
+            </view>
+          </scroll-view>
+        </view>
+        <!-- 主体内容 -->
+        <view class="main_content">
+            <view class="content_item" wx:for="{{main_content}}">
+
+                <view class="content_video" wx:if="{{item.type=='video'?true:false}}">
+                    <view class="image_box" bindtap="video_control" data-ontap="{{item.id}}" wx:if="{{item.noplay=='false'}}" >
+                        <image class="image_src" mode="aspectFit" src="{{item.cover}}"></image>
+                        <image class="video_btn" src="../img/home_icon_videoplay.png"></image>
+                    </view>
+                    <video class="video_src" id="playVideo" wx:else="" autoplay="{{item.noplay=='true'}}" bindplay="{{item.noplay=='false'}}" src="{{item.url}}#t=1"></video>
+                </view>
+                <view class="content_image" wx:elif="{{item.type=='article'?true:false}}" data-idx="{{ item.id }}" bindtap="toArticle">
+                    <image class="image_src" mode="aspectFit" src="{{item.url}}"></image>
+                </view>
+
+                <view class="teach_info">
+                    <view class="teach_info_in">
+                        <image class="teach_img" src="{{item.avatar}}"></image>
+                        <view>
+                            <view class="teach_tip">{{item.title}}</view>
+                            <view class="teach_name">
+                                {{item.publish}}<text class="title_time">
+                                {{item.publish_time}}</text>
+                            </view>
+                        </view>
+                    </view>
+
+                   <!--  <view class="page_views">
+                      <view class="title_view">{{item.visit_num}}</view>
+                      <view class="like_box">
+                      <view class="like_btn" data-inx="{{item.id}}" bindtap="likeBtn" wx:if="{{item.is_thumb<1?true:false}}"></view>
+                      <view wx:else="" bindtap="hasLike" class="has_like_btn"></view>{{item.thumb_num}}</view>
+                    </view> -->
+
+                </view>
+            </view>
+        </view>
+    </view>
+<template is="share_icon"/>
+</view>

@@ -1,0 +1,51 @@
+.goldnote {
+  width: 100%;
+}
+
+.goldnote_category {
+  width: 100%;
+  padding: 26rpx 0;
+  padding-left: 66rpx;
+  background-color: #b9b9b9;
+  color: #fff;
+}
+
+.goldnote_list {
+  width: 100%;
+  padding: 70rpx 0;
+  border-bottom: 1rpx solid #ababab
+}
+
+.goldnote_time, .goldnote_edit, .goldnote_extra {
+  display: inline-block;
+}
+
+.goldnote_time {
+  width: 30%;
+  text-align: center;
+}
+
+.goldnote_time text {
+  display: block
+}
+
+.goldnote_edit {
+  width: 30%;
+  text-align: center
+}
+
+.goldnote_edit image {
+  width: 60rpx;
+  height: 60rpx;
+  padding: 0 76rpx;
+}
+
+.goldnote_extra {
+  width: 40%;
+  text-align: left;
+  font-size: 30rpx;
+}
+
+.goldnote_extra text {
+  display: block;
+}

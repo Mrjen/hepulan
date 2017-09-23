@@ -1,0 +1,41 @@
+/* pages/applyDetail/applyDetail.wxss */
+@import "../../utils/wxParse.wxss";
+@import "../template/template.wxss";
+.container{
+  margin:0;
+  position: absolute;
+  width: 750rpx;
+  height: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+.applyBtn{
+  display:block;
+  box-sizing:border-box;
+  border:1px solid #000;
+  font-size:34rpx;
+  padding:10rpx 20rpx;
+  margin:80rpx auto 150rpx auto;
+  margin-bottom: 150rpx;
+  width:180rpx;
+  text-align: center;
+}
+
+.article{
+  box-sizing: border-box;
+  padding:40rpx 30rpx;
+}
+
+.bottom_margin{
+  width: 750rpx;
+  height: 150rpx;
+}
+
+.taacher_btn{
+  width: 220rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border:1px solid #666;
+  margin:150rpx auto;
+}

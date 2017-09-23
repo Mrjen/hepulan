@@ -1,0 +1,126 @@
+/* pages/pointMallCar/pointMallCar.wxss */
+.list_item image{
+    display: block;
+    width: 244rpx;
+    height: 162rpx;
+    border-radius: 8rpx;
+    margin-right: 20rpx;
+}
+
+.list_item{
+	width: 100%;
+	height: 212rpx;
+	display: flex;
+	padding:20rpx;
+	box-sizing: border-box;
+	align-items: center;
+	border-bottom: 20rpx solid #f7f7f7;
+}
+
+.list .list_item:last-of-type{
+	margin-bottom: 150rpx;
+	border:1px solid red;
+}
+
+.item_right{
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.list .item_title{
+	font-size: 30rpx;
+	margin-bottom: 34rpx;
+	white-space: nowrap;
+	text-overflow: hidden;
+	overflow: hidden;
+}
+
+.list .item_price{
+	color:#004724;
+	font-size: 24rpx;
+}
+
+.goods_num{
+	display: flex;
+}
+
+.goods_num view{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50rpx;
+	height: 50rpx;
+	font-size: 28rpx;
+}
+
+.list .item_type{
+	width: 100%;
+	line-height: 50rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.list .item_color{
+	font-size: 24rpx;
+}
+
+.goods_num view:nth-of-type(1){
+	border:1px solid #dfdfdf;
+	font-size: 30px;
+	border-radius: 4rpx 0 0 4rpx;
+}
+
+.goods_num view:nth-of-type(2){
+	border:1px solid #dfdfdf;
+	border-left: 0;
+	border-right: 0;
+	font-size: 24rpx;
+	border-radius: 4rpx 0 0 4rpx;
+}
+
+.goods_num view:nth-of-type(3){
+	border:1px solid #dfdfdf;
+	font-size: 30px;
+	border-radius: 0 4rpx 4rpx 0;
+}
+
+/*购物车*/
+.bottom_nav{
+	width:100%;
+	height: 118rpx;
+	background:#fff;
+	border-top: 1px solid #f7f7f7;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	padding-left:20rpx;
+	font-size: 30rpx;
+}
+
+.bottom_nav .cart_right{
+	display: flex;
+	align-items: center;
+}
+
+.bottom_nav .cart_right .settle{
+	background: #086446;
+	height: 118rpx;
+	color: #fff;
+	line-height: 118rpx;
+	font-size: 30rpx;
+	width: 238rpx;
+	text-align: center;
+	margin-left: 20rpx;
+}
+
+.bottom_nav .cart_right .settle text{
+	font-size: 24rpx;
+}

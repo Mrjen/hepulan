@@ -1,0 +1,18 @@
+<!--pages/shareHot/shareHot.wxml-->
+<import src="../template/template.wxml"/>
+<view class="container">
+    <view class="persion_img">
+      <image src="{{avatarUrl}}"></image>
+    </view>
+    <view class="persion_name">{{nickName}}</view>
+    <view class="persion_coins">当前热力：{{hot_points}}</view>
+    <view class="person_action">
+      
+    </view>
+    <button class="yaoBtn" open-type="share">邀请好友助力</button>
+    <view class="share_tip">每一个好友的助力都会帮你获得 1个热力，热力可以直接兑换礼品！快叫好朋友来帮忙吧，见证友情的时刻到了。</view>
+     -->
+    <view class="share_tip2">赶紧邀请好朋友来助力吧!</view>
+    <template is="share_icon"/>
+</view>
+

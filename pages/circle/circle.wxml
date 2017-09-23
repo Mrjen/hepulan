@@ -1,0 +1,58 @@
+<!--pages/circle/circle.wxml-->
+<import src="../template/template.wxml"/>
+<!-- <scroll-view class="container" scroll-y="true" bindscrolltolower="pageBottom"> -->
+<view class="nav_box">
+   <view class="nav_in">
+     <view wx:for="{{navList}}">
+         <image src="{{item.img}}"></image>
+         <text>{{item.text}}</text>
+     </view>
+   </view>
+</view>
+
+
+  <view class="space_dyn" wx:for="{{spaceDyn}}">
+    <view class="user_img">
+      <image src="{{item.avatar}}"></image>
+    </view>
+    <view class="space_content">
+       <view class="user_name">{{item.username}}</view>
+       <view class="content_view">{{item.title}}</view>
+       <view class="content_img" hidden="{{item.imgs==''}}">
+           <!-- <image src="../img/goldstore_gold_image03.png"></image> -->
+           <image  wx:for="{{item.imgslist}}" bindtap="prewImg" wx:for-item="imgslist" wx:for-index="spaceDyn"  data-imglist="{{item.imgslist}}" data-url="{{imgslist}}" src="{{imgslist}}"></image>
+           <!-- <image wx:for="{{item.imgs}}"  wx:for-item="imgs" bindtap="prewImg" data-src="{{item.imgs}}" data-img="{{imgs}}" src="{{item.img_url}}"></image> -->
+       </view>
+	     <view class="discuss_box">
+	       <view class="write_time">{{item.dynTime}}</view>
+	       <view class="discuss_opation">
+	          <view class="like_box" bindtap="dianZan" data-zan="{{index}}"  data-pid="{{item.pid}}">
+	             <view class="like_btn {{item.haslike>0?'like_btn_selsct':''}}"></view>点赞
+	          </view>
+	          <view class="diss_bx" wx:if="{{item.commentusable?true:false}}" bindtap="dissWrite" data-inx="{{item.userName}}" data-idwrite="{{index}}">
+	             <view class="discuss_btn"><image src="../img/circle_icon_discuss.png"></image></view>评论
+	          </view>
+	       </view>
+	    </view>
+	    <view class="like_persion">
+	      <view class="like_item" wx:for="{{item.liks}}" wx:for-item="liks">{{liks.username}}</view>
+	    </view>
+	    <view class="persion_diss" >
+	         <view class="diss_item" wx:for="{{item.persionDiss}}" wx:for-item="persionDiss">{{persionDiss.username}}：{{persionDiss.comment}}</view>
+	    </view>
+    </view>
+  <view class="diss_win" wx:if="{{showWrite}}">
+      <view class="write_box">
+          <view class="comment">评论</view>
+          <textarea  bindinput="bindTextAreaBlur"/>
+          <view class="diss_input_opa">
+               <view class="diss_input_cencel" bindtap="writeCencel">取消</view>
+               <view class="diss_input_sure" bindtap="writeSure" data-pername="{{index}}">确定</view>
+          </view>
+      </view>
+   </view>
+   <!-- url="../writeDyn/writeDyn" -->
+</view>
+<view bindtap="writeCircle" class="write_dyn" wx:if="{{writeCircle}}"><image src="../img/circle_icon_write.png"></image></view>
+<template wx:if="{{isWritting}}" is="share_icon"/>
+<!-- </scroll-view> -->

@@ -1,0 +1,11 @@
+<!--pages/tip/tip.wxml-->
+<view wx:if="{{coins==undefined}}">
+	<view>你已签到</view>
+	<view>将在3秒后返回上一页</view>
+</view>
+<view wx:else="">
+	<view>签到成功</view>
+	<view>金币<text>+{{coins}}</text></view>
+	<button bindtap="toStore">去花金币</button>
+	<view>将在3秒后返回上一页</view>
+</view>

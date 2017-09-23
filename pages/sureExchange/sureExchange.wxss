@@ -1,0 +1,57 @@
+/* pages/sureExchange/sureExchange.wxss */
+.select_address,.submit_address{
+    width: 700rpx;
+    margin:30rpx;
+}
+
+.submit_address{
+  margin: 0;
+  margin-top:100rpx;
+}
+
+.address_box{
+    width: 100%;
+    padding:20rpx 30rpx;
+    box-sizing: border-box;
+}
+
+.address_item{
+    box-sizing: border-box;
+    background:#fff;
+    width: 100%;
+    font-size: 30rpx;
+    display: flex;
+    align-items: center;
+    height: 90rpx;
+    position: relative;
+}
+
+.address_item::before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    transform: translateY(.5);
+    transform-origin: 0 0;
+
+}
+
+.address_item text{
+    display: block;
+    width: 150rpx;
+}
+
+.address_item input{
+    display: block;
+    flex: 1;
+}
+
+.address_tip{
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 30rpx;
+}

@@ -1,0 +1,26 @@
+<!--pages/pointMallCar/pointMallCar.wxml-->
+<view class="list">
+    <view class="list_item" wx:for="{{list}}">
+      <radio value="" color="#086446" checked="{{item.is_select=='1'?true:false}}" bindtap="selectGoods" data-index="{{index}}" data-gid="{{item.gid}}"/>
+      <image src="{{item.img}}"></image>
+      <view class="item_right">
+         <view class="item_title">{{item.name}}</view>
+         <view class="item_price">{{item.score}}积分</view>
+         <view class="item_type">
+             <view class="item_color">{{item.color}}</view>
+             <view class="goods_num">
+                 <view bindtap="cutGoods" data-index="{{index}}" data-gid="{{item.gid}}">-</view>
+                 <view>{{item.goods_num}}</view>
+                 <view bindtap="addGoods" data-index="{{index}}" data-gid="{{item.gid}}">+</view>
+             </view>
+         </view>
+      </view>
+    </view>
+    <view class="bottom_nav">
+        <view bindtap="allSelect"><radio color="#086446" checked="{{allSelect}}"/>全选</view>
+        <view class="cart_right">
+            <view>合计：{{AllMoney}}积分</view>
+            <view class="settle">结算<text>(包邮)</text></view>
+        </view>
+    </view>
+</view>

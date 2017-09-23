@@ -1,0 +1,37 @@
+
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="logo">
+    <!-- <image src="../img/home_logo.png"></image> -->
+  </view>
+  <view class="comp_name">禾葡兰</view>
+  
+ <!--  <form bindsubmit="formSubmit">
+    <view class="login_box">
+        <view class="section">
+            <view class="mobiel_tip">生日</view>
+            <picker class="birthday" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+              <view class="picker">
+                {{date}}
+              </view>
+            </picker>
+        </view>
+      <view class="mobiel_tip mobiel_tip2">绑定手机号，信息记录会更准确哦</view>
+      <input type="number" bindinput="bindKeyInput" placeholder="请输入手机号" />
+      <input type="number" maxlength="4" bindinput="verifyCode" placeholder="验证码" />
+      <view class="yanCdoe">
+        <span wx:if="{{selected}}" bindtap="countdown">{{second}}s后重新获取</span>
+        <span wx:if="{{selected1}}" bindtap="getphone">点击获取验证码</span>
+      </view>
+      <button class="submit_btn" bindtap="loginIn" formType="submit">立即绑定</button>
+    </view>
+  </form> -->
+
+  <view class="addGoldImg" style="display:{{addImgDis}}">
+      <image src="{{addGoldImg}}"></image>
+  </view>
+  <!-- 以下为图片预加载与页面内容无关 -->
+  <view class="preloadImg">
+      <image src="https://hepulan.playonwechat.com//static/gold100.gif"></image>
+  </view>
+</view>

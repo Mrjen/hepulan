@@ -1,0 +1,16 @@
+<!--pages/writeDyn/writeDyn.wxml-->
+<import src="../template/template.wxml"/>
+<view class="container">
+   <form bindsubmit="bindFormSubmit">
+   <textarea  bindinput="bindTextAreaBlur" auto-focus auto-height placeholder="分享你的护肤新鲜事" />
+   <view class="tip_text">上传图片</view>
+   <view class="upfile_box">
+      <image wx:for="{{upImg}}" bindtap="upFile" class="upfile_btn" src="{{item}}"></image>
+      <!-- <image class="upfile_btn"  src="../img/circle_icon_upfileimg.png"></image> -->
+   </view>
+   <label class="getJiFen" bindtap="getJiFen"><text class="join_active  {{joinText?'join_text':''}}"></text>参加护肤热选赢积分请打钩<text>《活动规则》</text></label>
+
+       <button class="send_btn" disabled="{{Dabled}}" bindtap="sendBtn" type="primary" form-type="submit"> 发布 </button>
+    </form>
+<template is="share_icon"/>
+</view>

@@ -1,0 +1,21 @@
+/* pages/IconPage/IconPage.wxss */
+.page_icon{
+  width: 200rpx;
+  height: 200rpx;
+  margin:200rpx auto 100rpx auto;
+  display: block;
+}
+
+.page_btn{
+  width: 700rpx;
+  margin:30rpx auto;
+}
+
+text{
+  width: 700rpx;
+  font-size: 34rpx;
+  margin:0 auto;
+  display: block;
+  text-align: center;
+  line-height: 50rpx;
+}

@@ -1,0 +1,68 @@
+<!--index.wxml-->
+<import src="../template/template.wxml"/>
+<scroll-view scroll-y="true" class="container">
+   <view class="logo"><image src="../img/logo.png"></image></view>
+
+   <form  class="content_box"  bindsubmit="formSubmit" report-submit="true">
+      <button class="contact_me" formType="submit">
+           <!-- <button class="ask_mine navitor1" wx:if="{{!content}}" data-page="ask_me" bindtap="toLogin" hover-class="none">在线咨询</button>
+           <button class="ask_mine navitor2" wx:elif="{{teach_static}}" open-type="contact" bindtap="" hover-class="none">在线咨询</button>
+           <button class="ask_mine navitor3" wx:else="" open-type="contact" hover-class="none">在线咨询</button> -->
+           <button class="ask_mine navitor3"  open-type="contact" hover-class="none" bindtap="tongJi">立即咨询肌肤问题</button>
+       </button>
+
+        <!-- 咨询 -->
+        <view class="contact_view">
+             <view>1000名专业护肤老师在线解答</view>
+             <view>30秒内无应答可免费领取礼品</view>
+             <image class="online_icon" src="../img/home_icon_ask.png"></image>
+             <view class="online_time">在线时间： 9:30 ~ 18:00</view>
+        </view>
+
+       <!-- <view class="ask_bg">
+           <view class="img_box">
+               <image src="../img/home_icon_ask.png"></image>
+               <text class="ask_time">10:00-18:00</text>
+           </view>
+           <view class="ask_right">
+                <image class="hot_img" src="../img/home_icon_askhot.gif"></image>
+                <view>在线咨询肌肤问题</view>
+                <view>1000名专业护肤老师在线解答</view>
+           </view>
+       </view> -->
+   </form >
+
+   <!-- 按钮区 -->
+   <view class="home_btn">
+       <vies class="test_btn navitor" bindtap="skinTest" data-page="skinTest" hover-class="none">肌肤测试</vies>
+       <!-- <vies class="apply_btn navitor"  bindtap="Apply"  data-page="Apply" hover-class="none">申请试用</vies> -->
+       <vies class="join_btn navitor" bindtap="joinVip"  data-page="joinVip" hover-class="none">加入会员</vies>
+       <vies class="check_btn navitor"  bindtap="Check"  data-page="Check" hover-class="none">签到领币</vies>
+   </view>
+
+   <!-- 老师推荐 -->
+   <navigator class="teacher" bindtap="teacheRed">
+     <image class="team_img" class="swiper_top" src="https://qncdn.playonwechat.com/hepulan/home_banner_top1.png"></image>
+
+     <swiper class="swiper" indicator-dots="{{indicatorDots}}"
+     autoplay="true" interval="2000" duration="1000">
+     <block wx:for="{{imgUrls}}">
+       <swiper-item>
+         <image src="{{item}}" class="slide-image" width="355" height="150"/>
+       </swiper-item>
+     </block>
+    </swiper>
+
+    <view class="teach_recom"><view></view>点击>>进入老师推荐页面</view>
+   </navigator>
+
+   <!-- 公司团队 -->
+   <image class="team_pingpai" src="https://hepulan.playonwechat.com/static/home_pingpai.png"></image>
+
+<template is="share_icon"/>
+<!-- 已有护肤老师弹窗 -->
+<block wx:for="{{templateData}}">
+    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
+</block>
+<image class="hert" src="https://qncdn.playonwechat.com/hepulan/hert.png"></image>
+</scroll-view>

@@ -1,0 +1,11 @@
+<!--pages/sureExchange/sureExchange.wxml-->
+<button wx:if="{{address}}" class="select_address" bindtap="selectAddress" type="primary">选择收货地址</button>
+<view wx:else="" class="address_box">
+    <view class="address_item"><text>收货人</text>{{addressInfo.userName}}</view>
+    <view class="address_item"><text>手机号</text>{{addressInfo.telNumber}}</view>
+    <view class="address_item"><text>地区信息</text>{{addressInfo.provinceName}}{{addressInfo.cityName}}{{addressInfo.countyName}}</view>
+    <view class="address_item"><text>详细地址</text>{{addressInfo.detailInfo}}</view>
+    <view class="address_item"><text>邮政编码</text>{{addressInfo.postalCode}}</view>
+    <text class="address_tip">温馨提示：请正确填写您的联系方式，否者由此产生的收货问题概不负责</text>
+    <button class="submit_address" bindtap="submitAddress" type="primary">提交收货地址</button>
+</view>

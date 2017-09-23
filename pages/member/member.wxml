@@ -1,0 +1,16 @@
+<!--pages/login/login.wxml-->
+<import src="../template/template.wxml"/>
+<scroll-view scroll-y="true"  class="container">
+  <view class="member_bg">
+    <image src="https://hepulan.playonwechat.com/static/member_bg.png" />
+  </view>
+  <view class="member_btns">
+                  <!--{{teach_static}}-->
+    <button wx:if="{{true}}" class="applyBtn" open-type="contact">加入会员</button>
+    <view wx:else="" bindtap="applyBtn" class="taacher_btn">加入会员</view>
+  </view>
+    <block wx:for="{{templateData}}">
+    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
+    </block>
+  <template is="share_icon"/>
+</scroll-view>
