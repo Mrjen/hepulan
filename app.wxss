@@ -37,3 +37,13 @@
   width: 60%;
   height: 60%;
 }
+
+.border_bottom:before{
+  content:" ";
+  position: absolute;
+  left:0;
+  bottom: 0;
+  border-bottom: 1px solid #eee;
+  transform: translateY(.5);
+  width: 100%;
+}

@@ -1,0 +1,106 @@
+/* pages/shopExchange/shopExchange.wxss */
+view{
+	box-sizing: border-box;
+}
+
+page{
+	background:url(https://qncdn.playonwechat.com/hepulan/shop_exchange_bg.png);
+	background-size: 750rpx 620rpx;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+
+.myjifen{
+	width: 100%;
+	text-align: center;
+	font-size: 70rpx;
+	color: #0f622e;
+	margin: 206rpx 0 136rpx 0;
+}
+
+.myjifen text{
+	font-size: 27rpx;
+	margin-left: 8rpx;
+}
+
+.but_box{
+	display: flex;
+	padding:0 90rpx;
+	justify-content: space-between;
+}
+
+.but_box navigator{
+	display: block;
+	width: 245rpx;
+	height: 62rpx;
+	border:1px solid #fff;
+	text-align: center;
+	line-height: 62rpx;
+	color: #fff;
+	border-radius: 40rpx;
+	font-size: 30rpx;
+}
+
+
+.exchange{
+	width: 700rpx;
+	margin:0 auto;
+	padding: 0 20rpx;
+	background: #fff;
+	margin-top: 106rpx;
+	box-shadow: 0 0 15rpx rgba(0,0,0,.1);
+}
+
+.nav{
+   margin:0 auto;
+   padding:40rpx 20rpx;
+   font-weight: bold;
+   position: relative;
+}
+
+.nav_tip{
+	display: flex;
+	justify-content: space-between;
+	font-size: 30rpx;
+	position: relative;
+}
+
+.nav_tip view{
+	box-sizing: border-box;
+	padding:30rpx 0;
+	position: relative;
+}
+
+.nav_tip view:nth-of-type(1):before{
+	content: " ";
+	border-left: 3px solid #268348;
+	margin-right: 14rpx;
+    color: #268348;
+}
+
+.nav_tip view:nth-of-type(2) text{
+   color: #268348;
+}
+
+.nav_tip view:nth-of-type(3) text{
+   color: #d81e06;
+}
+
+.list_item{
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	padding: 30rpx 0;
+}
+
+.item_left view:nth-of-type(1){
+    font-size: 28rpx;
+    margin-bottom: 20rpx;
+}
+
+.item_left view:nth-of-type(2){
+    font-size: 24rpx;
+    color: #999;
+}
+

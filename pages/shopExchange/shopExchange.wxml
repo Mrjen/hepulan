@@ -1,0 +1,26 @@
+<!--pages/shopExchange/shopExchange.wxml-->
+<view class="myjifen">{{jifen}}<text>积分</text></view>
+
+<view class="but_box">
+    <navigator>赚积分</navigator>
+    <navigator url="../pointMall/pointMall">积分兑换</navigator>
+</view>
+
+
+<view class="exchange">
+   <view class="nav border_bottom">兑换记录</view>
+   <view class="nav_tip border_bottom">
+   	   <view>我的积分</view>
+   	   <view>总获：<text>{{hasJiFen}}</text></view>
+   	   <view>已兑：<text>{{hasExchange}}</text></view>
+   	</view>
+   	<view class="exchange_list">
+        <navigator wx:for="{{exchangeList}}" wx:key="index" url="../ShopLogistics/ShopLogistics" class="list_item border_bottom">
+              <view class="item_left">
+                  <view>{{item.order_num}}</view>
+                  <view>{{item.create_time}} 点击查看物流信息</view>
+              </view>
+              <view>{{item.integral}}</view>
+        </navigator>
+   	</view>
+</view>

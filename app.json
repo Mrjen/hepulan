@@ -1,17 +1,25 @@
 {
   "pages": [
-    "pages/circle/circle",
+     "pages/EditAddress/EditAddress",
+    "pages/myAddress/myAddress",
+    "pages/ShopLogistics/ShopLogistics",
+    "pages/shopExchange/shopExchange",
     "pages/pointMall/pointMall",
+    "pages/shopSubmiteOrder/shopSubmiteOrder",
+    
+    
+    "pages/shopCollect/shopCollect",
+    "pages/pointMallDetail/pointMallDetail",
     "pages/pointMallCar/pointMallCar",
     "pages/mine/mine",
     "pages/DiaryMark/DiaryMark",
     "pages/index/index",
     "pages/login/login",
     "pages/qiandao/qiandao",
-    
+    "pages/circle/circle",
     "pages/knowledge/knowledge",
     "pages/writeDyn/writeDyn",
-    "pages/sureExchange/sureExchange",
+    
     "pages/IconPage/IconPage",
     "pages/ercode/ercode",
     "pages/heChart/heChart",
@@ -26,7 +34,6 @@
     "pages/applyDetail/applyDetail",
     "pages/calendar/calendar",
     "pages/integralList/integralList",
-    
     "pages/Recommend/Recommend",
     "pages/skinTest/skinTest",
     "pages/skinResult/skinResult",
@@ -35,8 +42,7 @@
     "pages/template/template",
     "pages/shareHot/shareHot",
     "pages/friendHot/friendHot",
-    "pages/goldnote/goldnote",
-    "pages/logs/logs"
+    "pages/goldnote/goldnote"
   ],
   "window": {
     "backgroundTextStyle": "light",

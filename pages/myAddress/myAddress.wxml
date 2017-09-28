@@ -1,0 +1,10 @@
+<!--pages/sureExchange/sureExchange.wxml-->
+<navigator class="add_address" url="../EditAddress/EditAddress"><image src="https://qncdn.playonwechat.com/poin_mall_addAddress.png"></image>新增收货地址</navigator>
+
+<view class="address_list">
+    <view class="list_item" wx:for="{{address}}" wx:key="index" bindtap="selectAddress" data-index="{{index}}">
+        <view>{{item.address}}{{item.detail}}</view>
+        <view><text>{{item.contact}}</text>{{item.mobile}}</view>
+    </view>
+</view>
+

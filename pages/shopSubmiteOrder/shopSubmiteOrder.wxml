@@ -1,0 +1,36 @@
+<!--pages/shopSubmiteOrder/shopSubmiteOrder.wxml-->
+<navigator class="persion_info" url="../myAddress/myAddress?addressinfo=submiteorder">
+     <view class="info">
+         <view>
+         	<image src="https://qncdn.playonwechat.com/poin_mall_editPersion.png"></image>
+         	<text>姓名：{{info.name}}</text>
+         </view>
+         <view>
+         	<image src="https://qncdn.playonwechat.com/poin_mall_editMobile.png"></image>
+         	<text>手机号：{{info.phone}}</text>
+         </view>
+     </view>
+     <view class="address">
+     	<image src="https://qncdn.playonwechat.com/poin_mall_editAddress.png"></image>
+     	<text>地址：{{info.address}}</text>
+     </view>
+</navigator>
+
+<!-- 商品列表 -->
+<view class="product_list">
+   <view class="list_item border_bottom">
+      <image src="http://iph.href.lu/242x154"></image>
+      <view class="list_right">
+         <view>倾慕丰润口红</view>
+         <view>500积分</view>
+         <view>图片色</view>
+         <view>x2</view>
+      </view>
+   </view>
+</view>
+
+<!-- 底部导航 -->
+<view class="bottom_nav">
+    <view>合计：55积分</view>
+    <view class="submite">提交订单</view>
+</view>

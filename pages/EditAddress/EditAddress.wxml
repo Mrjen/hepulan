@@ -1,0 +1,44 @@
+<!--pages/EditAddress/EditAddress.wxml-->
+<view class="content">
+     <view class="item border_bottom">
+         <image src="https://qncdn.playonwechat.com/poin_mall_editPersion.png"></image><view>姓名：</view>
+         <input type="text" placeholder="请输入姓名" bindtap="personName" />
+     </view>
+     <view class="item border_bottom">
+         <image src="https://qncdn.playonwechat.com/poin_mall_editMobile.png"></image>
+         <view>手机号：</view>
+         <input type="number" maxlength="11" placeholder="请输入手机号" bindblur="mobileBlur" bindinput="mobileInput" />
+     </view>
+     <view class="item border_bottom">
+         <image src="https://qncdn.playonwechat.com/poin_mall_editAddress.png"></image>
+         <view>所在地区：</view>
+         <view class="address_picker">
+             <picker bindchange="bindPickerProvince" 
+                     value="{{indexProvince}}" 
+                     range="{{Province}}">
+                <view class="picker">{{Province[indexProvince]}}
+                </view>
+              </picker>
+              <picker bindchange="bindPickerCity" 
+                     value="{{indexCity}}" 
+                     range="{{City}}">
+                <view class="picker">
+                  {{City[indexCity]}}
+                </view>
+              </picker>
+              <picker bindchange="bindPickerCounty" 
+                     value="{{indexCounty}}" 
+                     range="{{County}}">
+                <view class="picker">
+                  {{County[indexCounty]}}
+                </view>
+              </picker>
+         </view>
+     </view>
+     <view class="item border_bottom">
+         <!-- <image src="https://qncdn.playonwechat.com/poin_mall_editPersion.png"></image> -->
+         <view>详细地址：</view>
+         <input type="text" placeholder="请输入具体地址" bindtap="addressDetail" />
+     </view>
+     <view class="sure_address" bindtap="SaveInfo">保存</view>
+</view>

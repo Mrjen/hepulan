@@ -1,4 +1,8 @@
 /* pages/sureExchange/sureExchange.wxss */
+page{
+    background: #f7f7f7;
+}
+
 .select_address,.submit_address{
     width: 700rpx;
     margin:30rpx;
@@ -54,4 +58,41 @@
   font-size: 26rpx;
   color: #999;
   margin-top: 30rpx;
+}
+
+.add_address{
+    width: 100%;
+    height: 90rpx;
+    display: flex;
+    align-items: center;
+    font-size: 30rpx;
+    padding:0 30rpx;
+    margin: 20rpx 0;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.add_address image{
+    width: 34rpx;
+    height: 34rpx;
+    display: block;
+    margin-right: 10rpx;
+}
+
+.address_list{
+    width: 100%;
+    padding:20rpx;
+    background: #fff;
+    font-size: 30rpx;
+    line-height: 44rpx;
+    box-sizing: border-box;
+}
+
+.list_item view:nth-of-type(1){
+    margin-bottom:20rpx;
+} 
+
+.list_item view:nth-of-type(2) text{
+    display: inline-block;
+    margin-right: 20rpx;
 }

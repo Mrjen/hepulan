@@ -1,8 +1,12 @@
 /* pages/pointMall/pointMall.wxss */
+view{
+  box-sizing: border-box;
+}
+
 page{
    background: #f4f5f9;
-   background-image: url(https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_bg.png);
-   background-size: 750rpx 468rpx;
+   background-image: url(https://qncdn.playonwechat.com/hepulan/point_mall_topbg.png);
+   background-size: 750rpx 476rpx;
    background-repeat: no-repeat;
 }
 
@@ -29,13 +33,18 @@ page{
 }
 
 .point_detail{
-  width: 382rpx;
-  height: 66rpx;
+  width: 280rpx;
+  height: 62rpx;
   margin:0 auto;
-  line-height: 66rpx;
+  box-sizing: content-box;
+  border:6rpx solid rgba(255,255,255,.9);
+  background: #83dab0;
+  border-radius: 40rpx;
+  line-height: 58rpx;
   text-align: center;
   font-size: 26rpx;
   color: #fff;
+  margin-top: 66rpx;
   margin-bottom: 10rpx;
 }
 
@@ -97,6 +106,33 @@ page{
    background-size: 100%;
 }
 
+/*轮播列表*/
+.swiper{
+   width: 100%;
+   height: 80rpx;
+   background: #83dab0;
+   color: #fff;
+}
+
+.swiper swiper{
+  width: 100%;
+  height: 100%;
+}
+
+.swiper swiper swiper-item{
+   display: block;
+   width: 100%;
+   height: 100%;
+}
+
+.text_item{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+
 /*商品列表*/
 .shop_list{
   background: #fff;
@@ -108,14 +144,13 @@ page{
   display: block;
   border-radius: 12rpx;
   margin-right: 30rpx;
+  flex-shrink: 0;
 }
 
 .list_item{
   display: flex;
-  padding: 0 20rpx;
+  padding:20rpx;
   position: relative;
-  height: 200rpx;
-  align-items: center;
 }
 
 .list_item::before{
@@ -132,6 +167,7 @@ page{
 }
 
 .item_title{
+  width: 100%;
   font-size: 32rpx;
   margin-bottom: 20rpx;
 }
@@ -140,6 +176,7 @@ page{
   font-size: 28rpx;
   color: #ff3c3c;
   width: 200rpx;
+  margin-bottom: 20rpx;
 }
 
 .item_zan{
@@ -150,10 +187,30 @@ page{
   align-items: center;
 }
 
+.zan_icon{
+  display: block;
+  width: 26rpx;
+  height: 23rpx;
+  background: url(https://qncdn.playonwechat.com/hepulan/point_mall_hert.png);
+  background-size: 100% 100%;
+  margin-left: 10rpx;
+}
+
+.soon_tip{
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.zan_num{
+  margin-top: 60rpx;
+}
+
 .item_info{
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: 438rpx;
 }
 
 .item_bottom{
@@ -168,6 +225,29 @@ page{
   text-align: center;
 }
 
+.zan_hert{
+  display: block;
+  width: 48rpx;
+  height: 48rpx;
+  background: #ff8400;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 20rpx;
+  top:20rpx;
+}
+
+.zan_box{
+   background: transparent;
+}
+
+.zan_hert image{
+  width: 27rpx;
+  height: 24rpx;
+}
+
 .exchange_btn{
   width: 150rpx;
   height: 48rpx;
@@ -179,8 +259,14 @@ page{
   color: #fff;
 }
 
+.has_exchange_btn{
+  background: #999;
+}
+
 .exchange_box{
-  margin-top: -68rpx;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
 }
 
 .item_type{
@@ -188,3 +274,177 @@ page{
   width: 200rpx;
   margin-bottom: 30rpx;
 }
+
+.has_salse:after{
+   content: "";
+   width:242rpx;
+   height:154rpx;
+   position: absolute;
+   background: url(https://qncdn.playonwechat.com/hepulan/point_shop_outsale.png);
+   background-size: 140rpx 140rpx;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-color:rgba(0,0,0,.2);
+}
+
+/* 选择款 */
+.select_win{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.product_info{
+  width: 100%;
+  height: 680rpx;
+  background: #fff;
+  padding-top: 40rpx;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product image{
+  display: block;
+  width: 240rpx;
+  height: 150rpx;
+  margin-right: 20rpx;
+  border-radius: 8rpx;
+}
+
+.product{
+  display: flex;
+
+}
+
+.top_info{
+  padding:0 30rpx;
+  box-sizing: border-box;
+}
+
+.product .info view:nth-of-type(1){
+   font-size: 30rpx;
+   color: #48a86c;
+   margin-bottom: 14rpx;
+}
+
+.product .info view:nth-of-type(2){
+   font-size: 30rpx;
+   margin-bottom: 14rpx;
+}
+
+.product .info view:nth-of-type(3){
+   font-size: 30rpx;
+}
+
+.type_tag{
+  display: block;
+  font-size: 32rpx;
+  padding:20rpx 0;
+  width: 750rpx;
+}
+
+.product_type .type_item{
+  width: 194rpx;
+  height: 48rpx;
+  border:1px solid #efefef;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 48rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.product_type .type_item.type_active{
+  border:1px solid #48a86c;
+}
+
+.product_type{
+  display: flex;
+  width: 750rpx;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.sure_type{
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  background: #48a86c;
+  color: #fff;
+}
+
+
+.close_select{
+  color: #000;
+  position: absolute;
+  margin-top: 0;
+  margin-left: 0;
+  right: 40rpx;
+  top: 40rpx;
+  width: 21px;
+  height: 21px;
+}
+
+.close_select:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 21px;
+  height: 1px;
+  background-color: currentColor;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.close_select:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 21px;
+  height: 1px;
+  background-color: currentColor;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+
+/*列表标题*/
+.nav_tip{
+  width: 100%;
+  text-align: center;
+  padding: 20rpx;
+  font-size: 32rpx;
+  border-top: 20rpx solid #f7f7f7;
+  background: #fff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.nav_tip image{
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+  position: relative;
+  overflow: auto;
+}
+
+.nav_tip .line{
+  display: block;
+  width: 80rpx;
+  height: 1px;
+  background:#444;
+  margin:0 20rpx;
+}
+
