@@ -15,7 +15,7 @@
    	   <view>已兑：<text>{{hasExchange}}</text></view>
    	</view>
    	<view class="exchange_list">
-        <navigator wx:for="{{exchangeList}}" wx:key="index" url="../ShopLogistics/ShopLogistics" class="list_item border_bottom">
+        <navigator wx:for="{{exchangeList}}" wx:key="index" url="../ShopLogistics/ShopLogistics?order_num={{item.order_num}}" class="list_item border_bottom">
               <view class="item_left">
                   <view>{{item.order_num}}</view>
                   <view>{{item.create_time}} 点击查看物流信息</view>

@@ -7,6 +7,7 @@ view{
 	box-sizing: border-box;
 }
 
+
 .content{
 	width: 100%;
 	background: #fff;
@@ -64,7 +65,8 @@ view{
 
 .address_picker picker{
 	flex: 1;
-	border:1px solid red;
+	min-width: 160rpx;
+	/*border:1px solid red;*/
 }
 
 .address_picker .picker{

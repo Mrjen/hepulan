@@ -6,7 +6,8 @@ Page({
     },
 
     onLoad: function(options) {
-        console.log(options);
+        console.log(options)
+        let that = this;
         if (options.addressinfo) {
             that.setData({
                 addressinfo: options.addressinfo
@@ -44,7 +45,7 @@ Page({
         let info = that.data.address[index];
         if (that.data.addressinfo == "submiteorder") {
             wx.navigateTo({
-                url: `../shopSubmiteOrder/shopSubmiteOrder?address=${info.address}&name=${info.name}&phone=${info.phone}`
+                url:`../shopSubmiteOrder/shopSubmiteOrder?address=${info.address}&name=${info.contact}&phone=${info.mobile}&addressid=${info.addressid}`
             })
         }
     },
@@ -61,6 +62,18 @@ Page({
         wx.redirectTo({
             url: '../IconPage/IconPage?status=1' + "&main_url=" + main_url + "&page_text=" + page_text + "&vice_url=" + vice_url
         })
+    },
+
+    // 添加地址
+    ToAddaddress(){
+       let that = this;
+       let addressinfo = that.data.addressinfo;
+
+       if (addressinfo) {
+          wx.navigateTo({
+          url: `../EditAddress/EditAddress?addressinfo=${addressinfo}`
+        })
+       }
     },
 
     onHide: function() {

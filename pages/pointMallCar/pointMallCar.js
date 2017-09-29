@@ -3,7 +3,8 @@ var app = getApp();
 Page({
     data: {
         list: [],
-        allSelect: true
+        allSelect: true,
+        mode: ""
     },
 
     onLoad: function(options) {
@@ -64,7 +65,8 @@ Page({
                 type: "save-cart-select",
                 data: {
                     gid: gid,
-                    is_select: list[_index].is_select
+                    is_select: list[_index].is_select,
+                    mode: "0"
                 }
             },
             success(res) {
@@ -209,13 +211,68 @@ Page({
             for (var i = 0; i < list.length; i++) {
                 list[i].is_select = 0;
             }
-            AllMoney = that.countGoods(list);
-            console.log(AllMoney)
+            // AllMoney = that.countGoods(list);
+            // console.log(allSelect)
+            wx.request({
+                url: app.data.apiUrl,
+                method: "POST",
+                data: {
+                    sign: wx.getStorageSync("sign"),
+                    key: app.data.apiKey,
+                    type: "save-cart-select",
+                    data: {
+                        is_select:"0",
+                        mode:"all"
+                    }
+                },
+                success(res) {
+                    console.log(res);
+                    if (res.data.status == "1") {
+                        AllMoney = that.countGoods(list);
+                        console.log(AllMoney)
+                        that.setData({
+                            list,
+                            AllMoney
+                        })
+                    }
+                }
+
+            })
+
         } else {
+            console.log(allSelect)
+            wx.request({
+                url: app.data.apiUrl,
+                method: "POST",
+                data: {
+                    sign: wx.getStorageSync("sign"),
+                    key: app.data.apiKey,
+                    type: "save-cart-select",
+                    data: {
+                        is_select:"1",
+                        mode:"all"
+                    }
+                },
+                success(res) {
+                    console.log(res);
+                    if (res.data.status == "1") {
+                        AllMoney = that.countGoods(list);
+                        console.log(AllMoney)
+                        that.setData({
+                            list,
+                            AllMoney
+                        })
+                    }
+
+                }
+            })
+
             for (var i = 0; i < list.length; i++) {
                 list[i].is_select = 1;
             }
             AllMoney = that.countGoods(list);
+
+
         }
         that.setData({
             list,
@@ -223,6 +280,34 @@ Page({
             allSelect: !that.data.allSelect
         })
     },
+
+    // 结算
+    Tosetttle() {
+        wx.request({
+            url: app.data.apiUrl,
+            method: "POST",
+            data: {
+                sign: wx.getStorageSync("sign"),
+                key: app.data.apiKey,
+                type: "action-confirm-cart"
+            },
+            success(res) {
+                console.log(res)
+                if (res.data.status === 1) {
+                    wx.navigateTo({
+                        url: '../shopSubmiteOrder/shopSubmiteOrder'
+                    })
+                } else {
+                    wx.showToast({
+                        title: res.data.msg,
+                        icon: 'success',
+                        duration: 2000
+                    })
+                }
+            }
+        })
+    },
+
 
     onHide: function() {
 

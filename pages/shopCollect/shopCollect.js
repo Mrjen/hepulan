@@ -1,5 +1,6 @@
 // pages/shopCollect/shopCollect.js
-var common = require('../../common.js')
+var common = require('../../common.js');
+var app = getApp();
 Page({
   data: {
      
@@ -15,30 +16,20 @@ Page({
 
   onShow: function () {
     let that = this;
-     common.getVipId(18372668568,function(){
-        var vip_id = wx.getStorageSync("vip_id");
-        console.log(vip_id);
         wx.request({
-          url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
+          url:app.data.apiUrl,
           method:"POST",
-          header: {
-              'content-type': 'application/json'
-          },
           data:{
-            key:"be15d4ca913c91494cb4f9cd6ce317c6",
-            type:"getUsableExchangeList",
-            data:{
-              start:0,
-              length:10,
-              vip_id:vip_id
-            }
+            sign: wx.getStorageSync("sign"),
+            key:app.data.apiKey,
+            type:"get-collect-list"
           },
           success(res){
-            var shopList = res.data.data.exchange_list;
-            var pointCount = res.data.data.usable_score;
+             console.log(res)
+            var shopList = res.data.data.collect_list;
+            var pointCount = res.data.data.goods_list;
             that.setData({
               shopList:shopList,
-              vip_id:vip_id,
               pointCount:pointCount
             });
           },
@@ -46,7 +37,28 @@ Page({
             console.log(res);
           }
         })
-    });
+  },
+
+  // 加入收藏夹
+  exchangeBtn(ev){
+    let that = this;
+    let kid = ev.currentTarget.dataset.id;
+    console.log(kid)
+    wx.request({
+       url:app.data.apiUrl,
+       method:"POST",
+       data:{
+         sign:wx.getStorageSync("sign"),
+         key:app.data.apiKey,
+         type:"save-collect-status",
+         data:{
+          kid:kid
+         }
+       },
+       success(res){
+         console.log(res)
+       }
+    })
   },
 
   onHide: function () {

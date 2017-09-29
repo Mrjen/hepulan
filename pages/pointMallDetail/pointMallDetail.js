@@ -107,6 +107,44 @@ Page({
 
     },
 
+    // 立即兑换
+    exchangeBtn(){
+        let that = this;
+        let type_id = that.data.type_id;
+        if (type_id) {
+            wx.request({
+            url:app.data.apiUrl,
+            method:"POST",
+            data:{
+                sign:wx.getStorageSync("sign"),
+                key:app.data.apiKey,
+                type:"action-confirm-cart"
+            },
+            success(res){
+                console.log(res.data.status)
+                if (res.data.status) {
+                    wx.navigateTo({
+                      url: '../pointMallCar/pointMallCar'
+                    })
+                }else{
+                   wx.showToast({
+                        title: res.data.msg,
+                        icon: 'success',
+                        duration: 1000
+                    })
+                }
+            }
+        })
+        }else{
+            wx.showToast({
+                title: '请选择颜色',
+                icon: 'success',
+                duration: 1000
+            })
+        }
+        
+    },
+
     // 选择款式
     changeType(ev) {
         console.log(ev)
@@ -160,6 +198,13 @@ Page({
             fail(res) {
                 console.log(res)
             }
+        })
+    },
+
+        //去购物车
+    toShopCart(){
+      wx.navigateTo({
+          url: '../pointMallCar/pointMallCar'
         })
     },
 

@@ -2,7 +2,7 @@
 <view class="content">
      <view class="item border_bottom">
          <image src="https://qncdn.playonwechat.com/poin_mall_editPersion.png"></image><view>姓名：</view>
-         <input type="text" placeholder="请输入姓名" bindtap="personName" />
+         <input type="text" placeholder="请输入姓名" bindinput="personName" />
      </view>
      <view class="item border_bottom">
          <image src="https://qncdn.playonwechat.com/poin_mall_editMobile.png"></image>
@@ -38,7 +38,7 @@
      <view class="item border_bottom">
          <!-- <image src="https://qncdn.playonwechat.com/poin_mall_editPersion.png"></image> -->
          <view>详细地址：</view>
-         <input type="text" placeholder="请输入具体地址" bindtap="addressDetail" />
+         <input type="text" placeholder="请输入具体地址" bindinput="addressDetail" />
      </view>
      <view class="sure_address" bindtap="SaveInfo">保存</view>
 </view>

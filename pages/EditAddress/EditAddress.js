@@ -14,6 +14,7 @@ Page({
 bindPickerProvince(e){
    console.log(e);
    let that = this;
+   let Province = that.data.Province;
    let indexProvince = Number(e.detail.value);
    let ProvinceId = that.data._Province[indexProvince].id;
    console.log(indexProvince,ProvinceId);
@@ -46,7 +47,8 @@ bindPickerProvince(e){
           _City,
           indexProvince,
           indexCity:0,
-          indexCounty:0
+          indexCounty:0,
+          ProvinceName:Province[indexProvince]
        })
      }
    })
@@ -55,9 +57,10 @@ bindPickerProvince(e){
 // 选择市
 bindPickerCity(e){
   let that = this;
+  let City = that.data.City;
   let indexCity = Number(e.detail.value);
   let CityId = that.data._City[indexCity].id;
-  console.log(indexCity,CityId)
+  // console.log(indexCity,CityId)
   wx.request({
      url:app.data.apiUrl,
      method:"POST",
@@ -84,7 +87,9 @@ bindPickerCity(e){
          _County,
          County,
          indexCity,
-         indexCounty:0
+         CityId,
+         indexCounty:0,
+         CityName:City[indexCity]
       })
      }
   })
@@ -93,17 +98,20 @@ bindPickerCity(e){
 // 选择区
 bindPickerCounty(e){
     let that = this;
+    let County = that.data.County;
     let indexCounty = Number(e.detail.value);
     let CountyId = that.data._County[indexCounty].id;
     console.log(CountyId)
     that.setData({
        CountyId,
-       indexCounty
+       indexCounty,
+       CountyName:County[indexCounty]
     })
 },
 
 // 人物名字
 personName(ev){
+   // console.log(ev)
    this.setData({
      persionName:ev.detail.value
    })
@@ -111,7 +119,7 @@ personName(ev){
 
 // 输入手机号
 mobileInput(ev){
-  console.log(ev)
+  // console.log(ev)
    this.setData({
      mobile:ev.detail.value
    })
@@ -146,6 +154,8 @@ SaveInfo(){
   let CityId = that.data.CityId;
   let CountyId = that.data.CountyId;
   let addressDetail = that.data.addressDetail;
+  let address = `${that.data.ProvinceName}${that.data.CityName}${that.data.CountyName}`;
+console.log(persionName,mobile,ProvinceId,CityId,CountyId,addressDetail)
 
       if (!persionName) {
         wx.showToast({
@@ -190,10 +200,52 @@ SaveInfo(){
          return false
       }
 
+      wx.request({
+        url:app.data.apiUrl,
+        method:"POST",
+        data:{
+          sign:wx.getStorageSync("sign"),
+          key:app.data.apiKey,
+          type:"save-address",
+          data:{
+             contact:persionName,
+             mobile:mobile,
+             prov:ProvinceId,
+             city:CityId,
+             area:CountyId,
+             address:address,
+             detail:addressDetail
+          } 
+        },
+        success(res){
+          console.log(res);
+          let addressinfo = that.data.addressinfo;
+          if (res.data.code=="0"&&!addressinfo) {
+             wx.navigateTo({
+                url: '../myAddress/myAddress'
+              })
+          }else if(res.data.code=="0"&&addressinfo){
+            wx.navigateTo({
+                url: `../shopSubmiteOrder/shopSubmiteOrder?name=${persionName}&phone=${mobile}&address=${address}${addressDetail}&addressid=${res.data.data.addressid}`
+              })
+          }else{
+             wx.showToast({
+                title: res.data.msg,
+                icon: 'success',
+                duration: 1000
+              })
+          }
+        }
+      })
+
 },
 
 onLoad: function (options) {
-
+   let that= this;
+   let addressinfo = options.addressinfo;
+   that.setData({
+     addressinfo
+   })
 },
 
   onReady: function () {
@@ -202,6 +254,7 @@ onLoad: function (options) {
 
   onShow: function () {
      let that = this;
+     let addressId = that.data.addressId;
      wx.request({
         url:app.data.apiUrl,
         method:"POST",
@@ -228,7 +281,8 @@ onLoad: function (options) {
              _Province
           })
         }
-     })
+     });
+    
   },
 
   onHide: function () {

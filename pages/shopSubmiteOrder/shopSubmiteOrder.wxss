@@ -127,3 +127,58 @@ view{
 	font-size: 30rpx;
 	margin-left: 20rpx;
 }
+
+/*弹窗*/
+.order_win{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.5);
+	position: fixed;
+	left: 0;
+	top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.win_in{
+	width: 563rpx;
+	height: 814rpx;
+	background:#fff;
+	border-radius: 20rpx;
+}
+
+.win_in view{
+	text-align: center;
+}
+
+.win_in .tip{
+	margin:18rpx 0;
+}
+
+.win_in view:nth-of-type(1){
+	text-align: center;
+	font-size: 76rpx;
+	padding:20rpx;
+	color: #4a9e67;
+	margin-top: 84rpx;
+	margin-bottom: 40rpx;
+}
+
+.win_in image{
+	width: 200rpx;
+	display: block;
+	margin: 40rpx auto;
+}
+
+.sure_btn{
+	width:415rpx;
+	height: 70rpx;
+	text-align: center;
+	line-height: 70rpx;
+	background: #50a76f;
+	color: #fff;
+	margin:0 auto;
+	font-size: 30rpx;
+	border-radius: 40rpx;
+}

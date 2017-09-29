@@ -96,6 +96,12 @@ Page({
         })
     },
 
+    toShopExchange(){
+       wx.navigateTo({
+          url: '../shopExchange/shopExchange'
+        })
+    },
+
     // 点击加入购物车图标唤起弹层
     selectType(ev) {
         let that = this;

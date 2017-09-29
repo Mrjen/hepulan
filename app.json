@@ -1,19 +1,22 @@
 {
   "pages": [
-     "pages/EditAddress/EditAddress",
+    "pages/shopCollect/shopCollect",
+    "pages/pointMall/pointMall",
+    "pages/pointMallCar/pointMallCar",
+    "pages/shopSubmiteOrder/shopSubmiteOrder",
+    
+    "pages/index/index",
+    "pages/EditAddress/EditAddress",
     "pages/myAddress/myAddress",
     "pages/ShopLogistics/ShopLogistics",
     "pages/shopExchange/shopExchange",
-    "pages/pointMall/pointMall",
-    "pages/shopSubmiteOrder/shopSubmiteOrder",
     
     
-    "pages/shopCollect/shopCollect",
     "pages/pointMallDetail/pointMallDetail",
-    "pages/pointMallCar/pointMallCar",
+    
     "pages/mine/mine",
     "pages/DiaryMark/DiaryMark",
-    "pages/index/index",
+    
     "pages/login/login",
     "pages/qiandao/qiandao",
     "pages/circle/circle",

@@ -2,7 +2,7 @@
 <image class="avatarUrl" src="{{avatarUrl}}"></image>
 <view class="nickName">{{nickName}}</view>
 <view class="point_count">可兑换积分{{pointCount}}</view>
-<view class="point_detail">点击查看积分详情</view>
+<view class="point_detail" bindtap="toShopExchange">点击查看积分详情</view>
 <!-- 功能导航 -->
  <view class="opation_nav">
     <navigator url="../shopCollect/shopCollect"><text></text>我的收藏</navigator>

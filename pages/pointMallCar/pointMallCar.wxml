@@ -20,7 +20,7 @@
         <view bindtap="allSelect"><radio color="#086446" checked="{{allSelect}}"/>全选</view>
         <view class="cart_right">
             <view>合计：{{AllMoney}}积分</view>
-            <view class="settle">结算<text>(包邮)</text></view>
+            <view class="settle" bindtap="Tosetttle">结算<text>(包邮)</text></view>
         </view>
     </view>
 </view>

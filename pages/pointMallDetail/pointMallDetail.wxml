@@ -32,17 +32,17 @@
 
  <!-- 底导航 -->
  <view class="bottm_nav">
-     <view>
-     	<image wx:if="{{productInfo.collect}}" src="https://qncdn.playonwechat.com/point_mall_collect.png"></image>
+     <view bindtap="changeCollect">
+     	<image wx:if="{{productInfo.is_collect}}" src="https://qncdn.playonwechat.com/point_mall_collect.png"></image>
      	<image wx:else src="https://qncdn.playonwechat.com/point_mall_nocollect.png"></image>
      	<text>收藏</text>
      </view>
-     <view>
+     <view bindtap="toShopCart">
      	<image src="https://qncdn.playonwechat.com/point_mall_bottomnav_shopcart.png"></image>
      	<text>购物车</text>
      	<text class="cart_num" wx:if="{{productInfo.cart_count}}">{{productInfo.cart_count}}</text>
      </view>
-     <view bindtap="SaveCart" data-productnum="{{productNum}}" data-gid="{{}}">加入购物车</view>
-     <view>立即兑换</view>
+     <view bindtap="SaveCart" data-productnum="{{productNum}}">加入购物车</view>
+     <view bindtap="exchangeBtn">立即兑换</view>
  </view>
 </view>

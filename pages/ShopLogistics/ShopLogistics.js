@@ -1,65 +1,74 @@
 // pages/ShopLogistics/ShopLogistics.js
-Page({
+var app = getApp();
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
   
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+      let that = this;
+      let order_num = options.order_num;
+      console.log(order_num)
+      that.setData({
+         order_num
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
   
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
+    let that = this;
+    wx.request({
+      url:app.data.apiUrl,
+      method:"POST",
+      data:{
+        sign:wx.getStorageSync("sign"),
+        key:app.data.apiKey,
+        type:"get-order-detail",
+        data:{
+           order_num:that.data.order_num
+        }
+      },
+      success(res){
+        console.log(res)
+        
+        let info = res.data.data.address;
+        let exchange_infos = res.data.data.exchange_infos;
+        for (var i = 0; i < exchange_infos.length; i++) {
+          exchange_infos[i].img = `${exchange_infos[i].url_prefix}${exchange_infos[i].imgurl}`
+        }
+        that.setData({
+          info,
+          exchange_infos,
+          express_com:res.data.data.express_com,
+          express_num:res.data.data.express_num,
+          express_list:res.data.data.express_list,
+          cart_select_sum:res.data.data.cart_select_sum
+        })
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
   
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
   
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
   
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
+ 
   onReachBottom: function () {
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
   
   }
