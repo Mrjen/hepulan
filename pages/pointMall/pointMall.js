@@ -157,9 +157,6 @@ Page({
                             icon: 'success',
                             duration: 1000
                         })
-                        that.setData({
-                            selectWin: false
-                        })
                     } else {
                         wx.showToast({
                             title: res.data.msg,
@@ -167,6 +164,9 @@ Page({
                             duration: 1000
                         })
                     }
+                    that.setData({
+                       selectWin:false
+                     })
                 }
             })
         } else {
@@ -192,6 +192,14 @@ Page({
        wx.previewImage({
           current: url, 
           urls: [url] 
+        })
+    },
+
+    // 跳转详情页
+    ToDetail(ev){
+        let id = ev.currentTarget.dataset.id;
+       wx.navigateTo({
+          url: `../pointMallDetail/pointMallDetail?id=${id}`
         })
     },
 

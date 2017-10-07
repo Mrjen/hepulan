@@ -1,25 +1,32 @@
 {
   "pages": [
-    "pages/shopCollect/shopCollect",
+    "pages/qiandao/qiandao",
+    "pages/circle/circle",
+    "pages/login/login",
+    "pages/index/index",
+    "pages/DiaryMark/DiaryMark",
+    
+    
+   
     "pages/pointMall/pointMall",
     "pages/pointMallCar/pointMallCar",
     "pages/shopSubmiteOrder/shopSubmiteOrder",
     
-    "pages/index/index",
+    
     "pages/EditAddress/EditAddress",
     "pages/myAddress/myAddress",
     "pages/ShopLogistics/ShopLogistics",
     "pages/shopExchange/shopExchange",
-    
+    "pages/shopCollect/shopCollect",
     
     "pages/pointMallDetail/pointMallDetail",
     
     "pages/mine/mine",
-    "pages/DiaryMark/DiaryMark",
     
-    "pages/login/login",
-    "pages/qiandao/qiandao",
-    "pages/circle/circle",
+    
+    
+    
+    
     "pages/knowledge/knowledge",
     "pages/writeDyn/writeDyn",
     

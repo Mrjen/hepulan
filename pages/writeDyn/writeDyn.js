@@ -46,9 +46,7 @@ console.log(that.data.sign);
                      key:app.data.apiKey,
                      sign:sign,
                      type:"upload",
-                     data:{
-                      style:"social"
-                     }
+                     upload_style:"social"
                   },
                   name: 'file',
                   success: function(res){

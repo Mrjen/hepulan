@@ -117,6 +117,12 @@ Page({
     });
   },
 
+  toDiary(){
+     wx.navigateTo({
+      url: '../DiaryMark/DiaryMark'
+    })
+  },
+
   onLoad: function() {
     //wx.clearStorage();
     var that = this;
@@ -171,6 +177,8 @@ Page({
           console.log(calendarSignDay);
           var dayindex = [];
           var hasDaty = res.data.data;
+          var dat = wx.getStorageSync("calendarSignData");
+          console.log(dat)
           console.log(hasDaty);
           for (var i = 0; i < hasDaty.length; i++) {
             dayindex[i] = hasDaty[i].split("-");
@@ -210,27 +218,32 @@ Page({
 	      });
         console.log("that.data",that.data);
       }
+
+
+
+    
+
       // 获取金币
-      wx.request({
-        url: 'https://hepulan.playonwechat.com/site/get-coins?sign=' + sign + '&v=1.1',
-        method: "GET",
-        success: function(res) {
-          console.log(res);
-          var top = res.data.data.topIndex;
-          var punch = res.data.data.continuePunch; //连续签到天数
-          var coins = res.data.data.coins;
-          var adyAllday = res.data.data.totalPunch; //总签到天数
-          that.setData({
-            "top": top,
-            "punch": punch,
-            "coins": coins,
-            "avatar": avatarUrl,
-            "nickname": nickName,
-            "adyAllday": adyAllday
-          })
-          //console.log(that.data);
-        }
-      })
+      // wx.request({
+      //   url: 'https://hepulan.playonwechat.com/site/get-coins?sign=' + sign + '&v=1.1',
+      //   method: "GET",
+      //   success: function(res) {
+      //     console.log(res);
+      //     var top = res.data.data.topIndex;
+      //     var punch = res.data.data.continuePunch; //连续签到天数
+      //     var coins = res.data.data.coins;
+      //     var adyAllday = res.data.data.totalPunch; //总签到天数
+      //     that.setData({
+      //       "top": top,
+      //       "punch": punch,
+      //       "coins": coins,
+      //       "avatar": avatarUrl,
+      //       "nickname": nickName,
+      //       "adyAllday": adyAllday
+      //     })
+      //     //console.log(that.data);
+      //   }
+      // })
     })
   },
   

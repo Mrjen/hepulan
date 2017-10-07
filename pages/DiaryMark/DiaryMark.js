@@ -11,7 +11,8 @@ Page({
     statusIcon: "https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-2points.png",
     isRadio: true,
     jiFen: 2,
-    dakaSuccess: false
+    dakaSuccess: false,
+    imglength:0
   },
 
   // 输入内容
@@ -21,13 +22,13 @@ Page({
     if (ev.detail.value && uploadimg.length < 1) {
       that.setData({
         cardStatus: "较认真完成",
-        conttent: ev.detail.value,
+        content: ev.detail.value,
         jiFen: 2
       })
     } else if (ev.detail.value && uploadimg.length > 0) {
       that.setData({
         cardStatus: "认真完成",
-        conttent: ev.detail.value,
+        content: ev.detail.value,
         jiFen: 8
       })
     }
@@ -66,17 +67,19 @@ Page({
               'key':app.data.apiKey,
               'type': "upload",
               sign:sign,
-              data:{
-                style:"signin"
-              }
+              upload_style:"signin"
             },
             success(res) {
               console.log(res);
               let imgres = JSON.parse(res.data);
               console.log(imgres)
+                  imgres.data[0].thumb = `${imgres.data.url_prefix}${imgres.data[0].thumb}`;
+                  imgres.data[0].url = `${imgres.data.url_prefix}${imgres.data[0].url}`;
               imgArr.push(imgres.data[0]);
+              let imglength = imgArr.length;
               that.setData({
                 imgres:imgArr,
+                imglength:imglength,
                 upImg:tempFilePaths
               })
             },
@@ -92,18 +95,60 @@ Page({
   // 删除图片
   deleteImg(ev) {
     console.log(ev);
+    let that = this;
+    let _index = ev.currentTarget.dataset.index;
+    let imgres = that.data.imgres;
+    wx.showModal({
+      title: '提示',
+      content: '确定删除这张图片吗？',
+      success: function(res) {
+        if (res.confirm) {
+           imgres.splice(_index,1);
+           that.setData({
+               imgres
+            })
+        } else if (res.cancel) {
+            
+        }
+      }
+    }) 
+    
   },
 
   // 提交打卡
   formSubmit() {
     var that = this;
     var content = that.data.content;
-    that.setData({
-      dakaSuccess: true
+    wx.request({
+      url:app.data.apiUrl,
+      method:"POST",
+      data:{
+        sign:wx.getStorageSync("sign"),
+        key:app.data.apiKey,
+        type:"save-punch",
+        data:{
+          imgs:that.data.imgres?that.data.imgres:"",
+          cotent:content?content:"",
+          is_share:that.data.isRadio?1:0
+        }
+      },
+      success(res){
+        console.log(res);
+        if (res.data.status===1) {
+          that.setData({
+            dakaSuccess: true,
+            score:res.data.score
+          })
+        }else{
+           wx.showToast({
+              title: res.data.msg,
+              icon: 'success',
+              duration: 1000
+            })
+        }
+      }
     })
-    if (true) {
-
-    }
+    
   },
 
   // 打卡弹窗提示
@@ -112,7 +157,11 @@ Page({
     that.setData({
       dakaSuccess: false
     })
+     wx.switchTab({
+      url: '../index/index'
+    })
   },
+
 
   onLoad: function(options) {
 

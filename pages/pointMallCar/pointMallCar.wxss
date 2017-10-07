@@ -17,9 +17,8 @@
 	border-bottom: 20rpx solid #f7f7f7;
 }
 
-.list .list_item:last-of-type{
+.list_item:last-of-type{
 	margin-bottom: 150rpx;
-	border:1px solid red;
 }
 
 .item_right{
@@ -54,7 +53,7 @@
 	align-items: center;
 	width: 50rpx;
 	height: 50rpx;
-	font-size: 28rpx;
+	line-height: 50rpx;
 }
 
 .list .item_type{
@@ -71,8 +70,12 @@
 
 .goods_num view:nth-of-type(1){
 	border:1px solid #dfdfdf;
-	font-size: 30px;
+	font-size: 20px;
 	border-radius: 4rpx 0 0 4rpx;
+	display: flex;
+	justify-content: center;
+	/*align-items: center;*/
+	line-height: 40rpx;
 }
 
 .goods_num view:nth-of-type(2){
@@ -85,8 +88,12 @@
 
 .goods_num view:nth-of-type(3){
 	border:1px solid #dfdfdf;
-	font-size: 30px;
+	font-size: 20px;
 	border-radius: 0 4rpx 4rpx 0;
+	display: flex;
+	justify-content: center;
+	line-height: 40rpx;
+	/*align-items: center;*/
 }
 
 /*购物车*/

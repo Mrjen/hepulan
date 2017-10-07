@@ -9,9 +9,9 @@
   </view> -->
 
   <view class="calendarSign">
-      <form bindsubmit="formSubmit" class="formSubmit" report-submit="true">
+         <!-- bindsubmit="formSubmit" -->
+      <form  class="formSubmit" report-submit="true">
         <!-- date!=calendarSignData[date] -->
-
           <button bindtap="toDiary"  class="checkBtn" wx:if="{{date!=calendarSignData[date]}}" formType="submit"></button>
           <view  class="checkedBtn" wx:else=""></view>
       </form>
@@ -58,7 +58,13 @@
       <view class="data_text" wx:for="{{monthDaySize-date}}">{{item+date+1}}</view>
     </view>
   </view>
+
+  <view class="calendar_tip">每日护肤打卡可获得收益，连续打卡</view>
+  <view class="calendar_tip">更有惊喜好礼等着你噢~</view>
+  <view class="deaily_tip">(温馨提示：每月月底重置护肤打卡记录噢~)</view>
 </view>
+
+
 <!-- 弹窗 -->
 <view class="help_win" wx:if="{{helpWin}}">
     <view class="help_win_in">

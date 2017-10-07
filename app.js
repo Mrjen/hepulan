@@ -17,11 +17,6 @@ App({
   onLaunch: function() {
     var that = this;
     //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || [];
-    var value = wx.getStorageSync('mobile');
-    console.log("mobile",value);
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs);
     wx.showLoading({
       title: '加载中',
     })

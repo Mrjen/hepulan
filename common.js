@@ -25,6 +25,7 @@ function getUser(){
               code: res.code
             },
             success:function(res){
+              console.log(res)
               var sign = res.data.data.sign;
               wx.setStorageSync('sign', res.data.data.sign);
               wx.setStorageSync('mid', res.data.data.mid);
@@ -64,7 +65,7 @@ function getUser(){
                    wx.showModal({
                      title:'提示',
                      confirmText:'前往授权',
-                     content:'拒绝授权您无法使用打赏点赞功能',
+                     content:'拒绝授权部分功能将受影响',
                      success:function(res){
                        if (res.confirm) {
                          wx.openSetting({
@@ -140,9 +141,11 @@ function getSign(callback) {
          },
          method:"POST",
          success(res){
-          //  console.log(res)
-           var sign = res.data.data.sign;
+           console.log(res)
+           let sign = res.data.data.sign;
+           let thirdkey = res.data.data.thirdkey;
            wx.setStorageSync("sign",sign);
+           wx.setStorageSync("thirdkey",thirdkey);
            typeof callback == "function" && callback()
          }
        })

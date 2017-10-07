@@ -164,6 +164,7 @@ Page({
             })
         } else {
             console.log("else")
+            console.log(list)
             wx.request({
                 url: app.data.apiUrl,
                 method: "POST",
@@ -174,16 +175,25 @@ Page({
                     data: {
                         gid: gid,
                         goods_num: list[_index].goods_num
-                    },
-                    success(res) {
-                        console.log(res)
+                    }
+                },
+                success(res) {
+                    console.log(res)
+                    if (res.data.status === 1) {
                         AllMoney = that.countGoods(list);
                         that.countGoods(list);
                         that.setData({
                             list,
                             AllMoney
                         })
+                    }else{
+                        wx.showToast({
+                          title: res.data.msg,
+                          icon: 'success',
+                          duration: 1000
+                        })
                     }
+
                 }
             })
 
@@ -221,8 +231,8 @@ Page({
                     key: app.data.apiKey,
                     type: "save-cart-select",
                     data: {
-                        is_select:"0",
-                        mode:"all"
+                        is_select: "0",
+                        mode: "all"
                     }
                 },
                 success(res) {
@@ -249,8 +259,8 @@ Page({
                     key: app.data.apiKey,
                     type: "save-cart-select",
                     data: {
-                        is_select:"1",
-                        mode:"all"
+                        is_select: "1",
+                        mode: "all"
                     }
                 },
                 success(res) {

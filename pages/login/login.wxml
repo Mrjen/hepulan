@@ -27,6 +27,8 @@
     </view>
   </form> -->
 
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" bindtap="getUserPhone">获取手机号</button>
+
   <view class="addGoldImg" style="display:{{addImgDis}}">
       <image src="{{addGoldImg}}"></image>
   </view>

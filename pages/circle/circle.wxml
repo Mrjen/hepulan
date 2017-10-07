@@ -3,7 +3,7 @@
 <!-- <scroll-view class="container" scroll-y="true" bindscrolltolower="pageBottom"> -->
 <view class="nav_box">
    <view class="nav_in">
-     <view wx:for="{{navList}}">
+     <view wx:for="{{navList}}" bindtap="changeNav" data-index="{{index}}">
          <image src="{{item.img}}"></image>
          <text>{{item.text}}</text>
      </view>

@@ -63,6 +63,7 @@ Page({
         let that = this;
         let type_id = that.data.type_id;
         let num = that.data.productNum;
+        let productInfo = that.data.productInfo;
         if (type_id) {
             wx.request({
                 url: app.data.apiUrl,
@@ -79,17 +80,22 @@ Page({
                 success(res) {
                     console.log(res);
                     if (res.data.status) {
-                       wx.showToast({
-                          title: '加入购物车成功',
-                          icon: 'success',
-                          duration: 1000
-                      })
-                    }else{
-                      wx.showToast({
-                          title: res.data.msg,
-                          icon: 'success',
-                          duration: 1000
-                      })
+                        wx.showToast({
+                            title: '加入购物车成功',
+                            icon: 'success',
+                            duration: 1000
+                        })
+                        
+                       productInfo.cart_count = res.data.data.cart_count;
+                       that.setData({
+                         productInfo
+                       })
+                    } else {
+                        wx.showToast({
+                            title: res.data.msg,
+                            icon: 'success',
+                            duration: 1000
+                        })
                     }
                 }
             })
@@ -103,46 +109,83 @@ Page({
 
     },
 
+
+    // 收藏或者取消收藏
+    changeCollect(ev) {
+        let that = this;
+        let kid = that.data.kid;
+        let productInfo = that.data.productInfo;
+        wx.request({
+            url: app.data.apiUrl,
+            method: "POST",
+            data: {
+                sign: wx.getStorageSync("sign"),
+                key: app.data.apiKey,
+                type: "save-collect-status",
+                data: {
+                    kid: kid
+                }
+            },
+            success(res) {
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'success',
+                    duration: 2000
+                })
+                console.log(res.data.data.state)
+                if (res.data.data.state === 1) {
+                    productInfo.is_collect = 1;
+                } else {
+                    productInfo.is_collect = 0;
+                }
+                that.setData({
+                    productInfo
+                })
+            }
+        })
+
+    },
+
     onReady: function() {
 
     },
 
     // 立即兑换
-    exchangeBtn(){
+    exchangeBtn() {
         let that = this;
         let type_id = that.data.type_id;
         if (type_id) {
             wx.request({
-            url:app.data.apiUrl,
-            method:"POST",
-            data:{
-                sign:wx.getStorageSync("sign"),
-                key:app.data.apiKey,
-                type:"action-confirm-cart"
-            },
-            success(res){
-                console.log(res.data.status)
-                if (res.data.status) {
-                    wx.navigateTo({
-                      url: '../pointMallCar/pointMallCar'
-                    })
-                }else{
-                   wx.showToast({
-                        title: res.data.msg,
-                        icon: 'success',
-                        duration: 1000
-                    })
+                url: app.data.apiUrl,
+                method: "POST",
+                data: {
+                    sign: wx.getStorageSync("sign"),
+                    key: app.data.apiKey,
+                    type: "action-confirm-cart"
+                },
+                success(res) {
+                    console.log(res.data.status)
+                    if (res.data.status) {
+                        wx.navigateTo({
+                            url: '../pointMallCar/pointMallCar'
+                        })
+                    } else {
+                        wx.showToast({
+                            title: res.data.msg,
+                            icon: 'success',
+                            duration: 1000
+                        })
+                    }
                 }
-            }
-        })
-        }else{
+            })
+        } else {
             wx.showToast({
                 title: '请选择颜色',
                 icon: 'success',
                 duration: 1000
             })
         }
-        
+
     },
 
     // 选择款式
@@ -201,10 +244,10 @@ Page({
         })
     },
 
-        //去购物车
-    toShopCart(){
-      wx.navigateTo({
-          url: '../pointMallCar/pointMallCar'
+    //去购物车
+    toShopCart() {
+        wx.navigateTo({
+            url: '../pointMallCar/pointMallCar'
         })
     },
 

@@ -33,17 +33,17 @@ page{
 }
 
 .diry_in_box textarea{
-	  box-sizing: border-box;
+	box-sizing: border-box;
     width: 540rpx;
-    height: 200rpx;
+    height: 210rpx;
     background-color: #f9f9f9;
     border-radius: 6px;
     border: 1px solid #ddd;
     padding: 10rpx;
     resize: none;
     outline: 0;
-		margin:0 auto;
-		margin-top: 30rpx;
+	margin:0 auto;
+	margin-top: 30rpx;
     color: #9a9a9a;
     font-size: 30rpx;
     line-height: 1.2;

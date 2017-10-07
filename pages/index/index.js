@@ -85,6 +85,9 @@ formSubmit(ev){
   onLoad: function(options) {
     // 初始化腾讯统计
     mta.Page.init();
+    
+    // 调取登录接口
+    common.getSign();
 
     //页面初始化 options为页面跳转所带来的参数
     var that= this;

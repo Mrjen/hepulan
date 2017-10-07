@@ -29,8 +29,8 @@ Page({
             var shopList = res.data.data.collect_list;
             var pointCount = res.data.data.goods_list;
             that.setData({
-              shopList:shopList,
-              pointCount:pointCount
+              shopList,
+              pointCount
             });
           },
           fail(res){
@@ -43,6 +43,9 @@ Page({
   exchangeBtn(ev){
     let that = this;
     let kid = ev.currentTarget.dataset.id;
+    let _index = ev.currentTarget.dataset.index;
+    let shopList = that.data.shopList;
+    let pointCount = that.data.pointCount;
     console.log(kid)
     wx.request({
        url:app.data.apiUrl,
@@ -56,7 +59,29 @@ Page({
          }
        },
        success(res){
-         console.log(res)
+         console.log(res);
+         wx.showToast({
+              title: res.data.msg,
+              icon: 'success',
+              duration: 2000
+          })
+         if (res.data.data.state===1) {
+            let _item = that.data.pointCount[_index];
+                pointCount.splice(_index,1);
+                shopList.unshift(_item);
+                that.setData({
+                   shopList,
+                   pointCount
+                })
+         }else if(res.data.data.state===0){
+             let _item = that.data.shopList[_index];
+               shopList.splice(_index,1);
+               pointCount.push(_item);
+             that.setData({
+                 shopList,
+                 pointCount
+              })
+         }
        }
     })
   },

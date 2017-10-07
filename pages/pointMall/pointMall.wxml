@@ -46,7 +46,7 @@
 <!-- 往期礼品 -->
 <view class="nav_tip border_bottom"><text class="line"></text><image src="https://qncdn.playonwechat.com/hepulan/point_mall_oldgift.png"></image>往期礼品<text class="line"></text></view>
 <view class="shop_list">
-    <view class="list_item has_salse" wx:for="{{shopBeforeList}}" wx:key="index">
+    <view class="list_item has_salse" wx:for="{{shopBeforeList}}" wx:key="index" bindtap="ToDetail" data-id="{{item.kid}}">
           <image class="item_img" src="{{item.img}}"></image>
           <view class="item_info">
               <view class="item_title">{{item.name}}</view>

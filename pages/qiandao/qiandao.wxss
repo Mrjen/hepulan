@@ -36,16 +36,43 @@
 }
 
 .calendar_out{
-  width: 700rpx;
-  height: 724rpx;
+  width: 670rpx;
+  height: 780rpx;
   margin:0 auto;
   position: relative;
   background-color: #52aeed;
   border-radius: 10px;
   box-shadow: 0 3px #145b89;
   box-sizing: border-box;
-  padding-top: 34rpx;
+  padding-top: 12rpx;
   margin-top: -60rpx;
+  position: relative;
+}
+
+.calendar_out:before{
+  content: "";
+  display: block;
+  width: 56rpx;
+  height: 94rpx;
+  /*border:1px solid red;*/
+  position: absolute;
+  background-image: url(https://qncdn.playonwechat.com/hepulan/bg-mark-right.jpg);
+  background-size: 100% 100%;
+  right: -26rpx;
+  top: 610rpx;
+}
+
+.calendar_out:after{
+  content: "";
+  display: block;
+  width: 56rpx;
+  height: 94rpx;
+  /*border:1px solid red;*/
+  position: absolute;
+  background-image: url(https://qncdn.playonwechat.com/hepulan/bg-mark-left.jpg);
+  background-size: 100% 100%;
+  left: -26rpx;
+  top:640rpx;
 }
 
 .checkBtn{
@@ -125,8 +152,9 @@
   margin:0 auto;
   border-radius: 10rpx;
   box-sizing: border-box;
-  padding:0 20rpx;
+  padding:10rpx 20rpx;
   background: #fff;
+  margin-bottom: 25rpx;
 }
 
 .check_box_right{
@@ -159,19 +187,32 @@
 }
 
 .week {
-  width: 100%;
+  width: 580rpx;
   box-sizing: border-box;
   padding-bottom: 20rpx;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  margin:0 auto;
+  position: relative;
+}
+
+.week:before{
+  content: "";
+  display: block;
+  width: 92rpx;
+  height: 108rpx;
+  position: absolute;
+  background-image: url(https://qncdn.playonwechat.com/hepulan/icon-xiaoHe.png);
+  background-size:100% 100%;
+  right: -68rpx;
+  top: 670rpx;
 }
 
 .week view {
-  width: 80rpx;
-  height: 80rpx;
+  width: 74rpx;
+  height: 74rpx;
   margin-top: 20rpx;
-  margin-left: 3rpx;
+  margin: 8rpx 0 8rpx 22rpx;
   line-height: 80rpx;
   display: inline-flex;
   text-align: center;
@@ -233,6 +274,20 @@
   border-radius: 50%;
   vertical-align: top;
   margin-left: 10rpx;
+}
+
+.calendar_tip{
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  line-height: 40rpx;
+}
+
+.deaily_tip{
+   text-align: center;
+   color: #fff;
+   font-size: 20rpx;
+   margin-top: 20rpx;
 }
 
 /*弹窗*/

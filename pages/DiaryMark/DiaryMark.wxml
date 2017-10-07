@@ -2,11 +2,11 @@
 <form bindsubmit="formSubmit" report-submit="true">
 <view class="diry_box">
    <view class="diry_in_box">
-	     <textarea bindinput="bindTextAreaBlur"  placeholder="写下您今日的护肤记录吧" />
-			 <view class='img_title'><view>上传图片</view><view class="img_tip">7/9</view></view>
+	     <textarea bindinput="bindTextAreaBlur"  placeholder="你的护肤历程是对其他禾粉姐妹的鼓励，是变美的动力，大家渴望看到你洋洋洒洒的护肤记录，所以不要吝啬你的文采哦~听说带禾宝宝上精品推荐更威风哦！" />
+			 <view class='img_title'><view>上传多张图片更容易上热榜哦</view><view class="img_tip">{{imglength}}/9</view></view>
 			 <view class="upimg_box">
-			     <image class="uploadimg" bindlongpress="deleteImg" wx:for="{{imgres}}" src="{{item}}"></image>
-			     <view class="upload_btn" bindtap='upImgBtn'></view>
+			     <image class="uploadimg" bindlongtap="deleteImg"  wx:for="{{imgres}}" src="{{item.url}}" data-index="{{index}}"></image>
+			     <view class="upload_btn" wx:if="{{imglength>8?false:true}}" bindtap='upImgBtn'></view>
 			 </view>
        <view class="img_tip_text">提示：长按可删除图片</view>
 			 <view class="daka_status">
@@ -30,7 +30,7 @@
       <view class="win_top">
           <view class="win_content">
               <view>打卡成功，积分</view>
-              <view>+1</view>
+              <view>+{{score}}</view>
           </view>
           <view class="circle circle1 circle_box" >
             <view class="circle circle2">
@@ -41,3 +41,4 @@
       <view class="win_bottom" bindtap="sureDiary">确定</view>
     </view>
 </view>
+
