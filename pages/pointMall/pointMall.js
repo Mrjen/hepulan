@@ -9,18 +9,21 @@ Page({
         start: 0,
         selectWin: false, //选择类型弹层
         selectWinData: [],
-        opation_nav:[{
-            url:"../shopCollect/shopCollect",
-            text:"我的收藏",
-            icon:"https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_collect.png"
-        },{
-            url:"../pointMallCar/pointMallCar",
-            text:"购物车",
-            icon:"https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_shopcar.png"
-        },{
-            url:"../myAddress/myAddress",
-            text:"地址管理",
-            icon:"https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_adress.png"
+        opation_nav: [{
+            url: "../shopCollect/shopCollect",
+            text: "我的收藏",
+            icon: "https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_collect.png",
+            id: 1
+        }, {
+            url: "../pointMallCar/pointMallCar",
+            text: "购物车",
+            icon: "https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_shopcar.png",
+            id: 2
+        }, {
+            url: "../myAddress/myAddress",
+            text: "地址管理",
+            icon: "https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_adress.png",
+            id: 3
         }]
     },
 
@@ -39,19 +42,31 @@ Page({
     },
 
     // 导航跳转
-    navTo(ev){
-       let that = this;
-       let index = ev.currentTarget.dataset.index;
-       let opation_nav = that.data.opation_nav;
-       if (true) {
-          wx.navigateTo({
-             url: opation_nav[index].url
-          })
-       }else{
-          wx.navigateTo({
-             url: '../login/login'
-          })
-       }
+    navTo(ev) {
+        let that = this;
+        let index = ev.currentTarget.dataset.index;
+        let opation_nav = that.data.opation_nav;
+        let is_register = that.data.is_register;
+        let pagePath = "../pointMall/pointMall";
+        if (is_register && opation_nav[index].id !== 3) {
+            wx.navigateTo({
+                url: opation_nav[index].url
+            })
+        } else {
+            wx.showModal({
+                title: '提示',
+                content: '您还没有注册，是否去注册',
+                success: function(res) {
+                    if (res.confirm) {
+                        wx.navigateTo({
+                            url: '../login/login?pagePath=' + pagePath
+                        })
+                    } else if (res.cancel) {
+
+                    }
+                }
+            })
+        }
     },
 
     onReady: function() {
@@ -107,17 +122,19 @@ Page({
                 let shopBeforeList = res.data.data.goods_list_before;
                 let pointCount = res.data.data.usable_score;
                 let dataText = res.data.data.exchanged_list;
+                let is_register = res.data.is_register;
                 that.setData({
                     shopNowList,
                     shopBeforeList,
                     shopSoonList,
                     pointCount,
-                    dataText
+                    dataText,
+                    is_register
                 });
 
-                setTimeout(function(){
-                  wx.hideLoading()
-                },1000)
+                setTimeout(function() {
+                    wx.hideLoading()
+                }, 1000)
             },
             fail(res) {
                 console.log(res);
@@ -125,9 +142,9 @@ Page({
         })
     },
 
-    toShopExchange(){
-       wx.navigateTo({
-          url: '../shopExchange/shopExchange'
+    toShopExchange() {
+        wx.navigateTo({
+            url: '../shopExchange/shopExchange'
         })
     },
 
@@ -194,8 +211,8 @@ Page({
                         })
                     }
                     that.setData({
-                       selectWin:false
-                     })
+                        selectWin: false
+                    })
                 }
             })
         } else {
@@ -216,19 +233,19 @@ Page({
     },
 
     // 点击图片预览
-    prewImg(ev){
-       let url = ev.currentTarget.dataset.url;
-       wx.previewImage({
-          current: url, 
-          urls: [url] 
+    prewImg(ev) {
+        let url = ev.currentTarget.dataset.url;
+        wx.previewImage({
+            current: url,
+            urls: [url]
         })
     },
 
     // 跳转详情页
-    ToDetail(ev){
+    ToDetail(ev) {
         let id = ev.currentTarget.dataset.id;
-       wx.navigateTo({
-          url: `../pointMallDetail/pointMallDetail?id=${id}`
+        wx.navigateTo({
+            url: `../pointMallDetail/pointMallDetail?id=${id}`
         })
     },
 
