@@ -2,7 +2,7 @@
 <import src="../template/template.wxml"/>
 <scroll-view scroll-y="true" class="container">
    <view class="logo"><image src="../img/logo.png"></image></view>
-
+   <!-- {{sign}}{{getsign}}{{onShow}} -->
    <form  class="content_box"  bindsubmit="formSubmit" report-submit="true">
       <button class="contact_me" formType="submit">
            <!-- <button class="ask_mine navitor1" wx:if="{{!content}}" data-page="ask_me" bindtap="toLogin" hover-class="none">在线咨询</button>
@@ -37,7 +37,7 @@
        <vies class="test_btn navitor" bindtap="skinTest" data-page="skinTest" hover-class="none">肌肤测试</vies>
        <!-- <vies class="apply_btn navitor"  bindtap="Apply"  data-page="Apply" hover-class="none">申请试用</vies> -->
        <vies class="join_btn navitor" bindtap="joinVip"  data-page="joinVip" hover-class="none">加入会员</vies>
-       <vies class="check_btn navitor"  bindtap="Check"  data-page="Check" hover-class="none">签到领币</vies>
+       <vies class="check_btn navitor"  bindtap="Check"  data-page="Check" hover-class="none">护肤打卡</vies>
    </view>
 
    <!-- 老师推荐 -->

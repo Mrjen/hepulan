@@ -11,27 +11,19 @@ Page({
         wx.showShareMenu({
             withShareTicket: true
         })
-        var that = this;
-
-
     },
 
     onShow() {
         let that = this;
         common.getSign(function() {
-            var sign = wx.getStorageSync('sign');
-            console.log(sign)
-            // 获取搜索关键词
+            console.log(wx.getStorageSync("sign"))
             wx.request({
                 url: app.data.apiUrl,
-                header: {
-                    'content-type': 'application/json'
-                },
                 method: "POST",
                 data: {
                     type: "get-tags",
                     key: app.data.apiKey,
-                    sign: sign
+                    sign: wx.getStorageSync('sign')
                 },
                 success: function(res) {
                     // console.log(res);
@@ -63,7 +55,7 @@ Page({
                 data: {
                     key: app.data.apiKey,
                     type: "get-knowledge-list",
-                    sign: sign
+                    sign: wx.getStorageSync('sign')
                 },
                 success: function(res) {
                     console.log("知识列表", res)
@@ -79,39 +71,6 @@ Page({
         })
     },
 
-    // 点赞文章
-    likeBtn: function(ev) {
-        var that = this;
-        var idx = ev.currentTarget.dataset.inx;
-        // app.getUserInfo(function () {
-        wx.request({
-            url: "https://hepulan.playonwechat.com/site/knowledge-thumb?sign=" + app.data.sign,
-            data: {
-                id: idx
-            },
-            success: function(res) {
-                var main_content = that.data.main_content;
-                for (var i = 0; i < main_content.length; i++) {
-                    if (main_content[i].id == idx) {
-                        main_content[i].is_thumb = 1;
-                        main_content[i].thumb_num = parseInt(main_content[i].thumb_num) + 1;
-                    }
-                }
-                that.setData({
-                    main_content: main_content
-                })
-            }
-        })
-        // })
-    },
-
-    hasLike: function() {
-        wx.showToast({
-            title: '你已经点过赞了',
-            icon: 'success',
-            duration: 1000
-        })
-    },
 
     video_control: function(e) {
         var index = e.currentTarget.dataset.ontap;
@@ -123,16 +82,6 @@ Page({
                 info[i].visit_num = parseInt(info[i].visit_num) + 1;
             }
         };
-        wx.request({
-            url: "https://hepulan.playonwechat.com/site/add-knowledge-visit?sign=" + app.data.sign,
-            data: {
-                id: index
-            },
-            success: function(res) {
-                // 保存浏览量
-                console.log("浏览量", res);
-            }
-        })
         this.setData({
             "main_content": info
         })
@@ -150,12 +99,11 @@ Page({
     searchBtn: function(e) {
         var that = this;
         var searchValue = that.data.searchValue;
-        var sign = wx.getStorageSync("sign");
         wx.request({
             url: app.data.apiUrl,
             data: {
                 key: app.data.apiKey,
-                sign: sign,
+                sign: wx.getStorageSync("sign"),
                 type: "get-knowledge-list",
                 data: {
                     keyword: searchValue
@@ -184,7 +132,6 @@ Page({
         var that = this;
         var tapKeyWorld = e.currentTarget.dataset.id;
         var inx = e.target.dataset.inx;
-        var sign = wx.getStorageSync("sign");
         var main_content = [];
         var search_word = that.data.search_word;
         for (var i = 0; i < search_word.length; i++) {
@@ -201,7 +148,7 @@ Page({
                 url: app.data.apiUrl,
                 data: {
                     key: app.data.apiKey,
-                    sign: sign,
+                    sign: wx.getStorageSync("sign"),
                     type: "get-knowledge-list"
                 },
                 header: {
@@ -221,7 +168,7 @@ Page({
                 url: app.data.apiUrl,
                 data: {
                     key: app.data.apiKey,
-                    sign: sign,
+                    sign: wx.getStorageSync("sign"),
                     type: "get-knowledge-list",
                     data: {
                         tag: tapKeyWorld
@@ -259,7 +206,7 @@ Page({
                 data: {
                     key: app.data.apiKey,
                     type: "get-knowledge-list",
-                    sign: sign,
+                    sign: wx.getStorageSync("sign"),
                     data: {
                         start: start,
                         length: 10
@@ -291,7 +238,7 @@ Page({
                 data: {
                     key: app.data.apiKey,
                     type: "get-knowledge-list",
-                    sign: sign,
+                    sign: wx.getStorageSync("sign"),
                     tag: tapKeyWorld,
                     data: {
                         start: start,
@@ -322,7 +269,7 @@ Page({
                 url: app.data.apiUrl,
                 data: {
                     key: app.data.apiKey,
-                    sign: sign,
+                    sign: wx.getStorageSync("sign"),
                     type: "get-knowledge-list",
                     data: {
                         keyword: searchValue,
@@ -368,29 +315,27 @@ Page({
                 singleTitle = that.data.main_content[i].title
             }
         }
-        wx.request({
-            url: "https://hepulan.playonwechat.com/site/get-knowledge-detail?sign=" + app.data.sign,
-            data: {
-                id: idx
-            },
-            success: function(res) {
-                //console.log(idx)
-                wx.navigateTo({
-                    url: "../single/single?id=" + idx,
-                })
-            }
+
+        wx.navigateTo({
+            url: "../single/single?id=" + idx,
         })
 
-        wx.request({
-            url: "https://hepulan.playonwechat.com/site/add-knowledge-visit?sign=" + app.data.sign,
-            data: {
-                id: idx
-            },
-            success: function(res) {
-                // 保存浏览量
-                console.log("浏览量", res);
-            }
-        })
+        // wx.request({
+        //     url: app.data.apiUrl,
+        //     method:"POST",
+        //     data: {
+        //         sign:wx.getStorageSync("sign"),
+        //         key:app.data.apiKey,
+        //         type:"get-knowledge-detail",
+        //         data:{
+        //           id: idx
+        //         }
+        //     },
+        //     success: function(res) {
+        //         //console.log(idx)
+                
+        //     }
+        // })
     },
 
     // 返回首页

@@ -1,34 +1,29 @@
 {
   "pages": [
-    "pages/qiandao/qiandao",
-    "pages/circle/circle",
-    "pages/login/login",
     "pages/index/index",
+    "pages/login/login",
+    
+    
+    "pages/circle/circle",
+    
     "pages/DiaryMark/DiaryMark",
-    
-    
-   
+    "pages/writeDyn/writeDyn",
+  
+    "pages/qiandao/qiandao",
+    "pages/circleRules/circleRules",
     "pages/pointMall/pointMall",
     "pages/pointMallCar/pointMallCar",
     "pages/shopSubmiteOrder/shopSubmiteOrder",
-    
     
     "pages/EditAddress/EditAddress",
     "pages/myAddress/myAddress",
     "pages/ShopLogistics/ShopLogistics",
     "pages/shopExchange/shopExchange",
     "pages/shopCollect/shopCollect",
-    
     "pages/pointMallDetail/pointMallDetail",
-    
     "pages/mine/mine",
-    
-    
-    
-    
-    
     "pages/knowledge/knowledge",
-    "pages/writeDyn/writeDyn",
+    
     
     "pages/IconPage/IconPage",
     "pages/ercode/ercode",
@@ -81,12 +76,12 @@
         "pagePath": "pages/circle/circle",
         "text": "禾圈",
         "iconPath": "pages/img/home_icon_circle.png",
-        "selectedIconPath": "pages/img/home_icon_circle.png"
+        "selectedIconPath": "pages/img/home_icon_circle_active.png"
       },{
         "pagePath": "pages/heChart/heChart",
         "text": "课程",
-        "iconPath": "pages/img/home_icon_circle.png",
-        "selectedIconPath": "pages/img/home_icon_circle.png"
+        "iconPath": "pages/img/home_icon_course.png",
+        "selectedIconPath": "pages/img/home_icon_course_active.png"
       },
       {
         "pagePath": "pages/mine/mine",

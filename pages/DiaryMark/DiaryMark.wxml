@@ -5,7 +5,7 @@
 	     <textarea bindinput="bindTextAreaBlur"  placeholder="你的护肤历程是对其他禾粉姐妹的鼓励，是变美的动力，大家渴望看到你洋洋洒洒的护肤记录，所以不要吝啬你的文采哦~听说带禾宝宝上精品推荐更威风哦！" />
 			 <view class='img_title'><view>上传多张图片更容易上热榜哦</view><view class="img_tip">{{imglength}}/9</view></view>
 			 <view class="upimg_box">
-			     <image class="uploadimg" bindlongtap="deleteImg"  wx:for="{{imgres}}" src="{{item.url}}" data-index="{{index}}"></image>
+			     <image class="uploadimg" bindlongtap="deleteImg"  wx:for="{{imgres}}" src="{{item.img}}" data-index="{{index}}"></image>
 			     <view class="upload_btn" wx:if="{{imglength>8?false:true}}" bindtap='upImgBtn'></view>
 			 </view>
        <view class="img_tip_text">提示：长按可删除图片</view>
@@ -16,8 +16,8 @@
          </view>
 
 					<view class="jion_hot" bindtap="jionHot">
-             <view class="radio"><view  class="check_icon" wx:if="{{isRadio}}"></view></view>
-             参加护肤热选赢取积分请打钩《活动规则》</view>
+             <view style="line-height: 34rpx;">
+             <view class="radio"><view  class="check_icon" wx:if="{{isRadio}}"></view></view>请打钩分享，一经采用立得30积分，详情点<text bindtap="toRules" style="color:#0080d6">《活动规则》</text></view></view>
           <button class="submit_btn"  formType="submit"><text class="daka_icon"></text>护肤打卡</button>
 			 </view>
 	 </view>

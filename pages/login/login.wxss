@@ -6,148 +6,109 @@
 	justify-content:initial;
 	width: 100%;
 	height: 100%;
-	background: #eee;
+	background: #f7f7f7;
 }
 
-.logo{
-	width:180rpx;
-	height:180rpx;
-	background: #fff;
-	border-radius: 50%;
-	background: #086434;
-	margin: 170rpx 0 30rpx 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+.banner{
+	width: 750rpx;
 }
 
-.logo image{
-	display:block;
-	width:126rpx;
-	height:72rpx;
+.getphone image{
+   display: block;
+   width: 60rpx;
+   height: 49rpx;
+   margin-right: 20rpx;
 }
 
-.comp_name{
+.birthday1:after{
+	content: "";
 	display: block;
-	text-align: center;
-}
-
-.login_box input:nth-of-type(1){
-	width: 580rpx;
-	height: 80rpx;
-	font-size: 36rpx;
-	border-radius: 4rpx;
-	box-sizing: border-box;
-	padding: 4rpx 30rpx;
-	background: #fff;
-	margin:0 0 30rpx 0;
-}
-
-.login_box input:nth-of-type(2){
-	width: 300rpx;
-	height: 80rpx;
-	font-size: 36rpx;
-	border-radius: 4rpx;
-	box-sizing: border-box;
-	padding: 4rpx 30rpx;
-	background: #fff;
-	margin-right: 30rpx;
-	display: inline-block;
-	vertical-align: top;
-}
-
-.yanCdoe{
-	display: inline-block;
-	width: 250rpx;
-	height: 80rpx;
-	line-height: 80rpx;
-	text-align: center;
-	background: #086434;
-	color: #fff;
-	font-size: 36rpx;
-	border-radius: 4rpx;
-	position: relative;
-}
-
-.yanCdoe span:nth-of-type(1){
-	display: block;
-	width: 250rpx;
-	height: 80rpx;
-	font-size: 30rpx;
-	line-height: 80rpx;
-	text-align: center;
-	background: #086434;
-	color: #fff;
 	position: absolute;
-	z-index: 2;
-	border-radius: 4rpx;
-}
-
-.yanCdoe span:nth-of-type(2){
-	display: block;
-	width: 250rpx;
-	height: 80rpx;
-	font-size: 30rpx;
-	line-height: 80rpx;
-	text-align: center;
-	background: #086434;
-	color: #fff;
-	position: absolute;
-	z-index: 1;
-	border-radius: 4rpx;
-}
-
-.submit_btn{
-	margin-top: 30rpx;
-	background: #086434;
-	color: #fff;
-	height: 80rpx;
-	line-height: 80rpx;
-	border-radius: 4rpx;
-}
-
-.addGoldImg{
-	position: fixed;
 	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	box-sizing: border-box;
+	border-bottom: 1px solid #f7f7f7;
+	left:0;
+	bottom: 0;
+}
+
+.getphone{
+	width: 690rpx;
+	height: 88rpx;
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	z-index: 10;
-}
-
-.addGoldImg image{
-	 display: block;
-	 width: 508rpx;
-	 height: 507rpx;
-}
-
-.preloadImg{
-	width: 1px;
-	height: 1px;
-	opacity: 0;
-	overflow: hidden;
-}
-
-.mobiel_tip{
-  font-size: 26rpx;
-  color: #999;
-  text-align: left;
-  width: 580rpx;
-  margin:50rpx auto 10rpx auto;
-}
-
-.mobiel_tip{
-	margin:10rpx 0;
+	justify-content: center;
+	background: #09bb07;
+	color: #fff;
+	margin: 80rpx auto;
 }
 
 .birthday{
-	width: 580rpx;
-	height: 80rpx;
+	width: 750rpx;
+	height: 88rpx;
+	align-items: center;
+	display: flex;
 	background: #fff;
-	line-height: 80rpx;
+	box-sizing: border-box;
+	padding:0 30rpx;
+	font-size: 30rpx;
+	position: relative;
+}
+
+.birthday picker{
+	flex: 1;
+	height: 88rpx;
+	line-height: 88rpx;
+	text-align: right;
+}
+
+.birthday text{
+	flex-shrink: 0;
+}
+
+.birthday1 view{
+	width: 100%;
+	text-align: right;
+}
+
+.phone_input{
+	box-sizing: border-box;
+	padding-left: 30rpx;
+}
+
+.tip{
+	font-size: 26rpx;
+	color: #999;
+	line-height: 40rpx;
+	text-align: center;
+	width: 750rpx;
+	box-sizing: border-box;
+	padding:10rpx 30rpx;
+}
+
+.login{
+	width: 690rpx;
+	height: 88rpx;
+	color: #fff;
+	background: #09bb07;
+}
+
+.phone input{
+	flex: 1;
+	height: 88rpx;
+	box-sizing: border-box;
+}
+
+.phone .birthday .verify_code{
+	width: 160rpx;
+	height: 88rpx;
+	font-size: 26rpx;
+	text-align: center;
+	line-height: 88rpx;
+	box-sizing: border-box;
+	border-left: 1px solid #f7f7f7;
+}
+
+.phone_login{
+	font-size: 26rpx;
+	position: fixed;
+	bottom: 150rpx;
 }

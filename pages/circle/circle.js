@@ -19,7 +19,7 @@ Page({
         isWritting: true,
         writeCircle: true,
         start: 0,
-        share_type: 1,
+        share_type: 0,
         navList: [{
             id: 1,
             img: "https://qncdn.playonwechat.com/hepulan/circle_skincare_experience.png",
@@ -100,14 +100,11 @@ Page({
                 kun.push(res);
                 wx.request({
                     url: app.data.apiUrl,
-                    header: {
-                        'content-type': 'application/json'
-                    },
                     method: "POST",
                     data: {
                         type: "save-plaza-post-comment",
                         key: app.data.apiKey,
-                        sign: sign,
+                        sign: wx.getStorageSync("sign"),
                         data: {
                             pid: pid,
                             comment: _writeText
@@ -150,7 +147,7 @@ Page({
     },
     // 点赞
     dianZan: function(ev) {
-        // console.log(ev);
+        console.log(ev);
         var that = this;
         var zanStatus = that.data.zanStatus;
         var writeIndex = ev.currentTarget.dataset.zan;
@@ -162,7 +159,7 @@ Page({
         zan = zan > 0 ? true : false;
         // console.log(zan)
         var nickName = that.data.nickName;
-        if (!zan) {
+        // if (!zan) {
             wx.request({
                 url: app.data.apiUrl,
                 header: {
@@ -172,61 +169,63 @@ Page({
                 data: {
                     type: "save-plaza-post-like",
                     key: app.data.apiKey,
-                    sign: "8a3a862e995ece7f15fe1c4f82e6a714",
+                    sign: wx.getStorageSync("sign"),
                     data: {
                         pid: pid
                     }
 
                 },
                 success: function(res) {
-                    // console.log(res);
-                    spaceDyn[writeIndex].liks.unshift({
-                        username: nickName,
-                        pid: pid
-                    });
-                    spaceDyn[writeIndex].haslike = "1";
+                    console.log(res);
+                    let praise_list = res.data.data.praise_list;
+                    spaceDyn[writeIndex].praise_list = praise_list;
+                    spaceDyn[writeIndex].haslike = res.data.data.haslike;
+                    // spaceDyn[writeIndex].liks.unshift({
+                    //     username: nickName,
+                    //     pid: pid
+                    // });
+                    // spaceDyn[writeIndex].haslike = "1";
+                    console.log(spaceDyn)
                     that.setData({
                         spaceDyn: spaceDyn,
                         pid: pid
                     })
                 }
             });
-        } else {
-
-            var likeList = spaceDyn[writeIndex].liks;
-            var zanList = [];
-            wx.request({
-                url: app.data.apiUrl,
-                header: {
-                    'content-type': 'application/json'
-                },
-                method: "POST",
-                data: {
-                    key: app.data.apiKey,
-                    type: "remove-plaza-post-like",
-                    // sign:sign,
-                    sign: "8a3a862e995ece7f15fe1c4f82e6a714",
-                    data: {
-                        pid: pid
-                    }
-                },
-                success: function(res) {
-                    // console.log(res);
-                    var likeList = spaceDyn[writeIndex].liks;
-                    var zanList = [];
-                    for (var i = 0; i < likeList.length; i++) {
-                        if (pid == likeList[i].pid) {
-                            likeList.splice(i, 1);
-                        }
-                    }
-                    spaceDyn[writeIndex].liks = likeList;
-                    likeList = spaceDyn[writeIndex].haslike = 0;
-                    that.setData({
-                        spaceDyn: spaceDyn
-                    })
-                }
-            });
-        }
+        // } else {
+        //     var likeList = spaceDyn[writeIndex].liks;
+        //     var zanList = [];
+        //     wx.request({
+        //         url: app.data.apiUrl,
+        //         header: {
+        //             'content-type': 'application/json'
+        //         },
+        //         method: "POST",
+        //         data: {
+        //             key: app.data.apiKey,
+        //             type: "save-plaza-post-like",
+        //             sign: wx.getStorageSync("sign"),
+        //             data: {
+        //                 pid: pid
+        //             }
+        //         },
+        //         success: function(res) {
+        //             console.log(res);
+        //             var likeList = spaceDyn[writeIndex].liks;
+        //             var zanList = [];
+        //             for (var i = 0; i < likeList.length; i++) {
+        //                 if (pid == likeList[i].pid) {
+        //                     likeList.splice(i, 1);
+        //                 }
+        //             }
+        //             spaceDyn[writeIndex].liks = likeList;
+        //             likeList = spaceDyn[writeIndex].haslike = 0;
+        //             that.setData({
+        //                 spaceDyn: spaceDyn
+        //             })
+        //         }
+        //     });
+        // }
     },
 
     // 判断用户是否授权否则不能写动态
@@ -274,7 +273,7 @@ Page({
                 data: {
                     key: app.data.apiKey,
                     type: "get-plaza-posts",
-                    sign: "8a3a862e995ece7f15fe1c4f82e6a714",
+                    sign: wx.getStorageSync("sign"),
                     // sign:sign,
                     data: {
                         start: 0,
@@ -299,6 +298,53 @@ Page({
         })
     },
 
+
+// 输入的搜索关键词
+searchCentent(e){
+   this.setData({
+      searchCentent:e.detail.value
+   })
+},
+
+// 搜索
+searchCircle(e){
+   let that = this;
+   let  searchCentent = that.data.searchCentent;
+   let start = 0;
+   console.log(searchCentent);
+   wx.request({
+                url: app.data.apiUrl,
+                method: "POST",
+                data: {
+                    key: app.data.apiKey,
+                    type: "get-plaza-posts",
+                    sign: wx.getStorageSync("sign"),
+                    data: {
+                        start: 0,
+                        length: 10,
+                        search:searchCentent,
+                        share_type:that.data.share_type
+                    }
+                },
+                success(res) {
+                    console.log(res);
+                    start += 10;
+                    let spaceDyn = res.data.data.social_list;
+                    for (let i = 0; i < spaceDyn.length; i++) {
+                        spaceDyn[i].imgslist = [];
+                        for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
+                            spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
+                        }
+                    }
+                    that.setData({
+                        spaceDyn: spaceDyn
+                    });
+                }
+            })
+},
+
+
+// 切换导航
     changeNav(ev) {
         let that = this;
         let index = ev.currentTarget.dataset.index;
@@ -352,10 +398,12 @@ Page({
             data: {
                 key: app.data.apiKey,
                 type: "get-plaza-posts",
+                sign:wx.getStorageSync("sign"),
                 data: {
                     start: that.data.start,
                     length: 10,
-                    share_type:that.data.share_type
+                    share_type:that.data.share_type,
+                    search:that.data.searchCentent?that.data.searchCentent:''
                 }
             },
             success: function(res) {

@@ -5,9 +5,7 @@
 <view class="point_detail" bindtap="toShopExchange">点击查看积分详情</view>
 <!-- 功能导航 -->
  <view class="opation_nav">
-    <navigator url="../shopCollect/shopCollect"><text></text>我的收藏</navigator>
-    <navigator url="../pointMallCar/pointMallCar"><text></text>购物车</navigator>
-    <navigator url="../myAddress/myAddress"><text></text>地址管理</navigator>
+    <view class="navigator" wx:for="{{opation_nav}}" bindtap="navTo" data-index="{{index}}"><text style="background-image:url({{item.icon}});background-size: 100%"></text>{{item.text}}</view>
 </view> 
 <!-- 轮播区 -->
 <view class="swiper">

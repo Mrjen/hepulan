@@ -44,7 +44,6 @@ Page({
 
   getCoins: function() {
     var that = this;
-    var loginData = wx.getStorageSync("loginData") || [];
     var avatarUrl = wx.getStorageSync("avatarUrl") || [];
     var nickName = wx.getStorageSync("nickName") || [];
     // 获取金币
@@ -65,9 +64,9 @@ Page({
       }
     })
   },
+  
   onLoad: function() {
     console.log(app.data);
-    var loginData = wx.getStorageSync("loginData") || [];
     var calendarData = wx.getStorageSync("calendarSignData");
     var calendarDay = wx.getStorageSync("calendarSignDay");
     var that = this;

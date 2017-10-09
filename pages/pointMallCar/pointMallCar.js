@@ -186,11 +186,11 @@ Page({
                             list,
                             AllMoney
                         })
-                    }else{
+                    } else {
                         wx.showToast({
-                          title: res.data.msg,
-                          icon: 'success',
-                          duration: 1000
+                            title: res.data.msg,
+                            icon: 'success',
+                            duration: 1000
                         })
                     }
 
@@ -293,6 +293,8 @@ Page({
 
     // 结算
     Tosetttle() {
+        let that = this;
+        let pagePath = "../pointMallCar/pointMallCar"
         wx.request({
             url: app.data.apiUrl,
             method: "POST",
@@ -307,11 +309,19 @@ Page({
                     wx.navigateTo({
                         url: '../shopSubmiteOrder/shopSubmiteOrder'
                     })
-                } else {
-                    wx.showToast({
-                        title: res.data.msg,
-                        icon: 'success',
-                        duration: 2000
+                } else if (res.data.status < 0) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '您还没有注册，是否去注册',
+                        success: function(res) {
+                            if (res.confirm) {
+                                wx.navigateTo({
+                                    url: '../login/login?pagePath='+pagePath
+                                })
+                            } else if (res.cancel) {
+                                
+                            }
+                        }
                     })
                 }
             }

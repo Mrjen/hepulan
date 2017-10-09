@@ -17,9 +17,9 @@ App({
   onLaunch: function() {
     var that = this;
     //调用API从本地缓存中获取数据
-    wx.showLoading({
-      title: '加载中',
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     wx.login({
       success: function(res) {
         //  console.log(res);
@@ -27,10 +27,6 @@ App({
           //发起网络请求
           wx.request({
             url: that.data.apiUrl,
-            // url:"https://hepulan.playonwechat.com/site/auth",
-            // data:{
-            //   code:res.code
-            // },
             method:"POST",
             data: {
               key:that.data.apiKey,
@@ -41,17 +37,13 @@ App({
             },
             success: function(res) {
               console.log(res);
-              that.data.sign = res.data.data.sign;
-              that.data.mobile = res.data.data.mobile;
-              that.data.loginData = res.data.data.sign;
-              that.data.sharecode = res.data.data.sharecode;
-              
-              try {
+
+                 that.data.sign = res.data.data.sign;
+                 that.data.sharecode = res.data.data.sharecode;
+                 that.data.mobile = res.data.data.mobile;
+                 that.data.mid = res.data.data.mid;
                 wx.setStorageSync('mobile', res.data.data.mobile);
                 wx.setStorageSync('sign', res.data.data.sign);
-                wx.setStorageSync('loginData', res.data.data.mid);
-                that.data.mobile = res.data.data.mobile;
-                that.data.mid = res.data.data.mid;
                 wx.getUserInfo({
                   success: function(res) {
                     // console.log(res);
@@ -112,10 +104,6 @@ App({
                     })
                   },
                 })
-              } catch (e) {
-                console.log("回话异常："+e);
-
-              }
 
             },
           })

@@ -1,4 +1,4 @@
-var app = getApp()
+var app = getApp();
 
 function backHome() {
   wx.switchTab({
@@ -146,7 +146,11 @@ function getSign(callback) {
            let thirdkey = res.data.data.thirdkey;
            wx.setStorageSync("sign",sign);
            wx.setStorageSync("thirdkey",thirdkey);
-           typeof callback == "function" && callback()
+           typeof callback == "function" && callback(sign)
+         },
+         fail(res){
+           let sign = JSON.stringify(res)
+           typeof callback == "function" && callback(sign)
          }
        })
 

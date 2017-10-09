@@ -53,7 +53,7 @@ page{
   border-top: 20rpx solid #f4f5f9;
 }
 
-.opation_nav navigator{
+.opation_nav .navigator{
   display: flex;
   flex: 1;
   align-items: center;
@@ -64,7 +64,7 @@ page{
   font-size: 30rpx;
 }
 
-.opation_nav navigator:nth-of-type(1)::before{
+.opation_nav .navigator:nth-of-type(1)::before{
   content: " ";
   position: absolute;
   height: 40rpx;
@@ -74,7 +74,7 @@ page{
   border-right: 1px solid #333;
 }
 
-.opation_nav navigator:nth-of-type(2)::before{
+.opation_nav .navigator:nth-of-type(2)::before{
   content: " ";
   position: absolute;
   height: 40rpx;
@@ -84,14 +84,14 @@ page{
   border-right: 1px solid #333;
 }
 
-.opation_nav navigator text{
+.opation_nav .navigator text{
   display: inline-block;
   width: 50rpx;
   height: 50rpx;
   margin-right: 10rpx;
 }
 
-.opation_nav navigator:nth-of-type(1) text{
+/*.opation_nav navigator:nth-of-type(1) text{
    background-image: url(https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_collect.png);
    background-size: 100%;
 }
@@ -104,7 +104,7 @@ page{
 .opation_nav navigator:nth-of-type(3) text{
    background-image: url(https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_adress.png);
    background-size: 100%;
-}
+}*/
 
 /*轮播列表*/
 .swiper{
@@ -285,6 +285,9 @@ page{
    background-position: center;
    background-repeat: no-repeat;
    background-color:rgba(0,0,0,.2);
+   left: 20rpx;
+   top: 20rpx;
+   border-radius: 12rpx;
 }
 
 /* 选择款 */
@@ -429,6 +432,7 @@ page{
   display: flex;
   justify-content: center;
   align-items:center;
+  box-sizing: border-box;
 }
 
 .nav_tip image{

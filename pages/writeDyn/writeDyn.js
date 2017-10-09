@@ -67,6 +67,13 @@ console.log(that.data.sign);
        })
   },
 
+  // 活动规则
+  toRules(){
+      wx.navigateTo({
+        url: '../circleRules/circleRules'
+      })
+  },
+
   // 参加赢积分活动
   getJiFen(ev){
      var that = this;

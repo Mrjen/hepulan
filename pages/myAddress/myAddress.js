@@ -2,7 +2,8 @@ var app = getApp();
 // pages/sureExchange/sureExchange.js
 Page({
     data: {
-        address: []
+        address: [],
+        addressinfo:"11"
     },
 
     onLoad: function(options) {
@@ -68,7 +69,8 @@ Page({
     ToAddaddress(){
        let that = this;
        let addressinfo = that.data.addressinfo;
-
+       let pagecount = getCurrentPages();
+       console.log("页面堆栈",pagecount,addressinfo)
        if (addressinfo) {
           wx.navigateTo({
           url: `../EditAddress/EditAddress?addressinfo=${addressinfo}`

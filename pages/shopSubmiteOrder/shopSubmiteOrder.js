@@ -75,9 +75,11 @@ Page({
     })
   },
 
+// 提交订单
   SaveOrder(){
     let that = this;
     let addressid = that.data.addressid;
+    let pagePath = "../shopSubmiteOrder/shopSubmiteOrder";
     console.log(that.data)
     wx.request({
       url:app.data.apiUrl,
@@ -98,6 +100,20 @@ Page({
               winText:successText,
               sureStatus:true
            })
+         }else if(res.data.status<0){
+           wx.showModal({
+                        title: '提示',
+                        content: '您还没有注册，是否去注册',
+                        success: function(res) {
+                            if (res.confirm) {
+                                wx.navigateTo({
+                                    url: '../login/login?pagePath='+pagePath
+                                })
+                            } else if (res.cancel) {
+                                
+                            }
+                        }
+                    })
          }
          that.setData({
            sureStatus:true

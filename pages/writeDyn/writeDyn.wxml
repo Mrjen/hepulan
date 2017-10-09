@@ -8,7 +8,7 @@
       <image wx:for="{{upImg}}" bindtap="upFile" class="upfile_btn" src="{{item}}"></image>
       <!-- <image class="upfile_btn"  src="../img/circle_icon_upfileimg.png"></image> -->
    </view>
-   <label class="getJiFen" bindtap="getJiFen"><text class="join_active  {{joinText?'join_text':''}}"></text>参加护肤热选赢积分请打钩<text>《活动规则》</text></label>
+   <label class="getJiFen" bindtap="getJiFen"><text class="join_active  {{joinText?'join_text':''}}"></text>参加护肤热选赢积分请打钩<text bindtap="toRules" style="color:#0080d6">《活动规则》</text></label>
 
        <button class="send_btn" disabled="{{Dabled}}" bindtap="sendBtn" type="primary" form-type="submit"> 发布 </button>
     </form>

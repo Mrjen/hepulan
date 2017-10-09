@@ -8,7 +8,20 @@ Page({
         shopList: [],
         start: 0,
         selectWin: false, //选择类型弹层
-        selectWinData: []
+        selectWinData: [],
+        opation_nav:[{
+            url:"../shopCollect/shopCollect",
+            text:"我的收藏",
+            icon:"https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_collect.png"
+        },{
+            url:"../pointMallCar/pointMallCar",
+            text:"购物车",
+            icon:"https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_shopcar.png"
+        },{
+            url:"../myAddress/myAddress",
+            text:"地址管理",
+            icon:"https://qncdn.playonwechat.com/hupulan/shopMall/point_mall_adress.png"
+        }]
     },
 
     onLoad: function(options) {
@@ -23,6 +36,22 @@ Page({
         wx.navigateTo({
             url: `../pointMallDetail/pointMallDetail?id=${list_id}`
         })
+    },
+
+    // 导航跳转
+    navTo(ev){
+       let that = this;
+       let index = ev.currentTarget.dataset.index;
+       let opation_nav = that.data.opation_nav;
+       if (true) {
+          wx.navigateTo({
+             url: opation_nav[index].url
+          })
+       }else{
+          wx.navigateTo({
+             url: '../login/login'
+          })
+       }
     },
 
     onReady: function() {

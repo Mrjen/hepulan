@@ -1,0 +1,4 @@
+/* pages/circleRules/circleRules.wxss */
+image{
+  width: 750rpx;
+}

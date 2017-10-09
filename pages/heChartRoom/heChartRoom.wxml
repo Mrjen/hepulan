@@ -79,10 +79,10 @@
       </view>
     </scroll-view>
   <!-- 底部导航 -->
-  <view class="bottom_nav">
+  <!-- <view class="bottom_nav"> -->
      <!-- <view class="follow_fix"><view></view>关注</view> -->
-     <view class="discuss" bindtap="openDiscuss"><view></view>讨论</view>
-  </view>
+     <!-- <view class="discuss" bindtap="openDiscuss"><view></view>讨论</view> -->
+  <!-- </view> -->
 
   <!-- 讨论弹屏 -->
   <view class="discuss_win" wx:if="{{discussStatic}}">

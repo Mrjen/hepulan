@@ -1,39 +1,37 @@
-
 <!--pages/login/login.wxml-->
 <view class="container">
-  <view class="logo">
-    <!-- <image src="../img/home_logo.png"></image> -->
+    <image class="banner" src="https://qncdn.playonwechat.com/hepulan/login_banner.png" mode="widthFix"></image>
+    <view>
+      <button wx:if="{{register_type===1?true:false}}" open-type="getPhoneNumber" class="getphone" bindgetphonenumber="getPhoneNumber">
+          <image src="https://qncdn.playonwechat.com/hepulan/login-icon-weixin1.png"></image>快捷获取手机号
+      </button>
+      <view class="birthday birthday1" wx:if="{{register_type===1?true:false}}"><text>手机号</text><view>{{phoneNumber}}</view></view>
   </view>
-  <view class="comp_name">禾葡兰</view>
-  
- <!--  <form bindsubmit="formSubmit">
-    <view class="login_box">
-        <view class="section">
-            <view class="mobiel_tip">生日</view>
-            <picker class="birthday" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-              <view class="picker">
-                {{date}}
-              </view>
-            </picker>
+  <view class="phone" wx:if="{{register_type===1?false:true}}">
+      <view class="birthday birthday1">
+        <text>手机号</text>
+        <input class="phone_input" type="number" maxlength="11" name="" bindinput="bindPhoneInput"/>
+        <view class="verify_code">
+            <view bindtap="getPhoneCode" wx:if="{{code1}}">获取验证码</view>
+            <view wx:if="{{code2}}">{{second}}秒</view>
         </view>
-      <view class="mobiel_tip mobiel_tip2">绑定手机号，信息记录会更准确哦</view>
-      <input type="number" bindinput="bindKeyInput" placeholder="请输入手机号" />
-      <input type="number" maxlength="4" bindinput="verifyCode" placeholder="验证码" />
-      <view class="yanCdoe">
-        <span wx:if="{{selected}}" bindtap="countdown">{{second}}s后重新获取</span>
-        <span wx:if="{{selected1}}" bindtap="getphone">点击获取验证码</span>
-      </view>
-      <button class="submit_btn" bindtap="loginIn" formType="submit">立即绑定</button>
     </view>
-  </form> -->
-
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" bindtap="getUserPhone">获取手机号</button>
-
-  <view class="addGoldImg" style="display:{{addImgDis}}">
-      <image src="{{addGoldImg}}"></image>
+     <view class="birthday birthday1">
+        <text>验证码</text>
+        <input class="phone_input" type="number" name="" bindinput="bindKeyInput"/>
+    </view>
   </view>
-  <!-- 以下为图片预加载与页面内容无关 -->
-  <view class="preloadImg">
-      <image src="https://hepulan.playonwechat.com//static/gold100.gif"></image>
-  </view>
+
+    <view class="birthday">
+        <text>生日</text>
+        <picker mode="date" bindchange="bindDateChange"  start="1949-09-01" end="2100-09-01" value="{{date}}" custom-item="{{customItem}}">
+            <view class="picker">
+                {{date}}
+            </view>
+        </picker>
+    </view>
+    <view class="tip">温馨提示：完善会员信息可享受会员礼包</view>
+    <button class="login" bindtap="loginIn">登录</button>
+
+    <view class="phone_login" bindtap="inputPhone">输入手机号注册</view>
 </view>

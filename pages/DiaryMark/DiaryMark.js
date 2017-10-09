@@ -3,9 +3,11 @@ var app = getApp();
 
 Page({
   data: {
-    uploadimg: ['https://qncdn.playonwechat.com/hupulan/DiaryMarkdaka-input-bg.jpg',
-      'https://qncdn.playonwechat.com/hupulan/DiaryMarkdaka-input-bg.jpg'
+    uploadimg: [
+     // 'https://qncdn.playonwechat.com/hupulan/DiaryMarkdaka-input-bg.jpg',
+     //  'https://qncdn.playonwechat.com/hupulan/DiaryMarkdaka-input-bg.jpg'
     ],
+    imgres:[],
     imgcount: 9,
     cardStatus: "草率打卡",
     statusIcon: "https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-2points.png",
@@ -18,20 +20,40 @@ Page({
   // 输入内容
   bindTextAreaBlur(ev) {
     var that = this;
-    var uploadimg = that.data.uploadimg;
-    if (ev.detail.value && uploadimg.length < 1) {
+    var uploadimg = that.data.imgres;
+    console.log(uploadimg)
+    if (!ev.detail.value && uploadimg.length < 1) {
+      that.setData({
+        cardStatus: "草率完成",
+        content: ev.detail.value,
+        jiFen: 1
+      })
+    } else if (ev.detail.value && uploadimg.length < 1) {
       that.setData({
         cardStatus: "较认真完成",
         content: ev.detail.value,
         jiFen: 2
       })
-    } else if (ev.detail.value && uploadimg.length > 0) {
+    }else if(!ev.detail.value&&uploadimg.length > 0){
+      that.setData({
+        cardStatus: "较认真完成",
+        content: ev.detail.value,
+        jiFen: 2
+      })
+    }else if(ev.detail.value&&uploadimg.length > 0){
       that.setData({
         cardStatus: "认真完成",
         content: ev.detail.value,
         jiFen: 8
       })
     }
+  },
+
+    // 活动规则
+  toRules(){
+      wx.navigateTo({
+        url: '../circleRules/circleRules'
+      })
   },
 
   // 是否参加护肤热选
@@ -73,8 +95,8 @@ Page({
               console.log(res);
               let imgres = JSON.parse(res.data);
               console.log(imgres)
-                  imgres.data[0].thumb = `${imgres.data.url_prefix}${imgres.data[0].thumb}`;
-                  imgres.data[0].url = `${imgres.data.url_prefix}${imgres.data[0].url}`;
+                  // imgres.data[0].thumb = `${imgres.data.url_prefix}${imgres.data[0].thumb}`;
+                  imgres.data[0].img = `${imgres.data.url_prefix}${imgres.data[0].url}`;
               imgArr.push(imgres.data[0]);
               let imglength = imgArr.length;
               that.setData({

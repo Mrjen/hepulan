@@ -10,6 +10,35 @@
 	background-color: #f8f8f8;
 }
 
+.search_box{
+	width: 700rpx;
+	height: 88rpx;
+	margin:30rpx auto;
+	background: rgba(0,0,0,.2);
+	border-radius: 6rpx;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+}
+
+.search_box input{
+	background: transparent;
+	height: 88rpx;
+	color: #fff;
+	box-sizing: border-box;
+	padding:0 20rpx;
+	flex:1;
+}
+
+.search_box .search_btn{
+	width: 100rpx;
+	background: url(https://qncdn.playonwechat.com/hepulan/circle_search_icon.png);
+	background-size: 44rpx 44rpx;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
 .nav_box{
 	width: 750rpx;
 	height: 544rpx;
@@ -208,6 +237,22 @@
 	padding: 30rpx 0;
 }
 
+.item_tag image{
+	display: block;
+	width: 34rpx;
+	height: 34rpx;
+}
+
+.item_tag{
+	display: flex;
+	align-items: center;
+	font-size: 28rpx;
+	position: absolute;
+	right: 30rpx;
+	top: 20rpx;
+}
+
+
 /*.comment::before{
 	content: " ";
 	display: block;
@@ -257,12 +302,26 @@
 }*/
 
 .persion_diss .diss_item:nth-of-type(1){
-	padding-top:15rpx;
+	padding:10rpx 0;
+}
+
+.persion_diss .diss_item:nth-of-type(1):before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,.1);
+    transform: scaleY(.5);
+    top: 0;
+    left: 0;
+    overflow: hidden;
 }
 
 .persion_diss .diss_item{
 	margin-left: 15rpx;
-	line-height: 1.6;
+	line-height: 1;
+	font-size: 28rpx;
+	position: relative;
 }
 
 .persion_diss .diss_item:last-of-type{
@@ -283,8 +342,11 @@
 }
 
 .like_persion .like_item{
-	display: inline-block;
+	display: -webkit-box;
 	margin-right: 10rpx;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
 }
 
 .write_dyn{
