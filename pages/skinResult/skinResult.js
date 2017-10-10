@@ -1,5 +1,6 @@
 // pages/skinResult/skinResult.js
 var common = require('../../common.js');
+var mta= require('../../utils/mta_analysis.js');
 Page({
 
     /**
@@ -39,10 +40,18 @@ Page({
         });
     },
 
+    // 统计
+tongJi(ev){
+  mta.Event.stat("contact_click",{})
+},
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        // 初始化腾讯统计
+        mta.Page.init();
+
         var teacherId = wx.getStorageSync("teacherId");
         var that = this;
         var templateData = [];

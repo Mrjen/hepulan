@@ -48,7 +48,7 @@
   background: -webkit-linear-gradient(-90deg, #10ca98 0, #0ba178 100%);
   background: linear-gradient(180deg, #10ca98 0, #0ba178 100%);
   background-position: 50% 50%;
-  -webkit-box-shadow: 0 1px 8px 2px rgba(0,0,0,0.4);
+  box-shadow: 0 1px 8px 2px rgba(0,0,0,0.4);
 }
 
 .checkedBtn{
@@ -65,7 +65,7 @@
   background: -webkit-linear-gradient(-90deg, #ebebeb 0, rgba(173,173,173,1) 100%);
   background: linear-gradient(180deg, #ebebeb 0, rgba(173,173,173,1) 100%);
   background-position: 50% 50%;
-  -webkit-box-shadow: 0 1px 8px 2px rgba(0,0,0,0.4);
+  box-shadow: 0 1px 8px 2px rgba(0,0,0,0.4);
 }
 
 .formSubmit{

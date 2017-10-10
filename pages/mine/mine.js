@@ -18,11 +18,15 @@ Page({
             }, {
                 text: '分享海报',
                 navUrl: '../sharePoster/sharePoster'
+            },
+            {
+               text:'积分记录',
+              navUrl:'../goldList/goldList'
+            },
+            {
+               text:'打卡记录',
+              navUrl:'../diaryMarkList/diaryMarkList'
             }
-            // {
-            //    text:'金币排行榜',
-            //   navUrl:'../integralList/integralList'
-            // }
             // {
             //    text:'好友助力',
             //    navUrl:'../sharePage/sharePage'

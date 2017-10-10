@@ -1,4 +1,4 @@
-// pages/ercode/ercode.js
+// pages/skinTestDetail/skinTestDetail.js
 Page({
 
   /**
@@ -6,19 +6,6 @@ Page({
    */
   data: {
   
-  },
-
-  getCode:function(){
-    wx.request({
-      url: 'https://hepulan.playonwechat.com/site/wxacode',
-      data:{
-        path: "pages/index/index?page=2",
-        width:300
-      },
-      success:function(res){
-        console.log(res)
-      }
-    })
   },
 
   /**

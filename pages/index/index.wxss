@@ -181,7 +181,7 @@
 
 .home_btn .navitor{
 	display: block;
-	width: 190rpx;
+	width: 174rpx;
 	height: 50rpx;
 	line-height: 50rpx;
 	border-radius: 14rpx;

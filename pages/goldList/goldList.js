@@ -2,123 +2,116 @@
 var common = require('../../common.js');
 var app = getApp();
 Page({
+    data: {
+        start: 0
+    },
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-      navData:[{
-         url:"../goldstore/goldstore",
-         src:"https://hepulan.playonwechat.com/static/goldstore_img1.png",
+    onLoad: function(options) {
 
-      },{
-         url:"../goldstore/goldstore",
-         src:"https://hepulan.playonwechat.com/static/goldstore_img2.png",
+    },
 
-      },{
-         url:"../goldstore/goldstore",
-         src:"https://hepulan.playonwechat.com/static/goldstore_img3.png",
-      }]
-  },
+    onReady: function() {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    },
 
-  },
+    onShow: function() {
+        var that = this;
+        let start = that.data.start;
+        let http = {
+            type: "get-score-log-list",
+            data: {
+                start: 0,
+                length: 10
+            }
+        }
+        common.http(http, function(res) {
+            console.log(res)
+            let score_list = res.data.data.score_list;
+            start += 10;
+            that.setData({
+                score_list,
+                start,
+                score_today: res.data.data.score_today,
+                score_total: res.data.data.score_total
+            })
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    var that = this;
-    wx.request({
-      url:'https://hepulan.playonwechat.com/site/get-cat-products?sign='+app.data.sign,
-      data:{
-        page:1
-      },
-      header: {
-         'content-type': 'application/json'
-       },
-      success:function(res){
-        console.log(res);
-        that.setData({
-           navData:res.data.data
-        });
-         console.log(that.data.navData);
-      }
-    })
-
-  },
-
-  checkTo:function(ev){
-  //    console.log(ev);
-      var that = this;
-      var navData =  that.data.navData;
-      var idx = ev.currentTarget.dataset.idx;
-      var pageData = navData[idx].products;
-      console.log(pageData);
-      for (var i = 0; i < pageData.length; i++) {
-        var imgurl = pageData[i].img.split(",");
-        console.log(imgurl);
-        pageData[i].img = imgurl;
+    checkTo: function(ev) {
+        //    console.log(ev);
+        var that = this;
+        var navData = that.data.navData;
+        var idx = ev.currentTarget.dataset.idx;
+        var pageData = navData[idx].products;
         console.log(pageData);
-      }
-      wx.navigateTo({
-        url:'../goldstore/goldstore?pageData='+JSON.stringify(pageData),
-      })
-  },
-
-  // 返回首页
-    backHome:function(){
-       common.backHome();
+        for (var i = 0; i < pageData.length; i++) {
+            var imgurl = pageData[i].img.split(",");
+            console.log(imgurl);
+            pageData[i].img = imgurl;
+            console.log(pageData);
+        }
+        wx.navigateTo({
+            url: '../goldstore/goldstore?pageData=' + JSON.stringify(pageData),
+        })
     },
 
-  // 分享海报
-    toShare:function(){
-      common.toShare();
+    // 返回首页
+    backHome: function() {
+        common.backHome();
     },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+    // 分享海报
+    toShare: function() {
+        common.toShare();
+    },
 
-  },
+    onHide: function() {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+    },
 
-  },
+    onUnload: function() {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+    },
 
-  },
+    onPullDownRefresh: function() {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+    },
 
-  },
+    onReachBottom: function() {
+        var that = this;
+        let start = that.data.start;
+        let http = {
+            type: "get-score-log-list",
+            data: {
+                start: start,
+                length: 10
+            }
+        }
+        common.http(http, function(res) {
+            console.log(res)
+            let score_list = res.data.data.score_list;
+            let oldData = that.data.score_list;
+            if (score_list.length > 0) {
+                start += 10;
+                score_list = oldData.concat(score_list);
+            } else {
+                score_list = oldData;
+                wx.showToast({
+                    title: '没有更多数据',
+                    icon: 'success',
+                    duration: 2000
+                })
+            }
+            that.setData({
+                score_list,
+                score_today: res.data.data.score_today,
+                score_total: res.data.data.score_total
+            })
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+        })
+    },
 
-  }
+    onShareAppMessage: function() {
+
+    }
 })

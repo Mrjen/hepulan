@@ -39,7 +39,6 @@ Page({
 
     // 统计
     tongJi(ev) {
-        console.log(ev, 111);
         mta.Event.stat("contact_click", {})
     },
 
@@ -83,6 +82,10 @@ Page({
     onLoad: function(options) {
         // 初始化腾讯统计
         mta.Page.init();
+        let codeid = `codeid_${options.codeId}`;
+        console.log("onload",codeid)
+        
+        mta.Event.stat(codeid,{});
 
         //页面初始化 options为页面跳转所带来的参数
         var that = this;

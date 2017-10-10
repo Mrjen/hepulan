@@ -1,6 +1,25 @@
 <!--pages/goldList/goldList.wxml-->
-<import src="../template/template.wxml"/>
+<import src="../template/template.wxml" />
 <view class="container">
-  <view class="nav_to" wx:for="{{navData}}" bindtap="checkTo" hover-class="none" data-idx="{{index}}"><image src="{{item.icon}}"></image></view>
-  <template is="share_icon"/>
+    <view class="nav">
+        <image src="https://qncdn.playonwechat.com/hepulan/hepulan_logo.png"></image>
+        <view>我的积分</view>
+        <view class="jifen">{{score_total}}</view>
+    </view>
+    <view class="today">
+        <view>今日积分</view>
+        <view>{{score_today}}</view>
+    </view>
+    <view class="page_tip">积分记录</view>
+    <view class="list">
+        <view class="item" wx:for="{{score_list}}">
+            <view class="jifen" wx:if="{{item.ma_score<0}}">-{{item.ma_score}}</view>
+            <view class="jifen" wx:if="{{item.ma_score>0}}">+{{item.ma_score}}</view>
+            <view class="item_bottm">
+                <view>{{item.create_date}}获得积分</view>
+                <view>{{item.create_date}}</view>
+            </view>
+        </view>
+    </view>
+    <template is="share_icon" />
 </view>

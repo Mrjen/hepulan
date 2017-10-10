@@ -6,8 +6,7 @@
   </view>
   <view class="member_btns">
                   <!--{{teach_static}}-->
-    <button wx:if="{{true}}" class="applyBtn" open-type="contact">加入会员</button>
-    <view wx:else="" bindtap="applyBtn" class="taacher_btn">加入会员</view>
+    <button bindtap="tongJi" class="applyBtn taacher_btn" open-type="contact">加入会员</button>
   </view>
     <block wx:for="{{templateData}}">
     <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>

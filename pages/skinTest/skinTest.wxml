@@ -1,12 +1,36 @@
-<import src="../template/template.wxml"/>
-<view class="container">
-    <view class="body_bg"><image src="https://hepulan.playonwechat.com/static/question_bg.png"></image></view>
-    <view class="page_title"><image src="../img/skin_text.png"></image></view>
-    <view class="question_box {{item.aShow}}" wx:for="{{question}}" bindtap="quPage" data-opidx="{{index}}">
-        <view class="question">{{item.quesTitle}}</view>
-        <label class="fac_item" bindtap="clickBtn" data-idx="{{index+1}}" wx:for="{{item._Options}}" wx:for-item="_Options">
-            <radio class="click_item" color="#365742" value="{{item.name}}" checked="{{item.checked}}"/>{{_Options.op}}
-        </label>
+<import src="../template/template.wxml" />
+<view class="top_nav">
+    <view>史上最长的肤质测试</view>
+    <view>本肤质分类来自美国著名皮肤科医生褒曼（Leslie Baumann M.D.）所著的《The Skin Type Solution》 得到全球皮肤科医生的广推荐和认可。
     </view>
-<template is="share_icon"/>
 </view>
+<view class="test_type">
+    <view class="test_item" wx:for="{{typeList}}" bindtap="skinTest" data-index="{{index}}">
+        <image src="{{item.icon}}"></image>
+        <view class="item_title">{{item.title}}</view>
+        <view class="skin_type">{{item.type}}</view>
+    </view>
+</view>
+<block>
+    <!-- <view class="see_btn">
+        <view>查看</view>
+        <view>肤质</view>
+    </view> -->
+    <view class="see_btn see_btn_success">
+        <view>查看</view>
+        <view>肤质</view>
+    </view>
+</block>
+<!-- 弹窗 -->
+<view class="test_win" wx:if="{{testStart}}">
+    <view class="win_in">
+        <view class="colse_btn" bindtap="closeWin"></view>
+        <image class="win_icon" src="{{win.icon}}"></image>
+        <view class="win_title" style="color:{{win.color}}">{{win.title}}</view>
+        <view class="discribe">{{win.discribe}}</view>
+        <block>
+            <view class="test_btn" style="background-color:{{win.color}}">开始测试</view>
+        </block>
+    </view>
+</view>
+<template is="share_icon" />

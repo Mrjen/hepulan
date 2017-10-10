@@ -1,5 +1,6 @@
 // pages/Recommend/Recommend.js
 var common = require('../../common.js');
+var mta= require('../../utils/mta_analysis.js');
 Page({
   /**
    * 页面的初始数据
@@ -38,11 +39,23 @@ Page({
     });
   },
 
+
+// 统计
+tongJi(ev){
+  mta.Event.stat("contact_click",{})
+},
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     //console.log(options);
+
+    // 初始化腾讯统计
+    mta.Page.init();
+
     var that = this;
     var WXcode = options.WXcode;
     var teacherId = options.teacherId;

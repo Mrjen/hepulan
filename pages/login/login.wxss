@@ -89,6 +89,7 @@
 	height: 88rpx;
 	color: #fff;
 	background: #09bb07;
+	margin-top: 30rpx;
 }
 
 .phone input{
@@ -111,4 +112,6 @@
 	font-size: 26rpx;
 	position: fixed;
 	bottom: 150rpx;
+	width: 100%;
+	text-align: center;
 }

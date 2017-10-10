@@ -138,6 +138,7 @@ Page({
                 }
             },
             success(res) {
+                 console.log(res)
                 let phoneNumber = res.data.phoneNumber;
                 if (res.data.status === 1) {
                     that.setData({

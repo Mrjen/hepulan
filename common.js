@@ -125,6 +125,22 @@ function getUser(){
 };
 
 
+function http(http,cb){
+   wx.request({
+     url:app.data.apiUrl,
+     method:'POST',
+     data:{
+       sign:wx.getStorageSync("sign"),
+       key:app.data.apiKey,
+       type:http.type,
+       data:http.data?http.data:''
+     },
+     success(res){
+       typeof cb == "function"&& cb(res);
+     }
+   })
+};
+
 
 function getSign(callback) {
    wx.login({
@@ -216,6 +232,7 @@ module.exports = {
     toShare,
     getSign,
     getVipId,
-    getUser
+    getUser,
+    http
 }
 

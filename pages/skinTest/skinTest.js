@@ -1,13 +1,9 @@
 // pages/skinTest/skinTest.js
 var common = require('../../common.js');
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
-    opidx:0,
     Result:[],
-    sum:"",
+    testStart:false,
     question:[{
       aShow:"",
       quesTitle:"Q1. 洗完脸后的2-3小时,不在脸上涂任何保湿/防晒产品、化妆水、粉底或任何产品,这时如果在明亮的光线下照镜子,你的前额和脸颊部位：",
@@ -184,17 +180,61 @@ Page({
         op:"D. 有油光、滑腻、或者你从不觉得有必要、事实上也不怎么使用保湿产品" ,
         opSelect:""
       }]
+    }],
+    typeList:[{
+       icon:"https://qncdn.playonwechat.com/hepulan/skin_test_type1.png",
+       id:1,
+       title:"皮肤干湿度测试",
+       type:"未测试肤质",
+       color:"#b0ebff",
+       discribe:"通过回答这部分的问题，可以准确分析出你的皮肤趋向于发生各种敏感肌肤症状的程度，所有的面疱（痤疮/痘痘）、红肿、潮红、发痒都属于皮肤的敏感症状"
+    },{
+       icon:"https://qncdn.playonwechat.com/hepulan/skin_test_type2.png",
+       id:1,
+       title:"皮肤干湿度测试",
+       type:"未测试肤质",
+       color:"#80b5a5",
+       discribe:"通过回答这部分的问题，可以准确分析出你的皮肤趋向于发生各种敏感肌肤症状的程度，所有的面疱（痤疮/痘痘）、红肿、潮红、发痒都属于皮肤的敏感症状"
+    },{
+       icon:"https://qncdn.playonwechat.com/hepulan/skin_test_type3.png",
+       id:1,
+       title:"皮肤干湿度测试",
+       type:"未测试肤质",
+       color:"#ffc3e5",
+       discribe:"通过回答这部分的问题，可以准确分析出你的皮肤趋向于发生各种敏感肌肤症状的程度，所有的面疱（痤疮/痘痘）、红肿、潮红、发痒都属于皮肤的敏感症状"
+    },{
+       icon:"https://qncdn.playonwechat.com/hepulan/skin_test_type4.png",
+       id:1,
+       title:"皮肤干湿度测试",
+       type:"未测试肤质",
+       color:"#ffd800",
+       discribe:"通过回答这部分的问题，可以准确分析出你的皮肤趋向于发生各种敏感肌肤症状的程度，所有的面疱（痤疮/痘痘）、红肿、潮红、发痒都属于皮肤的敏感症状"
     }]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     wx.showShareMenu({
       withShareTicket: true
     })
 
+  },
+
+// 点击测试项目
+  skinTest(ev){
+    let that = this;
+    let index = ev.currentTarget.dataset.index;
+    let win = that.data.typeList[index];
+    that.setData({
+       win,
+       testStart:true
+    })
+  },
+
+// 关闭窗口
+  closeWin(e){
+    this.setData({
+       testStart:false
+    })
   },
 
   // 选择题目
@@ -243,20 +283,10 @@ Page({
       })
   },
 
-  // quPage:function(pag){
-  //     console.log(pag)
-  // },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
-
+     
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
 
   },
@@ -271,51 +301,30 @@ Page({
       common.toShare();
     },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
 
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
 
   }
