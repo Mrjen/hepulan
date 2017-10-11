@@ -46,79 +46,6 @@ Page({
         }]
     },
 
-    //签到
-    formSubmit: function(e) {
-        var that = this;
-        var _formId = e.detail.formId;
-        common.getSign(function() {
-
-            console.log("formSubmit formId", _formId);
-            console.log("formId", _formId);
-            console.log(calendarSignData);
-            var calendarSignData = that.data.calendarSignData;
-            calendarSignData[date] = date;
-            var calendarSignDay = that.data.calendarSignDay;
-            console.log(calendarSignData);
-            calendarSignDay = calendarSignDay + 1;
-            wx.request({
-                url: app.data.apiUrl,
-                method: "POST",
-                data: {
-                    type: "save-punch",
-                    sign: wx.getStorageSync("sign"),
-                    key: app.data.apiKey,
-                    data: {
-                        formId: _formId
-                    }
-                },
-                success: function(res) {
-                    console.log(res);
-
-                    wx.setStorageSync("calendarSignData", calendarSignData);
-                    wx.setStorageSync("calendarSignDay", calendarSignDay);
-                    var dayCoins = that.data.coins; //截止到签到签的所有金币
-                    var checkCoins = res.data.data; //签到获取金币数量
-                    var dayPunch = that.data.punch; //截止当天签到前连续签到总天数
-                    var adyAllday = that.data.adyAllday;
-                    var coins = dayCoins + checkCoins;
-                    var goldImg = that.data.goldImg;
-                    for (var i = 0; i < goldImg.length; i++) {
-                        if (checkCoins == goldImg[i].id) {
-                            goldImg[i].static = "block";
-                            that.setData({
-                                goldImg: goldImg
-                            })
-                            var ind = i;
-                            setTimeout(function() {
-                                var goldImg = that.data.goldImg;
-                                goldImg[ind].static = "none";
-                                that.setData({
-                                    goldImg: goldImg
-                                })
-                            }, 1700);
-                        }
-                    }
-                    dayPunch = dayPunch + 1;
-                    adyAllday = parseInt(adyAllday) + 1;
-                    that.setData({
-                        calendarSignData: calendarSignData,
-                        calendarSignDay: calendarSignDay,
-                        checkCoins: checkCoins,
-                        goldWin: false,
-                        coins: coins,
-                        punch: dayPunch,
-                        adyAllday: adyAllday
-                    })
-                    setTimeout(function() {
-                        that.setData({
-                            goldWin: true
-                        })
-                    }, 1500)
-                }
-            });
-        });
-    },
-
     toDiary() {
         wx.navigateTo({
             url: '../DiaryMark/DiaryMark'
@@ -135,7 +62,7 @@ Page({
         var that = this;
         common.getSign(function(sign) {
             console.log("signsignsignsign",wx.getStorageSync("sign"));
-            sign = "sign"+sign
+            sign = wx.getStorageSync("sign")
             that.setData({
                 sign
             })
@@ -166,14 +93,19 @@ Page({
                     monthDaySize = 28;
                 }
             };
+
             // 判断是否签到过
-            if (wx.getStorageSync("calendarSignData") == null || wx.getStorageSync("calendarSignData") == '') {
-                wx.setStorageSync("calendarSignData", new Array(monthDaySize));
-            };
-            if (wx.getStorageSync("calendarSignDay") == null || wx.getStorageSync("calendarSignDay") == '') {
-                wx.setStorageSync("calendarSignDay", 0);
-            }
-            var calendarSignData = wx.getStorageSync("calendarSignData");
+            // if (wx.getStorageSync("calendarSignData") == null || wx.getStorageSync("calendarSignData") == '') {
+            //     wx.setStorageSync("calendarSignData", new Array(monthDaySize));
+            // };
+            // if (wx.getStorageSync("calendarSignDay") == null || wx.getStorageSync("calendarSignDay") == '') {
+            //     wx.setStorageSync("calendarSignDay", 0);
+            // }
+            var calendarSignData = new Array(monthDaySize);
+                for (var i = 0; i < calendarSignData.length; i++) {
+                    calendarSignData[i] = null;
+                }
+
             // 获取签到列表
             wx.request({
                 url: app.data.apiUrl,

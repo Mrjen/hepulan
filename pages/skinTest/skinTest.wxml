@@ -8,15 +8,15 @@
     <view class="test_item" wx:for="{{typeList}}" bindtap="skinTest" data-index="{{index}}">
         <image src="{{item.icon}}"></image>
         <view class="item_title">{{item.title}}</view>
-        <view class="skin_type">{{item.type}}</view>
+        <view class="skin_type">{{item.answer}}</view>
     </view>
 </view>
 <block>
-    <!-- <view class="see_btn">
+	<view class="see_btn see_btn_success" bindtap="seeSkinResult" wx:if="{{is_all_finish=='1'?true:false}}">
         <view>查看</view>
         <view>肤质</view>
-    </view> -->
-    <view class="see_btn see_btn_success">
+    </view>
+    <view class="see_btn" wx:else bindtap="noTest">
         <view>查看</view>
         <view>肤质</view>
     </view>
@@ -27,9 +27,9 @@
         <view class="colse_btn" bindtap="closeWin"></view>
         <image class="win_icon" src="{{win.icon}}"></image>
         <view class="win_title" style="color:{{win.color}}">{{win.title}}</view>
-        <view class="discribe">{{win.discribe}}</view>
+        <view class="discribe">{{win.describe}}</view>
         <block>
-            <view class="test_btn" style="background-color:{{win.color}}">开始测试</view>
+            <view class="test_btn" style="background-color:{{win.color}}" bindtap="toTest">开始测试</view>
         </block>
     </view>
 </view>

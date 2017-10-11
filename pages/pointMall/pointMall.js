@@ -47,12 +47,13 @@ Page({
         let index = ev.currentTarget.dataset.index;
         let opation_nav = that.data.opation_nav;
         let is_register = that.data.is_register;
+        console.log(is_register)
         let pagePath = "../pointMall/pointMall";
-        if (is_register && opation_nav[index].id !== 3) {
+        if (is_register) {
             wx.navigateTo({
                 url: opation_nav[index].url
             })
-        } else {
+        } else if(is_register!=='1'&&opation_nav[index].id == 3) {
             wx.showModal({
                 title: '提示',
                 content: '您还没有注册，是否去注册',
@@ -122,7 +123,7 @@ Page({
                 let shopBeforeList = res.data.data.goods_list_before;
                 let pointCount = res.data.data.usable_score;
                 let dataText = res.data.data.exchanged_list;
-                let is_register = res.data.is_register;
+                let is_register = res.data.data.is_register;
                 that.setData({
                     shopNowList,
                     shopBeforeList,

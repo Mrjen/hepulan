@@ -2,7 +2,7 @@
 <view class="myjifen">{{jifen}}<text>积分</text></view>
 
 <view class="but_box">
-    <navigator>赚积分</navigator>
+    <navigator url="../earnPoint/earnPoint">赚积分</navigator>
     <navigator url="../pointMall/pointMall">积分兑换</navigator>
 </view>
 

@@ -1,21 +1,21 @@
 <!--pages/skinResult/skinResult.wxml-->
-<import src="../template/template.wxml"/>
+<import src="../template/template.wxml" />
 <view class="container">
-     <view class="body_bg"><image src="https://hepulan.playonwechat.com/static/question_reslute.png"></image></view>
-     <view class="title_text">肌肤鉴定书</view>
-     <view class="result_box">
-	     <view class="resule_text"><view class="text_title">皮肤：属于</view><view>{{skinType}}</view></view>
-	     <view class="resule_text"><view class="text_title">隐患：</view><view>{{danger}}</view></view>
-	     <view class="resule_text"><view class="text_title">日常注意：</view><view>{{dailyAttention}}</view></view>
-	     <view class="resule_text"><view class="text_title">改善方案：</view><view>{{improvePlan}}</view></view>
-     </view>
-     <image class="seal" src="../img/result_seal.png"></image>
-     <view class="btn_btn">
-        <button wx:if="{{true}}" class="ask_btn" bindtap="tongJi" open-type="contact">点击咨询</button>
-        <!-- <button wx:else="" bindtap="applyBtn" class="kefu">点击咨询</button> -->
-     </view>
-<block wx:for="{{templateData}}">
-    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
-</block>
-<template is="share_icon"/>
+    <!-- 顶部导航 -->
+    <view class="nav">
+        <view class="titlee">我的肤质标签</view>
+        <view class="tag_list">
+             <view class="tag_item" wx:for="{{skinTag}}">
+               <view style="border:1px solid {{item.color}};color:{{item.color}}">{{item.skin_type}}</view>
+               <view style="color:{{item.color}}">{{item.skin_name}}</view>
+            </view>
+        </view>
+    </view>
+<!-- 内区 -->
+<navigator class="header" url="../skinResultDetailAnalysis/skinResultDetailAnalysis"><text class="help"></text>肌肤解读</navigator>
+<view class="content">{{skin_arr.skin_analysis}}</view>
+
+<navigator class="header"  url="../skinResultDetailGuide/skinResultDetailGuide"><text class="help"></text>护肤指南</navigator>
+<view class="content">{{skin_arr.skin_guide}}</view>
+    <template is="share_icon" />
 </view>

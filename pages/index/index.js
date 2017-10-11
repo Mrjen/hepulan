@@ -150,6 +150,12 @@ Page({
         })
     },
 
+    CheckIn(){
+        wx.navigateTo({
+            url: `../checkIn/checkIn`
+        })
+    },
+
     Apply: function(page) {
         //console.log(page);
         var that = this;

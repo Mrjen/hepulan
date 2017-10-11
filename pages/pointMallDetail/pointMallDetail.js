@@ -154,6 +154,7 @@ Page({
     exchangeBtn() {
         let that = this;
         let type_id = that.data.type_id;
+        let num = that.data.productNum;
         if (type_id) {
             wx.request({
                 url: app.data.apiUrl,
@@ -161,7 +162,11 @@ Page({
                 data: {
                     sign: wx.getStorageSync("sign"),
                     key: app.data.apiKey,
-                    type: "action-confirm-cart"
+                    type: "save-cart",
+                    data:{
+                        gid: type_id,
+                        goods_num: num
+                    }
                 },
                 success(res) {
                     console.log(res.data.status)

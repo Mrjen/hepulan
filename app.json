@@ -1,20 +1,27 @@
 {
   "pages": [
-    "pages/skinTestDetail/skinTestDetail",
-    "pages/skinTest/skinTest",
     "pages/index/index",
+    "pages/earnPoint/earnPoint",
+    "pages/pointMallCar/pointMallCar",
+    
+    "pages/checkIn/checkIn",
+    "pages/knowledge/knowledge",
+    "pages/skinTest/skinTest",
+    "pages/skinResult/skinResult",
+    "pages/skinResultDetailGuide/skinResultDetailGuide",
+    "pages/skinResultDetailAnalysis/skinResultDetailAnalysis",
+    "pages/login/login",
+    
+    
+    "pages/skinTestDetail/skinTestDetail",
     "pages/goldList/goldList",
     "pages/diaryMarkList/diaryMarkList",
-    
-    
-    "pages/login/login",
     "pages/circle/circle",
     "pages/DiaryMark/DiaryMark",
     "pages/writeDyn/writeDyn",
     "pages/qiandao/qiandao",
     "pages/circleRules/circleRules",
     "pages/pointMall/pointMall",
-    "pages/pointMallCar/pointMallCar",
     "pages/shopSubmiteOrder/shopSubmiteOrder",
     "pages/EditAddress/EditAddress",
     "pages/myAddress/myAddress",
@@ -23,7 +30,7 @@
     "pages/shopCollect/shopCollect",
     "pages/pointMallDetail/pointMallDetail",
     "pages/mine/mine",
-    "pages/knowledge/knowledge",
+    
     "pages/IconPage/IconPage",
     "pages/heChart/heChart",
     "pages/heChartRoom/heChartRoom",
@@ -31,15 +38,12 @@
     "pages/apply/apply",
     "pages/member/member",
     "pages/sharePoster/sharePoster",
-    
     "pages/friendShare/friendShare",
     "pages/sharePage/sharePage",
     "pages/applyDetail/applyDetail",
     "pages/calendar/calendar",
     "pages/integralList/integralList",
     "pages/Recommend/Recommend",
-    
-    "pages/skinResult/skinResult",
     "pages/tip/tip",
     "pages/single/single",
     "pages/template/template",

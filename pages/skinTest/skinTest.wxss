@@ -205,7 +205,7 @@ page{
 .discribe{
   padding:50rpx;
   font-size: 26rpx;
-  line-height: 40rpx;
+  line-height: 44rpx;
 }
 
 .test_btn{

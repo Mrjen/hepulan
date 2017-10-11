@@ -7,6 +7,12 @@
     margin-right: 20rpx;
 }
 
+.list_out{
+	height: 214rpx;
+	z-index: 2;
+	position: relative;
+}
+
 .list_item{
 	width: 100%;
 	height: 212rpx;
@@ -15,10 +21,30 @@
 	box-sizing: border-box;
 	align-items: center;
 	border-bottom: 20rpx solid #f7f7f7;
+	position: absolute;
+	z-index: 2;
+	background:#fff;
 }
 
 .list_item:last-of-type{
 	margin-bottom: 150rpx;
+}
+
+.list_item,.delete{
+	position: absolute;
+}
+
+.delete{
+	width: 150rpx;
+	height: 190rpx;
+	background:red;
+	line-height: 214rpx;
+	text-align: center;
+	color: #fff;
+	font-size: 30rpx;
+	right: 0;
+	top: 0;
+	z-index: 1;
 }
 
 .item_right{

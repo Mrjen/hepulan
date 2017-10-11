@@ -1,0 +1,9 @@
+<!--pages/earnPoint/earnPoint.wxml-->
+<navigator class="deairy" url="../checkIn/checkIn">
+   <image src="https://qncdn.playonwechat.com/hepulan/earn_point_icon.png"></image>
+   <view class="deairy_right">
+      <view>签到领积分</view>
+      <view>禾你一起变美</view>
+      <view class="tip">点击立即赚取</view>
+   </view>
+</navigator>

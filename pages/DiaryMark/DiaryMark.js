@@ -12,7 +12,7 @@ Page({
     cardStatus: "草率打卡",
     statusIcon: "https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-2points.png",
     isRadio: true,
-    jiFen: 2,
+    jiFen: 1,
     dakaSuccess: false,
     imglength:0
   },

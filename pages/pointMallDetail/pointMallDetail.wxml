@@ -43,6 +43,7 @@
      	<text class="cart_num" wx:if="{{productInfo.cart_count}}">{{productInfo.cart_count}}</text>
      </view>
      <view bindtap="SaveCart" data-productnum="{{productNum}}">加入购物车</view>
-     <view bindtap="exchangeBtn">立即兑换</view>
+     <view bindtap="exchangeBtn" data-productnum="{{productNum}}">立即兑换</view>
+     <!--  exchangeBtn-->
  </view>
 </view>

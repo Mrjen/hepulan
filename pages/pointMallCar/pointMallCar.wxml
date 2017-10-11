@@ -1,27 +1,41 @@
 <!--pages/pointMallCar/pointMallCar.wxml-->
 <view class="list">
-    <view class="list_item" wx:for="{{list}}">
-      <radio value="" color="#086446" checked="{{item.is_select=='1'?true:false}}" bindtap="selectGoods" data-index="{{index}}" data-gid="{{item.gid}}"/>
-      <image src="{{item.img}}"></image>
-      <view class="item_right">
-         <view class="item_title">{{item.name}}</view>
-         <view class="item_price">{{item.score}}积分</view>
-         <view class="item_type">
-             <view class="item_color">{{item.color}}</view>
-             <view class="goods_num">
-                 <view bindtap="cutGoods" data-index="{{index}}" data-gid="{{item.gid}}">-</view>
-                 <view>{{item.goods_num}}</view>
-                 <view bindtap="addGoods" data-index="{{index}}" data-gid="{{item.gid}}">+</view>
-             </view>
-         </view>
-      </view>
-    </view>
-</view>
-
-<view class="bottom_nav">
-        <view bindtap="allSelect"><radio color="#086446" checked="{{allSelect}}"/>全选</view>
-        <view class="cart_right">
-            <view>合计：{{AllMoney}}积分</view>
-            <view class="settle" bindtap="Tosetttle">结算<text>(包邮)</text></view>
+    <view class="list_out" wx:for="{{list}}">
+        <view class="delete" bindtap="deleteProduct" data-gid="{{item.gid}}">删除</view>
+        <view class="list_item" bindtouchstart="touchS" style="{{item.txtStyle}}" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
+            <radio value="" color="#086446" checked="{{item.is_select=='1'?true:false}}" bindtap="selectGoods" data-index="{{index}}" data-gid="{{item.gid}}" />
+            <image src="{{item.img}}"></image>
+            <view class="item_right">
+                <view class="item_title">{{item.name}}</view>
+                <view class="item_price">{{item.score}}积分</view>
+                <view class="item_type">
+                    <view class="item_color">{{item.color}}</view>
+                    <view class="goods_num">
+                        <view bindtap="cutGoods" data-index="{{index}}" data-gid="{{item.gid}}">-</view>
+                        <view>{{item.goods_num}}</view>
+                        <view bindtap="addGoods" data-index="{{index}}" data-gid="{{item.gid}}">+</view>
+                    </view>
+                </view>
+            </view>
         </view>
     </view>
+</view>
+<view class="bottom_nav">
+    <view bindtap="allSelect">
+        <radio color="#086446" checked="{{allSelect}}" />全选</view>
+    <view class="cart_right">
+        <view>合计：{{AllMoney}}积分</view>
+        <view class="settle" bindtap="Tosetttle">结算
+            <text>(包邮)</text>
+        </view>
+    </view>
+</view>
+<view class="item-box">
+    <view class="items">
+        <view wx:for="{{list}}" wx:key="{{index}}" class="item">
+            <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
+                <image class="item-icon" mode="widthFix" src="{{item.icon}}"></image>{{item.txt}}</view>
+            <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
+        </view>
+    </view>
+</view>

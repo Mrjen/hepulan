@@ -38,7 +38,7 @@
        <!-- <vies class="apply_btn navitor"  bindtap="Apply"  data-page="Apply" hover-class="none">申请试用</vies> -->
        <vies class="join_btn navitor" bindtap="joinVip"  data-page="joinVip" hover-class="none">加入会员</vies>
        <vies class="check_btn navitor"  bindtap="Check"  data-page="Check" hover-class="none">护肤打卡</vies>
-       <vies class="check_btn navitor"  bindtap="Check"  data-page="Check" hover-class="none">签到获积分</vies>
+       <vies class="check_btn navitor"  bindtap="CheckIn"  data-page="Check" hover-class="none">签到获积分</vies>
    </view>
 
    <!-- 老师推荐 -->

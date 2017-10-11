@@ -139,7 +139,8 @@ Page({
             },
             success(res) {
                  console.log(res)
-                let phoneNumber = res.data.phoneNumber;
+                let phoneNumber = res.data.data.phoneNumber;
+                console.log(phoneNumber)
                 if (res.data.status === 1) {
                     that.setData({
                         phoneNumber
@@ -184,7 +185,7 @@ Page({
                 type: "register",
                 data: {
                     mobile: mobile,
-                    birth: that.data.date,
+                    birth: that.data.date[0],
                     code: that.data.verifyCode,
                     register_type: that.data.register_type
                 }

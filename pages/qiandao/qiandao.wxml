@@ -29,8 +29,6 @@
           <view>{{coins}}</view>
      </view>
   </view> -->
-
-
 <!-- <view class="time">{{year}}年{{month}}月</view> -->
 <view class="calendar_out">
   <view class="calendar_box">

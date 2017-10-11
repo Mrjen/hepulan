@@ -121,12 +121,13 @@ Page({
                 console.log(res)
                 that.setData({
                     "main_content": contentTip
-                })
+                });
+                console.log(that.data)
             }
         })
     },
 
-    // 点击
+    // 点击tag
     tapKeyWorld: function(e) {
         console.log(e)
         var that = this;
@@ -134,6 +135,7 @@ Page({
         var inx = e.target.dataset.inx;
         var main_content = [];
         var search_word = that.data.search_word;
+        let start = that.data.start;
         for (var i = 0; i < search_word.length; i++) {
             search_word[i].active = false;
             search_word[inx].active = true;
@@ -141,7 +143,8 @@ Page({
         this.setData({
             search_word: search_word,
             tapKeyWorld: tapKeyWorld,
-            start: 0
+            start: 0,
+            tapKeyWorld
         });
         if (tapKeyWorld < 0) {
             wx.request({
@@ -149,17 +152,19 @@ Page({
                 data: {
                     key: app.data.apiKey,
                     sign: wx.getStorageSync("sign"),
-                    type: "get-knowledge-list"
+                    type: "get-knowledge-list",
                 },
                 header: {
                     'content-type': 'application/json'
                 },
                 method: "POST",
                 success: function(res) {
-                    console.log(res)
+                    console.log(res);
+                    start += 10;
                     main_content = res.data.data;
                     that.setData({
-                        "main_content": main_content
+                        "main_content": main_content,
+                         start
                     })
                 }
             })
@@ -170,8 +175,9 @@ Page({
                     key: app.data.apiKey,
                     sign: wx.getStorageSync("sign"),
                     type: "get-knowledge-list",
-                    data: {
-                        tag: tapKeyWorld
+                    data:{
+                        tag:that.data.tapKeyWorld,
+                        keyword:that.data.searchValue
                     }
                 },
                 header: {
@@ -180,9 +186,11 @@ Page({
                 method: "POST",
                 success: function(res) {
                     console.log(res)
+                    start += 10;
                     main_content = res.data.data;
                     that.setData({
-                        "main_content": main_content
+                        "main_content": main_content,
+                        start
                     })
                 }
             })
@@ -194,12 +202,14 @@ Page({
     onReachBottom: function() {
         var that = this;
         var oldCentent = that.data.main_content;
+        console.log("oldCentent",oldCentent)
         var main_content = [];
         var start = that.data.start;
         var sign = wx.getStorageSync("sign");
         var tapKeyWorld = that.data.tapKeyWorld;
         var searchValue = that.data.searchValue;
-        if ((!tapKeyWorld || tapKeyWorld < 0)&&!searchValue) {
+        //    标签             全部               搜索关键词
+        // if ((!tapKeyWorld || tapKeyWorld < 0)&&!searchValue) {
             wx.request({
                 url: app.data.apiUrl,
                 method: "POST",
@@ -209,16 +219,20 @@ Page({
                     sign: wx.getStorageSync("sign"),
                     data: {
                         start: start,
-                        length: 10
+                        length: 10,
+                        tag:that.data.tapKeyWorld,
+                        keyword:that.data.searchValue
                     }
                 },
                 success(res) {
+                    console.log(res)
                     if (res.data.data.length > 0) {
                         main_content = res.data.data;
                         start += 10;
                         main_content = oldCentent.concat(main_content);
                     } else {
                         main_content = oldCentent;
+                        console.log("main_content",oldCentent)
                         wx.showToast({
                           title: '没有更多数据',
                           icon: 'success',
@@ -231,78 +245,80 @@ Page({
                     })
                 }
             })
-        } else if ( tapKeyWorld > 0&&!searchValue) {
-            wx.request({
-                url: app.data.apiUrl,
-                method: "POST",
-                data: {
-                    key: app.data.apiKey,
-                    type: "get-knowledge-list",
-                    sign: wx.getStorageSync("sign"),
-                    tag: tapKeyWorld,
-                    data: {
-                        start: start,
-                        length: 10
-                    }
-                },
-                success(res) {
-                    if (res.data.data.length > 0) {
-                        main_content = res.data.data;
-                        start += 10;
-                        main_content = oldCentent.concat(main_content);
-                    } else {
-                        main_content = oldCentent;
-                        wx.showToast({
-                          title: '没有更多数据',
-                          icon: 'success',
-                          duration: 1000
-                        })
-                    };
-                    that.setData({
-                        main_content: main_content,
-                        start: start
-                    })
-                }
-            })
-        }else if (searchValue) {
-            wx.request({
-                url: app.data.apiUrl,
-                data: {
-                    key: app.data.apiKey,
-                    sign: wx.getStorageSync("sign"),
-                    type: "get-knowledge-list",
-                    data: {
-                        keyword: searchValue,
-                        start:start,
-                        length:10
-                    }
-                },
-                header: {
-                    'content-type': 'application/json'
-                },
-                method: "POST",
-                success: function(res) {
-                    // 获取用户名称及发表时间
-                    var contentTip = res.data.data;
-                    if (contentTip>0) {
-                        main_content = oldCentent.concat(contentTip);
-                        start+=length;
-                    }else{
-                       main_content = contentTip;
-                       wx.showToast({
-                          title: '没有更多数据',
-                          icon: 'success',
-                          duration: 1000
-                        })
-                    }
-                    that.setData({
-                        "main_content": main_content,
-                        start: start
-                    })
-                }
-            })
+        // } 
+        // else if ( tapKeyWorld > 0&&!searchValue) {
+        //     wx.request({
+        //         url: app.data.apiUrl,
+        //         method: "POST",
+        //         data: {
+        //             key: app.data.apiKey,
+        //             type: "get-knowledge-list",
+        //             sign: wx.getStorageSync("sign"),
+        //             tag: tapKeyWorld,
+        //             data: {
+        //                 start: start,
+        //                 length: 10
+        //             }
+        //         },
+        //         success(res) {
+        //             if (res.data.data.length > 0) {
+        //                 main_content = res.data.data;
+        //                 start += 10;
+        //                 main_content = oldCentent.concat(main_content);
+        //             } else {
+        //                 main_content = oldCentent;
+        //                 wx.showToast({
+        //                   title: '没有更多数据',
+        //                   icon: 'success',
+        //                   duration: 1000
+        //                 })
+        //             };
+        //             that.setData({
+        //                 main_content: main_content,
+        //                 start: start
+        //             })
+        //         }
+        //     })
+        // }
+        // else if (searchValue) {
+        //     wx.request({
+        //         url: app.data.apiUrl,
+        //         data: {
+        //             key: app.data.apiKey,
+        //             sign: wx.getStorageSync("sign"),
+        //             type: "get-knowledge-list",
+        //             data: {
+        //                 keyword: searchValue,
+        //                 start:start,
+        //                 length:10
+        //             }
+        //         },
+        //         header: {
+        //             'content-type': 'application/json'
+        //         },
+        //         method: "POST",
+        //         success: function(res) {
+        //             // 获取用户名称及发表时间
+        //             var contentTip = res.data.data;
+        //             if (contentTip>0) {
+        //                 main_content = oldCentent.concat(contentTip);
+        //                 start+=length;
+        //             }else{
+        //                main_content = contentTip;
+        //                wx.showToast({
+        //                   title: '没有更多数据',
+        //                   icon: 'success',
+        //                   duration: 1000
+        //                 })
+        //             }
+        //             that.setData({
+        //                 "main_content": main_content,
+        //                 start: start
+        //             })
+        //         }
+        //     })
 
-        }
+        // }
 
     },
 

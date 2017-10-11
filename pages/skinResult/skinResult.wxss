@@ -1,95 +1,108 @@
 /* pages/skinResult/skinResult.wxss */
 @import "../template/template.wxss";
-.container{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    font-size: 34rpx;
+.nav{
+	width: 100%;
+	height: 386rpx;
+	background-image: url(https://qncdn.playonwechat.com/hepulan/skin_test_result_bg.png);
+	background-size: 100% 100%;
 }
 
-.body_bg{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+view{
+	box-sizing: border-box;
 }
 
-.body_bg image{
-    display: block;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-}
-
-.title_text{
-	font-size: 50rpx;
-	position: absolute;
-	top: 300rpx;
-  width: 100%;
-  text-align: center;
-}
-
-.result_box{
-	position: absolute;
-  left: 50%;
-  margin-left: -256rpx;
-	width: 512rpx;
-	height: 628rpx;
-  font-size: 32rpx;
-	margin-top: 388rpx;
-}
-
-.resule_text{
-	margin: 30rpx 0;
-	line-height: 1.4;
-	color: #666;
-	display: flex;
-}
-
-.text_title{
-	display: inline-block;
-}
-
-.resule_text view:nth-of-type(2){
-	flex:1;
-}
-
-.seal{
-	position: fixed;
-	width: 200rpx;
-	height: 200rpx;
-	bottom: 250rpx;
-	right: 150rpx;
-}
-
-.btn_btn{
-	width: 200rpx;
-	height: 40rpx;
-  left: 50%;
-  margin-left: -100rpx;
-	line-height: 40rpx;
+.nav .titlee{
+	position: relative;
 	text-align: center;
-	position: absolute;
-	bottom: 150rpx;
-	border:1px solid #666;
+	font-size: 25rpx;
+	padding-top: 80rpx;
+	margin-bottom: 30rpx;
+}
+
+.nav .titlee:before{
+	content: "";
 	display: block;
-	width: 220rpx;
-	height: 60rpx;
+	width: 68rpx;
+	height: 2px;
+	background:#58b17e;
+	position: absolute;
+	left: 50%;
+	bottom: -20rpx;
+	transform: translateX(-50%);
 }
 
-.kefu{
-    display: inline-block;
-    height: 60rpx;
-    line-height: 60rpx;
-    width: 100%;
-    border:1px solid #666;
-	border-radius: 0;
-	width: 220rpx;
+.tag_list{
+	display: flex;
+	justify-content: center;
 }
 
-.ask_btn{
-	width: 220rpx;
+.tag_item{
+	margin:0 20rpx;
+}
+
+.tag_item view:nth-of-type(1){
+	width: 60rpx;
 	height: 60rpx;
+	text-align: center;
 	line-height: 60rpx;
+	font-size: 30rpx;
+	border-radius: 4rpx;
+	margin:20rpx auto;
+}
+
+.tag_item view:nth-of-type(2){
+	font-size: 30rpx;
+	text-align: center;
+}
+
+
+/*内容区*/
+.header{
+    display: flex;
+    align-items: center;
+    font-size: 30rpx;
+    width: 100%;
+    padding:20rpx;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.header:after{
+	content: "";
+	display: block;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	border-bottom: 1px solid #efefef;
+	transform: scaleY(.5);
+}
+
+.header:before{
+	content: '';
+	color: #58b17e;
+	  position: absolute;
+	  right: 20px;
+	  width: 10px;
+	  height: 10px;
+	  border-top: solid 1px currentColor;
+	  border-right: solid 1px currentColor;
+	  -webkit-transform: rotate(45deg);
+	          transform: rotate(45deg);
+}
+
+.header .help{
+	background:url(https://qncdn.playonwechat.com/hepulan/skin_test_result_help.png);
+	display: block;
+	width: 38rpx;
+	height: 38rpx;
+	background-size: 100%; 
+	margin-right: 10rpx;
+}
+
+.content{
+	font-size: 28rpx;
+	padding: 20rpx 30rpx;
+	line-height: 50rpx;
+	border-bottom: 30rpx solid #f7f7f7;
 }
