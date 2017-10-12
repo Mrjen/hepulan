@@ -59,7 +59,7 @@ Page({
                 if (res.data.status === 1) {
                     let score = res.data.data.score;
                     let goldImg = that.data.goldImg;
-                    let dayCheckIn = res.data.data.is_signin
+                    let dayCheckIn = res.data.data.is_signin;
                     let scoreImg = "";
                     let punch = res.data.data.sign_keep; //连续签到天数
                     let coins = res.data.data.usable_score;
@@ -74,7 +74,8 @@ Page({
                         coins,
                         punch,
                         allday,
-                        scoreImg
+                        scoreImg,
+                        dayCheckIn
                     })
                     // setTimeout(function() {
                     //     that.setData({

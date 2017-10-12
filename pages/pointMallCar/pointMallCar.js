@@ -3,8 +3,8 @@ var app = getApp();
 Page({
     data: {
         list: [],
-        allSelect: true,
-        mode: "",
+        allSelect: false,
+        mode: "one",
         delBtnWidth: 150
     },
 
@@ -67,7 +67,7 @@ Page({
                 data: {
                     gid: gid,
                     is_select: list[_index].is_select,
-                    mode: "0"
+                    mode: "one"
                 }
             },
             success(res) {
@@ -124,27 +124,8 @@ Page({
         let gid = ev.currentTarget.dataset.gid;
         let AllMoney = new Number();
         list[_index].goods_num -= 1;
-        if (list[_index].goods_num == 0) {
-            wx.showModal({
-                title: '提示',
-                content: '是否删除商品',
-                success: function(res) {
-                    if (res.confirm) {
-                        console.log(list)
-
-                    } else if (res.cancel) {
-                        list[_index].goods_num = 1;
-                        AllMoney = that.countGoods(list);
-                        that.setData({
-                            list,
-                            AllMoney
-                        })
-                    }
-                }
-            })
-        } else {
-            console.log("else")
-            console.log(list)
+        // console.log(list[_index].goods_num)
+        if (list[_index].goods_num > 1) {
             wx.request({
                 url: app.data.apiUrl,
                 method: "POST",
@@ -176,7 +157,8 @@ Page({
 
                 }
             })
-
+        } else if (list[_index].goods_num < 1) {
+            list[_index].goods_num = 1;
         }
     },
 
@@ -184,6 +166,9 @@ Page({
     deleteProduct(ev) {
         let that = this;
         let gid = ev.currentTarget.dataset.gid;
+        let _index = ev.currentTarget.dataset.index;
+        let list = that.data.list;
+        let AllMoney = new Number();
         wx.request({
             url: app.data.apiUrl,
             method: "POST",
@@ -193,8 +178,11 @@ Page({
                 type: "remove-cart-info",
                 data: {
                     gid: gid
-                },
-                success(res) {
+                }
+            },
+            success(res) {
+                console.log(res.data.status)
+                if (res.data.status === 1) {
                     list.splice(_index, 1)
                     console.log(list)
 
@@ -202,6 +190,17 @@ Page({
                     that.setData({
                         list,
                         AllMoney
+                    })
+                    wx.showToast({
+                        title: "删除成功",
+                        icon: 'success',
+                        duration: 1000
+                    })
+                } else {
+                    wx.showToast({
+                        title: res.data.mag,
+                        icon: 'success',
+                        duration: 1000
                     })
                 }
             }
@@ -343,9 +342,128 @@ Page({
     },
 
 
+    // 修改款式
+    ChangeType(ev){
+       let that = this;
+       let product_id = ev.currentTarget.dataset.id;
+       let gid = ev.currentTarget.dataset.gid;
+       let changeIndex = ev.currentTarget.dataset.index;
+       console.log("product_id", product_id)
+       wx.request({
+            url: app.data.apiUrl,
+            method: "POST",
+            data: {
+                sign: wx.getStorageSync("sign"),
+                key: app.data.apiKey,
+                type: "get-glist-by-kid",
+                data: {
+                    kid: product_id
+                }
+            },
+            success(res) {
+                console.log(res);
+                let selectWinData = res.data.data;
+                that.setData({
+                    selectWinData
+                });
+                console.log(that.data)
+            }
+        })
+
+       that.setData({
+           selectWin:true,
+           gid,
+           changeIndex
+       })
+    },
+
+
+    // 选择款式
+    changeType(ev) {
+        let that = this;
+        let index = ev.currentTarget.dataset.index;
+        let selectWinData = that.data.selectWinData;
+        let type_id = ev.currentTarget.dataset.id;
+        let image = selectWinData.details[index].url_prefix + selectWinData.details[index].imgurl;
+        // console.log("type_id",type_id,image)
+        for (var i = 0; i < selectWinData.details.length; i++) {
+            selectWinData.details[i].active = 0;
+        }
+        selectWinData.details[index].active = 1;
+        selectWinData.color = selectWinData.details[index].color;
+        selectWinData.imgurl = image;
+        selectWinData.amount = selectWinData.details[index].amount;
+        that.setData({
+            selectWinData,
+            type_id
+        })
+    },
+    
+    // 修改保存颜色
+    SaveGoodsInfo(ev){
+        let that = this;
+        let type_id = that.data.type_id;
+        let gid = that.data.gid;
+        let list = that.data.list;
+        let changeIndex = that.data.changeIndex;
+        if (type_id) {
+            wx.request({
+                url: app.data.apiUrl,
+                method: "POST",
+                data: {
+                    sign: wx.getStorageSync("sign"),
+                    key: app.data.apiKey,
+                    type: "save-ginfo-by-gid",
+                    data: {
+                        gid: type_id,
+                        from_gid: gid
+                    }
+                },
+                success(res) {
+                    console.log(res);
+                    if (res.data.status===1) {
+                        wx.showToast({
+                            title: '颜色修改成功',
+                            icon: 'success',
+                            duration: 1000
+                        });
+                        let img = `${res.data.url_prefix}${res.data.data.imgurl}`;
+                        list[changeIndex].img = img;
+                        list[changeIndex].color = res.data.data.color;
+                    } else {
+                        wx.showToast({
+                            title: res.data.msg,
+                            icon: 'success',
+                            duration: 1000
+                        })
+                    }
+                    console.log(list)
+                    that.setData({
+                        selectWin: false,
+                        list
+                    })
+                }
+            })
+        } else {
+            wx.showToast({
+                title: '请选择颜色',
+                icon: 'success',
+                duration: 1000
+            })
+        }
+    },
+
+     // 关闭选择类别
+    selectWin(ev) {
+        let that = this;
+        that.setData({
+            selectWin: false
+        })
+    },
+
     touchS: function(e) {
         if (e.touches.length == 1) {
-            console.log(e.touches[0].clientX);
+            // console.log(e.touches[0].clientX);
             this.setData({
                 //设置触摸起始点水平方向位置
                 startX: e.touches[0].clientX

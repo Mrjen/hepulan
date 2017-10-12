@@ -1,7 +1,7 @@
 <!--pages/pointMallCar/pointMallCar.wxml-->
 <view class="list">
     <view class="list_out" wx:for="{{list}}">
-        <view class="delete" bindtap="deleteProduct" data-gid="{{item.gid}}">删除</view>
+        <view class="delete" bindtap="deleteProduct" data-gid="{{item.gid}}" data-index="{{index}}">删除</view>
         <view class="list_item" bindtouchstart="touchS" style="{{item.txtStyle}}" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
             <radio value="" color="#086446" checked="{{item.is_select=='1'?true:false}}" bindtap="selectGoods" data-index="{{index}}" data-gid="{{item.gid}}" />
             <image src="{{item.img}}"></image>
@@ -9,7 +9,7 @@
                 <view class="item_title">{{item.name}}</view>
                 <view class="item_price">{{item.score}}积分</view>
                 <view class="item_type">
-                    <view class="item_color">{{item.color}}</view>
+                    <view class="item_color" bindtap="ChangeType" data-id="{{item.kid}}" data-gid="{{item.gid}}" data-index="{{index}}">{{item.color}}</view>
                     <view class="goods_num">
                         <view bindtap="cutGoods" data-index="{{index}}" data-gid="{{item.gid}}">-</view>
                         <view>{{item.goods_num}}</view>
@@ -20,6 +20,7 @@
         </view>
     </view>
 </view>
+
 <view class="bottom_nav">
     <view bindtap="allSelect">
         <radio color="#086446" checked="{{allSelect}}" />全选</view>
@@ -30,12 +31,25 @@
         </view>
     </view>
 </view>
-<view class="item-box">
-    <view class="items">
-        <view wx:for="{{list}}" wx:key="{{index}}" class="item">
-            <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
-                <image class="item-icon" mode="widthFix" src="{{item.icon}}"></image>{{item.txt}}</view>
-            <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
+
+<!-- 选择款 -->
+<view class="select_win" wx:if="{{selectWin}}">
+    <view class="product_info">
+       <view class="top_info">
+        <view class="product">
+            <image src="{{selectWinData.imgurl}}" bindtap="prewImg" data-url="{{selectWinData.original_imgurl}}"></image>
+            <view class="info">
+               <view>{{selectWinData.score}}积分</view>
+               <view>库存{{selectWinData.amount}}件</view>
+               <view>已选：{{selectWinData.color}}</view>
+            </view>
         </view>
+        <text class="type_tag">颜色</text>
+        <view class="product_type"> 
+            <view wx:for="{{selectWinData.details}}" wx:key="index" class="type_item {{item.active?'type_active':''}}" bindtap="changeType" data-index="{{index}}" data-id="{{item.id}}">{{item.color}}</view>
+        </view>
+        </view>
+        <view class="sure_type" bindtap="SaveGoodsInfo">确定</view>
+        <view class="close_select" bindtap="selectWin"></view>
     </view>
 </view>

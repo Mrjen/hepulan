@@ -11,8 +11,8 @@
     </view>
     <view class="calendarSign">
         <form bindsubmit="formSubmit" class="formSubmit" report-submit="true">
-            <view class="checkedBtn" wx:if="{{dayCheckIn}}">今日已签到</view>
-            <button class="checkBtn" wx:else="" formType="submit">签到</button>
+            <view class="checkedBtn" wx:if="{{dayCheckIn=='1'?true:false}}">今日已签到</view>
+            <button class="checkBtn" wx:if="{{dayCheckIn=='1'?false:true}}" formType="submit">签到</button>
         </form>
     </view>
     <view class="check_box">

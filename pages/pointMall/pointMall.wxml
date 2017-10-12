@@ -81,13 +81,14 @@
                    </view>
                   <view class="exchange_box">
                      <!-- <view class="exchange_num">{{item.hasexchange}}人已兑换</view> -->
-                     <view class="exchange_btn zan_num" data-jifen="{{item.count}}" data-id="{{item.id}}">2233</view>
+                     <!-- <view class="exchange_btn zan_num" data-jifen="{{item.count}}" data-id="{{item.id}}">2233</view> -->
                   </view>
               </view>
-              <view class="zan_hert zan_box" bindtap="zanProduct" data-id="{{item.id}}">
+              
+              <!-- <view class="zan_hert zan_box" bindtap="zanProduct" data-id="{{item.id}}">
                   <image wx:if="{{item.iszan}}" src="https://qncdn.playonwechat.com/hepulan/point_mall_hert_air.png"></image>
                  <image wx:else src="https://qncdn.playonwechat.com/hepulan/point_mall_hert.png"></image>
-              </view>
+              </view> -->
                
           </view>
     </view>

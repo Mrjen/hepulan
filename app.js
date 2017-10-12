@@ -10,8 +10,8 @@ App({
     authStatic:false,
     loginStatic:false,
     authSuccess:false,
-    // apiUrl:"https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index",
-    apiUrl:"https://api2.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index",
+    apiUrl:"https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index",
+    // apiUrl:"https://api2.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index",
     apiKey:"be15d4ca913c91494cb4f9cd6ce317c6"
   },
   onLaunch: function() {

@@ -291,7 +291,8 @@ Page({
                         }
                     }
                     that.setData({
-                        spaceDyn: spaceDyn
+                        spaceDyn: spaceDyn,
+                        start
                     });
                 }
             })
@@ -337,7 +338,8 @@ searchCircle(e){
                         }
                     }
                     that.setData({
-                        spaceDyn: spaceDyn
+                        spaceDyn: spaceDyn,
+                        start
                     });
                 }
             })

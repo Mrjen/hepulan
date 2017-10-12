@@ -150,7 +150,7 @@ Page({
         type:"save-punch",
         data:{
           imgs:that.data.imgres?that.data.imgres:"",
-          cotent:content?content:"",
+          content:content?content:"",
           is_share:that.data.isRadio?1:0
         }
       },

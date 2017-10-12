@@ -170,7 +170,7 @@ Page({
                 },
                 success(res) {
                     console.log(res.data.status)
-                    if (res.data.status) {
+                    if (res.data.status===1||(res.data.status===0&&res.data.msg=="已加入购物车")) {
                         wx.navigateTo({
                             url: '../pointMallCar/pointMallCar'
                         })

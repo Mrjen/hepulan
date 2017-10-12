@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/earnPoint/earnPoint",
     "pages/pointMallCar/pointMallCar",
+    "pages/pointMall/pointMall",
+    "pages/circle/circle",
+    "pages/earnPoint/earnPoint",
     
     "pages/checkIn/checkIn",
     "pages/knowledge/knowledge",
@@ -16,12 +18,12 @@
     "pages/skinTestDetail/skinTestDetail",
     "pages/goldList/goldList",
     "pages/diaryMarkList/diaryMarkList",
-    "pages/circle/circle",
+    
     "pages/DiaryMark/DiaryMark",
     "pages/writeDyn/writeDyn",
     "pages/qiandao/qiandao",
     "pages/circleRules/circleRules",
-    "pages/pointMall/pointMall",
+    
     "pages/shopSubmiteOrder/shopSubmiteOrder",
     "pages/EditAddress/EditAddress",
     "pages/myAddress/myAddress",
