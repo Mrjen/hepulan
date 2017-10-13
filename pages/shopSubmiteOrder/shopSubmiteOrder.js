@@ -30,7 +30,8 @@ Page({
             let info = {
                 address: options.address,
                 name: options.name,
-                phone: options.phone
+                phone: options.phone,
+                detail:options.detail
             }
             that.setData({
                 info,
@@ -59,17 +60,20 @@ Page({
             success(res) {
                 console.log(res);
                 let cart_list = res.data.data.cart_list;
+                let cart_select_sum = res.data.data.cart_select_sum;
                 for (var i = 0; i < cart_list.length; i++) {
                     cart_list[i].img = `${cart_list[i].url_prefix}${cart_list[i].imgurl}`
                 }
                 that.setData({
-                    cart_list
+                    cart_list,
+                    cart_select_sum
                 })
             }
         })
     },
 
     toAddress() {
+        console.log("11111",getCurrentPages())
         wx.redirectTo({
             url: '../myAddress/myAddress?addressinfo=submiteorder'
         })
@@ -130,6 +134,12 @@ Page({
                 url: '../pointMall/pointMall'
             })
         }
+    },
+
+    toHome(){
+        wx.reLaunch({
+          url: '../index/index'
+        })
     },
 
     onHide: function() {

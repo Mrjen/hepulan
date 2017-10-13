@@ -1,4 +1,6 @@
 /* pages/pointMall/pointMall.wxss */
+@import "../template/template.wxss";
+
 view{
   box-sizing: border-box;
 }
@@ -202,10 +204,6 @@ page{
   margin-bottom: 10rpx;
 }
 
-.zan_num{
-  margin-top: 60rpx;
-}
-
 .item_info{
   flex: 1;
   display: flex;
@@ -257,6 +255,30 @@ page{
   line-height: 48rpx;
   font-size: 28rpx;
   color: #fff;
+  position: relative;
+}
+
+.zan_num{
+  margin-top: 60rpx;
+  background:#f7f7f7;
+  border-radius: 4rpx;
+}
+
+.zan_num .text_bg{
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+}
+
+.zan_num .text_precent{
+    display: block;
+    height: 100%;
+    background:#ff3c3c;
+    position: absolute;
+    border-radius: 4rpx;
+    z-index: 1;
 }
 
 .has_exchange_btn{

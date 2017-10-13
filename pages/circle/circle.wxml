@@ -1,6 +1,5 @@
 <!--pages/circle/circle.wxml-->
 <import src="../template/template.wxml"/>
-<!-- <scroll-view class="container" scroll-y="true" bindscrolltolower="pageBottom"> -->
 
 <!-- 搜索 -->
 <view class="search_box"><input type="text" bindinput="searchCentent" name=""/><view class="search_btn" bindtap="searchCircle"></view></view>
@@ -63,5 +62,6 @@
    <!-- url="../writeDyn/writeDyn" -->
 </view>
 <view bindtap="writeCircle" class="write_dyn" wx:if="{{writeCircle}}"><image src="../img/circle_icon_write.png"></image></view>
-<template wx:if="{{isWritting}}" is="share_icon"/>
-<!-- </scroll-view> -->
+
+
+<!-- <template wx:if="{{isWritting}}" is="share_icon"/> -->

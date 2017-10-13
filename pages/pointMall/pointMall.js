@@ -49,11 +49,7 @@ Page({
         let is_register = that.data.is_register;
         console.log(is_register)
         let pagePath = "../pointMall/pointMall";
-        if (is_register) {
-            wx.navigateTo({
-                url: opation_nav[index].url
-            })
-        } else if(is_register!=='1'&&opation_nav[index].id == 3) {
+        if (is_register != '1' && opation_nav[index].id == 3) {
             wx.showModal({
                 title: '提示',
                 content: '您还没有注册，是否去注册',
@@ -66,6 +62,10 @@ Page({
 
                     }
                 }
+            })
+        } else if (is_register == '0' || is_register == '1') {
+            wx.navigateTo({
+                url: opation_nav[index].url
             })
         }
     },
@@ -104,9 +104,8 @@ Page({
             avatarUrl: avatarUrl,
             nickName: nickName
         });
-
         wx.showLoading({
-            title: '加载中'
+            title: '加载中',
         })
         wx.request({
             url: app.data.apiUrl,
@@ -117,7 +116,6 @@ Page({
                 type: "get-goods-list"
             },
             success(res) {
-                console.log(res)
                 let shopNowList = res.data.data.goods_list_now;
                 let shopSoonList = res.data.data.goods_list_soon;
                 let shopBeforeList = res.data.data.goods_list_before;
@@ -132,10 +130,9 @@ Page({
                     dataText,
                     is_register
                 });
-
-                setTimeout(function() {
+               setTimeout(function(){
                     wx.hideLoading()
-                }, 1000)
+                },800)
             },
             fail(res) {
                 console.log(res);
@@ -144,7 +141,7 @@ Page({
     },
 
     toShopExchange() {
-        wx.navigateTo({
+        wx.reLaunch({
             url: '../shopExchange/shopExchange'
         })
     },
@@ -233,6 +230,51 @@ Page({
         })
     },
 
+    // 点赞商品
+    zanProduct(ev) {
+        let that = this;
+        let id = ev.currentTarget.dataset.id;
+        let index = ev.currentTarget.dataset.index;
+        let shopSoonList = that.data.shopSoonList;
+        let http = {
+            type: "save-shop-good-like",
+            data: {
+                kid: id
+            }
+        };
+        common.http(http, function(res) {
+            console.log(res)
+            if (res.data.status === 1 && res.data.data.state == 1) {
+                shopSoonList[index].is_praise = 1;
+                shopSoonList[index].praise_num = res.data.data.praise;
+                wx.showToast({
+                    title: "点赞成功",
+                    icon: 'success',
+                    duration: 1000
+                })
+            } else if (res.data.status === 1 && res.data.data.state == 0) {
+                shopSoonList[index].is_praise = 0;
+                shopSoonList[index].praise_num = res.data.data.praise;
+                wx.showToast({
+                    title: "取消点赞成功",
+                    icon: 'success',
+                    duration: 1000
+                })
+            } else {
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'success',
+                    duration: 1000
+                })
+            }
+            that.setData({
+                shopSoonList
+            })
+        })
+    },
+
+
+
     // 点击图片预览
     prewImg(ev) {
         let url = ev.currentTarget.dataset.url;
@@ -249,6 +291,17 @@ Page({
             url: `../pointMallDetail/pointMallDetail?id=${id}`
         })
     },
+
+        // 返回首页
+    backHome: function() {
+        common.backHome();
+    },
+
+    // 分享海报
+    toShare: function() {
+        common.toShare();
+    },
+
 
     onHide: function() {
 

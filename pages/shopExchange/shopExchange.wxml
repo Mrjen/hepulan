@@ -1,4 +1,6 @@
 <!--pages/shopExchange/shopExchange.wxml-->
+<import src="../template/template.wxml"/>
+
 <view class="myjifen">{{jifen}}<text>积分</text></view>
 
 <view class="but_box">
@@ -24,3 +26,5 @@
         </navigator>
    	</view>
 </view>
+
+<template is="share_icon"/>

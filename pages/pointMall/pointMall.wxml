@@ -1,4 +1,6 @@
 <!--pages/pointMall/pointMall.wxml-->
+<import src="../template/template.wxml"/>
+
 <image class="avatarUrl" src="{{avatarUrl}}"></image>
 <view class="nickName">{{nickName}}</view>
 <view class="point_count">可兑换积分{{pointCount}}</view>
@@ -29,7 +31,7 @@
               <view class="item_bottom">
                    <view>
                       <view class="item_jifen">{{item.count}}积分</view>
-                       <view class="item_zan">{{item.state}}人点赞<text class="zan_icon"></text></view> 
+                       <view class="item_zan">{{item.praise_num}}人点赞<text class="zan_icon"></text></view> 
                    </view>
                   <view class="exchange_box">
                      <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
@@ -52,7 +54,7 @@
               <view class="item_bottom">
                    <view>
                       <view class="item_jifen">{{item.count}}积分</view>
-                       <view class="item_zan">{{item.zan}}人点赞<text class="zan_icon"></text></view> 
+                       <view class="item_zan">{{item.praise_num}}人点赞<text class="zan_icon"></text></view> 
                    </view>
                   <view class="exchange_box">
                      <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
@@ -77,19 +79,18 @@
                    <view>
                        <view class="soon_tip">喜欢就点赞吧~达到一定数量将会开启兑换哦</view>
                        <view class="item_jifen">{{item.count}}积分</view>
-                       <!-- <view class="item_zan">{{item.zan}}人点赞<text class="zan_icon"></text></view>  -->
+                       <view class="item_zan">{{item.praise_num}}人点赞<text class="zan_icon"></text></view> 
                    </view>
                   <view class="exchange_box">
                      <!-- <view class="exchange_num">{{item.hasexchange}}人已兑换</view> -->
-                     <!-- <view class="exchange_btn zan_num" data-jifen="{{item.count}}" data-id="{{item.id}}">2233</view> -->
+                     <view class="exchange_btn zan_num" data-jifen="{{item.count}}" data-id="{{item.id}}"><text class="text_bg">{{item.praise_num}}</text><text class="text_precent" style="width:{{item.praise_percent}}%"></text></view>
                   </view>
               </view>
-              
-              <!-- <view class="zan_hert zan_box" bindtap="zanProduct" data-id="{{item.id}}">
-                  <image wx:if="{{item.iszan}}" src="https://qncdn.playonwechat.com/hepulan/point_mall_hert_air.png"></image>
+
+              <view class="zan_hert zan_box" bindtap="zanProduct" data-id="{{item.kid}}" data-index="{{index}}">
+                  <image wx:if="{{item.is_praise=='0'?true:false}}" src="https://qncdn.playonwechat.com/hepulan/point_mall_hert_air.png"></image>
                  <image wx:else src="https://qncdn.playonwechat.com/hepulan/point_mall_hert.png"></image>
-              </view> -->
-               
+              </view>
           </view>
     </view>
 </view>
@@ -115,3 +116,6 @@
         <view class="close_select" bindtap="selectWin"></view>
     </view>
 </view>
+
+<!-- 回首页按钮 -->
+<template is="share_icon"/>

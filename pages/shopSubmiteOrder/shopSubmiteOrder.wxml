@@ -1,4 +1,6 @@
 <!--pages/shopSubmiteOrder/shopSubmiteOrder.wxml-->
+<view class="to_home" bindtap="toHome">回到首页</view>
+
 <view class="persion_info" bindtap="toAddress">
      <view class="info">
          <view>
@@ -12,7 +14,7 @@
      </view>
      <view class="address">
      	<image src="https://qncdn.playonwechat.com/poin_mall_editAddress.png"></image>
-     	<text>地址：{{info.address}}</text>
+     	<text>地址：{{info.address}}{{info.detail}}</text>
      </view>
 </view>
 
@@ -24,14 +26,14 @@
          <view>{{item.name}}</view>
          <view>{{item.score}}积分</view>
          <view>{{item.color}}</view>
-         <view>x2</view>
+         <view>x{{item.goods_num}}</view>
       </view>
    </view>
 </view>
 
 <!-- 底部导航 -->
 <view class="bottom_nav">
-    <view>合计：55积分</view>
+    <view>合计：{{cart_select_sum}}积分</view>
     <view class="submite" bindtap="SaveOrder">提交订单</view>
 </view>
 

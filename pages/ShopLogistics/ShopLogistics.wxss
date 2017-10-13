@@ -1,161 +1,204 @@
 /* pages/ShopLogistics/ShopLogistics.wxss */
-page{
-	background: #f7f7f7;
+
+page {
+    background: #f7f7f7;
 }
 
-view{
-	box-sizing: border-box;
+view {
+    box-sizing: border-box;
 }
 
-.nav{
-	width: 100%;
-	height: 90rpx;
-	background: #fff;
-	line-height: 90rpx;
-	text-align: center;
-	position: relative;
+.nav {
+    width: 100%;
+    height: 90rpx;
+    background: #fff;
+    line-height: 90rpx;
+    text-align: center;
+    position: relative;
 }
 
-.persion_info{
-	background: #fff;
-	position: relative;
+.persion_info {
+    background: #fff;
+    position: relative;
 }
 
-.persion_info image{
-	width: 50rpx;
-	height: 50rpx;
-	margin-right: 10rpx;
+.persion_info image {
+    width: 50rpx;
+    height: 50rpx;
+    margin-right: 10rpx;
+    flex-shrink: 0;
 }
 
-.persion_info text{
-	font-size: 30rpx;
-	line-height: 80rpx;
+.persion_info text {
+    font-size: 30rpx;
 }
 
-.info{
-	display: flex;
-	height: 80rpx;
-	align-items: center;
-	padding: 0 20rpx;
+.info {
+    display: flex;
+    height: 80rpx;
+    align-items: center;
+    padding: 0 20rpx;
 }
 
-.info view{
-	flex:1;
-	display: flex;
-	align-items: center;
+.info view {
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
-.address{
-	width: 100%;
-	height: 80rpx;
-	padding:0 20rpx;
-	display: flex;
-	align-items: center;
+.address {
+    width: 100%;
+    height: 80rpx;
+    padding: 0 20rpx;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.address:before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    border-top: solid 1px currentColor;
+    border-right: solid 1px currentColor;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 /*商品列表*/
-.product_list{
-	margin-top: 20rpx;
+
+.product_list {
+    margin-top: 20rpx;
 }
 
-.list_item image{
-   display: flex;
-   width: 242rpx;
-   height: 154rpx;
-   border-radius: 6rpx;
-   margin-right: 20rpx;
+.list_item image {
+    display: flex;
+    width: 242rpx;
+    height: 154rpx;
+    border-radius: 6rpx;
+    margin-right: 20rpx;
 }
 
-.list_item{
-	display: flex;
-	padding:20rpx;
-	background: #fff;
-	font-size: 30rpx;
-	position: relative;
+.list_item {
+    display: flex;
+    padding: 20rpx;
+    background: #fff;
+    font-size: 30rpx;
+    position: relative;
 }
 
-.list_item:last-of-type:before{
+.list_item:last-of-type:before {
     display: none;
 }
 
-.list_right{
-	flex: 1;
+.list_right {
+    flex: 1;
 }
 
-.product_right{
-	flex: 1;
-	display: flex;
-	justify-content: space-between;
+.product_right {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
 }
 
-.list_right view:nth-of-type(1){
-	margin-bottom: 14rpx;
+.list_right view:nth-of-type(1) {
+    margin-bottom: 14rpx;
 }
 
-.list_right view:nth-of-type(2){
-	font-size: 28rpx;
-	margin-bottom: 14rpx;
-	color: #086347;
+.list_right view:nth-of-type(2) {
+    font-size: 28rpx;
+    margin-bottom: 14rpx;
+    color: #086347;
 }
 
-.list_right view:nth-of-type(3){
-	font-size: 26rpx;
-	color: #666;
+.list_right view:nth-of-type(3) {
+    font-size: 26rpx;
+    color: #666;
 }
 
-.list_right view:nth-of-type(4){
-	text-align: right;
+.list_right view:nth-of-type(4) {
+    text-align: right;
 }
+
 
 /*快递*/
-.logistics{
-	width:100%;
-	padding:20rpx 40rpx;
-	background: #fff;
-	margin-top: 20rpx;
+
+.logistics {
+    width: 100%;
+    padding: 20rpx 40rpx;
+    background: #fff;
+    margin-top: 20rpx;
 }
 
-.logistics_list{
-	margin-top: 30rpx;
-	border-left:1px solid #cccccc;
+.logistics_list {
+    margin-top: 30rpx;
+    border-left: 1px solid #cccccc;
 }
 
-.logistics .tip{
-	width: 100%;
-	position: relative;
-	height: 90rpx;
-	line-height: 90rpx;
-	font-size: 30rpx;
+.logistics .tip {
+    width: 100%;
+    position: relative;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 30rpx;
 }
 
-.logistics_item{
-	font-size: 26rpx;
-	color: #888;
-	line-height: 44rpx;
-	padding:20rpx;
+.logistics_item {
+    font-size: 26rpx;
+    color: #888;
+    line-height: 44rpx;
+    padding: 20rpx;
 }
 
-.logistics_list .logistics_item:first-of-type view:first-of-type{
-	color: #339966;
+.logistics_list .logistics_item:first-of-type view:first-of-type {
+    color: #339966;
 }
 
-.logistics_item view{
-	position: relative;
+.logistics_item view {
+    position: relative;
 }
 
-.logistics_item view:nth-of-type(1):after{
-	display: block;
-	content:"";
-	width: 20rpx;
-	height: 20rpx;
-	background: #cccccc;
-	position: absolute;
-	left: -30rpx;
-	top: 10rpx;
-	border-radius: 50%;
+.logistics_item view:nth-of-type(1):after {
+    display: block;
+    content: "";
+    width: 20rpx;
+    height: 20rpx;
+    background: #cccccc;
+    position: absolute;
+    left: -30rpx;
+    top: 10rpx;
+    border-radius: 50%;
 }
 
-.logistics_list .logistics_item:first-of-type view:first-of-type:after{
-	background: #339966;
+.logistics_list .logistics_item:first-of-type view:first-of-type:after {
+    background: #339966;
 }
 
+
+/*取消订单*/
+
+.cancel_order {
+    width: 700rpx;
+    height: 88rpx;
+    color: #fff;
+    background: #e64340;
+    font-size: 30rpx;
+    text-align: center;
+    line-height: 88rpx;
+    border-radius: 8rpx;
+    margin: 50rpx auto;
+}
+
+.edit_address {
+    width: 700rpx;
+    height: 88rpx;
+    color: #fff;
+    background: #1aad19;
+    font-size: 30rpx;
+    text-align: center;
+    line-height: 88rpx;
+    border-radius: 8rpx;
+    margin: 50rpx auto;
+}

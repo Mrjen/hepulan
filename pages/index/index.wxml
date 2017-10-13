@@ -60,7 +60,9 @@
    <!-- 公司团队 -->
    <image class="team_pingpai" src="https://hepulan.playonwechat.com/static/home_pingpai.png"></image>
 
-<template is="share_icon"/>
+
+
+<!-- <template is="share_icon"/> -->
 <!-- 已有护肤老师弹窗 -->
 <block wx:for="{{templateData}}">
     <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>

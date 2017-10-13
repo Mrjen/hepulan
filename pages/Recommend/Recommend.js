@@ -42,7 +42,8 @@ Page({
 
 // 统计
 tongJi(ev){
-  mta.Event.stat("contact_click",{})
+  let codeid = wx.getStorageSync("codeid");
+  mta.Event.stat("contact_click", {codeid:'true'})
 },
 
 

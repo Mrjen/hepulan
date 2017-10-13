@@ -57,5 +57,5 @@
             </view>
         </view>
     </view>
-<template is="share_icon"/>
+<!-- <template is="share_icon"/> -->
 </view>

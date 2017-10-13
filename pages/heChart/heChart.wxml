@@ -34,5 +34,7 @@
     <view class="video_title">{{item.videoTitle}}</view>
   </view>
 </view>
-<template is="share_icon"/>
+
+<!-- <template is="share_icon"/> -->
+
 </view>

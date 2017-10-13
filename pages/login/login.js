@@ -19,16 +19,11 @@ Page({
     onLoad: function(options) {
         var that = this;
         // 页面初始化 options为页面跳转所带来的参数
-        var app = getApp();
-        console.log(app.data);
-        that.setData({
-            sign: app.data.sign
-        })
         wx.showShareMenu({
             withShareTicket: true
         })
 
-        //console.log(options);
+        console.log(options);
         var pagePath = options.pagePath;
         var page = options.pages
         that.setData({
@@ -45,7 +40,6 @@ Page({
     },
 
     bindPhoneInput: function(e) {
-        console.log(e)
         this.setData({
             phoneNumber: e.detail.value
         })
@@ -191,11 +185,12 @@ Page({
                 }
             },
             success(res) {
-                console.log(res);
+                console.log(res,getCurrentPages());
                 if (res.data.status===1) {
                     let pagePath = that.data.pagePath;
+                    console.log(pagePath)
                     pagePath = pagePath?pagePath:'../index/index';
-                    wx.navigateTo({
+                    wx.reLaunch({
                       url: pagePath
                     })
                 }

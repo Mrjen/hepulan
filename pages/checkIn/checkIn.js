@@ -224,16 +224,17 @@ Page({
     // 弹窗金币数说明
     helpCoins: function() {
         let that = this;
-        that.setData({
-            helpWin: true
-        })
-    },
 
-    close_help: function() {
-        let that = this;
-        that.setData({
-            helpWin: false
-        })
+        // that.setData({
+        //     helpWin: true
+        // })
     }
+
+    // close_help: function() {
+    //     let that = this;
+    //     that.setData({
+    //         helpWin: false
+    //     })
+    // }
 
 })

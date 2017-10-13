@@ -1,7 +1,7 @@
 <!--pages/ShopLogistics/ShopLogistics.wxml-->
 <view class="nav border_bottom">兑换商品(共计：{{cart_select_sum}}积分)</view>
 
-<navigator class="persion_info" url="../myAddress/myAddress">
+<navigator class="persion_info" bindtap="toMyaddress">
      <view class="info">
          <view>
          	<image src="https://qncdn.playonwechat.com/poin_mall_editPersion.png"></image>
@@ -14,7 +14,7 @@
      </view>
      <view class="address">
      	<image src="https://qncdn.playonwechat.com/poin_mall_editAddress.png"></image>
-     	<text>地址：{{info.address}}</text>
+     	<text>地址：{{info.address}}{{info.detail}}</text>
      </view>
 </navigator>
 
@@ -45,3 +45,8 @@
       </view>
    </view>
 </view>
+
+<!-- 取消订单按钮 -->
+<view class="edit_address" wx:if="{{opration_usable}}" data-order="{{order_num}}" bindtap="EditOrder">保存修改地址</view>
+
+<view class="cancel_order" wx:if="{{opration_usable}}" data-order="{{order_num}}" bindtap="deleteOrder">取消订单</view>

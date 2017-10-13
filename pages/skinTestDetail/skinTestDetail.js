@@ -196,7 +196,7 @@ Page({
     },
 
     closeWin(){
-        wx.navigateTo({
+        wx.reLaunch({
           url: '../skinTest/skinTest'
         })
     },

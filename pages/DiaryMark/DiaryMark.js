@@ -1,6 +1,6 @@
 // pages/DiaryMark/DiaryMark.js
 var app = getApp();
-
+let common = require('../../common.js');
 Page({
   data: {
     uploadimg: [

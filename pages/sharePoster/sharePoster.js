@@ -15,15 +15,15 @@ Page({
 // 预览海报
   prewImg:function(){
        wx.previewImage({
-         current: 'https://hepulan.playonwechat.com/static/sharePoster/sharePoster_img.png', // 当前显示图片的http链接
-         urls: ['https://hepulan.playonwechat.com/static/sharePoster/sharePoster_img.png'] // 需要预览的图片http链接列表
+         current: 'https://hepulan.playonwechat.com/static/hepulan_poster.png', // 当前显示图片的http链接
+         urls: ['https://hepulan.playonwechat.com/static/hepulan_poster.png'] // 需要预览的图片http链接列表
       })
   },
 
 // 海报下载
   downLoad:function(){
     wx.downloadFile({
-      url: 'https://hepulan.playonwechat.com/static/sharePoster/sharePoster_img.png', //仅为示例，并非真实的资源
+      url: 'https://hepulan.playonwechat.com/static/hepulan_poster.png', //仅为示例，并非真实的资源
      success: function(res) {
        //console.log(res);
         wx.saveImageToPhotosAlbum({

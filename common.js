@@ -20,19 +20,23 @@ function getUser(){
        success:function(res){
          if (res.code) {
            wx.request({
-            url: 'https://yulufan.playonwechat.com/site/auth',
+            url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
             data: {
               code: res.code
             },
             success:function(res){
               console.log(res)
+              let thirdkey = res.data.data.thirdkey;
               var sign = res.data.data.sign;
-              wx.setStorageSync('sign', res.data.data.sign);
+              if (sign) {
+                 wx.setStorageSync('sign', res.data.data.sign);
+              }
               wx.setStorageSync('mid', res.data.data.mid);
-              wx.setStorageSync('sharecode', res.data.data.sharecode);
               wx.getUserInfo({
                  success:function(res){
                     var userData = {};
+                    var encryptedData = res.encryptedData;
+                    var iv = res.iv;
                     var userInfo = res.userInfo;
                     var wx_name = userInfo.nickName;
                     var avatarUrl = userInfo.avatarUrl;
@@ -40,23 +44,34 @@ function getUser(){
                     var province = userInfo.province;
                     var city = userInfo.city;
                     var country = userInfo.country;
+                    
                     userData = {
-                      wx_name: wx_name,
+                      nickName: wx_name,
                       avatarUrl: avatarUrl,
                       gender: gender,
                       province: province,
                       city: city,
                       country: country
                     };
+
                     wx.setStorageSync('nickName', wx_name);
                     wx.setStorageSync('avatarUrl', avatarUrl);
                     wx.request({
-                      url: 'https://yulufan.playonwechat.com/site/save-user-info?sign=' + sign,
+                      url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
                       method: "POST",
                       data: {
-                        info: userData
+                        type:"actionAuth",
+                        sign:wx.getStorageSync("sign"),
+                        key:"be15d4ca913c91494cb4f9cd6ce317c6",
+                        data:{
+                          info: userData,
+                          encryptedData:encryptedData,
+                          iv:iv,
+                          thirdkey:wx.getStorageSync("thirdkey")
+                        }
                       },
                       success:function(res){
+                        console.log(res)
                          console.log("保存用户信息");
                       }
                     })
@@ -127,11 +142,11 @@ function getUser(){
 
 function http(http,cb){
    wx.request({
-     url:app.data.apiUrl,
+     url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
      method:'POST',
      data:{
        sign:wx.getStorageSync("sign"),
-       key:app.data.apiKey,
+       key:"be15d4ca913c91494cb4f9cd6ce317c6",
        type:http.type,
        data:http.data?http.data:''
      },
@@ -147,10 +162,10 @@ function getSign(callback) {
      success(res){
       //  console.log(res);
        wx.request({
-         url: app.data.apiUrl,
+         url: 'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
          data:{
-            key:app.data.apiKey,
-            type:"auth",
+            key:'be15d4ca913c91494cb4f9cd6ce317c6',
+            type:"get-third-key",
             data:{
                code:res.code
             }
@@ -158,7 +173,12 @@ function getSign(callback) {
          method:"POST",
          success(res){
            console.log(res)
-           let sign = res.data.data.sign;
+           let sign = wx.getStorageSync("sign");
+           if (!sign) {
+              wx.getUserInfo({
+
+              })
+           }
            let thirdkey = res.data.data.thirdkey;
            wx.setStorageSync("sign",sign);
            wx.setStorageSync("thirdkey",thirdkey);
@@ -172,6 +192,29 @@ function getSign(callback) {
 
      }
    })
+};
+
+function getThirdKey(cb){
+    wx.login({
+       success(res){
+         let code = res.code;
+         wx.request({
+           url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
+           method:"POST",
+           data:{
+             key:"be15d4ca913c91494cb4f9cd6ce317c6",
+             type:"get-third-key",
+             data:{
+               code:code
+             }
+           },
+           success(res){
+            console.log(res);
+            typeof cb =='function'&&cb(res);
+           }
+         })
+       }
+    })
 };
 
 // 获取vip_id
@@ -233,6 +276,7 @@ module.exports = {
     getSign,
     getVipId,
     getUser,
-    http
+    http,
+    getThirdKey
 }
 

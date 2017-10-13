@@ -3,7 +3,7 @@
 <view class="container">
     <view class="nav">
         <image src="https://qncdn.playonwechat.com/hepulan/hepulan_logo.png"></image>
-        <view>我的积分</view>
+        <view>总获得积分</view>
         <view class="jifen">{{score_total}}</view>
     </view>
     <view class="today">

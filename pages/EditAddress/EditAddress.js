@@ -220,11 +220,13 @@ console.log(persionName,mobile,ProvinceId,CityId,CountyId,addressDetail)
         success(res){
           console.log(res);
           let addressinfo = that.data.addressinfo;
-          if (res.data.code=="0"&&!addressinfo) {
+          console.log(addressinfo)
+          console.log("页面堆栈",getCurrentPages());
+          if (res.data.errcode=="0"&&!addressinfo) {
              wx.navigateTo({
                 url: '../myAddress/myAddress'
               })
-          }else if(res.data.code=="0"&&addressinfo){
+          }else if(res.data.errcode=="0"&&addressinfo){
             wx.navigateTo({
                 url: `../shopSubmiteOrder/shopSubmiteOrder?name=${persionName}&phone=${mobile}&address=${address}${addressDetail}&addressid=${res.data.data.addressid}`
               })
@@ -243,8 +245,10 @@ console.log(persionName,mobile,ProvinceId,CityId,CountyId,addressDetail)
 onLoad: function (options) {
    let that= this;
    let addressinfo = options.addressinfo;
+   let pagePath = options.pagePath;
    that.setData({
-     addressinfo
+     addressinfo,
+     pagePath
    })
 },
 

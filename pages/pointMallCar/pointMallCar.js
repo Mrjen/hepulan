@@ -1,5 +1,6 @@
 // pages/pointMallCar/pointMallCar.js
 var app = getApp();
+let common = require('../../common.js');
 Page({
     data: {
         list: [],
@@ -123,9 +124,9 @@ Page({
         let _index = ev.currentTarget.dataset.index;
         let gid = ev.currentTarget.dataset.gid;
         let AllMoney = new Number();
-        list[_index].goods_num -= 1;
         // console.log(list[_index].goods_num)
         if (list[_index].goods_num > 1) {
+            list[_index].goods_num -= 1;
             wx.request({
                 url: app.data.apiUrl,
                 method: "POST",
@@ -313,7 +314,7 @@ Page({
             success(res) {
                 console.log(res)
                 if (res.data.status === 1) {
-                    wx.navigateTo({
+                    wx.reLaunch({
                         url: '../shopSubmiteOrder/shopSubmiteOrder'
                     })
                 } else if (res.data.status < 0) {

@@ -1,4 +1,5 @@
 /* pages/shopExchange/shopExchange.wxss */
+@import "../template/template.wxss";
 view{
 	box-sizing: border-box;
 }

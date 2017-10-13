@@ -1,20 +1,24 @@
 {
   "pages": [
+    
     "pages/index/index",
+    "pages/shopExchange/shopExchange",
+    "pages/checkIn/checkIn",
     "pages/pointMallCar/pointMallCar",
     "pages/pointMall/pointMall",
+    
+    
+    "pages/myAddress/myAddress",
+    "pages/ShopLogistics/ShopLogistics",
     "pages/circle/circle",
     "pages/earnPoint/earnPoint",
     
-    "pages/checkIn/checkIn",
     "pages/knowledge/knowledge",
     "pages/skinTest/skinTest",
     "pages/skinResult/skinResult",
     "pages/skinResultDetailGuide/skinResultDetailGuide",
     "pages/skinResultDetailAnalysis/skinResultDetailAnalysis",
     "pages/login/login",
-    
-    
     "pages/skinTestDetail/skinTestDetail",
     "pages/goldList/goldList",
     "pages/diaryMarkList/diaryMarkList",
@@ -26,9 +30,7 @@
     
     "pages/shopSubmiteOrder/shopSubmiteOrder",
     "pages/EditAddress/EditAddress",
-    "pages/myAddress/myAddress",
-    "pages/ShopLogistics/ShopLogistics",
-    "pages/shopExchange/shopExchange",
+    
     "pages/shopCollect/shopCollect",
     "pages/pointMallDetail/pointMallDetail",
     "pages/mine/mine",

@@ -373,26 +373,10 @@
   margin-left: -41rpx;
   top: 700rpx;
   z-index: 14;
-}
-
-.close_gold:before {
-  content: '';
-  position: absolute;
-  width: 21px;
-  height: 2px;
-  background-color: currentColor;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.close_gold:after {
-  content: '';
-  position: absolute;
-  width: 21px;
-  height: 2px;
-  background-color: currentColor;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARBAMAAAAmgTH3AAAAJFBMVEUAAAAAYRIAYRIAYRIAYRIAYRIAYRIAYRIAYRIAYRIAYRIAYRK92jKGAAAAC3RSTlMA9Z0/Aj7Ob0fbdNy08TUAAABdSURBVAjXLczBCQAhDATAhcMq/PiwATtIC3YhWIjF3M+PHNecm9VAQhiywcCtnnyGhjJ9qQtPTAQOUWU7hZgBpzINol8AvJ+DhJl7cyAzKDC2QL8E5IVOIDUMg2oDCToUiQxu1ogAAAAASUVORK5CYII=');
+  background-size: 30rpx 30rpx;
+  background-position: center;
+  background-repeat:no-repeat;
 }
 
 /*图片预加载*/

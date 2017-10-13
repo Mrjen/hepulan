@@ -22,7 +22,7 @@
         </view>
         <view class="check_box_right">
             <view>积分数
-                <view class="helpCoins" bindtap="helpCoins">?</view>
+                <!-- <view class="helpCoins" bindtap="helpCoins">?</view> -->
             </view>
             <view>{{coins}}</view>
         </view>
@@ -55,7 +55,7 @@
         </view>
     </view>
     <!--金币获取方式 弹窗 -->
-    <view class="help_win" wx:if="{{helpWin}}">
+<!--     <view class="help_win" wx:if="{{helpWin}}">
         <view class="help_win_in">
             <view class="help_title">金币获取方式
                 <view bindtap="close_help" class="close_help"></view>
@@ -66,7 +66,7 @@
                 <view>完善手机信息奖励100金币</view>
             </view>
         </view>
-    </view>
+    </view> -->
     <!-- 金币弹窗 -->
     <view class="goldWin" hidden="{{goldWin}}">
     	<view class="win_in">

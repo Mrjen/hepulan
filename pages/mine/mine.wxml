@@ -17,5 +17,6 @@
     <view class="opation_list_box">
       <navigator class="opation_list" hover-class="none" wx:for="{{opationList}}" url="{{item.navUrl}}" >{{item.text}}</navigator>
     </view>
-  <template is="share_icon"/>
+    
+  <!-- <template is="share_icon"/> -->
 </view>

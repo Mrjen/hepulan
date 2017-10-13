@@ -3,15 +3,17 @@ var app = getApp();
 Page({
     data: {
         address: [],
-        addressinfo:"11"
+        addressinfo: ""
     },
 
     onLoad: function(options) {
         console.log(options)
         let that = this;
+        let order_num = options.order_num;
         if (options.addressinfo) {
             that.setData({
-                addressinfo: options.addressinfo
+                addressinfo: options.addressinfo,
+                order_num
             })
         }
     },
@@ -46,7 +48,11 @@ Page({
         let info = that.data.address[index];
         if (that.data.addressinfo == "submiteorder") {
             wx.navigateTo({
-                url:`../shopSubmiteOrder/shopSubmiteOrder?address=${info.address}&name=${info.contact}&phone=${info.mobile}&addressid=${info.addressid}`
+                url: `../shopSubmiteOrder/shopSubmiteOrder?address=${info.address}&name=${info.contact}&phone=${info.mobile}&addressid=${info.addressid}&detail=${info.detail}`
+            })
+        } else if (that.data.addressinfo == "editAddress") {
+            wx.navigateTo({
+                url: `../ShopLogistics/ShopLogistics?address=${info.address}&name=${info.contact}&phone=${info.mobile}&addressid=${info.addressid}&order_num=${that.data.order_num}&orderEditaddress=1&detail=${info.detail}`
             })
         }
     },
@@ -66,16 +72,27 @@ Page({
     },
 
     // 添加地址
-    ToAddaddress(){
-       let that = this;
-       let addressinfo = that.data.addressinfo;
-       let pagecount = getCurrentPages();
-       console.log("页面堆栈",pagecount,addressinfo)
-       if (addressinfo) {
-          wx.navigateTo({
-          url: `../EditAddress/EditAddress?addressinfo=${addressinfo}`
-        })
-       }
+    ToAddaddress() {
+        let that = this;
+        let addressinfo = that.data.addressinfo;
+        let pagecount = getCurrentPages();
+        let pagePath = "../myAddress/myAddress";
+        console.log("页面堆栈", pagecount, addressinfo)
+        if (addressinfo) {
+            wx.navigateTo({
+                url: `../EditAddress/EditAddress?addressinfo=${addressinfo}&pagePath=${pagePath}`
+            })
+        }
+    },
+
+    // 返回首页
+    backHome: function() {
+        common.backHome();
+    },
+
+    // 分享海报
+    toShare: function() {
+        common.toShare();
     },
 
     onHide: function() {

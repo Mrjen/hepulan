@@ -39,7 +39,8 @@ Page({
 
     // 统计
     tongJi(ev) {
-        mta.Event.stat("contact_click", {})
+        let codeid = wx.getStorageSync("codeid");
+        mta.Event.stat("contact_click", {codeid:'true'})
     },
 
     formSubmit(ev) {
@@ -80,15 +81,21 @@ Page({
     },
 
     onLoad: function(options) {
+         console.log("onload页面参数",options)
         // 初始化腾讯统计
         mta.Page.init();
+        options.codeId = "Tdhgdi";
         let codeid = `codeid_${options.codeId}`;
+        let load_code = codeid.split("_");
         console.log("onload",codeid)
-        
+        wx.setStorageSync("codeid",codeid)
         mta.Event.stat(codeid,{});
 
         //页面初始化 options为页面跳转所带来的参数
         var that = this;
+        
+        common.getUser();
+
         wx.showShareMenu({
             withShareTicket: true,
         });
