@@ -1,4 +1,6 @@
 var app = getApp();
+var common = require('../../common.js');
+
 // pages/sureExchange/sureExchange.js
 Page({
     data: {
@@ -78,11 +80,11 @@ Page({
         let pagecount = getCurrentPages();
         let pagePath = "../myAddress/myAddress";
         console.log("页面堆栈", pagecount, addressinfo)
-        if (addressinfo) {
+        // if (addressinfo) {
             wx.navigateTo({
                 url: `../EditAddress/EditAddress?addressinfo=${addressinfo}&pagePath=${pagePath}`
             })
-        }
+        // }
     },
 
     // 返回首页

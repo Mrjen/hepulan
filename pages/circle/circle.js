@@ -257,6 +257,9 @@ Page({
         let nickName = wx.getStorageSync("nickName"),
             avatar = wx.getStorageSync('avatarUrl');
         let start = that.data.start;
+        wx.showLoading({
+          title: '加载中',
+        })
         that.setData({
             nickName: nickName,
             avatar: avatar
@@ -294,6 +297,9 @@ Page({
                         spaceDyn: spaceDyn,
                         start
                     });
+                    setTimeout(function(){
+                      wx.hideLoading()
+                    },2000)
                 }
             })
         })

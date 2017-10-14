@@ -84,7 +84,7 @@ Page({
          console.log("onload页面参数",options)
         // 初始化腾讯统计
         mta.Page.init();
-        options.codeId = "Tdhgdi";
+        // options.codeId = "Tdhgdi";
         let codeid = `codeid_${options.codeId}`;
         let load_code = codeid.split("_");
         console.log("onload",codeid)
