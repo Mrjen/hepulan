@@ -51,7 +51,7 @@ Page({
                 type: "save-app-signin",
                 key: app.data.apiKey,
                 data: {
-                    formId: _formId
+                    form_id: _formId
                 }
             },
             success: function(res) {

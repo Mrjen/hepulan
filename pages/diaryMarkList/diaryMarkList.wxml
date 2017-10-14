@@ -15,7 +15,7 @@
          <view class="diary_content">
             <view class="diary_text">{{item.remark}}</view>
             <view class="img_box">
-                   <image src="{{item.url}}"></image>
+                 <image wx:for="{{item.images}}" wx:for-item="images" src="{{images.url}}"></image>
             </view>
          </view>
       </view>

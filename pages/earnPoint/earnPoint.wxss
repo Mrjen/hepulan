@@ -19,12 +19,12 @@ page{
 	width: 690rpx;
 	height: 208rpx;
 	display: flex;
-	/*box-shadow: 0 0 8rpx rgba(0,0,0,.1);*/
 	margin:0 auto;
 	align-items: center;
 	padding:0 30rpx;
 	border:1px solid #f7f7f7;
 	box-sizing: border-box;
+	margin-bottom: 20rpx;
 }
 
 .deairy_right{

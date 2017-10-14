@@ -23,19 +23,23 @@ Page({
         navList: [{
             id: 1,
             img: "https://qncdn.playonwechat.com/hepulan/circle_skincare_experience.png",
-            text: "护肤心得"
+            text: "护肤心得",
+            active:true
         }, {
             id: 2,
             img: "https://qncdn.playonwechat.com/hepulan/circle_new_product.png",
-            text: "新品测评"
+            text: "新品测评",
+            active:false
         }, {
             id: 3,
             img: "https://qncdn.playonwechat.com/hepulan/circle_empty_bollte.png",
-            text: "空瓶记"
+            text: "空瓶记",
+            active:false
         }, {
             id: 4,
             img: "https://qncdn.playonwechat.com/hepulan/circle_time_active.png",
-            text: "限时活动"
+            text: "限时活动",
+            active:false
         }]
     },
 
@@ -160,38 +164,38 @@ Page({
         // console.log(zan)
         var nickName = that.data.nickName;
         // if (!zan) {
-            wx.request({
-                url: app.data.apiUrl,
-                header: {
-                    'content-type': 'application/json'
-                },
-                method: "POST",
+        wx.request({
+            url: app.data.apiUrl,
+            header: {
+                'content-type': 'application/json'
+            },
+            method: "POST",
+            data: {
+                type: "save-plaza-post-like",
+                key: app.data.apiKey,
+                sign: wx.getStorageSync("sign"),
                 data: {
-                    type: "save-plaza-post-like",
-                    key: app.data.apiKey,
-                    sign: wx.getStorageSync("sign"),
-                    data: {
-                        pid: pid
-                    }
-
-                },
-                success: function(res) {
-                    console.log(res);
-                    let praise_list = res.data.data.praise_list;
-                    spaceDyn[writeIndex].praise_list = praise_list;
-                    spaceDyn[writeIndex].haslike = res.data.data.haslike;
-                    // spaceDyn[writeIndex].liks.unshift({
-                    //     username: nickName,
-                    //     pid: pid
-                    // });
-                    // spaceDyn[writeIndex].haslike = "1";
-                    console.log(spaceDyn)
-                    that.setData({
-                        spaceDyn: spaceDyn,
-                        pid: pid
-                    })
+                    pid: pid
                 }
-            });
+
+            },
+            success: function(res) {
+                console.log(res);
+                let praise_list = res.data.data.praise_list;
+                spaceDyn[writeIndex].praise_list = praise_list;
+                spaceDyn[writeIndex].haslike = res.data.data.haslike;
+                // spaceDyn[writeIndex].liks.unshift({
+                //     username: nickName,
+                //     pid: pid
+                // });
+                // spaceDyn[writeIndex].haslike = "1";
+                console.log(spaceDyn)
+                that.setData({
+                    spaceDyn: spaceDyn,
+                    pid: pid
+                })
+            }
+        });
         // } else {
         //     var likeList = spaceDyn[writeIndex].liks;
         //     var zanList = [];
@@ -258,7 +262,7 @@ Page({
             avatar = wx.getStorageSync('avatarUrl');
         let start = that.data.start;
         wx.showLoading({
-          title: '加载中',
+            title: '加载中',
         })
         that.setData({
             nickName: nickName,
@@ -297,67 +301,116 @@ Page({
                         spaceDyn: spaceDyn,
                         start
                     });
-                    setTimeout(function(){
-                      wx.hideLoading()
-                    },2000)
+                    setTimeout(function() {
+                        wx.hideLoading()
+                    }, 2000)
                 }
             })
         })
     },
 
-
-// 输入的搜索关键词
-searchCentent(e){
-   this.setData({
-      searchCentent:e.detail.value
-   })
-},
-
-// 搜索
-searchCircle(e){
-   let that = this;
-   let  searchCentent = that.data.searchCentent;
-   let start = 0;
-   console.log(searchCentent);
-   wx.request({
-                url: app.data.apiUrl,
-                method: "POST",
+    // 下拉刷新
+    onPullDownRefresh: function() {
+        let that= this;
+        let start = 0;
+        wx.request({
+            url: app.data.apiUrl,
+            method: "POST",
+            data: {
+                key: app.data.apiKey,
+                type: "get-plaza-posts",
+                sign: wx.getStorageSync("sign"),
                 data: {
-                    key: app.data.apiKey,
-                    type: "get-plaza-posts",
-                    sign: wx.getStorageSync("sign"),
-                    data: {
-                        start: 0,
-                        length: 10,
-                        search:searchCentent,
-                        share_type:that.data.share_type
-                    }
-                },
-                success(res) {
-                    console.log(res);
-                    start += 10;
-                    let spaceDyn = res.data.data.social_list;
-                    for (let i = 0; i < spaceDyn.length; i++) {
-                        spaceDyn[i].imgslist = [];
-                        for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
-                            spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
-                        }
-                    }
-                    that.setData({
-                        spaceDyn: spaceDyn,
-                        start
-                    });
+                    start: 0,
+                    length: 10
                 }
-            })
-},
+            },
+            success(res) {
+                console.log(res);
+                start += 10;
+                let spaceDyn = res.data.data.social_list;
+                for (let i = 0; i < spaceDyn.length; i++) {
+                    spaceDyn[i].imgslist = [];
+                    for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
+                        spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
+                    }
+                }
+                that.setData({
+                    spaceDyn: spaceDyn,
+                    start
+                });
+                wx.stopPullDownRefresh();
+                wx.showToast({
+                  title: '页面刷新成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+            }
+        })
+    },
 
 
-// 切换导航
+
+    // 输入的搜索关键词
+    searchCentent(e) {
+        this.setData({
+            searchCentent: e.detail.value
+        })
+    },
+
+    // 搜索
+    searchCircle(e) {
+        let that = this;
+        let searchCentent = that.data.searchCentent;
+        let start = 0;
+        console.log(searchCentent);
+        wx.request({
+            url: app.data.apiUrl,
+            method: "POST",
+            data: {
+                key: app.data.apiKey,
+                type: "get-plaza-posts",
+                sign: wx.getStorageSync("sign"),
+                data: {
+                    start: 0,
+                    length: 10,
+                    search: searchCentent,
+                    share_type: that.data.share_type
+                }
+            },
+            success(res) {
+                console.log(res);
+                start += 10;
+                let spaceDyn = res.data.data.social_list;
+                for (let i = 0; i < spaceDyn.length; i++) {
+                    spaceDyn[i].imgslist = [];
+                    for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
+                        spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
+                    }
+                }
+                that.setData({
+                    spaceDyn: spaceDyn,
+                    start
+                });
+            }
+        })
+    },
+
+
+    // 切换导航
     changeNav(ev) {
         let that = this;
         let index = ev.currentTarget.dataset.index;
         let _index = index + 1;
+        let navList = that.data.navList;
+        for (var i = 0; i < navList.length; i++) {
+            navList[i].active = false;
+        }
 
+        navList[index].active = true;
+        that.setData({
+            navList
+        })
         wx.request({
             url: app.data.apiUrl,
             method: "POST",
@@ -366,25 +419,25 @@ searchCircle(e){
                 key: app.data.apiKey,
                 type: "get-plaza-posts",
                 data: {
-                  share_type: _index,
-                  start:0,
-                  length:10
+                    share_type: _index,
+                    start: 0,
+                    length: 10
                 }
             },
             success(res) {
                 console.log(res);
                 let spaceDyn = res.data.data.social_list;
-                    for (let i = 0; i < spaceDyn.length; i++) {
-                        spaceDyn[i].imgslist = [];
-                        for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
-                            spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
-                        }
+                for (let i = 0; i < spaceDyn.length; i++) {
+                    spaceDyn[i].imgslist = [];
+                    for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
+                        spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
                     }
-                  that.setData({
-                      spaceDyn: spaceDyn,
-                      start:0,
-                      share_type:_index
-                  });
+                }
+                that.setData({
+                    spaceDyn: spaceDyn,
+                    start: 0,
+                    share_type: _index
+                });
             }
         })
     },
@@ -406,12 +459,12 @@ searchCircle(e){
             data: {
                 key: app.data.apiKey,
                 type: "get-plaza-posts",
-                sign:wx.getStorageSync("sign"),
+                sign: wx.getStorageSync("sign"),
                 data: {
                     start: that.data.start,
                     length: 10,
-                    share_type:that.data.share_type,
-                    search:that.data.searchCentent?that.data.searchCentent:''
+                    share_type: that.data.share_type,
+                    search: that.data.searchCentent ? that.data.searchCentent : ''
                 }
             },
             success: function(res) {

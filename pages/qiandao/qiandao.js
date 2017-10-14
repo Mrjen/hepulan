@@ -47,9 +47,14 @@ Page({
     },
 
     toDiary() {
-        wx.navigateTo({
-            url: '../DiaryMark/DiaryMark'
-        })
+        let that = this;
+        let is_singin_today = that.data.is_singin_today;
+        if (is_singin_today=='0') {
+            wx.navigateTo({
+                url: '../DiaryMark/DiaryMark'
+            })
+        }
+
     },
 
     onLoad: function() {
@@ -58,10 +63,10 @@ Page({
 
     },
 
-    onShow: function(){
+    onShow: function() {
         var that = this;
         common.getSign(function(sign) {
-            console.log("signsignsignsign",wx.getStorageSync("sign"));
+            console.log("signsignsignsign", wx.getStorageSync("sign"));
             sign = wx.getStorageSync("sign")
             that.setData({
                 sign
@@ -74,6 +79,7 @@ Page({
             var day = mydate.getDay();
             //  console.log(day)
             var nbsp;
+
             if ((date - day) <= 0) {
                 nbsp = day - date + 1;
             } else {
@@ -93,18 +99,10 @@ Page({
                     monthDaySize = 28;
                 }
             };
-
-            // 判断是否签到过
-            // if (wx.getStorageSync("calendarSignData") == null || wx.getStorageSync("calendarSignData") == '') {
-            //     wx.setStorageSync("calendarSignData", new Array(monthDaySize));
-            // };
-            // if (wx.getStorageSync("calendarSignDay") == null || wx.getStorageSync("calendarSignDay") == '') {
-            //     wx.setStorageSync("calendarSignDay", 0);
-            // }
             var calendarSignData = new Array(monthDaySize);
-                for (var i = 0; i < calendarSignData.length; i++) {
-                    calendarSignData[i] = null;
-                }
+            for (var i = 0; i < calendarSignData.length; i++) {
+                calendarSignData[i] = null;
+            }
 
             // 获取签到列表
             wx.request({
@@ -120,7 +118,8 @@ Page({
                     console.log(calendarSignData);
                     console.log(calendarSignDay);
                     var dayindex = [];
-                    var hasDaty = res.data.data;
+                    var hasDaty = res.data.data.signin_list;
+                    let is_singin_today = res.data.data.is_signin_today;
                     console.log(hasDaty);
                     for (var i = 0; i < hasDaty.length; i++) {
                         dayindex[i] = hasDaty[i].split("-");
@@ -137,7 +136,8 @@ Page({
                         monthDaySize: monthDaySize,
                         date: date,
                         calendarSignData: calendarSignData,
-                        calendarSignDay: calendarSignDay
+                        calendarSignDay: calendarSignDay,
+                        is_singin_today
                     })
                 }
             })

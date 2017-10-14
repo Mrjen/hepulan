@@ -49,7 +49,7 @@
             </view>
             <view style="padding-bottom:8rpx;">
                 <text wx:if="{{date==calendarSignData[date]}}" style="color:#fff;font-size:22rpx; border-radius:50%;background-color:#ff9393">已签</text>
-                <text wx:else="" style="color:#ff9393;">{{date}}</text>
+                <text wx:else="" style="color:#ff9393;" bindtap="toDiary">{{date}}</text>
             </view>
             <view wx:for="{{monthDaySize-date}}">{{item+date+1}}</view>
         </view>

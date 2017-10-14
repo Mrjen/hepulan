@@ -51,7 +51,7 @@
           <text style="">{{item+1}}</text>
         </text>
       </view>
-      <view class="data" style="padding-bottom:8rpx;">
+      <view class="data" style="padding-bottom:8rpx;" bindtap="toDiary">
         <text wx:if="{{date==calendarSignData[date]}}" style="color:#67c23a;font-size:22rpx; background-image:url(https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-marked.png);background-size:100% 100%;">已签</text>
         <text wx:else="" style="color:#ff9393;background-image:url(https://qncdn.playonwechat.com/icon-wmark.png);background-size:100% 100%;">{{date}}</text>
       </view>

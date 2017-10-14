@@ -138,7 +138,8 @@ Page({
   },
 
   // 提交打卡
-  formSubmit() {
+  formSubmit(e) {
+    var form_id = e.detail.formId;
     var that = this;
     var content = that.data.content;
     wx.request({
@@ -151,7 +152,8 @@ Page({
         data:{
           imgs:that.data.imgres?that.data.imgres:"",
           content:content?content:"",
-          is_share:that.data.isRadio?1:0
+          is_share:that.data.isRadio?1:0,
+          form_id:form_id
         }
       },
       success(res){

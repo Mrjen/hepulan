@@ -37,6 +37,7 @@ Page({
               } 
             };
         start+=10;
+        console.log(signin_list)
         that.setData({
            signin_list,
             start,

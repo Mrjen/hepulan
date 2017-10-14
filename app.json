@@ -1,16 +1,19 @@
 {
   "pages": [
-    
+    "pages/circle/circle",
     "pages/index/index",
-    "pages/shopExchange/shopExchange",
+    "pages/DiaryMark/DiaryMark",
     "pages/checkIn/checkIn",
+    "pages/qiandao/qiandao",
+    "pages/shopExchange/shopExchange",
+    "pages/diaryMarkList/diaryMarkList",
     "pages/pointMallCar/pointMallCar",
     "pages/pointMall/pointMall",
     
     
     "pages/myAddress/myAddress",
     "pages/ShopLogistics/ShopLogistics",
-    "pages/circle/circle",
+    
     "pages/earnPoint/earnPoint",
     
     "pages/knowledge/knowledge",
@@ -21,11 +24,11 @@
     "pages/login/login",
     "pages/skinTestDetail/skinTestDetail",
     "pages/goldList/goldList",
-    "pages/diaryMarkList/diaryMarkList",
     
-    "pages/DiaryMark/DiaryMark",
+    
+    
     "pages/writeDyn/writeDyn",
-    "pages/qiandao/qiandao",
+    
     "pages/circleRules/circleRules",
     
     "pages/shopSubmiteOrder/shopSubmiteOrder",

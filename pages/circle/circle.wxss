@@ -66,6 +66,20 @@
 
 .nav_in view{
 	flex:1;
+	position: relative;
+}
+
+.nav_in .nav_active:before{
+    content: "";
+    display: block;
+    width: 40rpx;
+    height: 3px;
+    border-radius: 10rpx;
+    background-color: #81ce94;
+    bottom: -10rpx;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav_in image{
@@ -347,6 +361,7 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	overflow: hidden;
+	color:#0f699e;
 }
 
 .write_dyn{

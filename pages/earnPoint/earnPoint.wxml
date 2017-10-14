@@ -7,3 +7,12 @@
       <view class="tip">点击立即赚取</view>
    </view>
 </navigator>
+
+<navigator class="deairy" url="../qiandao/qiandao">
+   <image src="https://qncdn.playonwechat.com/hepulan/earn_point_icon.png"></image>
+   <view class="deairy_right">
+      <view>护肤打卡领积分</view>
+      <view>禾你一起变美</view>
+      <view class="tip">点击立即赚取</view>
+   </view>
+</navigator>

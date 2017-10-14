@@ -124,7 +124,7 @@
   </view>
 
   <!-- 评论弹屏 -->
-  <view class="barrage_box"  animation="{{barrgeAnimate}}">
+  <view class="barrage_box" wx:if="{{false}}" animation="{{barrgeAnimate}}">
       <view class="barrage_item" wx:for="{{barrageData}}">
          <view class="barrage_content">{{item.dis_content}}</view>
          <image class="barrage_persion" src="{{item.owner_avatar}}"></image>
