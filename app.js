@@ -1,5 +1,6 @@
 //app.js
 let common = require('common.js');
+var mta = require('utils/mta_analysis.js');
 App({
     data: {
         loginData: null,
@@ -17,6 +18,11 @@ App({
     },
     onLaunch: function() {
         var that = this;
+        mta.App.init({
+            "appID": "500521555",
+            "eventID": "500521564",
+        });
+
         wx.login({
             success: function(res) {
                 //  console.log(res);
@@ -106,12 +112,12 @@ App({
                                             method: 'POST',
                                             data: {
                                                 key: that.data.apiKey,
-                                                type:"save-user-info",
+                                                type: "save-user-info",
                                                 data: {
                                                     info: userData,
                                                     encryptedData: encryptedData,
                                                     iv: iv,
-                                                    sign:wx.getStorageSync("sign")
+                                                    sign: wx.getStorageSync("sign")
                                                 }
                                             },
                                             success: function(res) {

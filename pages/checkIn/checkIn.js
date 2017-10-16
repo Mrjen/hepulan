@@ -29,6 +29,7 @@ Page({
           img:"https://qncdn.playonwechat.com/hepulan/check_in10.png"
         }]
     },
+
     //签到
     formSubmit: function(e) {
         let that = this;
@@ -36,12 +37,6 @@ Page({
         console.log("formSubmit formId", _formId);
         //console.log("签名"+sign);
         console.log("formId", _formId);
-
-        // console.log(calendarSignData);
-        // let calendarSignData = that.data.calendarSignData;
-        // calendarSignData[date] = date;
-        // let calendarSignDay = that.data.calendarSignDay;
-        // console.log(calendarSignData);
 
         wx.request({
             url: app.data.apiUrl,
@@ -58,30 +53,37 @@ Page({
                 console.log(res);
                 if (res.data.status === 1) {
                     let score = res.data.data.score;
+                    let hasDaty = res.data.data.signin_list;  //签到列表
                     let goldImg = that.data.goldImg;
                     let dayCheckIn = res.data.data.is_signin;
                     let scoreImg = "";
+                    let dayindex = [];
                     let punch = res.data.data.sign_keep; //连续签到天数
                     let coins = res.data.data.usable_score;
                     let allday = res.data.data.sign_total; //总签到天数
-                    for (var i = 0; i < goldImg.length; i++) {
+                    let calendarSignData = that.data.calendarSignData;
+                    for (let i = 0; i < goldImg.length; i++) {
                        if (score==goldImg[i].score) {
                            scoreImg = goldImg[i].img;
                        }
                     }
+                    for (let i = 0; i < hasDaty.length; i++) {
+                        dayindex[i] = hasDaty[i].split("-");
+                        dayindex[i] = dayindex[i][2];
+                        let idx = parseInt(dayindex[i]);
+                        calendarSignData[idx] = idx;
+                    }
+
                     that.setData({
                         goldWin: false,
                         coins,
                         punch,
                         allday,
                         scoreImg,
-                        dayCheckIn
+                        dayCheckIn,
+                        calendarSignData
                     })
-                    // setTimeout(function() {
-                    //     that.setData({
-                    //         goldWin: true
-                    //     })
-                    // }, 1500)
+
                 }else{         
                    wx.showToast({
                       title: res.data.msg,
@@ -132,11 +134,14 @@ Page({
         };
 
         let calendarSignData = new Array(monthDaySize);
-
+    
         for (let i = 0; i < calendarSignData.length; i++) {
             calendarSignData[i] = null;
         }
         console.log(calendarSignData);
+        that.setData({
+            calendarSignData
+        })
 
         // 获取签到列表
         common.getSign(function() {
@@ -224,17 +229,6 @@ Page({
     // 弹窗金币数说明
     helpCoins: function() {
         let that = this;
-
-        // that.setData({
-        //     helpWin: true
-        // })
     }
-
-    // close_help: function() {
-    //     let that = this;
-    //     that.setData({
-    //         helpWin: false
-    //     })
-    // }
 
 })

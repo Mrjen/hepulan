@@ -88,8 +88,17 @@ Page({
         let codeid = `codeid_${options.codeId}`;
         let load_code = codeid.split("_");
         console.log("onload",codeid)
-        wx.setStorageSync("codeid",codeid)
-        mta.Event.stat(codeid,{});
+        
+        if (codeid) {
+            wx.setStorageSync("codeid",codeid)
+            mta.Event.stat(codeid,{});
+        }
+        
+        if (options.codeId=='goto') {
+            wx.switchTab({
+              url: '../circle/circle'
+            })
+        }
 
         //页面初始化 options为页面跳转所带来的参数
         var that = this;
@@ -113,10 +122,7 @@ Page({
            onShow: "执行获取onshow"
         })
         common.getSign(function(sign) {
-            // that.setData({
-            //     sign,
-            //     getsign: "执行获取sign"
-            // })
+
         });
     },
     // 皮肤测试
