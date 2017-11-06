@@ -1,4 +1,5 @@
 var app = getApp();
+import Api from './api'
 
 function backHome() {
   wx.switchTab({
@@ -20,7 +21,7 @@ function getUser(){
        success:function(res){
          if (res.code) {
            wx.request({
-            url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
+            url:Api.apiUrl,
             data: {
               code: res.code
             },
@@ -57,7 +58,7 @@ function getUser(){
                     wx.setStorageSync('nickName', wx_name);
                     wx.setStorageSync('avatarUrl', avatarUrl);
                     wx.request({
-                      url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
+                      url:Api.apiUrl,
                       method: "POST",
                       data: {
                         type:"actionAuth",
@@ -104,7 +105,7 @@ function getUser(){
                                    country: country
                                  };
                                  wx.request({
-                                   url: 'https://yulufan.playonwechat.com/site/save-user-info?sign=' + sign,
+                                   url: Api.apiUrl,
                                    method: "POST",
                                    data: {
                                      info: userData
@@ -142,7 +143,7 @@ function getUser(){
 
 function http(http,cb){
    wx.request({
-     url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
+     url:Api.apiUrl,
      method:'POST',
      data:{
        sign:wx.getStorageSync("sign"),
@@ -162,7 +163,7 @@ function getSign(callback) {
      success(res){
       //  console.log(res);
        wx.request({
-         url: 'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
+         url: Api.apiUrl,
          data:{
             key:'be15d4ca913c91494cb4f9cd6ce317c6',
             type:"get-third-key",
@@ -199,7 +200,7 @@ function getThirdKey(cb){
        success(res){
          let code = res.code;
          wx.request({
-           url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
+           url:Api.apiUrl,
            method:"POST",
            data:{
              key:"be15d4ca913c91494cb4f9cd6ce317c6",
@@ -220,7 +221,7 @@ function getThirdKey(cb){
 // 获取vip_id
 function getVipId(tell,callback){
   wx.request({
-    url:'https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index',
+    url:Api.apiUrl,
     method:"POST",
     data:{
       key:"be15d4ca913c91494cb4f9cd6ce317c6",

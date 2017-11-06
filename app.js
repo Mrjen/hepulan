@@ -1,6 +1,7 @@
 //app.js
 let common = require('common.js');
 var mta = require('utils/mta_analysis.js');
+import Api from './api'
 App({
     data: {
         loginData: null,
@@ -13,7 +14,7 @@ App({
         loginStatic: false,
         authSuccess: false,
         // apiUrl: "https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index",
-        apiUrl:"https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index",
+        apiUrl:Api.apiUrl,
         apiKey: "be15d4ca913c91494cb4f9cd6ce317c6"
     },
     onLaunch: function() {

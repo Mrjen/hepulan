@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/pointMall/pointMall",
     "pages/index/index",
+    "pages/pointMall/pointMall",
+    "pages/friendShare/friendShare",
+    
     "pages/getPoint/getPoint",
     "pages/DiaryMark/DiaryMark",
     "pages/checkIn/checkIn",
@@ -35,7 +37,6 @@
     "pages/apply/apply",
     "pages/member/member",
     "pages/sharePoster/sharePoster",
-    "pages/friendShare/friendShare",
     "pages/sharePage/sharePage",
     "pages/applyDetail/applyDetail",
     "pages/integralList/integralList",
