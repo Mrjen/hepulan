@@ -9,8 +9,10 @@
 	text-align: center;
 	background-repeat: no-repeat;
 	background-size: 750rpx 800rpx;
-	background-image:url('background-image: url("https://hepulan.playonwechat.com/static/sharePoster/share.png");');
+	background-image:url(https://qncdn.playonwechat.com/hepulan/friend_share_bg.png);
 }
+
+
 
 .persion_img{
 	width: 364rpx;

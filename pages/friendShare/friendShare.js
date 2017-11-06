@@ -32,9 +32,11 @@ Page({
     var that = this;
     console.log("打印friendshare页面参数");
     console.log(options);
-    console.log(options.pageSharecode);
+    console.log(options.sharecode,"分享人的sign");
+    // let sharecode = "701b71d9956a14d39cad86b31ac07578";
+    let sharecode = options.sharecode;
     that.setData({
-      pageSharecode:options.pageSharecode
+      pageSharecode:sharecode
     })
   },
 
@@ -48,70 +50,100 @@ Page({
     })
   },
 
-  helpHe:function(){
-    var that = this;
-    var pageSharecode = that.data.pageSharecode;
-     console.log(this.data.userName);
-     wx.login({
-     success: function(res) {
-       if (res.code) {
-         //发起网络请求
-         wx.request({
-           url: "https://hepulan.playonwechat.com/site/auth?code="+res.code,
-           data: {
-             code: res.code
-           },
-           success:function(ress){
-             var _sign = ress.data.data.sign;
-             wx.getUserInfo({
-                success: function(resx) {
-                  console.log("打印用户信息--助力人的信息吧");
-                  console.log(resx);
-                  var userInfo = resx.userInfo;
-                  var _nickName = userInfo.nickName;
-                  var _avatarUrl = userInfo.avatarUrl;
-                  var gender = userInfo.gender;
-                  wx.request({
-                    url: "https://hepulan.playonwechat.com/site/save-boost?sign="+_sign,
-                    method:"POST",
-                    data:{
-                      // sharecode:"8c9016d2cdb7bae04c511a7c58d8dac2"
-                      sharecode:pageSharecode
-                    },
-                    success:function(ressucceed){
-                      //console.log(ressucceed);
-                        var preCoins = ressucceed.data.data;
-                        var coins =  that.data.coins+(+3);
-                        var tadybootsts = that.data.tadybootsts+(+1);
-                        var danList = that.data.danList;
-                        console.log("danList push之前",danList);
-                        danList.push({
-                             avatarurl:_avatarUrl,
-                             nickname:_nickName,
-                             topMargin:10,
-                          })
-                        console.log("danList push之后",danList);
-                        that.setData({
-                          hashelp:true,
-                          coins:coins,
-                          danList:danList,
-                          _nickName:_nickName,
-                          _avatarUrl:_avatarUrl,
-                          tadybootsts:tadybootsts
-                        })
-                      console.log("保存助力");
-                    }
-                  })
-                }
+
+  helpHe(){
+    let that = this;
+    let pageSharecode = that.data.pageSharecode;
+    common.getSign(function(res){
+       let http = {
+          type:"help-frends",
+          sign:res,
+          data:{
+            plus_score_sign:pageSharecode
+          }
+       }
+       common.http(http,function(res){
+           console.log(res);
+           if(res.data.status==1){
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'success',
+                  duration: 2000
+                })
+              that.setData({
+                 helped:1
               })
            }
-         })
-       } else {
-         console.log('获取用户登录态失败！' + res.errMsg)
-       }
-     }
-   });
+       })
+    })
   },
+
+
+
+  // helpHe:function(){
+  //   var that = this;
+  //   var pageSharecode = that.data.pageSharecode;
+  //    console.log(this.data.userName);
+  //    wx.login({
+  //    success: function(res) {
+  //      if (res.code) {
+  //        //发起网络请求
+  //        wx.request({
+  //          url: "https://hepulan.playonwechat.com/site/auth?code="+res.code,
+  //          data: {
+  //            code: res.code
+  //          },
+  //          success:function(ress){
+  //            var _sign = ress.data.data.sign;
+  //            wx.getUserInfo({
+  //               success: function(resx) {
+  //                 console.log("打印用户信息--助力人的信息吧");
+  //                 console.log(resx);
+  //                 var userInfo = resx.userInfo;
+  //                 var _nickName = userInfo.nickName;
+  //                 var _avatarUrl = userInfo.avatarUrl;
+  //                 var gender = userInfo.gender;
+  //                 wx.request({
+  //                   url: "https://hepulan.playonwechat.com/site/save-boost?sign="+_sign,
+  //                   method:"POST",
+  //                   data:{
+  //                     // sharecode:"8c9016d2cdb7bae04c511a7c58d8dac2"
+  //                     sharecode:pageSharecode
+  //                   },
+  //                   success:function(ressucceed){
+  //                     //console.log(ressucceed);
+  //                       var preCoins = ressucceed.data.data;
+  //                       var coins =  that.data.coins+(+3);
+  //                       var tadybootsts = that.data.tadybootsts+(+1);
+  //                       var danList = that.data.danList;
+  //                       console.log("danList push之前",danList);
+  //                       danList.push({
+  //                            avatarurl:_avatarUrl,
+  //                            nickname:_nickName,
+  //                            topMargin:10,
+  //                         })
+  //                       console.log("danList push之后",danList);
+  //                       that.setData({
+  //                         hashelp:true,
+  //                         coins:coins,
+  //                         danList:danList,
+  //                         _nickName:_nickName,
+  //                         _avatarUrl:_avatarUrl,
+  //                         tadybootsts:tadybootsts
+  //                       })
+  //                     console.log("保存助力");
+  //                   }
+  //                 })
+  //               }
+  //             })
+  //          }
+  //        })
+  //      } else {
+  //        console.log('获取用户登录态失败！' + res.errMsg)
+  //      }
+  //    }
+  //  });
+  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -123,87 +155,164 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-     var that = this;
-     var username = app.data.username;
-     var pageSharecode = that.data.pageSharecode;
-     var sign = app.data.sign;
-     console.log("打印助力人的sign",sign);
-     console.log("被助力人的pageSharecode",pageSharecode);
-     wx.request({
-       url: "https://hepulan.playonwechat.com/site/get-boosts?sign="+sign,
-       method:"GET",
-       header: {
-         'content-type': 'application/json'
-       },
-       data:{
-        //  sharecode:"8c9016d2cdb7bae04c511a7c58d8dac2"
-         sharecode:pageSharecode
-       },
-       success:function(res){
-         console.log("onShow");
-         console.log(res);
-         var avatarUrl = res.data.data.avatarurl;
-         var nickName = res.data.data.nickname;
-         var coins = res.data.data.coins;
-         var boosted = res.data.data.boosted;
-         var tadybootsts = res.data.data.todayBoosts;
-         var boostCoins = res.data.data.boostCoins;
-         console.log(avatarUrl,nickName,tadybootsts,boostCoins);
-         var danMu = res.data.data.list;
-         for (var i = 0; i < danMu.length; i++) {
-           danMu[i].topMargin = 10
-         }
-         console.log(danMu);
-         if (boosted==0) {
-           that.setData({
-             hashelp:false
-           })
-         }else if (boosted==1) {
-           that.setData({
-             hashelp:true
-           })
-         }
-        //  var danMu = [{
-        //    persionName:"人物1人物1人物",
-        //    userImg:"../img/knowledge_icon_persion.png",
-        //    topMargin:10
-        //  }];
-         var danList = [];
-         var m = 0;
-         var topM = that.data.topMargin;
-         var j = 1;
-         var time = setInterval(function(){
-               if (m<danMu.length) {
-                   danMu[m].topMargin = danMu[m].topMargin*7*j;
-                 danList.push(danMu[m]);
-                 console.log(danList);
-                 if (j>4) {
-                   j=1;
-                   console.log("j==1");
-                 }
-                 m++;
-                 j++;
-               }else{
-                  clearInterval(time);
-               }
-              console.log(danList);
-            that.setData({
-                  danList:danList,
-                  avatarUrl:avatarUrl,
-                  userName:nickName,
-                  coins:coins,
-                  sign:sign,
-                  tadybootsts:tadybootsts,
-                  boostCoins:boostCoins
-              })
-         },800);
+  // onShow: function () {
+  //    var that = this;
+  //    var username = app.data.username;
+  //    var pageSharecode = that.data.pageSharecode;
+  //    var sign = app.data.sign;
+  //    console.log("打印助力人的sign",sign);
+  //    console.log("被助力人的pageSharecode",pageSharecode);
+  //    wx.request({
+  //      url: "https://hepulan.playonwechat.com/site/get-boosts?sign="+sign,
+  //      method:"GET",
+  //      header: {
+  //        'content-type': 'application/json'
+  //      },
+  //      data:{
+  //       //  sharecode:"8c9016d2cdb7bae04c511a7c58d8dac2"
+  //        sharecode:pageSharecode
+  //      },
+  //      success:function(res){
+  //        console.log("onShow");
+  //        console.log(res);
+  //        var avatarUrl = res.data.data.avatarurl;
+  //        var nickName = res.data.data.nickname;
+  //        var coins = res.data.data.coins;
+  //        var boosted = res.data.data.boosted;
+  //        var tadybootsts = res.data.data.todayBoosts;
+  //        var boostCoins = res.data.data.boostCoins;
+  //        console.log(avatarUrl,nickName,tadybootsts,boostCoins);
+  //        var danMu = res.data.data.list;
+  //        for (var i = 0; i < danMu.length; i++) {
+  //          danMu[i].topMargin = 10
+  //        }
+  //        console.log(danMu);
+  //        if (boosted==0) {
+  //          that.setData({
+  //            hashelp:false
+  //          })
+  //        }else if (boosted==1) {
+  //          that.setData({
+  //            hashelp:true
+  //          })
+  //        }
+  //       //  var danMu = [{
+  //       //    persionName:"人物1人物1人物",
+  //       //    userImg:"../img/knowledge_icon_persion.png",
+  //       //    topMargin:10
+  //       //  }];
+  //        var danList = [];
+  //        var m = 0;
+  //        var topM = that.data.topMargin;
+  //        var j = 1;
+  //        var time = setInterval(function(){
+  //              if (m<danMu.length) {
+  //                  danMu[m].topMargin = danMu[m].topMargin*7*j;
+  //                danList.push(danMu[m]);
+  //                console.log(danList);
+  //                if (j>4) {
+  //                  j=1;
+  //                  console.log("j==1");
+  //                }
+  //                m++;
+  //                j++;
+  //              }else{
+  //                 clearInterval(time);
+  //              }
+  //             console.log(danList);
+  //           that.setData({
+  //                 danList:danList,
+  //                 avatarUrl:avatarUrl,
+  //                 userName:nickName,
+  //                 coins:coins,
+  //                 sign:sign,
+  //                 tadybootsts:tadybootsts,
+  //                 boostCoins:boostCoins
+  //             })
+  //        },800);
+  //      }
+  //    });
+  //    that.setData({
+  //     userName:username
+  //   });
+  // },
+
+   // 页面显示
+   onShow(){
+    let that = this;
+    let pageSharecode = that.data.pageSharecode;
+    common.getSign(function(res){
+       let sign = res;
+       console.log(sign,"sign")
+       let http = {
+          type:"get-help-me-frends",
+          data:{
+             plus_score_sign:pageSharecode
+          },
+          sign:sign,
        }
-     });
-     that.setData({
-      userName:username
-    });
+       common.http(http,function(res){
+           console.log(res,"cc32f8efd5baf7cdc4fbddcc87216f5f");
+           var danMu = res.data.data.help;
+           let avatarUrl = res.data.data.user.headimgurl;
+           let nickName = res.data.data.user.nickname;
+           let score = res.data.data.usable_score;
+           let get_score = res.data.data.get_score;
+           let today_helps = res.data.data.today_helps;
+           let helped = res.data.data.helped;
+           for (var i = 0; i < danMu.length; i++) {
+              danMu[i].topMargin = 10
+           }
+           console.log(danMu);
+           var danList = [];
+           var m = 0;
+           var topM = that.data.topMargin;
+           var j = 1;
+           let time = setInterval(function(){
+             if (m<danMu.length) {
+               danMu[m].topMargin = danMu[m].topMargin*7*j;
+               danList.push(danMu[m]);
+               // console.log(danList);
+               if (j>4) {
+                 j=1;
+               }
+               m++;
+               j++;
+             }else{
+               clearInterval(time);
+             }
+             console.log(danList)
+             that.setData({
+               danList,
+               avatarUrl,
+               nickName
+             })
+           },800)
+
+           that.setData({
+              score,
+              get_score,
+              today_helps,
+              helped
+           })
+       })
+    })
+
+    // common.getSign(function(res){
+    //    let sign = res.data.data.sign;
+    //    let http = {
+    //       type:"help-frends",
+    //       sign:sign,
+    //       data:{
+    //         plus_score_sign:pageSharecode
+    //       }
+    //    }
+    //    common.http(http,function(res){
+    //        console.log(res)
+    //    })
+    // })
   },
+
   // 返回首页
     backHome:function(){
        common.backHome();
