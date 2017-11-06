@@ -10,6 +10,7 @@ Page({
         wxcode: "",
         copyTeach: false,
         teach_static: false,
+        closeGetPoint:"block",//获取积分icon的显示状态
         templateData: [{
             teacher_id: "",
             title_tip: '请咨询您的专属护肤老师'
@@ -40,6 +41,9 @@ Page({
     // 统计
     tongJi(ev) {
         let codeid = wx.getStorageSync("codeid");
+            codeid = codeid.split("_");
+            codeid = codeid.toLocaleString();
+            codeid =  codeid.toLowerCase();
         mta.Event.stat("contact_click", {codeid:'true'})
     },
 
@@ -86,9 +90,9 @@ Page({
         mta.Page.init();
         // options.codeId = "Tdhgdi";
         let codeid = `codeid_${options.codeId}`;
-        let load_code = codeid.split("_");
+        // let load_code = codeid.split("_");
         console.log("onload",codeid)
-        
+
         if (codeid) {
             wx.setStorageSync("codeid",codeid)
             mta.Event.stat(codeid,{});
@@ -214,6 +218,15 @@ Page({
         var pagePath = "../index/index"
         wx.navigateTo({
             url: '../login/login?pagePath=' + pagePath + "&pages=" + pages
+        })
+    },
+
+
+    // 关闭获取积分按钮
+    closeGetPoint(){
+        let that = this;
+        that.setData({
+            closeGetPoint:"none"
         })
     },
 

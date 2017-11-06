@@ -46,8 +46,13 @@ page{
   text-align: center;
   font-size: 26rpx;
   color: #fff;
-  margin-top: 66rpx;
+  margin-top: 18rpx;
   margin-bottom: 10rpx;
+}
+
+.invate{
+  font-size: 26rpx;
+  text-align: center;
 }
 
 .opation_nav{

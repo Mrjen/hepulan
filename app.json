@@ -1,14 +1,14 @@
 {
   "pages": [
-    
+    "pages/pointMall/pointMall",
     "pages/index/index",
+    "pages/getPoint/getPoint",
     "pages/DiaryMark/DiaryMark",
     "pages/checkIn/checkIn",
     "pages/qiandao/qiandao",
     "pages/shopExchange/shopExchange",
     "pages/diaryMarkList/diaryMarkList",
     "pages/pointMallCar/pointMallCar",
-    "pages/pointMall/pointMall",
     "pages/circle/circle",
     "pages/myAddress/myAddress",
     "pages/ShopLogistics/ShopLogistics",
@@ -38,7 +38,6 @@
     "pages/friendShare/friendShare",
     "pages/sharePage/sharePage",
     "pages/applyDetail/applyDetail",
-    "pages/calendar/calendar",
     "pages/integralList/integralList",
     "pages/Recommend/Recommend",
     "pages/tip/tip",

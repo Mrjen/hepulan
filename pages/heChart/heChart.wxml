@@ -18,9 +18,11 @@
     </block>
   </swiper>
 <!-- 标签 -->
-<view class="label_nav">
-   <view class="label_item {{item.select==0?'':'active'}}" wx:for="{{labelItem}}" bindtap="labelItem" data-text="{{item.worlds}}" data-idx="{{index}}">{{item.worlds}}</view>
+<scroll-view scroll-x="true" class="tag_scroll">
+<view class="label_nav" style="width:{{tagWidth}}">
+   <view class="label_item {{item.select==0?'':'active'}}" wx:for="{{labelItem}}" bindtap="labelItem" data-text="{{item.worlds}}" data-id="{{item.id}}" data-idx="{{index}}">{{item.worlds}}</view>
 </view>
+</scroll-view>
 <!-- 视频列表 -->
 <view class="video_list">
   <view class="video_box" wx:for="{{videoList}}">

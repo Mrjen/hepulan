@@ -1,0 +1,59 @@
+/* pages/getPoint/getPoint.wxss */
+.swiper{
+	width:100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.swiper image{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.rangle{
+	display: block;
+	width: 125rpx;
+	height: 94rpx;
+	position: absolute;
+	bottom: 80rpx;
+	left: 50%;
+	transform: translateX(-50%);
+	/*opacity: .9;*/
+	animation: rangle 1.2s infinite;
+}
+
+@-webkit-keyframes rangle{
+	0%,100%{ 
+		opacity: .1;
+	}
+	50%{
+		opacity: 1;
+	}
+}
+
+.btn_box{
+	display: flex;
+	justify-content: space-between;
+	padding:0 150rpx;
+	position: absolute;
+	top: 724rpx;
+	height: 70rpx;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+
+.nav_to{
+	width: 182rpx;
+	height: 70rpx;
+	display: block;
+	font-size: 28rpx;
+	color: #402e54;
+	text-align: center;
+	line-height: 70rpx;
+	background: #fff;
+	border-radius: 6rpx;
+}

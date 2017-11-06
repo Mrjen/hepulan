@@ -4,6 +4,7 @@
 <image class="avatarUrl" src="{{avatarUrl}}"></image>
 <view class="nickName">{{nickName}}</view>
 <view class="point_count">可兑换积分{{pointCount}}</view>
+<navigator class="invate" url="../sharePage/sharePage" hover-class="none">积分不足？找好友来帮忙>></navigator>
 <view class="point_detail" bindtap="toShopExchange">点击查看积分详情</view>
 <!-- 功能导航 -->
  <view class="opation_nav">

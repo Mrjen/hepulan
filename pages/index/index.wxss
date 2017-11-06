@@ -287,3 +287,32 @@
     transform: translate3d(0, -4px, 0)
   }
 }
+
+
+/*去获取积分*/
+.get_point{
+	position: fixed;
+	top: 493rpx;
+	right: 20rpx;
+}
+
+.get_point image{
+	display: block;
+	width: 138rpx;
+	height: 112rpx;
+}
+
+.get_point text{
+	display: block;
+	width: 50rpx;
+	height: 50rpx;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAMAAAAPzWOAAAAAe1BMVEUAAAAIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXigIXij/6gBYfyL14wIraibg1QaJnBu7vBB6kx2YpRjvLvp8AAAAH3RSTlMABfXt2auaixMNZT/l38S7s39dUkUx883LhoVmQCUiGGQdFwAAAehJREFUWMOc0QmSgkAQRNFeoUH2xV0TxfufcTSGmVAKLOh/gBdVkWIu6do4tJnRSmmT2TBunRTrulTBHqP2QXVZLkRNYDCZCZpoGVEXGrPpol7AnK3C15Q9M4Q7JmBLju6bscmxqHwzv+opxcLSk5wxyi0Wty3lpBFiVaFkDE9Fllgd+ShWWJ2KR9um8Cj9WNrl8Cp3b8gBnh3enkngWfL/UGThnY0GpKbL3HpM1t/GC9XDIQU17o9+0njcx0rxe0qjqdF1L4UaXTdWdPMyZDBlDAoxqBLIJ3I1E8agUIMq5vpEKlDkT6EGRVDRb6hCDfKP24FRGAM7J1oFRmEMqFbEAKMwBhCLEJzCGQiFBaswBqzIwCqMgUwYsApjwAgNRmENaKHAKKwB9VOLvesABERBGF7iFoWCQk2yy/s/oQKJ+MkUwwt8yRZ7zswBAgUGETwHf44/gM8plKGVInTK0EoXSmVopQy1NOZZKHVopTFNQmkxCmjgT3MUNKM0oGAoZZUyqHDc98KQSs+VQYMKV0ZWCYMKXsM1utwMKCvXKBd6vBpUEhb6Y7SIh0EFRj68hpx4GlQSQs5r3Iq7QSUxbvnB7+sI6odhP5b7BcGvKlQMw69vfpH0K61frv2a7x8c/NPHj0cY/xy0AQk4tjkX3IMKAAAAAElFTkSuQmCC');
+	background-size: 90% 90%;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: absolute;
+	right: 0;
+	top: -60rpx;
+	box-sizing: border-box;
+	padding:10rpx;
+}

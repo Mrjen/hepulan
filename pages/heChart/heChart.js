@@ -83,8 +83,9 @@ Page({
   labelItem:function(ev){
      console.log(ev);
      var that = this;
-     var  text_world = ev.target.dataset.text;
-     console.log(text_world)
+     var  id = ev.target.dataset.id;
+
+     console.log(id)
      var labelItem = that.data.labelItem;
      var idx = ev.target.dataset.idx;
      for (var i = 0; i < labelItem.length; i++) {
@@ -98,7 +99,7 @@ Page({
       url: 'https://hepulan.playonwechat.com/site/get-zb-home?sign=' + app.data.sign,
       method:"GET",
       data:{
-        keyword:text_world
+        tagId:id
       },
       success:function(res){
           console.log(res)
@@ -235,6 +236,7 @@ onShow: function () {
         labelItem[m].select = 0;
         labelItem[0].select = 1;
       }
+      console.log(labelItem)
       that.setData({
          imgUrls:imgList,
          videoList:video_list,

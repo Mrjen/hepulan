@@ -25,7 +25,7 @@
 
                 <view class="content_video" wx:if="{{item.type=='video'?true:false}}">
                     <view class="image_box" bindtap="video_control" data-ontap="{{item.id}}" wx:if="{{item.noplay=='false'}}" >
-                        <image class="image_src" mode="aspectFit" src="{{item.cover}}"></image>
+                        <image class="image_src" mode="aspectFit" src="{{item.video_cover}}"></image>
                         <image class="video_btn" src="../img/home_icon_videoplay.png"></image>
                     </view>
                     <video class="video_src" id="playVideo" wx:else="" autoplay="{{item.noplay=='true'}}" bindplay="{{item.noplay=='false'}}" src="{{item.url}}#t=1"></video>

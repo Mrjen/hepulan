@@ -60,12 +60,15 @@
    <!-- 公司团队 -->
    <image class="team_pingpai" src="https://hepulan.playonwechat.com/static/home_pingpai.png"></image>
 
-
-
+<!-- 获取积分弹窗 -->
+<navigator class="get_point" style="display:{{closeGetPoint}}" url="../getPoint/getPoint" hover-class="none"><text class="colse_get_point" catchtap="closeGetPoint"></text><image src="https://hepulan.playonwechat.com/static/getpoint/get_point.png"></image></navigator>
 <!-- <template is="share_icon"/> -->
 <!-- 已有护肤老师弹窗 -->
 <block wx:for="{{templateData}}">
     <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
 </block>
 <image class="hert" src="https://qncdn.playonwechat.com/hepulan/hert.png"></image>
+
+
+
 </scroll-view>
