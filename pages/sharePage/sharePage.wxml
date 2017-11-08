@@ -5,7 +5,7 @@
     <view class="persion_name">{{nickName}}</view>
     <view class="persion_coins">总积分：{{score}}</view>
     <button class="yaoBtn" open-type="share">邀请好友助力</button>
-    <view class="share_tip">每一个好友的助力都会帮你获得 3 个金币</view>
+    <view class="share_tip">每一个好友的助力都会帮你获得 5 个积分</view>
     <view class="share_tip">快叫微信的小伙伴来帮忙吧！</view>
     <view class="share_tip2">赶紧邀请好朋友来助力吧!</view>
     <template is="share_icon"/>

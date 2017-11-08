@@ -18,12 +18,30 @@ Page({
     if (options.sharecode) {
       console.log("options_data", options);
       console.log("appdata", app.data);
-      // var pageSharecode = options.sharecode; //页面带来的signcode
-      var pageSharecode = "701b71d9956a14d39cad86b31ac07578"; //页面带来的signcode
+      var pageSharecode = options.sharecode; //页面带来的signcode
+      // var pageSharecode = "701b71d9956a14d39cad86b31ac07578"; 
       that.setData({
         pageSharecode: pageSharecode
       })
     }
+  },
+
+  onShow(){
+     let that = this;
+     let avatarUrl = wx.getStorageSync("avatarUrl");
+     let nickName = wx.getStorageSync("nickName");
+     let http = {
+        type:"get-my-usable-score",
+     }
+     common.http(http,function(res){
+       console.log(res);
+       let score = res.data.data.usable_score;
+       that.setData({
+         score,
+         avatarUrl,
+         nickName
+       })
+     })
   },
 
   /**
@@ -172,23 +190,7 @@ Page({
   // }
   // },
 
-  onShow(){
-     let that = this;
-     let avatarUrl = wx.getStorageSync("avatarUrl");
-     let nickName = wx.getStorageSync("nickName");
-     let http = {
-        type:"get-vip-score",
-     }
-     common.http(http,function(res){
-       console.log(res);
-       let score = res.data.data.usable_score;
-       that.setData({
-         score,
-         avatarUrl,
-         nickName
-       })
-     })
-  },
+
 
   // 返回首页
     backHome:function(){

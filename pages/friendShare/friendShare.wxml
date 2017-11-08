@@ -18,7 +18,7 @@
    </view>
    <view class="navto" bindtap="navTo">点击进入禾葡兰小程序</view>
    <view class="danmu">
-      <view class="danmu_item dan{{index}}" style="top:{{item.topMargin}}rpx;margin-right: 10rpx" wx:for="{{danList}}"><image src="{{item.headimgurl}}"></image>{{item.nickname}}向{{userName}}捐赠了3金币</view>
+      <view class="danmu_item dan{{index}}" style="top:{{item.topMargin}}rpx;margin-right: 10rpx" wx:for="{{danList}}"><image src="{{item.headimgurl}}"></image>{{item.nickname}}帮助{{userName}}获得了5积分</view>
    </view>
    <template is="share_icon"/>
 </view>
