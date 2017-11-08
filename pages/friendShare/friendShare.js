@@ -33,7 +33,7 @@ Page({
     console.log("打印friendshare页面参数");
     console.log(options);
     console.log(options.sharecode,"分享人的sign");
-    // let sharecode = "701b71d9956a14d39cad86b31ac07578";
+    // let sharecode = "0be371dd1b62c87947fba665346b492a";
     let sharecode = options.sharecode;
     that.setData({
       pageSharecode:sharecode
@@ -56,26 +56,107 @@ Page({
     let pageSharecode = that.data.pageSharecode;
     common.getSign(function(res){
        let http = {
-          type:"help-frends",
-          sign:res,
+          type:"save-zuli",
           data:{
-            plus_score_sign:pageSharecode
+            beizuli_sign:pageSharecode
           }
        }
        common.http(http,function(res){
            console.log(res);
            if(res.data.status==1){
+            var danMu = res.data.beizuli_zuli_list;
+            let score = that.data.score + 5;
                 wx.showToast({
                   title: res.data.msg,
                   icon: 'success',
                   duration: 2000
                 })
               that.setData({
-                 helped:1
+                 helped:1,
+                 danMu,
+                 score
               })
            }
        })
     })
+  },
+
+
+     // 页面显示
+   onShow(){
+    let that = this;
+    let pageSharecode = that.data.pageSharecode;
+    common.getSign(function(res){
+       let sign = res;
+       console.log(sign,"sign")
+       let http = {
+          type:"get-zuli-list",
+          data:{
+             beizuli_sign:pageSharecode
+          },
+          sign:sign,
+       }
+       common.http(http,function(res){
+           console.log(res,'0000');
+           var danMu = res.data.beizuli_zuli_list;
+           let avatarUrl = res.data.beizuli_headimgurl;
+           let nickName = res.data.beizuli_nickname;
+           let score = res.data.beizuli_usable_score;
+           let get_score = res.data.beizuli_zuli_total_score;
+           let today_helps = res.data.beizuli_zuli_today_count;
+           let helped = res.data.is_zuli_today_log;
+           
+           for (var i = 0; i < danMu.length; i++) {
+              danMu[i].topMargin = 10
+           }
+           // console.log(danMu,"danMu");
+           var danList = [];
+           var m = 0;
+           var topM = that.data.topMargin;
+           var j = 1;
+           let time = setInterval(function(){
+             if (m<danMu.length) {
+               danMu[m].topMargin = danMu[m].topMargin*7*j;
+               danList.push(danMu[m]);
+               // console.log(danList);
+               if (j>4) {
+                 j=1;
+               }
+               m++;
+               j++;
+             }else{
+               clearInterval(time);
+             }
+             console.log(danList)
+             that.setData({
+               danList,
+               avatarUrl,
+               nickName
+             })
+           },800)
+
+           that.setData({
+              score,
+              get_score,
+              today_helps,
+              helped
+           })
+       })
+    })
+
+    // common.getSign(function(res){
+    //    let sign = res.data.data.sign;
+    //    let http = {
+    //       type:"help-frends",
+    //       sign:sign,
+    //       data:{
+    //         plus_score_sign:pageSharecode
+    //       }
+    //    }
+    //    common.http(http,function(res){
+    //        console.log(res)
+    //    })
+    // })
   },
 
 
@@ -237,81 +318,7 @@ Page({
   //   });
   // },
 
-   // 页面显示
-   onShow(){
-    let that = this;
-    let pageSharecode = that.data.pageSharecode;
-    common.getSign(function(res){
-       let sign = res;
-       console.log(sign,"sign")
-       let http = {
-          type:"get-help-me-frends",
-          data:{
-             plus_score_sign:pageSharecode
-          },
-          sign:sign,
-       }
-       common.http(http,function(res){
-           console.log(res,"cc32f8efd5baf7cdc4fbddcc87216f5f");
-           var danMu = res.data.data.help;
-           let avatarUrl = res.data.data.user.headimgurl;
-           let nickName = res.data.data.user.nickname;
-           let score = res.data.data.usable_score;
-           let get_score = res.data.data.get_score;
-           let today_helps = res.data.data.today_helps;
-           let helped = res.data.data.helped;
-           for (var i = 0; i < danMu.length; i++) {
-              danMu[i].topMargin = 10
-           }
-           console.log(danMu);
-           var danList = [];
-           var m = 0;
-           var topM = that.data.topMargin;
-           var j = 1;
-           let time = setInterval(function(){
-             if (m<danMu.length) {
-               danMu[m].topMargin = danMu[m].topMargin*7*j;
-               danList.push(danMu[m]);
-               // console.log(danList);
-               if (j>4) {
-                 j=1;
-               }
-               m++;
-               j++;
-             }else{
-               clearInterval(time);
-             }
-             console.log(danList)
-             that.setData({
-               danList,
-               avatarUrl,
-               nickName
-             })
-           },800)
 
-           that.setData({
-              score,
-              get_score,
-              today_helps,
-              helped
-           })
-       })
-    })
-
-    // common.getSign(function(res){
-    //    let sign = res.data.data.sign;
-    //    let http = {
-    //       type:"help-frends",
-    //       sign:sign,
-    //       data:{
-    //         plus_score_sign:pageSharecode
-    //       }
-    //    }
-    //    common.http(http,function(res){
-    //        console.log(res)
-    //    })
-    // })
-  },
 
   // 返回首页
     backHome:function(){

@@ -78,6 +78,10 @@ App({
                                                         }
                                                     },
                                                     success(res) {
+                                                        // let _res = JSON.parse(res)
+                                                        console.log(res,"2222")
+                                                        // console.log(_res,"thirdkey");
+
                                                         if (res.data.data.sign) {
                                                             wx.setStorageSync("sign", res.data.data.sign);
                                                         }

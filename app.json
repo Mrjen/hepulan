@@ -1,8 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
+    
     "pages/friendShare/friendShare",
     "pages/sharePage/sharePage",
-    "pages/index/index",
+    
+    
     "pages/pointMall/pointMall",
     "pages/getPoint/getPoint",
     "pages/DiaryMark/DiaryMark",
