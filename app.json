@@ -1,11 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    
+    "pages/webContact/WebContact",
     "pages/friendShare/friendShare",
     "pages/sharePage/sharePage",
-    
-    
     "pages/pointMall/pointMall",
     "pages/getPoint/getPoint",
     "pages/DiaryMark/DiaryMark",
@@ -40,7 +38,6 @@
     "pages/apply/apply",
     "pages/member/member",
     "pages/sharePoster/sharePoster",
-    
     "pages/applyDetail/applyDetail",
     "pages/integralList/integralList",
     "pages/Recommend/Recommend",

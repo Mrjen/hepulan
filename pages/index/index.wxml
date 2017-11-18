@@ -8,7 +8,8 @@
            <!-- <button class="ask_mine navitor1" wx:if="{{!content}}" data-page="ask_me" bindtap="toLogin" hover-class="none">在线咨询</button>
            <button class="ask_mine navitor2" wx:elif="{{teach_static}}" open-type="contact" bindtap="" hover-class="none">在线咨询</button>
            <button class="ask_mine navitor3" wx:else="" open-type="contact" hover-class="none">在线咨询</button> -->
-           <button class="ask_mine navitor3"  open-type="contact" hover-class="none" bindtap="tongJi">立即咨询肌肤问题</button>
+           <!-- <button class="ask_mine navitor3"  open-type="contact" hover-class="none" bindtap="tongJi">立即咨询肌肤问题</button> -->
+           <navigator class="ask_mine navitor3" url='../webContact/WebContact'>立即咨询肌肤问题</navigator>
        </button>
 
         <!-- 咨询 -->

@@ -14,10 +14,10 @@ App({
         loginStatic: false,
         authSuccess: false,
         // apiUrl: "https://api.hepulanerp.com/hpl/index.php?s=/Api/hfzx/index",
-        apiUrl:Api.apiUrl,
+        apiUrl: Api.apiUrl,
         apiKey: "be15d4ca913c91494cb4f9cd6ce317c6"
     },
-    onLaunch: function() {
+    onLaunch: function () {
         var that = this;
         mta.App.init({
             "appID": "500521555",
@@ -25,9 +25,32 @@ App({
         });
 
         wx.login({
-            success: function(res) {
+            success: function (res) {
+                wx.request({
+                    url: 'https://hpchat.playonwechat.com/admin/Apiuser/code?code=013UpFrc0Rr6Wt15Omrc0goRrc0UpFrW',
+                    data: {
+                        code: res.code
+                    },
+                    success(res) {
+                        console.log("这里拿到用户id", res)
+                        wx.setStorageSync('user_id', res.data.id)
+                    }
+                })
+            },
+            fail: function () {
+                // fail
+            },
+            complete: function () {
+                // complete
+            }
+        })
+
+        wx.login({
+            success: function (res) {
                 //  console.log(res);
                 let code = res.code;
+
+
                 if (res.code) {
                     //发起网络请求
                     wx.request({
@@ -40,11 +63,11 @@ App({
                                 code: code
                             }
                         },
-                        success: function(res) {
+                        success: function (res) {
                             console.log(res);
                             if (res.data.status === 2) {
                                 console.log("用户常规授权失败");
-                                common.getThirdKey(function(res) {
+                                common.getThirdKey(function (res) {
                                     console.log(res);
                                     if (res.data.status === 1) {
                                         let thirdkey = res.data.data.thirdkey;
@@ -64,6 +87,19 @@ App({
                                                 };
                                                 wx.setStorageSync("nickName", userInfo.nickName);
                                                 wx.setStorageSync("avatarUrl", userInfo.avatarUrl);
+
+                                                res.userInfo.username = userInfo.nickName;
+                                                res.userInfo.id = wx.getStorageSync('user_id');
+                                                console.log(res.userInfo,11111111111);
+                                                //更新数据库用户信息
+                                                wx.request({
+                                                    url: 'https://hpchat.playonwechat.com/admin/Apiuser/userAdd', //仅为示例，并非真实的接口地址
+                                                    data: res.userInfo,
+                                                    success: function (res) {
+                                                        console.log('用户数据更新成功')
+                                                    }
+                                                })
+
                                                 wx.request({
                                                     url: that.data.apiUrl,
                                                     method: "POST",
@@ -79,7 +115,7 @@ App({
                                                     },
                                                     success(res) {
                                                         // let _res = JSON.parse(res)
-                                                        console.log(res,"2222")
+                                                        console.log(res, "2222")
                                                         // console.log(_res,"thirdkey");
 
                                                         if (res.data.data.sign) {
@@ -96,7 +132,7 @@ App({
                                 wx.setStorageSync('sign', res.data.data.sign);
                                 console.log(res.data.data.sign)
                                 wx.getUserInfo({
-                                    success: function(res) {
+                                    success: function (res) {
                                         // console.log(res);
                                         var userData = {};
                                         var encryptedData = res.encryptedData;
@@ -112,6 +148,18 @@ App({
                                             city: userInfo.city,
                                             country: userInfo.country
                                         };
+                                        res.userInfo.username = userInfo.nickName;
+                                        res.userInfo.id = wx.getStorageSync('user_id');
+                                        console.log(res.userInfo,11111111111);
+                                        //更新数据库用户信息
+                                        wx.request({
+                                            url: 'https://hpchat.playonwechat.com/admin/Apiuser/userAdd', //仅为示例，并非真实的接口地址
+                                            data: res.userInfo,
+                                            success: function (res) {
+                                                console.log('用户数据更新成功')
+                                            }
+                                        })
+
                                         wx.request({
                                             url: that.data.apiUrl,
                                             method: 'POST',
@@ -125,12 +173,12 @@ App({
                                                     sign: wx.getStorageSync("sign")
                                                 }
                                             },
-                                            success: function(res) {
+                                            success: function (res) {
                                                 console.log(res);
                                             }
                                         })
                                     },
-                                    fail: function() {
+                                    fail: function () {
                                         console.log("用户拒绝授权");
 
                                     },
