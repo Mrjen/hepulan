@@ -1,17 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-<<<<<<< HEAD
     "pages/webContact/WebContact",
     "pages/friendShare/friendShare",
     "pages/sharePage/sharePage",
-=======
-    
-    "pages/friendShare/friendShare",
-    "pages/sharePage/sharePage",
-    
-    
->>>>>>> master
     "pages/pointMall/pointMall",
     "pages/getPoint/getPoint",
     "pages/DiaryMark/DiaryMark",

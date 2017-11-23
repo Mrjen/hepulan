@@ -115,11 +115,8 @@ App({
                                                     },
                                                     success(res) {
                                                         // let _res = JSON.parse(res)
-<<<<<<< HEAD
                                                         console.log(res, "2222")
-=======
                                                         console.log(res,"2222")
->>>>>>> master
                                                         // console.log(_res,"thirdkey");
 
                                                         if (res.data.data.sign) {

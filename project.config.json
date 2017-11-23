@@ -22,7 +22,15 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/webContact/WebContact",
+					"query": "teacher_id=1",
+					"scene": "1014"
+				}
+			]
 		}
 	}
 }

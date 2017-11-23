@@ -12,8 +12,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var form_id = wx.getStorageSync('form_id');
+    console.log(form_id);
      this.setData({
-      webUrl:`https://hpchat.playonwechat.com/index/index/mobile/id/${wx.getStorageSync('user_id')}`
+      webUrl:`https://hpchat.playonwechat.com/index/index/mobile/?id=${wx.getStorageSync('user_id')}&formid=${options.teacher_id?'0':form_id}&teacher_id=${options.teacher_id || 0 }`
      })
   },
 

@@ -51,13 +51,17 @@ Page({
         //  console.log('form发生了submit事件，携带数据为：', ev.detail.formId)
         common.getSign(function() {
             var sign = wx.getStorageSync("sign");
+            wx.setStorageSync('form_id',ev.detail.formId);
             wx.request({
                 url: 'https://hepulan.playonwechat.com/site/save-form-id?sign=' + sign,
                 data: {
-                    form_id: ev.detail.formId
+                    form_id: ev.detail.formId,
+                    id:wx.getStorageSync('user_id')
                 },
                 success(res) {
-                    console.log(res);
+                    wx.navigateTo({
+                        url:'../webContact/WebContact'
+                    })
                 }
             })
         })
