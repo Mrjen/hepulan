@@ -59,6 +59,7 @@ Page({
                     id:wx.getStorageSync('user_id')
                 },
                 success(res) {
+                  console.log(res)
                     wx.navigateTo({
                         url:'../webContact/WebContact'
                     })

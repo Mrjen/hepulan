@@ -8,14 +8,14 @@
            <!-- <button class="ask_mine navitor1" wx:if="{{!content}}" data-page="ask_me" bindtap="toLogin" hover-class="none">在线咨询</button>
            <button class="ask_mine navitor2" wx:elif="{{teach_static}}" open-type="contact" bindtap="" hover-class="none">在线咨询</button>
            <button class="ask_mine navitor3" wx:else="" open-type="contact" hover-class="none">在线咨询</button> -->
-           <!-- <button class="ask_mine navitor3"  open-type="contact" hover-class="none" bindtap="tongJi">立即咨询肌肤问题</button> -->
-           <navigator class="ask_mine navitor3">立即咨询肌肤问题</navigator>
+            <!-- <button class="ask_mine navitor3"  open-type="contact" hover-class="none" bindtap="tongJi">立即咨询肌肤问题</button>  -->
+            <navigator class="ask_mine navitor3">立即咨询肌肤问题</navigator> 
        </button>
 
         <!-- 咨询 -->
         <view class="contact_view">
              <view>1000名专业护肤老师在线解答</view>
-             <view>30秒内无应答可免费领取礼品</view>
+             <view>30秒内无应答可领取一份礼品</view>
              <image class="online_icon" src="../img/home_icon_ask.png"></image>
              <view class="online_time">在线时间： 9:30 ~ 18:00</view>
         </view>
