@@ -1,6 +1,8 @@
 {
   "pages": [
+    
     "pages/index/index",
+    "pages/Recommend/Recommend",
     "pages/webContact/WebContact",
     "pages/friendShare/friendShare",
     "pages/sharePage/sharePage",
@@ -40,7 +42,7 @@
     "pages/sharePoster/sharePoster",
     "pages/applyDetail/applyDetail",
     "pages/integralList/integralList",
-    "pages/Recommend/Recommend",
+    
     "pages/tip/tip",
     "pages/single/single",
     "pages/template/template",
@@ -76,7 +78,8 @@
         "text": "禾圈",
         "iconPath": "pages/img/home_icon_circle.png",
         "selectedIconPath": "pages/img/home_icon_circle_active.png"
-      },{
+      },
+      {
         "pagePath": "pages/heChart/heChart",
         "text": "课程",
         "iconPath": "pages/img/home_icon_course.png",

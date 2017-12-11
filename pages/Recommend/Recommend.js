@@ -13,18 +13,23 @@ Page({
         templateData: [{
             teacher_id: "",
             title_tip: '请咨询您的专属护肤老师'
-        }]
+        }],
+        imgUrls: ['https://qncdn.playonwechat.com/hepulan/home_baner01.png',
+            'https://qncdn.playonwechat.com/hepulan/home_baner02.png',
+            'https://qncdn.playonwechat.com/hepulan/home_baner03.png',
+            'https://qncdn.playonwechat.com/hepulan/home_baner04.png'
+        ]
     },
 
 
-    applyBtn: function() {
+    applyBtn: function () {
         var that = this;
         that.setData({
             copyTeach: true
         });
     },
 
-    sureBtn: function() {
+    sureBtn: function () {
         var that = this;
         var copyText = wx.getStorageSync("teacherId");
         that.setData({
@@ -32,7 +37,7 @@ Page({
         });
     },
 
-    cencelBbtn: function() {
+    cencelBbtn: function () {
         var that = this;
         that.setData({
             copyTeach: false
@@ -54,9 +59,11 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
         //console.log(options);
-
+        
+        // 创建视频
+        this.videoContext = wx.createVideoContext('myVideo');
         // 初始化腾讯统计
         mta.Page.init();
 
@@ -89,59 +96,59 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
+    onShow: function () {
 
     },
 
     // 返回首页
-    backHome: function() {
+    backHome: function () {
         common.backHome();
     },
 
     // 分享海报
-    toShare: function() {
+    toShare: function () {
         common.toShare();
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
         wx.showShareMenu({
             withShareTicket: true
         })
@@ -150,14 +157,14 @@ Page({
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     }
 })
