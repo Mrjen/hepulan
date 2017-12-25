@@ -24,22 +24,22 @@ Page({
             id: 1,
             img: "https://qncdn.playonwechat.com/hepulan/circle_skincare_experience.png",
             text: "护肤心得",
-            active:true
+            active: true
         }, {
             id: 2,
             img: "https://qncdn.playonwechat.com/hepulan/circle_new_product.png",
             text: "新品测评",
-            active:false
+            active: false
         }, {
             id: 3,
             img: "https://qncdn.playonwechat.com/hepulan/circle_empty_bollte.png",
             text: "空瓶记",
-            active:false
+            active: false
         }, {
             id: 4,
             img: "https://qncdn.playonwechat.com/hepulan/circle_time_active.png",
             text: "限时活动",
-            active:false
+            active: false
         }]
     },
 
@@ -143,12 +143,6 @@ Page({
         })
     },
 
-    onLoad: function(options) {
-        // 页面初始化 options为页面跳转所带来的参数
-        wx.showShareMenu({
-            withShareTicket: true
-        })
-    },
     // 点赞
     dianZan: function(ev) {
         console.log(ev);
@@ -156,7 +150,7 @@ Page({
         var zanStatus = that.data.zanStatus;
         var writeIndex = ev.currentTarget.dataset.zan;
         var pid = ev.currentTarget.dataset.pid;
-        var zan = that.data.spaceDyn[writeIndex].haslike;
+        var zan = that.data.spaceDyn[writeIndex].is_praise;
         var spaceDyn = that.data.spaceDyn;
         var nick_name = that.data.nickName;
         var sign = wx.getStorageSync('sign');
@@ -180,56 +174,17 @@ Page({
 
             },
             success: function(res) {
-                console.log(res);
-                let praise_list = res.data.data.praise_list;
-                spaceDyn[writeIndex].praise_list = praise_list;
-                spaceDyn[writeIndex].haslike = res.data.data.haslike;
-                // spaceDyn[writeIndex].liks.unshift({
-                //     username: nickName,
-                //     pid: pid
-                // });
-                // spaceDyn[writeIndex].haslike = "1";
-                console.log(spaceDyn)
+                // console.log('33333333333',res.data.data);
+                let praise_list = res.data.data;
+                spaceDyn[writeIndex].praise = praise_list.praise_list;
+                spaceDyn[writeIndex].praise_num = praise_list.praise_num;
+                spaceDyn[writeIndex].is_praise = praise_list.haslike;
                 that.setData({
                     spaceDyn: spaceDyn,
                     pid: pid
                 })
             }
-        });
-        // } else {
-        //     var likeList = spaceDyn[writeIndex].liks;
-        //     var zanList = [];
-        //     wx.request({
-        //         url: app.data.apiUrl,
-        //         header: {
-        //             'content-type': 'application/json'
-        //         },
-        //         method: "POST",
-        //         data: {
-        //             key: app.data.apiKey,
-        //             type: "save-plaza-post-like",
-        //             sign: wx.getStorageSync("sign"),
-        //             data: {
-        //                 pid: pid
-        //             }
-        //         },
-        //         success: function(res) {
-        //             console.log(res);
-        //             var likeList = spaceDyn[writeIndex].liks;
-        //             var zanList = [];
-        //             for (var i = 0; i < likeList.length; i++) {
-        //                 if (pid == likeList[i].pid) {
-        //                     likeList.splice(i, 1);
-        //                 }
-        //             }
-        //             spaceDyn[writeIndex].liks = likeList;
-        //             likeList = spaceDyn[writeIndex].haslike = 0;
-        //             that.setData({
-        //                 spaceDyn: spaceDyn
-        //             })
-        //         }
-        //     });
-        // }
+        })
     },
 
     // 判断用户是否授权否则不能写动态
@@ -256,8 +211,13 @@ Page({
     },
 
 
-    onShow() {
+    onLoad() {
         const that = this;
+         
+         wx.showShareMenu({
+            withShareTicket: true
+        })
+
         let nickName = wx.getStorageSync("nickName"),
             avatar = wx.getStorageSync('avatarUrl');
         let start = that.data.start;
@@ -268,7 +228,6 @@ Page({
             nickName: nickName,
             avatar: avatar
         })
-
         common.getSign(function() {
             let sign = wx.getStorageSync('sign');
             that.setData({
@@ -279,31 +238,35 @@ Page({
                 method: "POST",
                 data: {
                     key: app.data.apiKey,
-                    type: "get-plaza-posts",
+                    type: "get-social-list",
                     sign: wx.getStorageSync("sign"),
                     // sign:sign,
                     data: {
                         start: 0,
-                        length: 10
+                        length: 5
                     }
                 },
                 success(res) {
-                    console.log(res);
-                    start += 10;
+                    console.log('1111', res.data.data.social_list);
+                    start += 5;
                     let spaceDyn = res.data.data.social_list;
+                    console.log(2222222, spaceDyn.length)
                     for (let i = 0; i < spaceDyn.length; i++) {
                         spaceDyn[i].imgslist = [];
-                        for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
-                            spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
+                        if (spaceDyn[i].urls) {
+                            for (let j = 0; j < spaceDyn[i].urls.length; j++) {
+                                spaceDyn[i].imgslist.push(spaceDyn[i].urls[j].url);
+                            }
                         }
                     }
+
                     that.setData({
-                        spaceDyn: spaceDyn,
+                        spaceDyn,
                         start
                     });
                     setTimeout(function() {
                         wx.hideLoading()
-                    }, 2000)
+                    }, 800)
                 }
             })
         })
@@ -311,29 +274,32 @@ Page({
 
     // 下拉刷新
     onPullDownRefresh: function() {
-        let that= this;
+        let that = this;
         let start = 0;
         wx.request({
             url: app.data.apiUrl,
             method: "POST",
             data: {
                 key: app.data.apiKey,
-                type: "get-plaza-posts",
+                type: "get-social-list",
                 sign: wx.getStorageSync("sign"),
                 data: {
                     start: 0,
-                    length: 10
+                    length: 5
                 }
             },
             success(res) {
                 console.log(res);
-                start += 10;
+                start += 5;
                 let spaceDyn = res.data.data.social_list;
                 for (let i = 0; i < spaceDyn.length; i++) {
                     spaceDyn[i].imgslist = [];
-                    for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
-                        spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
+                    if (spaceDyn[i].urls) {
+                        for (let j = 0; j < spaceDyn[i].urls.length; j++) {
+                            spaceDyn[i].imgslist.push(spaceDyn[i].urls[j].url);
+                        }
                     }
+
                 }
                 that.setData({
                     spaceDyn: spaceDyn,
@@ -341,9 +307,9 @@ Page({
                 });
                 wx.stopPullDownRefresh();
                 wx.showToast({
-                  title: '页面刷新成功',
-                  icon: 'success',
-                  duration: 2000
+                    title: '页面刷新成功',
+                    icon: 'success',
+                    duration: 2000
                 })
             }
         })
@@ -369,23 +335,23 @@ Page({
             method: "POST",
             data: {
                 key: app.data.apiKey,
-                type: "get-plaza-posts",
+                type: "get-social-list",
                 sign: wx.getStorageSync("sign"),
                 data: {
                     start: 0,
-                    length: 10,
+                    length: 5,
                     search: searchCentent,
                     share_type: that.data.share_type
                 }
             },
             success(res) {
                 console.log(res);
-                start += 10;
+                start += 5;
                 let spaceDyn = res.data.data.social_list;
                 for (let i = 0; i < spaceDyn.length; i++) {
                     spaceDyn[i].imgslist = [];
-                    for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
-                        spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
+                    for (let j = 0; j < spaceDyn[i].urls.length; j++) {
+                        spaceDyn[i].imgslist.push(spaceDyn[i].urls[j].url);
                     }
                 }
                 that.setData({
@@ -417,11 +383,11 @@ Page({
             data: {
                 sign: wx.getStorageSync("sign"),
                 key: app.data.apiKey,
-                type: "get-plaza-posts",
+                type: "get-social-list",
                 data: {
                     share_type: _index,
                     start: 0,
-                    length: 10
+                    length: 5
                 }
             },
             success(res) {
@@ -429,8 +395,8 @@ Page({
                 let spaceDyn = res.data.data.social_list;
                 for (let i = 0; i < spaceDyn.length; i++) {
                     spaceDyn[i].imgslist = [];
-                    for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
-                        spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
+                    for (let j = 0; j < spaceDyn[i].urls.length; j++) {
+                        spaceDyn[i].imgslist.push(spaceDyn[i].urls[j].url);
                     }
                 }
                 that.setData({
@@ -458,11 +424,11 @@ Page({
             method: "POST",
             data: {
                 key: app.data.apiKey,
-                type: "get-plaza-posts",
+                type: "get-social-list",
                 sign: wx.getStorageSync("sign"),
                 data: {
                     start: that.data.start,
-                    length: 10,
+                    length: 5,
                     share_type: that.data.share_type,
                     search: that.data.searchCentent ? that.data.searchCentent : ''
                 }
@@ -485,11 +451,14 @@ Page({
                 } else {
                     for (let i = 0; i < spaceDyn.length; i++) {
                         spaceDyn[i].imgslist = [];
-                        for (let j = 0; j < spaceDyn[i].imgs.length; j++) {
-                            spaceDyn[i].imgslist.push(spaceDyn[i].imgs[j].img_url);
+                        if (spaceDyn[i].urls) {
+                            for (let j = 0; j < spaceDyn[i].urls.length; j++) {
+                                spaceDyn[i].imgslist.push(spaceDyn[i].urls[j].url);
+                            }
                         }
+
                     }
-                    start += 10;
+                    start += 5;
                     spaceDyn = oldspaceDyn.concat(spaceDyn);
                 }
                 console.log(start)

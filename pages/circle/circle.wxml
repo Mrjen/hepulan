@@ -1,67 +1,106 @@
 <!--pages/circle/circle.wxml-->
-<import src="../template/template.wxml"/>
+<import src="../template/template.wxml" />
 
 <!-- 搜索 -->
-<view class="search_box"><input type="text" bindinput="searchCentent" name=""/><view class="search_btn" bindtap="searchCircle"></view></view>
+<view class="search_box">
+  <input type="text" bindinput="searchCentent" name="" />
+  <view class="search_btn" bindtap="searchCircle"></view>
+</view>
 
 
 <view class="nav_box">
-   <view class="nav_in">
-     <view wx:for="{{navList}}"  class="{{item.active?'nav_active':''}}" bindtap="changeNav" data-index="{{index}}">
-         <image src="{{item.img}}"></image>
-         <text>{{item.text}}</text>
-     </view>
-   </view>
+  <view class="nav_in">
+    <view wx:for="{{navList}}" 
+          wx:key="{{index}}" 
+          class="{{item.active?'nav_active':''}}" 
+          bindtap="changeNav" 
+          data-index="{{index}}">
+      <image src="{{item.img}}"></image>
+      <text>{{item.text}}</text>
+    </view>
+  </view>
 </view>
 
 
-  <view class="space_dyn" wx:for="{{spaceDyn}}">
-    <view class="user_img">
-      <image src="{{item.avatar}}"></image>
+<view class="space_dyn" wx:for="{{spaceDyn}}">
+  <view class="user_img">
+    <image src="{{item.headimgurl}}"></image>
+  </view>
+
+  <view class="space_content">
+    <view class="user_name">{{item.nickname}}</view>
+    <view class="content_view">{{item.content}}</view>
+
+    <view class="content_img" hidden="{{item.imgs==''}}">
+      <!-- <image src="http://cdn.suoluomei.com/public/hplwx/images/fire.png"></image> -->
+      <image wx:for="{{item.imgslist}}" 
+             bindtap="prewImg" 
+             wx:for-item="imgslist" 
+             wx:for-index="spaceDyn" 
+             data-imglist="{{item.imgslist}}" 
+             data-url="{{imgslist}}" 
+             src="{{imgslist}}"></image>
     </view>
-    <view class="space_content">
-       <view class="user_name">{{item.username}}</view>
-       <view class="content_view">{{item.title}}</view>
-       <view class="content_img" hidden="{{item.imgs==''}}">
-           <!-- <image src="http://cdn.suoluomei.com/public/hplwx/images/fire.png"></image> -->
-           <image  wx:for="{{item.imgslist}}" bindtap="prewImg" wx:for-item="imgslist" wx:for-index="spaceDyn"  data-imglist="{{item.imgslist}}" data-url="{{imgslist}}" src="{{imgslist}}"></image>
-       </view>
-	     <view class="discuss_box">
-	       <view class="write_time">{{item.dynTime}}</view>
-	       <view class="discuss_opation">
-	          <view class="like_box" bindtap="dianZan" data-zan="{{index}}"  data-pid="{{item.pid}}">
-	             <view class="like_btn {{item.haslike>0?'like_btn_selsct':''}}"></view>点赞
-	          </view>
-	          <view class="diss_bx" wx:if="{{item.commentusable?true:false}}" bindtap="dissWrite" data-inx="{{item.userName}}" data-idwrite="{{index}}">
-	             <view class="discuss_btn"><image src="../img/circle_icon_discuss.png"></image></view>评论
-	          </view>
-	       </view>
-	    </view>
-	    <view class="like_persion">
-	      <view class="like_item" wx:if="{{item.praise_list}}">{{item.praise_list}}</view>
-        <view wx:if="{{item.praise_list.length>50?true:false}}">共{{item.praise_num}}人点赞</view>
-	    </view>
-	    <view class="persion_diss" >
-	         <view class="diss_item" wx:for="{{item.comments}}" wx:for-item="comments">{{comments.username}}：{{comments.comment}}</view>
-	    </view>
-      <!-- 右边标示 -->
-      <view class="item_tag" style="color:#f09456" wx:if="{{item.share_type=='1'?true:false}}"><image src="http://cdn.suoluomei.com/public/hplwx/images/fire.png"></image>精品推荐</view>
-      <view class="item_tag" style="color:#ef479b" wx:elif="{{item.share_type=='2'?true:false}}"><image src="http://cdn.suoluomei.com/public/hplwx/images/good.png"></image>口碑新品</view>
-      <view class="item_tag" style="color:#68c977" wx:elif="{{item.share_type=='3'?true:false}}"><image src="http://cdn.suoluomei.com/public/hplwx/images/grass.png"></image>种草达人</view>
-    </view>
-  <view class="diss_win" wx:if="{{showWrite}}">
-      <view class="write_box">
-          <view class="comment">评论</view>
-          <textarea  bindinput="bindTextAreaBlur"/>
-          <view class="diss_input_opa">
-               <view class="diss_input_cencel" bindtap="writeCencel">取消</view>
-               <view class="diss_input_sure" bindtap="writeSure" data-pername="{{index}}">确定</view>
-          </view>
+
+    <view class="discuss_box">
+      <view class="write_time">{{item.dynTime}}</view>
+      <view class="discuss_opation">
+        <view class="like_box" 
+              bindtap="dianZan" 
+              data-zan="{{index}}" 
+              data-pid="{{item.pid}}">
+          <view class="like_btn {{item.is_praise>0?'like_btn_selsct':''}}"></view>点赞
+        </view>
+        <view class="diss_bx" 
+              wx:if="{{item.commentusable?true:false}}" bindtap="dissWrite" 
+              data-inx="{{item.userName}}" 
+              data-idwrite="{{index}}">
+          <view class="discuss_btn">
+             <image src="../img/circle_icon_discuss.png"></image>
+          </view>评论
+        </view>
       </view>
-   </view>
-   <!-- url="../writeDyn/writeDyn" -->
+    </view>
+    <view class="like_persion">
+      <view class="like_item" wx:if="{{item.praise}}">{{item.praise}}</view>
+      <view wx:if="{{item.is_praise.length>50?true:false}}">共{{item.praise_num}}人点赞</view>
+    </view>
+
+    <view class="persion_diss">
+      <view class="diss_item" 
+            wx:for="{{item.comments}}" 
+            wx:for-item="comments">{{comments.username}}：{{comments.comment}}</view>
+    </view>
+
+    <!-- 右边标示 -->
+    <view class="item_tag" 
+          style="color:#f09456" 
+          wx:if="{{item.share_type=='1'?true:false}}">
+      <image src="http://cdn.suoluomei.com/public/hplwx/images/fire.png"></image>精品推荐</view>
+
+    <view class="item_tag" 
+          style="color:#ef479b" 
+          wx:elif="{{item.share_type=='2'?true:false}}">
+      <image src="http://cdn.suoluomei.com/public/hplwx/images/good.png"></image>口碑新品</view>
+
+    <view class="item_tag" 
+          style="color:#68c977" 
+          wx:elif="{{item.share_type=='3'?true:false}}">
+      <image src="http://cdn.suoluomei.com/public/hplwx/images/grass.png"></image>种草达人</view>
+
+  </view>
+  <view class="diss_win" wx:if="{{showWrite}}">
+    <view class="write_box">
+      <view class="comment">评论</view>
+      <textarea bindinput="bindTextAreaBlur" />
+      <view class="diss_input_opa">
+        <view class="diss_input_cencel" bindtap="writeCencel">取消</view>
+        <view class="diss_input_sure" bindtap="writeSure" data-pername="{{index}}">确定</view>
+      </view>
+    </view>
+  </view>
+  <!-- url="../writeDyn/writeDyn" -->
 </view>
-<view bindtap="writeCircle" class="write_dyn" wx:if="{{writeCircle}}"><image src="../img/circle_icon_write.png"></image></view>
-
-
-<!-- <template wx:if="{{isWritting}}" is="share_icon"/> -->
+<view bindtap="writeCircle" class="write_dyn" wx:if="{{writeCircle}}">
+  <image src="../img/circle_icon_write.png"></image>
+</view>

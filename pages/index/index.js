@@ -60,9 +60,9 @@ Page({
                 },
                 success(res) {
                   console.log(res)
-                    // wx.navigateTo({
-                    //     url:'../webContact/WebContact'
-                    // })
+                    wx.navigateTo({
+                        url:'../webContact/WebContact'
+                    })
                 }
             })
         })
