@@ -24,10 +24,10 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
-					"name": "测试",
-					"pathName": "pages/webContact/WebContact",
-					"query": "teacher_id=1",
+					"id": 0,
+					"name": "从别人分享进入",
+					"pathName": "pages/redPack/redPack",
+					"query": "unique_code=5a4b3c3b55790",
 					"scene": "1014"
 				}
 			]

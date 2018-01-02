@@ -19,17 +19,6 @@
              <image class="online_icon" src="../img/home_icon_ask.png"></image>
              <view class="online_time">在线时间： 9:30 ~ 18:00</view>
         </view>
-       <!-- <view class="ask_bg">
-           <view class="img_box">
-               <image src="../img/home_icon_ask.png"></image>
-               <text class="ask_time">10:00-18:00</text>
-           </view>
-           <view class="ask_right">
-                <image class="hot_img" src="../img/home_icon_askhot.gif"></image>
-                <view>在线咨询肌肤问题</view>
-                <view>1000名专业护肤老师在线解答</view>
-           </view>
-       </view> -->
    </form >
 
    <!-- 按钮区 -->
@@ -47,7 +36,7 @@
 
      <swiper class="swiper" indicator-dots="{{indicatorDots}}"
      autoplay="true" interval="2000" duration="1000">
-     <block wx:for="{{imgUrls}}">
+     <block wx:for="{{imgUrls}}" wx:key="index">
        <swiper-item>
          <image src="{{item}}" class="slide-image" width="355" height="150"/>
        </swiper-item>
@@ -64,10 +53,26 @@
 <navigator class="get_point" style="display:{{closeGetPoint}}" url="../getPoint/getPoint" hover-class="none"><text class="colse_get_point" catchtap="closeGetPoint"></text><image src="https://hepulan.playonwechat.com/static/getpoint/get_point.png"></image></navigator>
 <!-- <template is="share_icon"/> -->
 <!-- 已有护肤老师弹窗 -->
-<block wx:for="{{templateData}}">
+<block wx:for="{{templateData}}" wx:key="{{index}}">
     <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
 </block>
+
+<!-- 点我有惊喜 -->
 <image class="hert" src="https://qncdn.playonwechat.com/hepulan/hert.png"></image>
+
+<!-- 红包 -->
+<form bindsubmit="getFromId" report-submit="true" wx:if="{{redpack}}">
+    <view class="red-pack" style="display:{{redpack?'flex':'none'}}">
+        <view class="pack-inner">
+            <image class="red-logo" src="https://qncdn.playonwechat.com/hepulanhufu/red-pack-logo.png"></image>
+            <view class="red-title">禾葡兰</view>
+            <view class="red-title">给你发了一个红包</view>
+            <view class="red-content">恭喜发财，大吉大利</view>
+            <button  formType="submit" class="open-btn"></button>
+            <view class="closeRedPack" bindtap="closeRedPack"></view>
+        </view>
+    </view>
+</form>
 
 
 

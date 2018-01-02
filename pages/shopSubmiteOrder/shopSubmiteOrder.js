@@ -1,5 +1,6 @@
 // pages/shopSubmiteOrder/shopSubmiteOrder.js
 var app = getApp();
+import { http, couPondiffTime,time } from '../../common.js';
 var failText = {
     title: "很遗憾TAT",
     text1: "您的积分不足",
@@ -19,7 +20,36 @@ var successText = {
 Page({
     data: {
         winText: "",
-        winStatus: false
+        winStatus: false,
+        openAnimation:{},
+        couponIsOpen:false, //选择红包抵扣是否显示
+        couponH:0,
+        couponArr:[],  //选择使用的优惠券
+        couponCard: [{
+            money: 15,
+            jifen: 1500,
+            linedate: 2,
+            date: '2017.02.23~2017.03.12',
+            active: true
+        }, {
+            money: 15,
+            jifen: 1500,
+            linedate: 2,
+            date: '2017.02.23~2017.03.12',
+            active: true
+        }, {
+            money: 15,
+            jifen: 1500,
+            linedate: 2,
+            date: '2017.02.23~2017.03.12',
+            active: true
+        }, {
+            money: 15,
+            jifen: 1500,
+            linedate: 2,
+            date: '2017.02.23~2017.03.12',
+            active: true
+        }]
     },
 
     onLoad: function(options) {
@@ -71,7 +101,88 @@ Page({
             }
         })
     },
+    
+    // 打开红包抵扣
+    openCouponBar(){
+        console.log('打开')
+       let that = this;
+       
+        http({ type:'get-user-coupon-list',data:{
+            status: 1
+        }},function(res){
+            console.log('可使用优惠券',res)
+            let coupon = res.data.data.user_coupon_list;
+            let currentStemp = (new Date()).getTime();
+            currentStemp = currentStemp / 1000;
+            if (coupon && coupon.length) {
+                coupon.forEach((element, idx) => {
+                    console.log(element)
+                    element.time = couPondiffTime(currentStemp, element.valid_time);
+                    element.begin = time(element.create_time, 0).replace(/-/g, ".");
+                    element.endtime = time(element.valid_time, 0).replace(/-/g, ".");
+                    element.active = false;
+                })
+            }
+            var openAnimation = wx.createAnimation({
+                transformOrigin: "50% 50%",
+                duration: 1000,
+                timingFunction: "ease",
+                delay: 0
+            })
+            openAnimation.translateY(-380).step();
+            that.setData({
+                openAnimation: openAnimation.export(),
+                couponH:500,
+                couponIsOpen:true,
+                coupon: coupon
+            })
+            
+        })
 
+        
+        
+    },
+
+    //  关闭红包抵扣
+    closeCouponBar(){
+        console.log('关闭')
+        let that = this;
+        var openAnimation = wx.createAnimation({
+            transformOrigin: "50% 50%",
+            duration: 1000,
+            timingFunction: "ease",
+            delay: 0
+        })
+        openAnimation.translateY(0).step();
+        that.setData({
+            openAnimation: openAnimation.export(),
+            couponH: 0,
+            couponIsOpen: false
+        })
+    },
+
+    // 选择这个优惠券
+    selsctRadio(e){
+        let that = this;
+        let idx = e.currentTarget.dataset.idx;
+        let score = e.currentTarget.dataset.jifen;
+        let couponArr = [];
+        let coupon = that.data.coupon;
+        let dikou = new Number();
+        coupon[idx].active = !coupon[idx].active;
+        for (let i = 0; i < coupon.length; i++) {
+            if (coupon[i].active){
+                dikou += parseInt(coupon[i].score)
+                couponArr.push(coupon[i].id)
+            }
+        }
+        console.log(couponArr)
+        that.setData({
+            coupon, dikou, couponArr
+        })
+    },
+
+    // 选择地址
     toAddress() {
         console.log("11111",getCurrentPages())
         wx.redirectTo({
@@ -93,7 +204,8 @@ Page({
                 key: app.data.apiKey,
                 type: "save-order",
                 data: {
-                    addressid: addressid
+                    addressid: addressid,
+                    coupon_ids: that.data.couponArr
                 }
             },
             success(res) {
@@ -104,7 +216,14 @@ Page({
                         winText: successText,
                         sureStatus: true
                     })
-                } else if (res.data.status < 0) {
+                } else if (res.data.status=='0'){
+                    wx.showModal({
+                        title: '提示',
+                        content: res.data.msg,
+                        success: function (res) {
+                        }
+                    })
+                }else if (res.data.status < 0) {
                     wx.showModal({
                         title: '提示',
                         content: '您还没有注册，是否去注册',

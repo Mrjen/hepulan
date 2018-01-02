@@ -28,18 +28,19 @@ view{
 	width: 50rpx;
 	height: 50rpx;
 	margin-right: 10rpx;
+  flex-shrink: 0;
 }
 
 .persion_info text{
-	font-size: 30rpx;
-	line-height: 80rpx;
+	font-size: 28rpx;
 }
 
 .info{
 	display: flex;
-	height: 80rpx;
+	height: 70rpx;
 	align-items: center;
 	padding: 0 20rpx;
+  margin-bottom: 16rpx;
 }
 
 .info view{
@@ -50,7 +51,7 @@ view{
 
 .address{
 	width: 100%;
-	height: 80rpx;
+	height: 70rpx;
 	padding:0 20rpx;
 	display: flex;
 	align-items: center;
@@ -127,6 +128,7 @@ view{
 	align-items: center;
 	justify-content: flex-end;
 	font-size: 30rpx;
+	z-index: 100;
 }
 
 .submite{
@@ -193,4 +195,152 @@ view{
 	margin:0 auto;
 	font-size: 30rpx;
 	border-radius: 40rpx;
+}
+
+/* 红包抵扣窗口 */
+.coupon_bar{
+	width: 100%;
+	height: 80rpx;
+	line-height: 80rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	font-size: 25rpx;
+	position: fixed;
+	left: 0;
+	bottom: 100rpx;
+	border-bottom: 1px solid rgba(0, 0, 0, .05);
+	z-index: 100;
+}
+
+.coupon_bar text{
+	display: block;
+	width: 25rpx;
+	height: 23rpx;
+	background-image: url('https://qncdn.playonwechat.com/hepulanhufu/up_icon.png');
+	background-size: 100% 100%;
+	margin-left: 30rpx;
+}
+
+.closeopen text{
+    transform: rotate(180deg);
+}
+
+.coupon_box{
+	width:100%;
+	background: #fff;
+	padding:0 30rpx;
+	position: absolute;
+	bottom: -500rpx;
+	left: 0;
+}
+
+.coupon_box .top_nav{
+	width:100%;
+	display: flex;
+	justify-content: space-between;
+	padding:20rpx;
+	font-size: 24rpx;
+}
+
+.coupon_view{
+	background: #f7f7f7;
+	box-sizing: border-box;
+	padding:16rpx;
+	overflow-y: scroll;
+}
+
+.coupon{
+	width:544rpx;
+	height: 162rpx;
+	background: url('https://qncdn.playonwechat.com/hepulanhufu/mycoupon-card-bg.png');
+	background-size:100% 100%;
+	display: flex;
+}
+
+.coupon-item{
+	display: flex;
+	margin:10rpx 0;
+}
+
+.coupon .coupon_left{
+	width: 140rpx;
+	height: 162rpx;
+	color: #dd5347;
+}
+
+.coupon .left_top{
+	padding-top: 30rpx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+}
+
+.coupon .left_top .sign {
+    font-size: 20rpx;
+}
+
+.coupon .left_top .money{
+	font-size: 50rpx;
+}
+
+.coupon .left_bottom{
+	font-size: 17rpx;
+	text-align: center;
+}
+
+.coupon .coupon_right{
+	flex:1;
+	padding-right: 14rpx;
+}
+
+.coupon .coupon_right .right_top{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 20rpx;
+}
+
+.coupon .coupon_right .title{
+	font-size: 25rpx;
+	color: #dd5347;
+}
+
+.coupon .coupon_right .right_top .right_time{
+	font-size: 16rpx;
+	color: #dd5347;
+}
+
+.coupon .coupon_right .tip{
+	font-size: 20rpx;
+	display: inline-block;
+	margin-left: 20rpx;
+	color: #9fa0a0;
+}
+
+.coupon .coupon_right .coupon_tip{
+	font-size: 15rpx;
+	margin-top: 12rpx;
+	margin-bottom: 30rpx;
+}
+
+.coupon .right_bottom{
+	font-size: 17rpx;
+}
+
+.select{
+	flex:1;
+	margin-right: -20rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.select_tip{
+	font-size: 20rpx;
+	color: #393939;
+	margin-top: 14rpx;
 }

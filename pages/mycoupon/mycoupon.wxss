@@ -1,0 +1,154 @@
+/* pages/mycoupon/mycoupon.wxss */
+
+page {
+    background: #f7f7f7;
+}
+
+.page_nav {
+    width: 100%;
+    height: 90rpx;
+    background: #fff;
+    display: flex;
+    margin-bottom: 20rpx;
+}
+
+.page_nav .nav-item {
+    flex: 1;
+    line-height: 90rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #9fa0a0;
+    position: relative;
+}
+
+.page_nav .nav-item.active text {
+    display: inline-block;
+    padding: 0 30rpx;
+    color: #dd5447;
+    border-bottom: 2px solid #dd5447;
+}
+
+.card_item {
+    width: 655rpx;
+    height: 155rpx;
+    background: url('https://qncdn.playonwechat.com/hepulanhufu/mycoupon-card-bg.png');
+    background-size: 100% 100%;
+    margin: 10rpx auto;
+    position: relative;
+}
+
+.card_item .card_left {
+    width: 160rpx;
+    height: 155rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card_item .card_left .money-view{
+    display: flex;
+    align-items: baseline;
+}
+
+.card_item .card_type {
+    font-size: 22rpx;
+    color: #dd5447;
+}
+
+.card_item .card_left .sign {
+    font-size: 24rpx;
+    color: #dd5447;
+}
+
+.card_item .card_left .money{
+    font-size: 60rpx;
+    color: #dd5447;
+}
+
+.card_item .card_content{
+    display: flex;
+}
+
+.card_item .card_right .title{
+    font-size: 30rpx;
+    color: #dd5447;
+    margin-bottom: 14rpx;
+}
+
+.card_item .card_right .title text{
+    display: inline-block;
+    margin-left: 30rpx;
+    color: #9fa0a0;
+    font-size: 24rpx;
+}
+
+.card_item .content_tip {
+    font-size: 20rpx;
+    color: #9fa0a0;
+    margin-bottom: 14rpx;
+}
+
+.card_item  .content-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card_item .content-right {
+    font-size: 22rpx;
+    color: #dd5447;
+}
+
+.card_item .card_right{
+    flex:1;
+    padding:14rpx;
+    box-sizing: border-box;
+}
+
+.card_item .content-bottom .date{
+    font-size: 22rpx;
+    color: #9fa0a0;
+}
+
+.card_item .content-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_item .content-bottom .touse {
+    font-size: 20rpx;
+    width: 100rpx;
+    height: 34rpx;
+    border:1px solid #dd5447;
+    text-align: center;
+    line-height: 34rpx;
+    color: #dd5447;
+    margin-bottom: 20rpx;
+    border-radius: 5rpx;
+    margin-right: 10rpx;
+}
+
+.hasnotuse{
+    width:160rpx;
+    height: 124rpx;
+    display: block;
+    background: url('https://qncdn.playonwechat.com/hepulanhufu/coupon_hasnot_use.png');
+    background-size: 100% 100%;
+    transform: translate(15deg);
+    position: absolute;
+    top: 30rpx;
+    right: 30rpx;
+}
+
+.hasuse{
+     width: 176rpx;
+     height: 107rpx;
+     display: block;
+     background-image: url('https://qncdn.playonwechat.com/hepulanhufu/coupon_has_use.png');
+     background-size: 100% 100%;
+     transform: translate(15deg);
+     position: absolute;
+     top: 50rpx;
+     right: 30rpx;
+}

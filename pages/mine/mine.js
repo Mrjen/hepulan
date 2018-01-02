@@ -26,11 +26,11 @@ Page({
             {
                text:'打卡记录',
               navUrl:'../diaryMarkList/diaryMarkList'
-            }
-            // {
-            //    text:'好友助力',
-            //    navUrl:'../sharePage/sharePage'
-            // },
+            },
+            {
+               text:'我的优惠券',
+               navUrl:'../mycoupon/mycoupon'
+            },
         ]
 
     },

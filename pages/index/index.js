@@ -2,12 +2,14 @@
 var app = getApp();
 var common = require('../../common.js');
 var mta = require('../../utils/mta_analysis.js');
+import {http} from '../../common.js'
 Page({
     data: {
         content: false,
         mobile: "",
         teacherId: "",
         wxcode: "",
+        redpack:false,  //红包
         copyTeach: false,
         teach_static: false,
         closeGetPoint:"block",//获取积分icon的显示状态
@@ -18,10 +20,7 @@ Page({
         navList: [{
                 text: "肌肤测试",
                 navUrl: ""
-            }, //{
-            //  text:"申请试用",
-            //  navUrl:""
-            //},
+            }, 
             {
                 text: "护肤打卡",
                 navUrl: ""
@@ -66,6 +65,35 @@ Page({
                 }
             })
         })
+    },
+
+    // 点击打开红包
+    getFromId(e) {
+        let that = this;
+        console.log(e.detail.formId);
+        if (e.detail.formId) {
+            http({
+                type: 'add-user-active-coupon', data: {
+                    formid: e.detail.formId
+                }
+            }, function (res) {
+                console.log('生成红包成功',res)
+                wx.setStorageSync('unique_code', res.data.data.unique_code)
+                wx.navigateTo({
+                    url: `../redPack/redPack?formid=${e.detail.formId}`
+                })
+                that.setData({
+                    redpack:false
+                })
+            })
+        }
+    },
+
+    // 关闭红包
+    closeRedPack(){
+       this.setData({
+           redpack:false
+       })
     },
 
     applyBtn: function() {
@@ -117,6 +145,12 @@ Page({
         wx.showShareMenu({
             withShareTicket: true,
         });
+        setTimeout(() => {
+            that.setData({
+                redpack: true
+            })
+        },1000);
+
 
     },
 
@@ -126,10 +160,6 @@ Page({
 
     onShow() {
         let that = this;
-        // 回调获取sign
-        that.setData({
-           onShow: "执行获取onshow"
-        })
         common.getSign(function(sign) {
 
         });
