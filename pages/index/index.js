@@ -59,9 +59,9 @@ Page({
                 },
                 success(res) {
                   console.log(res)
-                    wx.navigateTo({
-                        url:'../webContact/WebContact'
-                    })
+                    // wx.navigateTo({
+                    //     url:'../webContact/WebContact'
+                    // })
                 }
             })
         })
@@ -78,7 +78,8 @@ Page({
                 }
             }, function (res) {
                 console.log('生成红包成功',res)
-                wx.setStorageSync('unique_code', res.data.data.unique_code)
+                wx.setStorageSync('unique_code', res.data.data.unique_code);
+                mta.Event.stat("redpack_index", {})
                 wx.navigateTo({
                     url: `../redPack/redPack?formid=${e.detail.formId}`
                 })

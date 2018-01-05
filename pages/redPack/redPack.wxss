@@ -342,6 +342,15 @@ page {
     font-size: 24rpx;
     color: #f2a72b;
     text-indent: 230rpx;
+    background: transparent;
+}
+
+button{
+  padding:0;
+}
+
+button:after{
+  display: none;
 }
 
 .getnew {

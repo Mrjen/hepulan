@@ -2,6 +2,7 @@
 import { http } from '../../common.js'
 import { formtime} from '../../common.js'
 import { diffTime } from '../../common.js'
+var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
     redPackRule:false,  //规则
@@ -43,7 +44,11 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log('options 红包页面', options)
+    console.log('options 红包页面', options);
+
+    // 初始化腾讯统计
+    mta.Page.init();
+
     let that = this;
     if (!options.unique_code) {
        //红包id不存在 自己进入
@@ -222,10 +227,27 @@ Page({
     }
   },
 
+  // 统计分享
+  tunjiShare(e){
+    http({
+      type:'save-app-formid',
+      data:{
+        formid:e.detail.formId
+      }
+    },function(res){
+       console.log('分享formId',e.detail.formId)
+    })
+    mta.Event.stat("redpack_share", {})
+  },
+
   // 领取红包
   getRedPack(e){
      console.log('领取红包',e);
      let that = this;
+
+    // 统计点击领取红包的次数
+    mta.Event.stat("get_redpack", {})
+
     http({ type: 'action-dismantle-active-coupon', 
            data: { 
              formid: e.detail.formId,
@@ -327,7 +349,15 @@ Page({
   },
 
   // 打开规则
-  openRule(){
+  openRule(e){
+    http({
+      type:'save-app-formid',
+      data:{
+        formid:e.detail.formId
+      }
+    },function(res){
+       console.log('打开规则',e.detail.formId)
+    })
     this.setData({
       redPackRule:true
     })
@@ -358,6 +388,9 @@ Page({
   // 拆新红包
   getNewRedPack(e){
     let that = this;
+    
+    mta.Event.stat("get_newredpack", {})
+
     console.log(e.detail.formId);
     if (e.detail.formId) {
       http({
@@ -373,16 +406,23 @@ Page({
       })
 
     }
-    that.setData({
-
-    })
   },
 
   // 立即使用
-  toPointMall(){
-    wx.navigateTo({
-      url: '../pointMall/pointMall'
-    })
+  toPointMall(e){
+    if (e.detail.formId) {
+      http({
+        type: 'save-app-formid',
+        data: {
+          formid: e.detail.formId
+        }
+      }, function (res) {
+        wx.navigateTo({
+          url: '../pointMall/pointMall'
+        })
+      })
+    }
+    
   },
 
   onReady: function () {

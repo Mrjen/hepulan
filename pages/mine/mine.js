@@ -28,7 +28,7 @@ Page({
               navUrl:'../diaryMarkList/diaryMarkList'
             },
             {
-               text:'我的优惠券',
+               text:'我的红包',
                navUrl:'../mycoupon/mycoupon'
             },
         ]

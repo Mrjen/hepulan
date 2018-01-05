@@ -4,7 +4,10 @@
        <view class="notice_item" wx:if="{{userArr.nickname?true:false}}">{{userArr.nickname}}刚领取{{userArr.score/10}}元</view>
        <!-- <view class="notice_item">测试数据1111</view> -->
     </view>
-    <view class="redpack-rule" bindtap="openRule">活动规则</view>
+    <form bindsubmit="openRule" report-submit="true">
+        <button class="redpack-rule"  formType="submit">活动规则</button>
+    </form>
+    
     <!-- 邀请内容   瓜分未成功 -->
     <block>
         <!-- 瓜分红包成功 -->
@@ -22,14 +25,21 @@
                             <text class="tip">{{user_coupon_score}}积分</text>
                         </view>
                         <view class="card-content">全场通用，在禾葡兰积分商城使用</view>
-                        <navigator class="toshop" url="../pointMall/pointMall">去逛逛>></navigator>
+                        <form bindsubmit="toPointMall" report-submit="true">
+                            <button class="toshop" formType="submit">去逛逛>></button>
+                        </form>
+                        
                     </view>
                 </view>
+
                 <form  bindsubmit="getNewRedPack" report-submit="true">
                     <button class="getnew"  formType="submit">拆一个新红包</button>
                 </form>
                 
-                <view class="use_item" bindtap="toPointMall">立即使用</view>
+                <form  bindsubmit="toPointMall" report-submit="true">
+                   <button class="use_item" formType="submit">立即使用</button>
+                </form>
+
             </view>
 
             <view class="see_inviter">
@@ -66,7 +76,10 @@
                 </view>
                 <view class="active_isend" wx:else>拆红包失败！请在24小时内邀请好友参与</view>
             </block>
-            <button wx:if="{{coupon_survival_time>0?true:false}}" class="page-invate" open-type="share"></button>
+            <form  bindsubmit="tunjiShare" report-submit="true">
+                <button wx:if="{{coupon_survival_time>0?true:false}}" class="page-invate" formType="submit" open-type="share"></button>
+            </form>
+            
         </view>
 
 
@@ -118,7 +131,7 @@
                 赶快邀请好友，一起瓜分50元！
             </view>
             <view class="money-img"></view>
-            <button class="invite" open-type="share"></button>
+            <button class="invite" bindtap="tunjiShare" open-type="share"></button>
         </view>
     </view>
     <!-- 红包规则 -->
