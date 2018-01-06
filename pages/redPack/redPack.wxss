@@ -376,6 +376,7 @@ button:after{
     font-size: 30rpx;
     margin: 0 auto;
     border-radius: 50rpx;
+    margin-bottom:20rpx;
 }
 
 

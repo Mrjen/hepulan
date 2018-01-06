@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/photoWall/photoWall",
     "pages/index/index",
+    
     "pages/shopSubmiteOrder/shopSubmiteOrder",
     "pages/redPack/redPack",
     "pages/mycoupon/mycoupon",

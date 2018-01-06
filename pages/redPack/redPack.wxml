@@ -2,7 +2,6 @@
 <view class="container">
     <view class="notice">
        <view class="notice_item" wx:if="{{userArr.nickname?true:false}}">{{userArr.nickname}}刚领取{{userArr.score/10}}元</view>
-       <!-- <view class="notice_item">测试数据1111</view> -->
     </view>
     <form bindsubmit="openRule" report-submit="true">
         <button class="redpack-rule"  formType="submit">活动规则</button>
@@ -13,22 +12,21 @@
         <!-- 瓜分红包成功 -->
         <view class="divide_success" wx:if="{{isSuccess}}">
             <view class="invite-success">
-                <view class="header">恭喜您，已成功瓜分红包~</view>
-                <view class="redpack-card">
+                <view class="header">{{redpackHeader}}</view>
+                <view class="redpack-card" wx:if="{{redpackCard}}">
                     <view class="card-left">
                         <text class="mark">￥</text>
-                        <view class="card-money">{{user_coupon_score/10}}</view>
+                        <view class="card-money">{{couponInfo.user_coupon_score/10}}</view>
                     </view>
                     <view class="card-right">
                         <view class="card-title">
                             <text class="title">现金红包</text>
-                            <text class="tip">{{user_coupon_score}}积分</text>
+                            <text class="tip">{{couponInfo.user_coupon_score}}积分</text>
                         </view>
                         <view class="card-content">全场通用，在禾葡兰积分商城使用</view>
                         <form bindsubmit="toPointMall" report-submit="true">
                             <button class="toshop" formType="submit">去逛逛>></button>
                         </form>
-                        
                     </view>
                 </view>
 
@@ -36,8 +34,12 @@
                     <button class="getnew"  formType="submit">拆一个新红包</button>
                 </form>
                 
-                <form  bindsubmit="toPointMall" report-submit="true">
+                <form wx:if="{{isChaiWan}}"  bindsubmit="toPointMall" report-submit="true">
                    <button class="use_item" formType="submit">立即使用</button>
+                </form>
+
+                <form bindsubmit="toPointMall" report-submit="true">
+                    <button class="use_item" open-type="contact" formType="submit">咨询客服</button>
                 </form>
 
             </view>
@@ -70,14 +72,14 @@
                 </view>
             </view>
             <block>
-                <view class="invite-tip" wx:if="{{coupon_survival_time>0?true:false}}">
-                    <view class="tip-content">还差{{coupon_need_more}}人即可瓜分50元红包，快邀请好友来拆</view>
+                <view class="invite-tip" wx:if="{{couponInfo.coupon_survival_time>0?true:false}}">
+                    <view class="tip-content">还差{{couponInfo.coupon_need_more}}人即可瓜分50元红包，快邀请好友来拆</view>
                     <view class="coundown">{{countTime}}后结束</view>
                 </view>
                 <view class="active_isend" wx:else>拆红包失败！请在24小时内邀请好友参与</view>
             </block>
             <form  bindsubmit="tunjiShare" report-submit="true">
-                <button wx:if="{{coupon_survival_time>0?true:false}}" class="page-invate" formType="submit" open-type="share"></button>
+                <button wx:if="{{couponInfo.coupon_survival_time>0?true:false}}" class="page-invate" formType="submit" open-type="share"></button>
             </form>
             
         </view>
@@ -99,7 +101,7 @@
     <view class="product-view">
         <view class="header"></view>
         <view class="product-list">
-            <view class="product-item" wx:for="{{hot_goods_list}}" wx:key="{{index}}">
+            <view class="product-item" wx:for="{{couponInfo.hot_goods_list}}" wx:key="{{index}}">
                 <view class="product-cover">
                     <image class="cover" mode="widthFix" src="{{item.imgurl}}"></image>
                 </view>
@@ -125,7 +127,7 @@
         <view class="red-inner">
             <view class="red-content">
                 您已获得1个红包，还差
-                <text>{{coupon_need_more}}</text>人即可拆开
+                <text>{{couponInfo.coupon_need_more}}</text>人即可拆开
             </view>
             <view class="red-content">
                 赶快邀请好友，一起瓜分50元！
@@ -138,5 +140,8 @@
     <view class="redpack_rule" bindtap="closeRedPack" wx:if="{{redPackRule}}">
         <image src="https://qncdn.playonwechat.com/hepulanhufu/redpack-rule.png"></image>
     </view>
-    <view class="invite_tip" wx:if="{{inviteTip}}">您的红包还差{{coupon_need_more}}人,才能拆开，别忘了邀请好友一起拆哦！</view>
+    <view class="invite_tip" wx:if="{{inviteTip}}">您的红包还差{{couponInfo.coupon_need_more}}人,才能拆开，别忘了邀请好友一起拆哦！</view>
+
+    <!-- 返回首页按钮 -->
+    <view class="backhome-btn" bindtap="toHome"></view>
 </view>
