@@ -20,6 +20,7 @@ var successText = {
 Page({
     data: {
         winText: "",
+        SaveOrder:true, //防止重复提交
         winStatus: false,
         openAnimation:{},
         couponIsOpen:false, //选择红包抵扣是否显示
@@ -91,12 +92,14 @@ Page({
                 console.log(res);
                 let cart_list = res.data.data.cart_list;
                 let cart_select_sum = res.data.data.cart_select_sum;
+                let form_token = res.data.data.form_token;
                 for (var i = 0; i < cart_list.length; i++) {
                     cart_list[i].img = `${cart_list[i].url_prefix}${cart_list[i].imgurl}`
                 }
                 that.setData({
                     cart_list,
-                    cart_select_sum
+                    cart_select_sum,
+                    form_token
                 })
             }
         })
@@ -193,8 +196,30 @@ Page({
     // 提交订单
     SaveOrder() {
         let that = this;
+        let SaveOrder = that.data.SaveOrder;
+        if (!that.data.SaveOrder){
+            wx.showToast({
+                title: '订单处理中',
+                icon: 'success',
+                duration: 1000
+            })
+            return false;
+        }
+        
+        that.setData({ SaveOrder: false })
+
         let addressid = that.data.addressid;
         let pagePath = "../shopSubmiteOrder/shopSubmiteOrder";
+        let form_token = that.data.form_token;
+        if (!form_token){
+            wx.showToast({
+                title: '没有选择地址',
+                icon: 'success',
+                duration: 1000
+            })
+            return false;
+        }
+
         console.log(that.data)
         wx.request({
             url: app.data.apiUrl,
@@ -205,7 +230,8 @@ Page({
                 type: "save-order",
                 data: {
                     addressid: addressid,
-                    coupon_ids: that.data.couponArr
+                    coupon_ids: that.data.couponArr,
+                    form_token: that.data.form_token
                 }
             },
             success(res) {
@@ -214,15 +240,18 @@ Page({
                     that.setData({
                         winStatus: true,
                         winText: successText,
-                        sureStatus: true
+                        sureStatus: true,
+                        SaveOrder:true
                     })
                 } else if (res.data.status=='0'){
                     wx.showModal({
                         title: '提示',
                         content: res.data.msg,
                         success: function (res) {
+
                         }
                     })
+                    that.setData({ SaveOrder: true})
                 }else if (res.data.status < 0) {
                     wx.showModal({
                         title: '提示',
