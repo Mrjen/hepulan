@@ -1,6 +1,6 @@
 // pages/shopExchange/shopExchange.js
 var app = getApp();
-
+import { statistic } from '../../tunji'
 var common = require('../../common');
 Page({
     data: {
@@ -10,7 +10,9 @@ Page({
     },
 
     onLoad: function(options) {
-
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
     },
 
     onReady: function() {

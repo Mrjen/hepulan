@@ -1,4 +1,5 @@
 // pages/getPoint/getPoint.js
+import { statistic } from '../../tunji'
 Page({
   data: {
     imgUrls: [
@@ -14,6 +15,11 @@ Page({
   },
 
   onLoad: function (options) {
+   
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     let e = Math.random();
     let that = this;
     console.log(e);

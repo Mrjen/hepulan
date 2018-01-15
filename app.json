@@ -1,6 +1,8 @@
 {
   "pages": [
+    
     "pages/index/index",
+    "pages/applyDetail/applyDetail",
     "pages/single/single",
     "pages/heChartTeach/heChartTeach",
     "pages/goldList/goldList",
@@ -43,7 +45,7 @@
     "pages/apply/apply",
     "pages/member/member",
     "pages/sharePoster/sharePoster",
-    "pages/applyDetail/applyDetail",
+    
     "pages/integralList/integralList",
     "pages/tip/tip",
     "pages/template/template",

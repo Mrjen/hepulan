@@ -1,6 +1,7 @@
 var common = require('../../common.js');
 var main_content = [];
 var app = getApp();
+import { statistic } from '../../tunji'
 Page({
     data: {
         searchWord: "",
@@ -8,6 +9,11 @@ Page({
         start: 0
     },
     onLoad: function() {
+        
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+
         wx.showShareMenu({
             withShareTicket: true
         })

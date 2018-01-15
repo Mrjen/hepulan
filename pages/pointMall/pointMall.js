@@ -1,6 +1,7 @@
 // pages/pointMall/pointMall.js
 var common = require('../../common.js');
 var app = getApp();
+import { statistic } from '../../tunji'
 Page({
     data: {
         dataText: [],
@@ -28,7 +29,9 @@ Page({
     },
 
     onLoad: function(options) {
-
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
     },
 
     // 兑换

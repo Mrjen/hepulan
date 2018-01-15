@@ -2,6 +2,7 @@
 var common = require('../../common.js');
 var WxParse = require('../../utils/wxParse.js');
 var app = getApp();
+import { statistic } from '../../tunji'
 Page({
   // 页面的初始数据
   data: {
@@ -740,6 +741,11 @@ if (play_static) {
   onLoad: function(options) {
     //console.log(options);
     var that = this;
+
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     that.setData({
       topicId: options.topicId
     });

@@ -1,8 +1,10 @@
 // pages/redPack/redPack.js
 import { http } from '../../common.js'
-import { formtime } from '../../common.js'
+import { formtime, getSign } from '../../common.js'
 import { diffTime } from '../../common.js'
 var mta = require('../../utils/mta_analysis.js');
+import { statistic } from '../../tunji'
+
 Page({
   data: {
     redPackRule: false,  //规则
@@ -82,6 +84,11 @@ Page({
     // 初始化腾讯统计
     mta.Page.init();
 
+
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     let that = this;
     if (!options.unique_code) {
       //红包id不存在 自己进入
@@ -127,87 +134,93 @@ Page({
 
     } else if (options.unique_code) {
       // 有红包id 从分享进入
-      http({
-        type: 'get-coupon-info', data: {
-          unique_code: options.unique_code
-        }
-      }, function (res) {
-        console.log('从分享进入', res);
-        let persion = that.data.persion;
-        let couponInfo = res.data.data;
-        // let user_is_dismantle = res.data.data.user_is_dismantle;   //当前用户是否拆过此红包
-        let countTime = null;
-        that.setData({
-          coupon_survival_time: couponInfo.coupon_survival_time
-        })
-
-        console.log(couponInfo.coupon_user_list, persion)
-
-        persion = that.getPersion(couponInfo.coupon_user_list,persion, that);
-        that.timeform(couponInfo.coupon_survival_time, that);
-        console.log('couponInfo.coupon_status', couponInfo.coupon_status, 'user_is_dismantle', couponInfo.user_is_dismantle)
-        // 滚动用户
-        let userArr = couponInfo.coupon_receive_list[0];
-        let _i = 1;
-        let userTime = setInterval(function () {
-          userArr = couponInfo.coupon_receive_list[_i];
+      getSign(function(sign) {
+         console.log('sign',sign)
+         wx.setStorageSync('sign', sign);
+        http({
+          type: 'get-coupon-info', data: {
+            unique_code: options.unique_code
+          }
+        }, function (res) {
+          console.log('从分享进入', res);
+          let persion = that.data.persion;
+          let couponInfo = res.data.data;
+          // let user_is_dismantle = res.data.data.user_is_dismantle;   //当前用户是否拆过此红包
+          let countTime = null;
           that.setData({
-            userArr: userArr
+            coupon_survival_time: couponInfo.coupon_survival_time
           })
-          _i = _i < couponInfo.coupon_receive_list.length ? _i + 1 : 0;
-        }, 4000)
 
-        that.setData({
-          persion: persion,
-          couponInfo: couponInfo,
-          userArr: userArr,
-          unique_code: options.unique_code
-        })
+          console.log(couponInfo.coupon_user_list, persion)
 
-        //先判断用户红包有没有组团成功  在判断红包有没有过期 就算过期还得判断是否拼团成功
-        if (couponInfo.coupon_status) {
-          //判断红包状态  是否组团成功
-          console.log('组团成功')
+          persion = that.getPersion(couponInfo.coupon_user_list, persion, that);
+          that.timeform(couponInfo.coupon_survival_time, that);
+          console.log('couponInfo.coupon_status', couponInfo.coupon_status, 'user_is_dismantle', couponInfo.user_is_dismantle)
+          // 滚动用户
+          let userArr = couponInfo.coupon_receive_list[0];
+          let _i = 1;
+          let userTime = setInterval(function () {
+            userArr = couponInfo.coupon_receive_list[_i];
+            that.setData({
+              userArr: userArr
+            })
+            _i = _i < couponInfo.coupon_receive_list.length ? _i + 1 : 0;
+          }, 4000)
+
           that.setData({
-            inviteView: false,
-            redPackShow: false,
-            isSuccess: true,
-            getRedPack:false
+            persion: persion,
+            couponInfo: couponInfo,
+            userArr: userArr,
+            unique_code: options.unique_code
           })
-          if (!couponInfo.user_is_dismantle){
+
+          //先判断用户红包有没有组团成功  在判断红包有没有过期 就算过期还得判断是否拼团成功
+          if (couponInfo.coupon_status) {
+            //判断红包状态  是否组团成功
+            console.log('组团成功')
+            that.setData({
+              inviteView: false,
+              redPackShow: false,
+              isSuccess: true,
+              getRedPack: false
+            })
+            if (!couponInfo.user_is_dismantle) {
               console.log('组团成功并且我没有参与')
               that.setData({
-                redpackCard:false,
-                isChaiWan:false,
-                redpackHeader:'您来晚啦！，红包已被拆完，快去拆个新红包'
+                redpackCard: false,
+                isChaiWan: false,
+                redpackHeader: '您来晚啦！，红包已被拆完，快去拆个新红包'
               })
-          }else{
-             console.log('组团成功，并且我参与了');
-          }
+            } else {
+              console.log('组团成功，并且我参与了');
+            }
 
-        } else {
+          } else {
 
-          if (couponInfo.user_is_dismantle){
-            console.log('组团中,我参与了')
-            // that.setData({
-            //   isSuccess:false,
-            //   getRedPack:true
-            // })
-          }else{
-            console.log('组团中,我没参与')
-            that.setData({
-              isSuccess: false,
-              inviteView:false,
-              getRedPack: true
-            })
-          }
+            if (couponInfo.user_is_dismantle) {
+              console.log('组团中,我参与了')
+              // that.setData({
+              //   isSuccess:false,
+              //   getRedPack:true
+              // })
+            } else {
+              console.log('组团中,我没参与')
+              that.setData({
+                isSuccess: false,
+                inviteView: false,
+                getRedPack: true
+              })
+            }
 
-          if (couponInfo.coupon_survival_time < 0) {
-            console.log('红包过期了');
-            return false;
+            if (couponInfo.coupon_survival_time < 0) {
+              console.log('红包过期了');
+              return false;
+            }
           }
-        }
+        })
       })
+      console.log(wx.getStorageSync('sign'));
+      
     }
   },
 

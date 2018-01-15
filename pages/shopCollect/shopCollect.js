@@ -1,13 +1,16 @@
 // pages/shopCollect/shopCollect.js
 var common = require('../../common.js');
 var app = getApp();
+import { statistic } from '../../tunji'
 Page({
   data: {
      
   },
 
   onLoad: function (options) {
-  
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
   },
 
   onReady: function () {

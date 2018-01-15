@@ -1,6 +1,7 @@
 // pages/login/login.js
 var app = getApp();
 var common = require('../../common');
+import { statistic } from '../../tunji'
 Page({
     data: {
         inputValue: '',
@@ -19,6 +20,11 @@ Page({
     onLoad: function(options) {
         var that = this;
         // 页面初始化 options为页面跳转所带来的参数
+
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+
         wx.showShareMenu({
             withShareTicket: true
         })

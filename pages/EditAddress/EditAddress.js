@@ -1,4 +1,5 @@
 var app = getApp();
+import { statistic } from '../../tunji'
 // pages/EditAddress/EditAddress.js
 Page({
   data: {
@@ -244,6 +245,11 @@ console.log(persionName,mobile,ProvinceId,CityId,CountyId,addressDetail)
 
 onLoad: function (options) {
    let that= this;
+
+  // 上报后台数据
+  statistic();
+  wx.setStorageSync('sence', options.scene) 
+
    let addressinfo = options.addressinfo;
    let pagePath = options.pagePath;
    that.setData({

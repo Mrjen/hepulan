@@ -1,6 +1,7 @@
 // pages/DiaryMark/DiaryMark.js
 var app = getApp();
 let common = require('../../common.js');
+import { statistic } from '../../tunji'
 Page({
   data: {
     uploadimg: [
@@ -188,7 +189,9 @@ Page({
 
 
   onLoad: function(options) {
-
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
   },
 
   onReady: function() {

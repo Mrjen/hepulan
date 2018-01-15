@@ -2,6 +2,7 @@
 var app = getApp();
 var common = require('../../common.js');
 var mta= require('../../utils/mta_analysis.js');
+import { statistic } from '../../tunji'
 
 Page({
   data: {
@@ -9,7 +10,9 @@ Page({
   },
 
   onLoad: function (options) {
-  
+      // 上报后台数据
+      statistic();
+      wx.setStorageSync('sence', options.scene) 
   },
 
   onReady: function () {

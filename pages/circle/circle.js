@@ -1,7 +1,7 @@
 // pages/circle/circle.js
 var app = getApp();
 var common = require('../../common.js');
-console.log(app.data);
+import { statistic } from '../../tunji'
 Page({
     data: {
         sign: "",
@@ -213,7 +213,10 @@ Page({
 
     onLoad() {
         const that = this;
-         
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+        
          wx.showShareMenu({
             withShareTicket: true
         })

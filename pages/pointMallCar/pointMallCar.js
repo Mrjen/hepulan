@@ -1,6 +1,7 @@
 // pages/pointMallCar/pointMallCar.js
 var app = getApp();
 let common = require('../../common.js');
+import { statistic } from '../../tunji'
 Page({
     data: {
         list: [],
@@ -10,7 +11,9 @@ Page({
     },
 
     onLoad: function(options) {
-
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
     },
 
     onReady: function() {

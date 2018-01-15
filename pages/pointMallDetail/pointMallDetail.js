@@ -1,5 +1,6 @@
 // pages/pointMallDetail/pointMallDetail.js
 var app = getApp();
+import { statistic } from '../../tunji'
 Page({
     data: {
         detailNav: [{
@@ -15,6 +16,11 @@ Page({
     onLoad: function(options) {
         console.log(options);
         let kid = options.id;
+
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+
         // let kid = 10;
         this.setData({
             kid

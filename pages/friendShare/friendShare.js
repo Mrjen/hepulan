@@ -1,6 +1,7 @@
 // pages/friendShare/friendShare.js
 var app = getApp();
 var common = require('../../common.js');
+import { statistic } from '../../tunji'
 Page({
   /**
    * 页面的初始数据
@@ -31,6 +32,11 @@ Page({
   onLoad: function (options) {
     var that = this;
     console.log("打印friendshare页面参数");
+    
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     console.log(options);
     console.log(options.sharecode,"分享人的sign");
     // let sharecode = "0be371dd1b62c87947fba665346b492a";

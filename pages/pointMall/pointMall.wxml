@@ -120,4 +120,4 @@
 </view>
 
 <!-- 回首页按钮 -->
-<template is="share_icon"/>
+ <template is="share_icon"/> 

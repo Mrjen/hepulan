@@ -5,6 +5,7 @@ let app = getApp();
 let calendarSignData;
 let date;
 let calendarSignDay;
+import { statistic } from '../../tunji'
 Page({
     data: {
         sign: "",
@@ -105,6 +106,11 @@ Page({
     onLoad: function() {
         //wx.clearStorage();
         let that = this;
+        
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+
         //console.log('sign:'+sign);
         let mydate = new Date();
         let year = mydate.getFullYear();

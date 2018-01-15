@@ -1,6 +1,8 @@
 // pages/applyDetail/applyDetail.js
 var WxParse = require('../../utils/wxParse.js');
 var common = require('../../common.js');
+var {http} = require('../../common');
+import { statistic} from '../../tunji'
 var app = getApp();
 Page({
 
@@ -21,6 +23,11 @@ Page({
 // 生命周期函数--监听页面加载
   onLoad: function(options) {
     console.log(options);
+     
+    // 后台数据统计上报
+    statistic();
+    wx.setStorageSync('sence', options.scene)   
+
     var smpid = options.smpid;
     var sign = app.data.sign;
     console.log(smpid);
@@ -32,7 +39,7 @@ Page({
         smpId: smpid
       },
       success: function(res) {
-        console.log(res);
+        console.log(2222,res);
         var article = res.data.data.detail;
         that.setData({
           article: article

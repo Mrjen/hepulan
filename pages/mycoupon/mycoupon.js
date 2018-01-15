@@ -2,6 +2,7 @@
 import { http } from '../../common.js'
 import { couPondiffTime } from '../../common.js'
 import { time } from '../../common.js'
+import { statistic } from '../../tunji'
 Page({
   data: {
     nav: [{
@@ -21,7 +22,9 @@ Page({
   },
 
   onLoad: function (options) {
-
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
   },
 
   // 导航切换

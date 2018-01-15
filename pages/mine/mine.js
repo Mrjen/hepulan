@@ -1,6 +1,7 @@
 // pages/mine/mine.js
 var common = require('../../common.js');
 var app = getApp()
+import { statistic } from '../../tunji'
 
 Page({
     data: {
@@ -38,6 +39,11 @@ Page({
         wx.showShareMenu({
             withShareTicket: true
         })
+
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+
         var that = this;
         // 页面初始化 options为页面跳转所带来的参数
         var signData = wx.getStorageSync("loginData");

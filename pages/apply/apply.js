@@ -1,6 +1,7 @@
 // pages/login/login.js
 var app = getApp();
 var common = require('../../common.js');
+import { statistic} from '../../tunji'
 Page({
   data: {
     smpid:"",
@@ -38,6 +39,11 @@ Page({
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
   //  console.log(options);
+
+    // 后台数据统计上报
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     wx.showShareMenu({
       withShareTicket: true
     })

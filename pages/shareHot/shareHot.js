@@ -1,6 +1,7 @@
 // pages/sharePage/sharePage.js
 var common = require('../../common.js');
 var app = getApp();
+import { statistic } from '../../tunji'
 Page({
 
   /**
@@ -15,6 +16,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     if (options.sharecode) {
       console.log("options_data", options);
       console.log("appdata", app.data);

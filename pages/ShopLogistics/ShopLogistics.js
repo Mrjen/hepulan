@@ -1,6 +1,7 @@
 // pages/ShopLogistics/ShopLogistics.js
 var app = getApp();
 let common = require('../../common.js');
+import { statistic } from '../../tunji'
 Page({
   data: {
      editAddress:"../myAddress/myAddress?addressinfo=editAddress"
@@ -8,6 +9,11 @@ Page({
 
   onLoad: function (options) {
     console.log(options)
+
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
       let that = this;
       let order_num = options.order_num;
       let addressid = options.addressid;

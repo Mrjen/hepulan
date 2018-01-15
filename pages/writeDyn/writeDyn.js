@@ -1,6 +1,7 @@
 // pages/writeDyn/writeDyn.js
 var common = require('../../common.js');
 var app = getApp();
+import { statistic } from '../../tunji'
 Page({
   data: {
       sign:"",
@@ -14,6 +15,9 @@ Page({
   onLoad: function (options) {
     var that = this;
 // 获取缓存中的sign
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
   
     that.setData({
         sign: app.data.sign

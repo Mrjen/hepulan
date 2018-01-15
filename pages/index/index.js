@@ -2,32 +2,33 @@
 var app = getApp();
 var common = require('../../common.js');
 var mta = require('../../utils/mta_analysis.js');
-import {http} from '../../common.js'
+import { http } from '../../common.js'
+import { statistic, fromPageData, userEvent } from '../../tunji'
 Page({
     data: {
         content: false,
         mobile: "",
         teacherId: "",
         wxcode: "",
-        redpack:false,  //红包
+        redpack: false,  //红包
         copyTeach: false,
         teach_static: false,
-        closeGetPoint:"block",//获取积分icon的显示状态
+        closeGetPoint: "block",//获取积分icon的显示状态
         templateData: [{
             teacher_id: "",
             title_tip: '请咨询您的专属护肤老师'
         }],
         navList: [{
-                text: "肌肤测试",
-                navUrl: ""
-            }, 
-            {
-                text: "护肤打卡",
-                navUrl: ""
-            }, {
-                text: "加入会员",
-                navUrl: ""
-            }
+            text: "肌肤测试",
+            navUrl: ""
+        },
+        {
+            text: "护肤打卡",
+            navUrl: ""
+        }, {
+            text: "加入会员",
+            navUrl: ""
+        }
         ],
         imgUrls: ['https://qncdn.playonwechat.com/hepulan/home_baner01.png',
             'https://qncdn.playonwechat.com/hepulan/home_baner02.png',
@@ -40,25 +41,26 @@ Page({
     // 统计
     tongJi(ev) {
         let codeid = wx.getStorageSync("codeid");
-            codeid = codeid.split("_");
-            codeid = codeid.toLocaleString();
-            codeid =  codeid.toLowerCase();
-        mta.Event.stat("contact_click", {codeid:'true'})
+        codeid = codeid.split("_");
+        codeid = codeid.toLocaleString();
+        codeid = codeid.toLowerCase();
+        mta.Event.stat("contact_click", { codeid: 'true' })
     },
 
     formSubmit(ev) {
+        userEvent({ event: 'zixun' })
         //  console.log('form发生了submit事件，携带数据为：', ev.detail.formId)
-        common.getSign(function() {
+        common.getSign(function () {
             var sign = wx.getStorageSync("sign");
-            wx.setStorageSync('form_id',ev.detail.formId);
+            wx.setStorageSync('form_id', ev.detail.formId);
             wx.request({
                 url: 'https://hepulan.playonwechat.com/site/save-form-id?sign=' + sign,
                 data: {
                     form_id: ev.detail.formId,
-                    id:wx.getStorageSync('user_id')
+                    id: wx.getStorageSync('user_id')
                 },
                 success(res) {
-                  console.log(res)
+                    console.log(res)                    
                     // wx.navigateTo({
                     //     url:'../webContact/WebContact'
                     // })
@@ -77,70 +79,75 @@ Page({
                     formid: e.detail.formId
                 }
             }, function (res) {
-                console.log('生成红包成功',res)
+                console.log('生成红包成功', res)
                 wx.setStorageSync('unique_code', res.data.data.unique_code);
                 mta.Event.stat("redpack_index", {})
                 wx.navigateTo({
                     url: `../redPack/redPack?formid=${e.detail.formId}`
                 })
                 that.setData({
-                    redpack:false
+                    redpack: false
                 })
             })
         }
     },
 
     // 关闭红包
-    closeRedPack(){
-       this.setData({
-           redpack:false
-       })
+    closeRedPack() {
+        this.setData({
+            redpack: false
+        })
     },
 
-    applyBtn: function() {
+    applyBtn: function () {
         var that = this;
         that.setData({
             copyTeach: true
         });
     },
 
-    sureBtn: function() {
+    sureBtn: function () {
         var that = this;
         that.setData({
             copyTeach: false
         });
     },
 
-    cencelBbtn: function() {
+    cencelBbtn: function () {
         var that = this;
         that.setData({
             copyTeach: false
         });
     },
 
-    onLoad: function(options) {
-         console.log("onload页面参数",options)
+    onLoad: function (options) {
+        console.log("onload页面参数", options)
+
+        // 后台数据统计上报
+        statistic();
+        wx.setStorageSync('sence', options.scene)       
+
         // 初始化腾讯统计
         mta.Page.init();
         // options.codeId = "Tdhgdi";
         let codeid = `codeid_${options.codeId}`;
         // let load_code = codeid.split("_");
-        console.log("onload",codeid)
+        console.log("onload", codeid)
 
         if (codeid) {
-            wx.setStorageSync("codeid",codeid)
-            mta.Event.stat(codeid,{});
+            wx.setStorageSync("codeid", codeid)
+            mta.Event.stat(codeid, {});
         }
-        
-        if (options.codeId=='goto') {
+
+        if (options.codeId == 'goto') {
             wx.switchTab({
-              url: '../circle/circle'
+                url: '../circle/circle'
             })
         }
 
         //页面初始化 options为页面跳转所带来的参数
         var that = this;
-        
+
         common.getUser();
 
         wx.showShareMenu({
@@ -150,30 +157,30 @@ Page({
             that.setData({
                 redpack: true
             })
-        },1000);
+        }, 1000);
 
 
     },
 
-    onReady: function() {
+    onReady: function () {
         // 页面渲染完成
     },
 
     onShow() {
         let that = this;
-        common.getSign(function(sign) {
+        common.getSign(function (sign) {
 
         });
     },
     // 皮肤测试
-    skinTest: function() {
+    skinTest: function () {
         wx.navigateTo({
             url: '../skinTest/skinTest'
         })
     },
 
     // 老师推荐
-    teacheRed: function() {
+    teacheRed: function () {
         var that = this;
         var mobile = app.data.mobile;
         var pagePath = "../Recommend/Recommend";
@@ -182,7 +189,7 @@ Page({
         })
     },
 
-    joinVip: function(page) {
+    joinVip: function (page) {
         var that = this;
         var mobile = app.data.mobile;
         var pagePath = "../member/member";
@@ -192,7 +199,7 @@ Page({
         })
     },
 
-    Check: function() {
+    Check: function () {
         var that = this;
         var mobile = app.data.mobile;
         var pagePath = "../qiandao/qiandao"
@@ -203,13 +210,13 @@ Page({
         })
     },
 
-    CheckIn(){
+    CheckIn() {
         wx.navigateTo({
             url: `../checkIn/checkIn`
         })
     },
 
-    Apply: function(page) {
+    Apply: function (page) {
         //console.log(page);
         var that = this;
         var mobile = app.data.mobile;
@@ -221,7 +228,7 @@ Page({
         })
     },
 
-    askMine: function(ask) {
+    askMine: function (ask) {
         //console.log(ask);
         var that = this;
         var mobile = app.data.mobile;
@@ -248,7 +255,7 @@ Page({
         }
     },
 
-    toLogin: function(page) {
+    toLogin: function (page) {
         var pages = page.target.dataset.page;
         //console.log(pages);
         var pagePath = "../index/index"
@@ -259,27 +266,27 @@ Page({
 
 
     // 关闭获取积分按钮
-    closeGetPoint(){
+    closeGetPoint() {
         let that = this;
         that.setData({
-            closeGetPoint:"none"
+            closeGetPoint: "none"
         })
     },
 
     // 返回首页
-    backHome: function() {
+    backHome: function () {
         common.backHome();
     },
 
     // 分享海报
-    toShare: function() {
+    toShare: function () {
         common.toShare();
     },
 
-    onHide: function() {
+    onHide: function () {
         // 页面隐藏
     },
-    onUnload: function() {
+    onUnload: function () {
         // 页面关闭
     },
 

@@ -1,5 +1,6 @@
 // pages/shopSubmiteOrder/shopSubmiteOrder.js
 var app = getApp();
+import { statistic } from '../../tunji'
 import { http, couPondiffTime,time } from '../../common.js';
 var failText = {
     title: "很遗憾TAT",
@@ -55,6 +56,11 @@ Page({
 
     onLoad: function(options) {
         console.log(options);
+
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+
         let that = this;
         let addressid = options.addressid;
         if (options.address && options.name && options.phone) {

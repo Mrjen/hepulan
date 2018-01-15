@@ -2,6 +2,8 @@
 let common = require('common.js');
 var mta = require('utils/mta_analysis.js');
 import Api from './api'
+import { fromPageData } from './tunji'
+
 App({
     data: {
         loginData: null,
@@ -47,10 +49,7 @@ App({
 
         wx.login({
             success: function (res) {
-                //  console.log(res);
                 let code = res.code;
-
-
                 if (res.code) {
                     //发起网络请求
                     wx.request({
@@ -64,7 +63,7 @@ App({
                             }
                         },
                         success: function (res) {
-                            console.log(res);
+                            console.log('授权数据',res);
                             if (res.data.status === 2) {
                                 console.log("用户常规授权失败");
                                 common.getThirdKey(function (res) {
@@ -131,7 +130,12 @@ App({
                             } else if (res.data.status === 1) {
                                 console.log("用户正常授权")
                                 wx.setStorageSync('sign', res.data.data.sign);
-                                console.log(res.data.data.sign)
+                                wx.setStorageSync('unionid', res.data.data.unionid);
+                                wx.setStorageSync('openid', res.data.data.app_openid);
+
+                                // 上报数据
+                                fromPageData()
+                                
                                 wx.getUserInfo({
                                     success: function (res) {
                                         // console.log(res);

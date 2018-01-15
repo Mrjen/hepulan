@@ -1,6 +1,7 @@
 // pages/integralList/integralList.js
 var common = require('../../common.js');
 var appInstance = getApp();
+import { statistic } from '../../tunji'
 Page({
   data: {
     sign: "",
@@ -12,6 +13,11 @@ Page({
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
+
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     var sign = appInstance.data.sign;
     var avatarUrl = wx.getStorageSync("avatarUrl");
     //console.log(sign)

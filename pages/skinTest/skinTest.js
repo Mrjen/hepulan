@@ -1,5 +1,6 @@
 // pages/skinTest/skinTest.js
 var common = require('../../common.js');
+import { statistic } from '../../tunji'
 Page({
     data: {
         Result: [],
@@ -209,6 +210,11 @@ Page({
     },
 
     onLoad: function(options) {
+
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+        
         wx.showShareMenu({
             withShareTicket: true
         })

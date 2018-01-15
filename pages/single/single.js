@@ -2,6 +2,7 @@
 var common = require('../../common.js');
 var WxParse = require('../../utils/wxParse.js');
 var app = getApp();
+import { statistic } from '../../tunji'
 Page({
   /**
    * 页面的初始数据
@@ -11,6 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     wx.showShareMenu({
       withShareTicket: true
     })

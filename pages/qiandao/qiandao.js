@@ -5,6 +5,7 @@ var app = getApp();
 var calendarSignData;
 var date;
 var calendarSignDay;
+import { statistic } from '../../tunji'
 Page({
     data: {
         sign: "",
@@ -60,7 +61,10 @@ Page({
     onLoad: function() {
         //wx.clearStorage();
         var that = this;
-
+        
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
     },
 
     onShow: function() {

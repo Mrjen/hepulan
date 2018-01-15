@@ -1,18 +1,21 @@
 var app = getApp();
 import Api from './api'
 
+// 返回首页
 function backHome() {
   wx.switchTab({
     url: '../index/index'
   })
 };
 
+// 分享
 function toShare() {
   wx.navigateTo({
     url: '../sharePoster/sharePoster'
   })
 };
 
+// 获取用户信息
 function getUser() {
   var wx_name = wx.getStorageSync('wx_name');
   var avatarUrl = wx.getStorageSync('avatarUrl');
@@ -140,7 +143,7 @@ function getUser() {
   }
 };
 
-
+// 请求
 function http(http, cb) {
   wx.request({
     url: Api.apiUrl,
@@ -157,7 +160,7 @@ function http(http, cb) {
   })
 };
 
-
+// 获取sign
 function getSign(callback) {
   wx.login({
     success(res) {
@@ -195,6 +198,7 @@ function getSign(callback) {
   })
 };
 
+// 获取key
 function getThirdKey(cb) {
   wx.login({
     success(res) {
@@ -239,6 +243,7 @@ function getVipId(tell, callback) {
   })
 };
 
+// 时间格式化
 function time(unixtime, withTime) {
   if (!unixtime) {
     unixtime = (new Date()).getTime();

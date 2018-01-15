@@ -1,6 +1,7 @@
 // pages/skinResult/skinResult.js
 var common = require('../../common.js');
 var mta = require('../../utils/mta_analysis.js');
+import { statistic } from '../../tunji'
 Page({
     data: {
         skinTag: [{
@@ -56,7 +57,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
     },
 
     onReady: function() {

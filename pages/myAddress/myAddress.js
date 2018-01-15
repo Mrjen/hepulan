@@ -1,6 +1,6 @@
 var app = getApp();
 var common = require('../../common.js');
-
+import { statistic } from '../../tunji'
 // pages/sureExchange/sureExchange.js
 Page({
     data: {
@@ -11,6 +11,12 @@ Page({
     onLoad: function(options) {
         console.log(options)
         let that = this;
+
+
+        // 上报后台数据
+        statistic();
+        wx.setStorageSync('sence', options.scene) 
+
         let order_num = options.order_num;
         if (options.addressinfo) {
             that.setData({

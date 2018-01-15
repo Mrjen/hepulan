@@ -1,4 +1,5 @@
 var common = require('../../common.js');
+import { statistic } from '../../tunji'
 Page({
   data: {
     "goldnote": [{
@@ -23,6 +24,10 @@ Page({
   },
   onLoad: function(options) {
     // Do some initialize when page load.
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene) 
+
     wx.showShareMenu({
       withShareTicket: true
     })
