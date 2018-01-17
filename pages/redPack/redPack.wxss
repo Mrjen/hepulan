@@ -598,3 +598,27 @@ button:after{
     top: 450rpx;
     font-size: 26rpx;
 }
+
+/* 规则 */
+.rule_in{
+    width: 588rpx;
+    background: #fff;
+    overflow: hidden;
+    padding:20rpx 40rpx;
+    border-radius: 10rpx;
+}
+
+.top-nav{
+    width: 588rpx;
+    height: 47rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/top-title.png');
+    background-size: 100% 100%;
+}
+
+.rule-content{
+    font-size: 26rpx;
+    color: #676766;
+    padding:10rpx 0;
+    line-height: 40rpx;
+    text-align: justify;
+}

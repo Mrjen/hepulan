@@ -75,7 +75,7 @@ function getUser() {
                       }
                     },
                     success: function (res) {
-                      console.log(res)
+                      console.log('用户信息',res)
                       console.log("保存用户信息");
                     }
                   })

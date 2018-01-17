@@ -1,7 +1,9 @@
 {
   "pages": [
-    
     "pages/index/index",
+    "pages/pointMall/pointMall",
+    "pages/photoWall/photoWall",
+    
     "pages/applyDetail/applyDetail",
     "pages/single/single",
     "pages/heChartTeach/heChartTeach",
@@ -12,7 +14,7 @@
     "pages/friendShare/friendShare",
     "pages/shopExchange/shopExchange",
     "pages/DiaryMark/DiaryMark",
-    "pages/photoWall/photoWall",
+    
     "pages/shopSubmiteOrder/shopSubmiteOrder",
     "pages/redPack/redPack",
     "pages/mycoupon/mycoupon",
@@ -20,7 +22,7 @@
     "pages/circle/circle",
     "pages/webContact/WebContact",
     "pages/sharePage/sharePage",
-    "pages/pointMall/pointMall",
+    
     "pages/getPoint/getPoint",
     "pages/checkIn/checkIn",
     "pages/qiandao/qiandao",

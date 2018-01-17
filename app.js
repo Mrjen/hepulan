@@ -63,7 +63,7 @@ App({
                             }
                         },
                         success: function (res) {
-                            console.log('授权数据',res);
+                            console.log('授权数据', res);
                             if (res.data.status === 2) {
                                 console.log("用户常规授权失败");
                                 common.getThirdKey(function (res) {
@@ -84,12 +84,10 @@ App({
                                                     city: userInfo.city,
                                                     country: userInfo.country
                                                 };
-                                                wx.setStorageSync("nickName", userInfo.nickName);
-                                                wx.setStorageSync("avatarUrl", userInfo.avatarUrl);
-
+                                                wx.setStorage("nickName", userInfo.nickName);
+                                                wx.setStorage("avatarUrl", userInfo.avatarUrl);
                                                 res.userInfo.username = userInfo.nickName;
                                                 res.userInfo.id = wx.getStorageSync('user_id');
-                                                console.log(res.userInfo,11111111111);
                                                 //更新数据库用户信息
                                                 wx.request({
                                                     url: 'https://hpchat.playonwechat.com/admin/Apiuser/userAdd', //仅为示例，并非真实的接口地址
@@ -115,8 +113,6 @@ App({
                                                     success(res) {
                                                         // let _res = JSON.parse(res)
                                                         console.log(res, "2222")
-                                                        console.log(res,"2222")
-                                                        // console.log(_res,"thirdkey");
 
                                                         if (res.data.data.sign) {
                                                             wx.setStorageSync("sign", res.data.data.sign);
@@ -128,14 +124,15 @@ App({
                                     }
                                 });
                             } else if (res.data.status === 1) {
-                                console.log("用户正常授权")
+                                console.log("用户正常授权", res)
                                 wx.setStorageSync('sign', res.data.data.sign);
                                 wx.setStorageSync('unionid', res.data.data.unionid);
                                 wx.setStorageSync('openid', res.data.data.app_openid);
-
+                                wx.setStorageSync('is_fresh', res.data.data.is_fresh);
                                 // 上报数据
                                 fromPageData()
-                                
+
+                                // 获取用户信息
                                 wx.getUserInfo({
                                     success: function (res) {
                                         // console.log(res);
@@ -155,7 +152,7 @@ App({
                                         };
                                         res.userInfo.username = userInfo.nickName;
                                         res.userInfo.id = wx.getStorageSync('user_id');
-                                        console.log(res.userInfo,11111111111);
+                                        console.log(res.userInfo, 11111111111);
                                         //更新数据库用户信息
                                         wx.request({
                                             url: 'https://hpchat.playonwechat.com/admin/Apiuser/userAdd', //仅为示例，并非真实的接口地址
@@ -200,6 +197,11 @@ App({
                 }
             }
         });
+    },
+
+    // app onShow
+    onShow() {
+        console.log('app onShow');
     },
 
     globalData: {

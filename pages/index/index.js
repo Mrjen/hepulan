@@ -129,27 +129,24 @@ Page({
 
         // 初始化腾讯统计
         mta.Page.init();
-        // options.codeId = "Tdhgdi";
-        let codeid = `codeid_${options.codeId}`;
-        // let load_code = codeid.split("_");
-        console.log("onload", codeid)
 
-        if (codeid) {
+        if (options.codeId) {
+            let codeid = `codeid_${options.codeId}`;
+            // let load_code = codeid.split("_");
+            console.log("onload", codeid)
             wx.setStorageSync("codeid", codeid)
             mta.Event.stat(codeid, {});
-        }
 
-        if (options.codeId == 'goto') {
-            wx.switchTab({
-                url: '../circle/circle'
-            })
+            if (options.codeId == 'goto') {
+                wx.switchTab({
+                    url: '../circle/circle'
+                })
+            }
         }
+       
 
-        //页面初始化 options为页面跳转所带来的参数
         var that = this;
-
         common.getUser();
-
         wx.showShareMenu({
             withShareTicket: true,
         });
@@ -158,8 +155,6 @@ Page({
                 redpack: true
             })
         }, 1000);
-
-
     },
 
     onReady: function () {

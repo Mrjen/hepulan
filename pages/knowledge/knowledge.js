@@ -8,7 +8,7 @@ Page({
         checkBottom: true,
         start: 0
     },
-    onLoad: function() {
+    onLoad: function (options) {
         
         // 上报后台数据
         statistic();

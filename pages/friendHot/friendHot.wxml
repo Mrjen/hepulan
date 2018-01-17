@@ -17,8 +17,14 @@
     <view class="share_daty_tip">今日共有{{tadybootsts}}人为他助力</view>
    </view>
    <view class="navto" bindtap="navTo">看一看TA在领取什么大礼</view>
+   
    <view class="danmu">
-      <view class="danmu_item dan{{index}}" style="top:{{item.topMargin}}rpx" wx:for="{{danList}}"><image src="{{item.avatarurl}}"></image>{{item.nickname}}向{{userName}}捐赠了1热力</view>
+      <view class="danmu_item dan{{index}}" 
+            style="top:{{item.topMargin}}rpx" 
+            wx:for="{{danList}}">
+        <image src="{{item.avatarurl}}"></image>
+          {{item.nickname}}向{{userName}}捐赠了1热力
+      </view>
    </view>
    <template is="share_icon"/>
 </view>

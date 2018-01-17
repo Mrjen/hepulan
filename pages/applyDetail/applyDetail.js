@@ -5,10 +5,6 @@ var {http} = require('../../common');
 import { statistic} from '../../tunji'
 var app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     wxcode: "",
     teacherId: "",

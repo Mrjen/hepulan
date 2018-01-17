@@ -1,10 +1,18 @@
 <!--pages/redPack/redPack.wxml-->
 <view class="container">
     <view class="notice">
-       <view class="notice_item" wx:if="{{userArr.nickname?true:false}}">{{userArr.nickname}}刚领取{{userArr.score/10}}元</view>
+       <view class="notice_item" 
+             wx:if="{{userArr.nickname?true:false}}">
+             {{userArr.nickname}}刚领取{{userArr.score/10}}元
+       </view>
     </view>
-    <form bindsubmit="openRule" report-submit="true">
-        <button class="redpack-rule"  formType="submit">活动规则</button>
+
+    <form bindsubmit="openRule" 
+          report-submit="true">
+        <button class="redpack-rule"  
+                formType="submit">
+                活动规则
+        </button>
     </form>
     
     <!-- 邀请内容   瓜分未成功 -->
@@ -20,7 +28,7 @@
                     </view>
                     <view class="card-right">
                         <view class="card-title">
-                            <text class="title">现金红包</text>
+                            <text class="title">积分红包</text>
                             <text class="tip">{{couponInfo.user_coupon_score}}积分</text>
                         </view>
                         <view class="card-content">全场通用，在禾葡兰积分商城使用</view>
@@ -54,7 +62,7 @@
                         </view>
                         <view class="nickname">{{item.nickName}}</view>
                         <view class="get_money">
-                            <view class="money">{{item.money/10}}元</view>
+                            <view class="money">{{item.money}}积分</view>
                             <view class="shouqi" wx:if="{{item.is_base_gas}}">
                                 <text></text>手气最佳</view>
                         </view>
@@ -83,7 +91,6 @@
             </form>
             
         </view>
-
 
         <!-- 领取红包 -->
         <form bindsubmit="getRedPack" report-submit="true">
@@ -133,12 +140,24 @@
                 赶快邀请好友，一起瓜分50元！
             </view>
             <view class="money-img"></view>
-            <button class="invite" bindtap="tunjiShare" open-type="share"></button>
+            <button class="invite" 
+                    bindtap="tunjiShare" 
+                    open-type="share"></button>
         </view>
     </view>
+
     <!-- 红包规则 -->
     <view class="redpack_rule" bindtap="closeRedPack" wx:if="{{redPackRule}}">
-        <image src="https://qncdn.playonwechat.com/hepulanhufu/redpack-rule.png"></image>
+        <!-- <image src="https://qncdn.playonwechat.com/hepulanhufu/redpack-rule.png"></image> -->
+        <view class="rule_in">
+            <view class="top-nav"></view>
+            <view class="rule-content">1) 用户可邀请好友共同拆红包，满4人则拆红包成功，共同瓜分总金额为50元的红包，每人获得红包金额随机；其中随机一人将获得“手气最佳红包”。</view>
+            <view class="rule-content">2) 每个红包发起后24小时未满4人即失败，无红包奖励。</view>
+            <view class="rule-content">3) 活动期间，不能帮同一好友拆多次，但发起拆红包次数不限。 </view>
+            <view class="rule-content">4) 发起拆红包的用户需在该红包满4人拆成功或逾期失败后，才可在发起拆下一个红包。</view>
+            <view class="rule-content">5) 一起拆红包活动的红包均为积分兑换券；本次活动期间，每个用户通过一起拆红包获得的红包总和最多不超过800元。</view>
+            <view class="rule-content">6) 禾葡兰对该活动规则保留最终解释权。</view>
+        </view>
     </view>
     <view class="invite_tip" wx:if="{{inviteTip}}">您的红包还差{{couponInfo.coupon_need_more}}人,才能拆开，别忘了邀请好友一起拆哦！</view>
 

@@ -10,16 +10,25 @@
         </navigator>
     </view>
     <view class="calendarSign">
-        <form bindsubmit="formSubmit" class="formSubmit" report-submit="true">
-            <view class="checkedBtn" wx:if="{{dayCheckIn=='1'?true:false}}">今日已签到</view>
-            <button class="checkBtn" wx:if="{{dayCheckIn=='1'?false:true}}" formType="submit">签到</button>
+        <form bindsubmit="formSubmit" 
+              class="formSubmit" 
+              report-submit="true">
+
+            <view class="checkedBtn" 
+                  wx:if="{{dayCheckIn=='1'?true:false}}">今日已签到</view>
+
+            <button class="checkBtn" 
+                    wx:if="{{dayCheckIn=='1'?false:true}}" 
+                    formType="submit">签到</button>
         </form>
     </view>
+
     <view class="check_box">
         <view class="check_box_left">
             <view>已签到</view>
             <view>{{allday}}</view>
         </view>
+
         <view class="check_box_right">
             <view>积分数
                 <!-- <view class="helpCoins" bindtap="helpCoins">?</view> -->
@@ -40,20 +49,27 @@
         </view>
         <view class="week">
             <!--填补空格-->
-            <view style="height:0;" wx:for="{{nbsp}}">\n</view>
+            <view style="height:0;" 
+                  wx:for="{{nbsp}}" 
+                  wx:key="{{index}}">\n</view>
             <!--开心循环日期-->
             <view wx:for="{{date-1}}" style="color:#fff;">
-                <text wx:if="{{item+1==calendarSignData[item+1]}}" style="color:#fff;font-size:32rpx;background:#a9a9a9;border-radius:50%;text-align:center;">
+                <text wx:if="{{item+1==calendarSignData[item+1]}}" 
+                      style="color:#fff;font-size:32rpx;background:#a9a9a9;border-radius:50%;text-align:center;">
                     <!--已签到-->{{item+1}}</text>
                 <text wx:else="">{{item+1}}</text>
             </view>
             <view style="padding-bottom:8rpx;">
-                <text wx:if="{{date==calendarSignData[date]}}" style="color:#fff;font-size:22rpx; border-radius:50%;background-color:#ff9393">已签</text>
+                <text wx:if="{{date==calendarSignData[date]}}" 
+                      style="color:#fff;font-size:22rpx; border-radius:50%;background-color:#ff9393">
+                      已签
+                </text>
                 <text wx:else="" style="color:#ff9393;" bindtap="toDiary">{{date}}</text>
             </view>
             <view wx:for="{{monthDaySize-date}}">{{item+date+1}}</view>
         </view>
     </view>
+
     <!--金币获取方式 弹窗 -->
 <!--     <view class="help_win" wx:if="{{helpWin}}">
         <view class="help_win_in">
@@ -67,6 +83,7 @@
             </view>
         </view>
     </view> -->
+    
     <!-- 金币弹窗 -->
     <view class="goldWin" hidden="{{goldWin}}">
     	<view class="win_in">

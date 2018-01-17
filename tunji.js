@@ -38,12 +38,15 @@ function getCurrentPageUrl() {
 function fromPageData(params={}) {
     var timestamp = Date.parse(new Date());
     params.data = params.data ? params.data:{};
-    params.data.openid = wx.getStorageSync('openid');
-    params.data.unionid = wx.getStorageSync('unionid');
-    params.data.scene = wx.getStorageSync('sence');
-    params.data.sign = wx.getStorageSync('sign');
-    params.data.time = timestamp;
-    params.data.token = md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp);
+    params.data = {
+        openid : wx.getStorageSync('openid'),
+        unionid : wx.getStorageSync('unionid'),
+        scene : wx.getStorageSync('sence'),
+        sign : wx.getStorageSync('sign'),
+        is_fresh : wx.getStorageSync('is_fresh'),
+        time : timestamp,
+        token : md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp)
+    }
     wx.request({
         url: 'https://tj.zealcdn.cn/?_a_=serverReport',
         data: params.data,

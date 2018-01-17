@@ -1,12 +1,21 @@
 <!--pages/login/login.wxml-->
 <import src="../template/template.wxml"/>
 <view class="container">
+  
   <view class="join_banner">
     <image src="https://hepulan.playonwechat.com/static/join_banner.png" />
   </view>
+
   <view class="join_suit">
-    <view class="product_item"  bindtap="applyBtn"  data-smpid="{{item.smp_id}}"  wx:for="{{productList}}">
-       <view class="product_img"><image src="{{item.img}}"></image></view>
+    <view class="product_item"  
+          bindtap="applyBtn"  
+          data-smpid="{{item.smp_id}}"  
+          wx:for="{{productList}}">
+
+       <view class="product_img">
+          <image src="{{item.img}}"></image>
+      </view>
+
        <view class="product_info">
           <view class="product_title">{{item.prod_name}}</view>
           <view class="product_eng">{{item.description}}</view>
@@ -14,15 +23,6 @@
        </view>
     </view>
   </view>
-  <!-- <button type="default" bindtap="applyBtn" hover-class="other-button-hover" class="join_btns"></button> -->
-  <!-- <view class="applyWin" wx:if="{{applyWin}}" bindtap="applyWin">
-    <view class="applyIn">
-      <view class="closeWin" bindtap="closeWin"></view>
-      <view class="winTitle">温馨提示</view>
-      <view class="applyTip">试用装请加护肤老师微信领取</view>
-      <view>{{teacherId}}</view>
-      <view class="teacherCode" bindtap="cpoyWx">点击复制微信号</view>
-    </view>
-  </view> -->
+
   <template is="share_icon"/>
 </view>

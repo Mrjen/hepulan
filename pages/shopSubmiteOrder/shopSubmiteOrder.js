@@ -26,6 +26,7 @@ Page({
         openAnimation:{},
         couponIsOpen:false, //选择红包抵扣是否显示
         couponH:0,
+        dikou:0,//抵扣的积分
         couponArr:[],  //选择使用的优惠券
         couponCard: [{
             money: 15,

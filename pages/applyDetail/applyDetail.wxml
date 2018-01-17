@@ -1,17 +1,29 @@
 <!--pages/applyDetail/applyDetail.wxml-->
-<import src="../template/template.wxml"/>
-<import src="../../utils/wxParse.wxml"/>
+<import src="../template/template.wxml" />
+<import src="../../utils/wxParse.wxml" />
 <scroll-view scroll-y="true" class="container">
-   <view class="article">
-     <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
-   </view>
-   <block>
-   <button wx:if="{{teach_static}}" class="applyBtn" open-type="contact">申请试用</button>
-   <view wx:else="" bindtap="applyBtn" class="taacher_btn">申请试用</view>
-</block>
-    <block wx:for="{{templateData}}">
-    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
-    </block>
-<view class="bottom_margin"></view>
-<template is="share_icon"/>
+
+  <view class="article">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+  </view>
+  <block>
+    <button wx:if="{{teach_static}}" 
+            class="applyBtn" 
+            open-type="contact">
+      申请试用
+    </button>
+
+    <view wx:else="" 
+          bindtap="applyBtn" 
+          class="taacher_btn">
+          申请试用
+    </view>
+  </block>
+
+  <block wx:for="{{templateData}}">
+    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}" />
+  </block>
+  
+  <view class="bottom_margin"></view>
+  <template is="share_icon" />
 </scroll-view>

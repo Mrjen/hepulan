@@ -7,7 +7,7 @@ import { statistic } from '../../tunji'
 
 Page({
   data: {
-    redPackRule: false,  //规则
+    redPackRule: true,  //规则
     getRedPack: false, //从别人分享进入
     redPackShow: false,
     redpackHeader:'恭喜您，已成功瓜分红包~',

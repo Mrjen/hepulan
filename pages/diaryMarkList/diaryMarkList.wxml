@@ -2,22 +2,32 @@
 <view class="logo_box">
    <image src="https://qncdn.playonwechat.com/hepulan/hepulan_logo.png"></image>
 </view>
-<view class="avatar"><image src="{{avatarUrl}}"></image></view>
+
+<view class="avatar">
+    <image src="{{avatarUrl}}"></image>
+</view>
+
 <view class="diar_tip">{{signin_text}}</view>
+
 <view class="list">
     <view class="item" wx:for="{{signin_list}}">
        <view class="item_left">
            <view>{{item.day}}</view>
            <view>{{item.month}}月</view>
        </view>
+       
        <view class="item_right">
          <view>{{item.score_type}}今日护肤打卡</view>
          <view class="diary_content">
             <view class="diary_text">{{item.remark}}</view>
             <view class="img_box">
-                 <image wx:for="{{item.images}}" wx:for-item="images" src="{{images.url}}"></image>
+                 <image wx:for="{{item.images}}" 
+                        wx:for-item="images" 
+                        src="{{images.url}}">
+                 </image>
             </view>
          </view>
       </view>
+
     </view>
 </view>

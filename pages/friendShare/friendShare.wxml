@@ -10,7 +10,9 @@
     <view class="gold_tip">我通过分享禾葡兰小程序赚到{{get_score}}积分</view>
     <view>
         <!-- wx:if="{{!hashelp}}" -->
-        <view class="shre_btn" bindtap="helpHe" wx:if="{{helped=='0'?true:false}}">为他助力</view>
+        <view class="shre_btn" 
+              bindtap="helpHe" 
+              wx:if="{{helped=='0'?true:false}}">为他助力</view>
         <view class="hasshre_btn" wx:else="">已为他助力</view>
     </view>
 
@@ -18,7 +20,12 @@
    </view>
    <view class="navto" bindtap="navTo">点击进入禾葡兰小程序</view>
    <view class="danmu">
-      <view class="danmu_item dan{{index}}" style="top:{{item.topMargin}}rpx;margin-right: 10rpx" wx:for="{{danList}}"><image src="{{item.headimgurl}}"></image>{{item.nickname}}帮助{{userName}}获得了5积分</view>
+      <view class="danmu_item dan{{index}}" 
+            style="top:{{item.topMargin}}rpx;margin-right: 10rpx" 
+            wx:for="{{danList}}">
+            <image src="{{item.headimgurl}}"></image>
+            {{item.nickname}}帮助{{userName}}获得了5积分
+      </view>
    </view>
    <template is="share_icon"/>
 </view>

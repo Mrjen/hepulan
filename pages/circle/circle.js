@@ -190,7 +190,7 @@ Page({
     // 判断用户是否授权否则不能写动态
     writeCircle: function() {
         var that = this;
-        var sign = that.data.sign;
+        var sign = wx.getStorageSync('sign');
         //console.log(sign);
         if (sign == "") {
             wx.showToast({
@@ -211,7 +211,7 @@ Page({
     },
 
 
-    onLoad() {
+    onLoad(options) {
         const that = this;
         // 上报后台数据
         statistic();

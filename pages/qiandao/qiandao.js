@@ -58,7 +58,7 @@ Page({
 
     },
 
-    onLoad: function() {
+    onLoad: function (options) {
         //wx.clearStorage();
         var that = this;
         
