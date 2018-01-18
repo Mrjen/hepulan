@@ -232,6 +232,7 @@ view{
 	width:100%;
 	background: #fff;
 	padding:0 30rpx;
+  max-height: 480rpx;
 	position: absolute;
 	bottom: -500rpx;
 	left: 0;

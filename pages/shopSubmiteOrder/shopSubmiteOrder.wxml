@@ -51,7 +51,7 @@
 
 <view class="coupon_box" animation="{{openAnimation}}">
     <view class="top_nav">
-        <view class="nav_left">共20个红包/已抵扣{{dikou?dikou:'0'}}积分</view>
+        <view class="nav_left">共{{couponCard.length}}个红包/已抵扣{{dikou?dikou:'0'}}积分</view>
         <view class="nav_right" bindtap="closeCouponBar">确认</view>
     </view>
     <view class="coupon_view" style="height:{{couponH+'rpx'}};">
