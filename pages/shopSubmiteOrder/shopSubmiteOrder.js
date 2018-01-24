@@ -1,7 +1,7 @@
 // pages/shopSubmiteOrder/shopSubmiteOrder.js
 var app = getApp();
-import { statistic } from '../../tunji'
-import { http, couPondiffTime,time } from '../../common.js';
+import { statistic, fromPageData } from '../../tunji'
+import { http, couPondiffTime, time } from '../../common.js';
 var failText = {
     title: "很遗憾TAT",
     text1: "您的积分不足",
@@ -21,13 +21,16 @@ var successText = {
 Page({
     data: {
         winText: "",
-        SaveOrder:true, //防止重复提交
+        SaveOrder: true, //防止重复提交
         winStatus: false,
-        openAnimation:{},
-        couponIsOpen:false, //选择红包抵扣是否显示
-        couponH:0,
-        dikou:0,//抵扣的积分
-        couponArr:[],  //选择使用的优惠券
+        kouLing:false,  //口令弹层
+        addressid:null,//收货地址id
+        openAnimation: {},
+        inputExchangeCode: null, //兑换码
+        couponIsOpen: false, //选择红包抵扣是否显示
+        couponH: 0,
+        dikou: 0,//抵扣的积分
+        couponArr: [],  //选择使用的优惠券
         couponCard: [{
             money: 15,
             jifen: 1500,
@@ -55,12 +58,16 @@ Page({
         }]
     },
 
-    onLoad: function(options) {
-        console.log(options);
+    onLoad: function (options) {
+        console.log('options', options);
 
         // 上报后台数据
+        // 上报后台数据
         statistic();
-        wx.setStorageSync('sence', options.scene) 
+        wx.setStorageSync('sence', options.scene)
+
+        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        fromPageData()
 
         let that = this;
         let addressid = options.addressid;
@@ -69,7 +76,7 @@ Page({
                 address: options.address,
                 name: options.name,
                 phone: options.phone,
-                detail:options.detail
+                detail: options.detail
             }
             that.setData({
                 info,
@@ -78,11 +85,18 @@ Page({
         }
     },
 
-    onReady: function() {
+    // 关闭口令红包
+    closeKouLing(){
+       this.setData({
+           kouLing: false
+       })
+    },
+
+    onReady: function () {
 
     },
 
-    onShow: function() {
+    onShow: function () {
         let that = this;
         wx.request({
             url: app.data.apiUrl,
@@ -111,16 +125,25 @@ Page({
             }
         })
     },
-    
+
+    // 输入兑换码
+    inputExchangeCode(e) {
+        this.setData({
+            inputExchangeCode: e.detail.value
+        })
+    },
+
     // 打开红包抵扣
-    openCouponBar(){
+    openCouponBar() {
         console.log('打开')
-       let that = this;
-       
-        http({ type:'get-user-coupon-list',data:{
-            status: 1
-        }},function(res){
-            console.log('可使用优惠券',res)
+        let that = this;
+
+        http({
+            type: 'get-user-coupon-list', data: {
+                status: 1
+            }
+        }, function (res) {
+            console.log('可使用优惠券', res)
             let coupon = res.data.data.user_coupon_list;
             let currentStemp = (new Date()).getTime();
             currentStemp = currentStemp / 1000;
@@ -142,19 +165,15 @@ Page({
             openAnimation.translateY(-380).step();
             that.setData({
                 openAnimation: openAnimation.export(),
-                couponH:500,
-                couponIsOpen:true,
+                couponH: 500,
+                couponIsOpen: true,
                 coupon: coupon
             })
-            
         })
-
-        
-        
     },
 
     //  关闭红包抵扣
-    closeCouponBar(){
+    closeCouponBar() {
         console.log('关闭')
         let that = this;
         var openAnimation = wx.createAnimation({
@@ -172,7 +191,7 @@ Page({
     },
 
     // 选择这个优惠券
-    selsctRadio(e){
+    selsctRadio(e) {
         let that = this;
         let idx = e.currentTarget.dataset.idx;
         let score = e.currentTarget.dataset.jifen;
@@ -181,7 +200,7 @@ Page({
         let dikou = new Number();
         coupon[idx].active = !coupon[idx].active;
         for (let i = 0; i < coupon.length; i++) {
-            if (coupon[i].active){
+            if (coupon[i].active) {
                 dikou += parseInt(coupon[i].score)
                 couponArr.push(coupon[i].id)
             }
@@ -194,31 +213,20 @@ Page({
 
     // 选择地址
     toAddress() {
-        console.log("11111",getCurrentPages())
+        console.log("11111", getCurrentPages())
         wx.redirectTo({
             url: '../myAddress/myAddress?addressinfo=submiteorder'
         })
     },
 
-    // 提交订单
-    SaveOrder() {
+    // inputCode
+    inputCode(){
         let that = this;
-        let SaveOrder = that.data.SaveOrder;
-        if (!that.data.SaveOrder){
-            wx.showToast({
-                title: '订单处理中',
-                icon: 'success',
-                duration: 1000
-            })
-            return false;
-        }
-        
-        that.setData({ SaveOrder: false })
-
         let addressid = that.data.addressid;
         let pagePath = "../shopSubmiteOrder/shopSubmiteOrder";
         let form_token = that.data.form_token;
-        if (!form_token){
+        let couponArr = that.data.couponArr;
+        if (!addressid) {
             wx.showToast({
                 title: '没有选择地址',
                 icon: 'success',
@@ -226,6 +234,47 @@ Page({
             })
             return false;
         }
+
+        if (!couponArr.length){
+            //用户没有使用优惠券可以直接下单
+            that.SaveOrder();
+        }else{
+            that.setData({
+                kouLing: true
+            })
+        }
+
+    },
+
+
+
+    // 提交订单
+    SaveOrder() {
+        let that = this;
+        let SaveOrder = that.data.SaveOrder;
+        let inputExchangeCode = that.data.inputExchangeCode;
+        let couponArr = that.data.couponArr;
+        let addressid = that.data.addressid;
+
+        if (!addressid) {
+            wx.showToast({
+                title: '没有选择地址',
+                icon: 'success',
+                duration: 1000
+            })
+            return false;
+        }
+
+        if (!that.data.SaveOrder) {
+            wx.showToast({
+                title: '订单处理中',
+                icon: 'success',
+                duration: 1000
+            })
+            return false;
+        }
+
+        that.setData({ SaveOrder: false })
 
         console.log(that.data)
         wx.request({
@@ -236,6 +285,7 @@ Page({
                 key: app.data.apiKey,
                 type: "save-order",
                 data: {
+                    order_token: inputExchangeCode,
                     addressid: addressid,
                     coupon_ids: that.data.couponArr,
                     form_token: that.data.form_token
@@ -248,9 +298,10 @@ Page({
                         winStatus: true,
                         winText: successText,
                         sureStatus: true,
-                        SaveOrder:true
+                        SaveOrder: true,
+                        kouLing:false
                     })
-                } else if (res.data.status=='0'){
+                } else if (res.data.status == '0') {
                     wx.showModal({
                         title: '提示',
                         content: res.data.msg,
@@ -258,12 +309,12 @@ Page({
 
                         }
                     })
-                    that.setData({ SaveOrder: true})
-                }else if (res.data.status < 0) {
+                    that.setData({ SaveOrder: true })
+                } else if (res.data.status < 0) {
                     wx.showModal({
                         title: '提示',
                         content: '您还没有注册，是否去注册',
-                        success: function(res) {
+                        success: function (res) {
                             if (res.confirm) {
                                 wx.navigateTo({
                                     url: '../login/login?pagePath=' + pagePath
@@ -291,29 +342,29 @@ Page({
         }
     },
 
-    toHome(){
+    toHome() {
         wx.reLaunch({
-          url: '../index/index'
+            url: '../index/index'
         })
     },
 
-    onHide: function() {
+    onHide: function () {
 
     },
 
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
     }
 })

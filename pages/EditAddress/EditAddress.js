@@ -1,5 +1,5 @@
 var app = getApp();
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 // pages/EditAddress/EditAddress.js
 Page({
   data: {
@@ -249,6 +249,9 @@ onLoad: function (options) {
   // 上报后台数据
   statistic();
   wx.setStorageSync('sence', options.scene) 
+
+  // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+  fromPageData()
 
    let addressinfo = options.addressinfo;
    let pagePath = options.pagePath;

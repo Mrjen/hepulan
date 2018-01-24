@@ -1,7 +1,7 @@
 // pages/mine/mine.js
 var common = require('../../common.js');
 var app = getApp()
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 
 Page({
     data: {
@@ -43,6 +43,9 @@ Page({
         // 上报后台数据
         statistic();
         wx.setStorageSync('sence', options.scene) 
+
+        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        fromPageData()
 
         var that = this;
         // 页面初始化 options为页面跳转所带来的参数

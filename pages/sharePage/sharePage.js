@@ -1,7 +1,7 @@
 // pages/sharePage/sharePage.js
 var common = require('../../common.js');
 var app = getApp();
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
 
   /**
@@ -19,7 +19,10 @@ Page({
 
     // 上报后台数据
     statistic();
-    wx.setStorageSync('sence', options.scene) 
+    wx.setStorageSync('sence', options.scene)
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
 
     if (options.sharecode) {
       console.log("options_data", options);

@@ -1,7 +1,7 @@
 // pages/login/login.js
 var common = require('../../common.js');
 var app = getApp();
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
   data: {
     swiperTab: [{
@@ -281,11 +281,12 @@ Page({
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
-
-
     // 上报后台数据
     statistic();
     wx.setStorageSync('sence', options.scene) 
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
 
     wx.request({
       url:'https://hepulan.playonwechat.com/site/get-cat-products?sign='+app.data.sign,

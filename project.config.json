@@ -31,14 +31,28 @@
 					"id": 0,
 					"name": "从别人分享进入",
 					"pathName": "pages/redPack/redPack",
-					"query": "unique_code=5a5ac305261ab",
+					"query": "unique_code=5a65b602691fc",
 					"scene": "1014"
 				},
 				{
 					"id": 1,
 					"name": "测试上报数据",
 					"pathName": "pages/index/index",
-					"query": "scene=5d48328505b7fb928de67db77ce3f8bf",
+					"query": "scene=fa671b52e0118b94fb61e040f700aa81",
+					"scene": "1001"
+				},
+				{
+					"id": 2,
+					"name": "从别人分享进入",
+					"pathName": "pages/redPack/redPack",
+					"query": "unique_code=5a670d6059549",
+					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "测试上报数据",
+					"pathName": "pages/photoWall/photoWall",
+					"query": "scene=d5c2bf5e0974a09f0df9729fbb8bf3df",
 					"scene": "1001"
 				}
 			]

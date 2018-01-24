@@ -1,4 +1,5 @@
 // pages/webContact/WebContact.js
+import { statistic, fromPageData } from '../../tunji'
 Page({
 
   /**
@@ -13,6 +14,14 @@ Page({
    */
   onLoad: function (options) {
     var form_id = wx.getStorageSync('form_id');
+    
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene)
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
+
     console.log(form_id);
      this.setData({
       webUrl:`https://hpchat.playonwechat.com/index/index/mobile/?id=${wx.getStorageSync('user_id')}&formid=${options.teacher_id?'0':form_id}&teacher_id=${options.teacher_id || 0 }`

@@ -1,7 +1,7 @@
 // pages/friendShare/friendShare.js
 var app = getApp();
 var common = require('../../common.js');
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
   /**
    * 页面的初始数据
@@ -36,6 +36,9 @@ Page({
     // 上报后台数据
     statistic();
     wx.setStorageSync('sence', options.scene) 
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
 
     console.log(options);
     console.log(options.pageSharecode);

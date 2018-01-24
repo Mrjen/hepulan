@@ -3,14 +3,16 @@ import { http } from '../../common.js'
 import { formtime, getSign } from '../../common.js'
 import { diffTime } from '../../common.js'
 var mta = require('../../utils/mta_analysis.js');
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
+var app = getApp();
+
 
 Page({
   data: {
-    redPackRule: true,  //规则
+    redPackRule: false,  //规则
     getRedPack: false, //从别人分享进入
     redPackShow: false,
-    redpackHeader:'恭喜您，已成功瓜分红包~',
+    redpackHeader:1,
     inviteView: true,  //自己进入
     isChaiWan:true, //用户进来的时候红包拆完了设置false
     inviteTip: false,
@@ -84,6 +86,18 @@ Page({
     // 初始化腾讯统计
     mta.Page.init();
 
+    // 上报后台数据
+    statistic();
+    wx.setStorageSync('sence', options.scene)
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
+
+    wx.showLoading({
+      title: '加载中',
+    })
+
+     
 
     // 上报后台数据
     statistic();
@@ -99,6 +113,10 @@ Page({
         }
       }, function (res) {
         console.log('获取红包信息', res);
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 1000)
+
         let persion = that.data.persion;
         let couponInfo = res.data.data;
         that.setData({
@@ -143,6 +161,11 @@ Page({
           }
         }, function (res) {
           console.log('从分享进入', res);
+     
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 1000)
+
           let persion = that.data.persion;
           let couponInfo = res.data.data;
           // let user_is_dismantle = res.data.data.user_is_dismantle;   //当前用户是否拆过此红包
@@ -189,7 +212,7 @@ Page({
               that.setData({
                 redpackCard: false,
                 isChaiWan: false,
-                redpackHeader: '您来晚啦！，红包已被拆完，快去拆个新红包'
+                redpackHeader:0
               })
             } else {
               console.log('组团成功，并且我参与了');
@@ -406,9 +429,131 @@ Page({
   onReady: function () {
 
   },
+
   onShow: function () {
+    let that = this;
+    console.log('onShow')
+    http({
+      type: 'get-goods-list',
+      data: {
+        key: app.data.apiKey,
+        sign: wx.getStorageSync('sign'),
+      }
+    }, function (res) {
+      console.log('获取商城数据', res)
+      that.setData({
+        shopNowList: res.data.data.goods_list_now,
+        shopSoonList: res.data.data.goods_list_soon,
+        shopBeforeList: res.data.data.goods_list_before
+      })
+    })
+  },
 
+  // 兑换
+  exchangeBtn(ev) {
+    var list_id = ev.currentTarget.dataset.id;
+    console.log(list_id);
+    var jifen = ev.currentTarget.dataset.jifen;
+    wx.navigateTo({
+      url: `../pointMallDetail/pointMallDetail?id=${list_id}`
+    })
+  },
 
+  // 点击加入购物车图标唤起弹层
+  selectType(ev) {
+    let that = this;
+    let product_id = ev.currentTarget.dataset.id;
+    console.log("product_id", product_id)
+    wx.request({
+      url: app.data.apiUrl,
+      method: "POST",
+      data: {
+        sign: wx.getStorageSync("sign"),
+        key: app.data.apiKey,
+        type: "get-glist-by-kid",
+        data: {
+          kid: product_id
+        }
+      },
+      success(res) {
+        console.log(res);
+        let selectWinData = res.data.data;
+        that.setData({
+          selectWinData
+        });
+        console.log(that.data)
+      }
+    })
+    that.setData({
+      selectWin: true
+    })
+  },
+
+  // 选择款式
+  changeType(ev) {
+    let that = this;
+    let index = ev.currentTarget.dataset.index;
+    let selectWinData = that.data.selectWinData;
+    let type_id = ev.currentTarget.dataset.id;
+    let image = selectWinData.details[index].url_prefix + selectWinData.details[index].imgurl;
+    // console.log("type_id",type_id,image)
+    for (var i = 0; i < selectWinData.details.length; i++) {
+      selectWinData.details[i].active = 0;
+    }
+    selectWinData.details[index].active = 1;
+    selectWinData.color = selectWinData.details[index].color;
+    selectWinData.imgurl = image;
+    selectWinData.amount = selectWinData.details[index].amount;
+    that.setData({
+      selectWinData,
+      type_id
+    })
+  },
+
+  // 选好款式加入购物车
+  AddShopCart(ev) {
+    let that = this;
+    let type_id = that.data.type_id;
+    if (type_id) {
+      wx.request({
+        url: app.data.apiUrl,
+        method: "POST",
+        data: {
+          sign: wx.getStorageSync("sign"),
+          key: app.data.apiKey,
+          type: "save-cart",
+          data: {
+            gid: type_id,
+            goods_num: 1
+          }
+        },
+        success(res) {
+          console.log(res);
+          if (res.data.status) {
+            wx.showToast({
+              title: '添加购物车成功',
+              icon: 'success',
+              duration: 1000
+            })
+          } else {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'success',
+              duration: 1000
+            })
+          }
+          that.setData({
+            selectWin: false
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '请选择颜色',
+        icon: 'success',
+        duration: 1000
+      })
+    }
   },
 
   onHide: function () {

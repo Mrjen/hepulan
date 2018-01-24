@@ -2,7 +2,7 @@
 var common = require('../../common.js');
 var WxParse = require('../../utils/wxParse.js');
 var app = getApp();
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
   // 页面的初始数据
   data: {
@@ -28,120 +28,6 @@ Page({
     oldPlayAudio: "", //上一个播放音频的ID
     barrgeAnimate: "", //弹屏
     mainContent: [],
-    //[{
-    //   id: '1',
-    //   persion_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   contentType: 'text',
-    //   content: "首次课程在5月4日晚19:00开讲，海莲将分享一些夏季预防皮肤中暑的小秘诀给大家哦，敬请期待！有什么建议和疑问可以微信私聊海莲老师哦！",
-    //   persionName: "圈圈",
-    //   audioLen: '0',
-    //   contentTime: '04/28 14:42:24',
-    //   playStatic: false
-    // }, {
-    //   id: '2',
-    //   persion_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   contentType: 'ask',
-    //   content: [{
-    //     name: "晴天晴天",
-    //     quest: "我不知道这是什么问题",
-    //     replay: "我就是答案啊我就是答案啊我就是答案啊我就是答案啊我就是答案啊"
-    //   }],
-    //   audioLen: '0',
-    //   persionName: "土壤",
-    //   contentTime: '05/04 15:51:52',
-    //   playStatic: false,
-    // }, {
-    //   id: '3',
-    //   persion_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   contentType: 'text',
-    //   content: "首次课程在5月4日晚19:00开讲，海莲将分享一些夏季预防皮肤中暑的小秘诀给大家哦，敬请期待！有什么建议和疑问可以微信私聊海莲老师哦！",
-    //   audioLen: '0',
-    //   persionName: "圈圈",
-    //   contentTime: '05/04 15:51:52',
-    //   playStatic: false
-    // }, {
-    //   id: '4',
-    //   persion_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   contentType: 'mp3',
-    //   content: "https://hepulan.playonwechat.com/static/heChart/test_music.wav",
-    //   audioLen: '8',
-    //   persionName: "圈圈",
-    //   contentTime: '05/04 15:51:52',
-    //   playStatic: false
-    // }, {
-    //   id: '5',
-    //   persion_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   contentType: 'img',
-    //   content: "https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png",
-    //   audioLen: '0',
-    //   persionName: "圈圈",
-    //   contentTime: '05/04 15:51:52',
-    //   playStatic: false
-    // }, {
-    //   id: '6',
-    //   persion_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   contentType: 'img',
-    //   content: "https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png",
-    //   audioLen: '0',
-    //   persionName: "圈圈",
-    //   contentTime: '05/04 15:51:52',
-    //   playStatic: false
-    // }, {
-    //   id: '7',
-    //   persion_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   contentType: 'mp3',
-    //   content: "http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46",
-    //   audioLen: '30',
-    //   persionName: "圈圈",
-    //   contentTime: '05/04 15:51:52',
-    //   playStatic: false
-    // }],
-    // discuss: [{
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: 'Andrew Li',
-    //   dis_pers_time: "06/02 22:50:44",
-    //   dis_pers_content: "很不错哦"
-    // }, {
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: '小恶魔',
-    //   dis_pers_time: "05/25 14:03:05",
-    //   dis_pers_content: "禾葡兰"
-    // }, {
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: '涂秋月',
-    //   dis_pers_time: "05/05 22:42:28",
-    //   dis_pers_content: "感谢海莲老师"
-    // }, {
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: '小恶魔',
-    //   dis_pers_time: "06/02 19:53:11",
-    //   dis_pers_content: "老师"
-    // }, {
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: '小恶魔',
-    //   dis_pers_time: "06/02 19:53:11",
-    //   dis_pers_content: "其他时间没有，但是运动完后一段时间脸红就会消失"
-    // }, {
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: '小恶魔',
-    //   dis_pers_time: "06/02 19:53:11",
-    //   dis_pers_content: "老师，晚上什么时间敷面膜比较好?"
-    // }, {
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: '小恶魔',
-    //   dis_pers_time: "06/02 19:53:11",
-    //   dis_pers_content: "这么快就结束了吗？"
-    // }, {
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: '小恶魔',
-    //   dis_pers_time: "06/02 19:53:11",
-    //   dis_pers_content: "海莲老师可以帮我看看是属于什么肤质吗"
-    // }, {
-    //   dis_pers_img: 'https://hepulan.playonwechat.com/static/heChart/knowledge_icon_persion.png',
-    //   dis_pers_name: '小恶魔',
-    //   dis_pers_time: "06/02 19:53:11",
-    //   dis_pers_content: "好哒，谢谢老师"
-    // }],
     emoji: [{
       tip: '[微笑]',
       emoji_src: 'https://hepulan.playonwechat.com/static/heChart/emojis/00.gif',
@@ -745,6 +631,9 @@ if (play_static) {
     // 上报后台数据
     statistic();
     wx.setStorageSync('sence', options.scene) 
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
 
     that.setData({
       topicId: options.topicId

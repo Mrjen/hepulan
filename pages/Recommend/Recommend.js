@@ -1,7 +1,7 @@
 // pages/Recommend/Recommend.js
 var common = require('../../common.js');
 var mta = require('../../utils/mta_analysis.js');
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
     /**
      * 页面的初始数据
@@ -66,6 +66,9 @@ Page({
         // 上报后台数据
         statistic();
         wx.setStorageSync('sence', options.scene) 
+
+        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        fromPageData()
 
         // 创建视频
         this.videoContext = wx.createVideoContext('myVideo');

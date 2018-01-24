@@ -73,6 +73,7 @@
              indicator-dots="{{indicatorDots}}"
              autoplay="true" 
              interval="2000" 
+             circular='true'
              duration="1000">
      <block wx:for="{{imgUrls}}" wx:key="index">
        <swiper-item>
@@ -81,8 +82,10 @@
      </block>
     </swiper>
 
-     <view class="teach_recom"></view>
-     <view>点击>>进入老师推荐页面</view>
+     <view class="teach_recom">
+         <view>点击>>进入老师推荐页面</view>
+     </view>
+     
    </navigator>
 
    <!-- 公司团队 -->

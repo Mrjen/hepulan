@@ -127,10 +127,14 @@ Page({
         statistic();
         wx.setStorageSync('sence', options.scene)       
 
+        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        fromPageData()
+
         // 初始化腾讯统计
         mta.Page.init();
 
         if (options.codeId) {
+            console.log('options.codeId', options.codeId)
             let codeid = `codeid_${options.codeId}`;
             // let load_code = codeid.split("_");
             console.log("onload", codeid)
@@ -143,10 +147,7 @@ Page({
                 })
             }
         }
-       
-
         var that = this;
-        common.getUser();
         wx.showShareMenu({
             withShareTicket: true,
         });

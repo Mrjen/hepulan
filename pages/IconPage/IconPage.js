@@ -1,6 +1,6 @@
 // pages/IconPage/IconPage.js
 var success = "https://qncdn.playonwechat.com/hupulan/iconpage/inon_page_success.png"
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
   data: {
      pageIcon:"",
@@ -14,6 +14,9 @@ Page({
     // 上报后台数据
     statistic();
     wx.setStorageSync('sence', options.scene) 
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
 
     console.log("options",options);
       var _status = options.status;

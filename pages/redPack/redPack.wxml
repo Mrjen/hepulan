@@ -20,7 +20,10 @@
         <!-- 瓜分红包成功 -->
         <view class="divide_success" wx:if="{{isSuccess}}">
             <view class="invite-success">
-                <view class="header">{{redpackHeader}}</view>
+                <view class="header">
+                    {{redpackHeader==1?'恭喜您，已成功瓜分红包~':'您来晚啦！，红包已被拆完，快去拆个新红包'}}
+                    <button class='inline-btn' open-type='contact'>红包口令</button>
+                </view>
                 <view class="redpack-card" wx:if="{{redpackCard}}">
                     <view class="card-left">
                         <text class="mark">￥</text>
@@ -41,14 +44,18 @@
                 <form  bindsubmit="getNewRedPack" report-submit="true">
                     <button class="getnew"  formType="submit">拆一个新红包</button>
                 </form>
+
+                <form  report-submit="true">
+                    <button class="getnew" open-type='contact'>立即获取红包口令使用</button>
+                </form>
                 
                 <form wx:if="{{isChaiWan}}"  bindsubmit="toPointMall" report-submit="true">
                    <button class="use_item" formType="submit">立即使用</button>
                 </form>
 
-                <form bindsubmit="toPointMall" report-submit="true">
+                <!-- <form bindsubmit="toPointMall" report-submit="true">
                     <button class="use_item" open-type="contact" formType="submit">咨询客服</button>
-                </form>
+                </form> -->
 
             </view>
 
@@ -87,7 +94,8 @@
                 <view class="active_isend" wx:else>拆红包失败！请在24小时内邀请好友参与</view>
             </block>
             <form  bindsubmit="tunjiShare" report-submit="true">
-                <button wx:if="{{couponInfo.coupon_survival_time>0?true:false}}" class="page-invate" formType="submit" open-type="share"></button>
+                <button wx:if="{{couponInfo.coupon_survival_time>0?true:false}}" class="page-invate" formType="submit" open-type="share">邀请微信好友一起拆</button>
+                <button wx:if="{{couponInfo.coupon_survival_time>0?true:false}}" class="page-invate" formType="submit" open-type="contact">领取当天红包使用口令</button>
             </form>
             
         </view>
@@ -107,7 +115,100 @@
     <!-- 兑换商品 -->
     <view class="product-view">
         <view class="header"></view>
-        <view class="product-list">
+        <view class="shop_list">
+            <view class="list_item" wx:for="{{shopNowList}}" wx:key="index">
+                <image class="item_img" src="{{item.img}}"></image>
+                <view class="item_info">
+                    <view class="item_title">{{item.name}}</view>
+                    <!-- <view class="item_type">{{item.type}}</view> -->
+                    <view class="item_bottom">
+                        <view>
+                            <view class="item_jifen">{{item.count}}积分</view>
+                            <view class="item_zan">{{item.praise_num}}人点赞
+                                <text class="zan_icon"></text>
+                            </view>
+                        </view>
+                        <view class="exchange_box">
+                            <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
+                            <view class="exchange_btn" bindtap="exchangeBtn" data-jifen="{{item.count}}" data-id="{{item.kid}}">兑换</view>
+                        </view>
+                    </view>
+                    <view class="zan_hert" bindtap="selectType" data-id="{{item.kid}}">
+                        <image src="https://qncdn.playonwechat.com/hepulan/point_mall_shopcart.png"></image>
+                    </view>
+                    <navigator class="invate_btn" url="../sharePage/sharePage" hover-class="none"></navigator>
+                </view>
+            </view>
+        </view>
+
+        <!-- 往期礼品 -->
+        <view class="nav_tip border_bottom">
+            <text class="line"></text>
+            <image src="https://qncdn.playonwechat.com/hepulan/point_mall_oldgift.png"></image>往期礼品
+            <text class="line"></text>
+        </view>
+        <view class="shop_list">
+            <view class="list_item has_salse" wx:for="{{shopBeforeList}}" wx:key="index" bindtap="ToDetail" data-id="{{item.kid}}">
+                <image class="item_img" src="{{item.img}}"></image>
+                <view class="item_info">
+                    <view class="item_title">{{item.name}}</view>
+                    <!-- <view class="item_type">{{item.type}}</view> -->
+                    <view class="item_bottom">
+                        <view>
+                            <view class="item_jifen">{{item.count}}积分</view>
+                            <view class="item_zan">{{item.praise_num}}人点赞
+                                <text class="zan_icon"></text>
+                            </view>
+                        </view>
+                        <view class="exchange_box">
+                            <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
+                            <view class="exchange_btn has_exchange_btn" bindtap="exchangeBtn" data-jifen="{{item.count}}" data-id="{{item.id}}">已售罄</view>
+                        </view>
+                    </view>
+                    <!-- <view class="zan_hert" bindtap="selectType" data-id="{{item.id}}"><image src="https://qncdn.playonwechat.com/hepulan/point_mall_shopcart.png"></image></view> -->
+        
+                </view>
+            </view>
+        </view>
+
+        <!-- 即将开启 -->
+        <view class="nav_tip border_bottom">
+            <text class="line"></text>
+            <image src="https://qncdn.playonwechat.com/hepulan/point_mall_oldgift.png"></image>即将开启
+            <text class="line"></text>
+        </view>
+        <view class="shop_list">
+            <view class="list_item" wx:for="{{shopSoonList}}" wx:key="index">
+                <image class="item_img" src="{{item.img}}"></image>
+                <view class="item_info">
+                    <view class="item_title">{{item.name}}</view>
+                    <!-- <view class="item_type">{{item.type}}</view> -->
+                    <view class="item_bottom">
+                        <view>
+                            <view class="soon_tip">喜欢就点赞吧~达到一定数量将会开启兑换哦</view>
+                            <view class="item_jifen">{{item.count}}积分</view>
+                            <view class="item_zan">{{item.praise_num}}人点赞
+                                <text class="zan_icon"></text>
+                            </view>
+                        </view>
+                        <view class="exchange_box">
+                            <!-- <view class="exchange_num">{{item.hasexchange}}人已兑换</view> -->
+                            <view class="exchange_btn zan_num" data-jifen="{{item.count}}" data-id="{{item.id}}">
+                                <text class="text_bg">{{item.praise_num}}</text>
+                                <text class="text_precent" style="width:{{item.praise_percent}}%"></text>
+                            </view>
+                        </view>
+                    </view>
+        
+                    <view class="zan_hert zan_box" bindtap="zanProduct" data-id="{{item.kid}}" data-index="{{index}}">
+                        <image wx:if="{{item.is_praise=='0'?true:false}}" src="https://qncdn.playonwechat.com/hepulan/point_mall_hert_air.png"></image>
+                        <image wx:else src="https://qncdn.playonwechat.com/hepulan/point_mall_hert.png"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- <view class="product-list">
             <view class="product-item" wx:for="{{couponInfo.hot_goods_list}}" wx:key="{{index}}">
                 <view class="product-cover">
                     <image class="cover" mode="widthFix" src="{{item.imgurl}}"></image>
@@ -120,12 +221,16 @@
                             <text></text> {{item.score}}积分</view>
                     </view>
                     <view class="oldprice">
-                        <!-- ￥{{item.oldprice}} -->
+                        ￥{{item.oldprice}}
                     </view>
                 </view>
-                <view class="get-product" data-id="{{item.id}}" bindtap="toProductDetail">马上领取</view>
+                <block>
+                    <view class="get-product" wx:if="{{item.amount>0}}" data-id="{{item.id}}" bindtap="toProductDetail">马上领取</view>
+                    <view class="get-product noproduct" wx:else data-id="{{item.id}}">已兑换完</view>
+                </block>
+                
             </view>
-        </view>
+        </view> -->
     </view>
 
 
@@ -156,11 +261,37 @@
             <view class="rule-content">3) 活动期间，不能帮同一好友拆多次，但发起拆红包次数不限。 </view>
             <view class="rule-content">4) 发起拆红包的用户需在该红包满4人拆成功或逾期失败后，才可在发起拆下一个红包。</view>
             <view class="rule-content">5) 一起拆红包活动的红包均为积分兑换券；本次活动期间，每个用户通过一起拆红包获得的红包总和最多不超过800元。</view>
-            <view class="rule-content">6) 禾葡兰对该活动规则保留最终解释权。</view>
+            <view class="rule-content">6) 使用红包积分时，需要填写当日“红包口令”,“红包口令”找禾葡兰护肤老师即可获得。</view>
+            <view class="rule-content">7) 禾葡兰对该活动规则保留最终解释权。</view>
         </view>
     </view>
     <view class="invite_tip" wx:if="{{inviteTip}}">您的红包还差{{couponInfo.coupon_need_more}}人,才能拆开，别忘了邀请好友一起拆哦！</view>
 
     <!-- 返回首页按钮 -->
     <view class="backhome-btn" bindtap="toHome"></view>
+
+
+<!-- 选择款 -->
+<view class="select_win" wx:if="{{selectWin}}">
+    <view class="product_info">
+        <view class="top_info">
+            <view class="product">
+                <image src="{{selectWinData.imgurl}}" bindtap="prewImg" data-url="{{selectWinData.original_imgurl}}"></image>
+                <view class="info">
+                    <view>{{selectWinData.score}}积分</view>
+                    <view>库存{{selectWinData.amount}}件</view>
+                    <view>已选：{{selectWinData.color}}</view>
+                </view>
+            </view>
+            <text class="type_tag">颜色</text>
+            <view class="product_type">
+                <view wx:for="{{selectWinData.details}}" wx:key="index" class="type_item {{item.active?'type_active':''}}" bindtap="changeType"
+                    data-index="{{index}}" data-id="{{item.id}}">{{item.color}}</view>
+            </view>
+        </view>
+        <view class="sure_type" bindtap="AddShopCart">确定</view>
+        <view class="close_select" bindtap="selectWin"></view>
+    </view>
+</view>
+
 </view>

@@ -1,7 +1,7 @@
 // pages/login/login.js
 var app = getApp();
 var common = require('../../common.js');
-import { statistic} from '../../tunji'
+import { statistic, fromPageData} from '../../tunji'
 Page({
   data: {
     smpid:"",
@@ -33,9 +33,13 @@ Page({
     })
   },
   onLoad: function(options) {
+
     // 后台数据统计上报
     statistic();
     wx.setStorageSync('sence', options.scene) 
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
 
     wx.showShareMenu({
       withShareTicket: true

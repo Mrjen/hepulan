@@ -1,7 +1,7 @@
 var common = require('../../common.js');
 var main_content = [];
 var app = getApp();
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
     data: {
         searchWord: "",
@@ -9,10 +9,12 @@ Page({
         start: 0
     },
     onLoad: function (options) {
-        
         // 上报后台数据
         statistic();
         wx.setStorageSync('sence', options.scene) 
+
+        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        fromPageData()
 
         wx.showShareMenu({
             withShareTicket: true

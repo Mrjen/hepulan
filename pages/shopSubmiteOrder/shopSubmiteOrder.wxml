@@ -36,7 +36,24 @@
 <!-- 底部导航 -->
 <view class="bottom_nav">
     <view>应付：{{cart_select_sum-dikou}}积分</view>
-    <view class="submite" bindtap="SaveOrder">提交订单</view>
+    <view class="submite" bindtap="inputCode">提交订单</view>
+</view>
+
+<!-- 口令弹层 -->
+<view class='kouling' wx:if="{{kouLing}}">
+    <view class='kouling-in'>
+        <image src='https://qncdn.playonwechat.com/hepulanhufu/kouling-icon.png'
+               mode='widthFix'
+               class='kouling-icon'></image>
+        <view class='kouling-title'>今天的红包口令是？...</view>
+        <view class='kouling-input'>
+            <input type="text"  bindinput="inputExchangeCode" placeholder='输入红包口令'/>
+        </view>
+        <view class='input-tips'>输入当日红包口令才可以使用红包哦~</view>
+        <button class='save-kouling' bindtap='SaveOrder'>提交红包口令</button>
+        <button class='save-kouling' open-type='contact'>获取红包口令</button>
+        <view class='close-kouling' bindtap='closeKouLing'></view>
+    </view>
 </view>
 
 <!-- 优惠券 -->
@@ -51,10 +68,13 @@
 
 <view class="coupon_box" animation="{{openAnimation}}">
     <view class="top_nav">
-        <view class="nav_left">共{{couponCard.length}}个红包/已抵扣{{dikou?dikou:'0'}}积分</view>
+        <view class="nav_left">共{{coupon.length}}个红包/已抵扣{{dikou?dikou:'0'}}积分</view>
         <view class="nav_right" bindtap="closeCouponBar">确认</view>
     </view>
     <view class="coupon_view" style="height:{{couponH+'rpx'}};">
+        <!-- <view class="input-view">
+            <input bindinput="inputExchangeCode" placeholder="输入兑换码勾选下面的红包才可以使用哦~" type="text"/>
+        </view> -->
         <view class="coupon-item" 
               wx:for="{{coupon}}" 
               wx:key="{{index}}">
@@ -103,3 +123,13 @@
         <view class="sure_btn" bindtap="sureBtn">{{winText.btnText}}</view>
     </view>
 </view>
+
+<!-- 没有输入兑换码的弹窗 -->
+<!-- <view class="exchange-code" wx:if="{{exchangeCode}}">
+    <view class="code-win">
+        <image class='icon'  src='http://p1jrmxejh.bkt.clouddn.com/hepulanhufu/016a5f593529d7a8012193a37524cb.gif' mode='widthFix'></image>
+        <view class="text">您选择了红包但是没有输入优惠码，快去询问优惠码吧~</view>
+        <button class="ask-code" open-type='contact'>获取获取优惠码</button>
+        <view class="close-code" bindtap='CloseExchangeCode'></view>
+    </view>
+</view> -->

@@ -1,7 +1,7 @@
 // pages/heChartTeach/heChartTeach.js
 var common = require('../../common.js');
 var app = getApp();
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
   /**
    * 页面的初始数据
@@ -40,6 +40,9 @@ Page({
     // 上报后台数据
     statistic();
     wx.setStorageSync('sence', options.scene) 
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
 
     that.setData({
       topicId: options.topicId

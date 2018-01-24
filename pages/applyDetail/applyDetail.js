@@ -2,7 +2,7 @@
 var WxParse = require('../../utils/wxParse.js');
 var common = require('../../common.js');
 var {http} = require('../../common');
-import { statistic} from '../../tunji'
+import { statistic, fromPageData} from '../../tunji'
 var app = getApp();
 Page({
   data: {
@@ -19,6 +19,9 @@ Page({
 // 生命周期函数--监听页面加载
   onLoad: function(options) {
     console.log(options);
+
+    // 渠道统计
+    fromPageData()
      
     // 后台数据统计上报
     statistic();

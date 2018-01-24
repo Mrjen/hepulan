@@ -1,5 +1,6 @@
 var app = getApp();
 import Api from './api'
+import { fromPageData } from './tunji'
 
 // 返回首页
 function backHome() {
@@ -76,7 +77,7 @@ function getUser() {
                     },
                     success: function (res) {
                       console.log('用户信息',res)
-                      console.log("保存用户信息");
+                    
                     }
                   })
                 },
@@ -115,6 +116,10 @@ function getUser() {
                                   },
                                   success: function (res) {
                                     console.log("保存用户信息");
+
+                                    if (wx.getStorageSync('sence')) {
+                                      fromPageData();
+                                    }
                                   }
                                 })
                               }

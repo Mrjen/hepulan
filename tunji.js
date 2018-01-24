@@ -7,6 +7,7 @@ function statistic(params={}) {
         SystemInfo.page = url,
         SystemInfo.sign = wx.getStorageSync('sign');
         SystemInfo.time = timestamp;
+        SystemInfo.app = 'hplcenter';
         SystemInfo.token = md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp);
     params.data = SystemInfo;
     console.log('url',url)
@@ -38,37 +39,55 @@ function getCurrentPageUrl() {
 function fromPageData(params={}) {
     var timestamp = Date.parse(new Date());
     params.data = params.data ? params.data:{};
-    params.data = {
-        openid : wx.getStorageSync('openid'),
-        unionid : wx.getStorageSync('unionid'),
-        scene : wx.getStorageSync('sence'),
-        sign : wx.getStorageSync('sign'),
-        is_fresh : wx.getStorageSync('is_fresh'),
-        time : timestamp,
-        token : md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp)
-    }
-    wx.request({
-        url: 'https://tj.zealcdn.cn/?_a_=serverReport',
-        data: params.data,
-        method: 'POST',
-        success: function(res){
-            console.log('上报来源数据',res)
-        },
-        fail: function() {
-            // fail
-        },
-        complete: function() {
-            // complete
+    let openid =  wx.getStorageSync('openid'),
+        unionid = wx.getStorageSync('unionid'),
+        scene = wx.getStorageSync('sence'),
+        sign = wx.getStorageSync('sign'),
+        is_fresh = wx.getStorageSync('is_fresh')
+    console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh', is_fresh)
+
+    if (openid && unionid && scene && sign && is_fresh>-1){
+        console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh',is_fresh)
+        params.data = {
+            openid: openid,
+            unionid: unionid,
+            scene: scene,
+            sign: sign,
+            is_fresh: is_fresh,
+            time: timestamp,
+            token: md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp),
+            app: 'hplcenter'
         }
-    })
+        wx.request({
+            url: 'https://tj.zealcdn.cn/?_a_=serverReport',
+            data: params.data,
+            method: 'POST',
+            success: function (res) {
+                console.log('上报来源数据', res)
+            },
+            fail: function () {
+                // fail
+            },
+            complete: function () {
+                // complete
+                console.log('上报来源数据  complete')
+            }
+        })
+    }
+    
+
+    
+    
 }
 
 // 用户事件
 function userEvent(params = {}) {
     var timestamp = Date.parse(new Date());
     params.time = timestamp;
+    console.log('秒数',timestamp)
     params.sign = wx.getStorageSync('sign');
     params.token = md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp);
+    params.app = 'hplcenter'
      wx.request({
          url: 'https://tj.zealcdn.cn/?_a_=clientEvent',
          data: params,

@@ -1,5 +1,5 @@
 // pages/getPoint/getPoint.js
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
   data: {
     imgUrls: [
@@ -19,6 +19,9 @@ Page({
     // 上报后台数据
     statistic();
     wx.setStorageSync('sence', options.scene) 
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
 
     let e = Math.random();
     let that = this;

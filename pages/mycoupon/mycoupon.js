@@ -2,7 +2,7 @@
 import { http } from '../../common.js'
 import { couPondiffTime } from '../../common.js'
 import { time } from '../../common.js'
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
   data: {
     nav: [{
@@ -25,6 +25,9 @@ Page({
     // 上报后台数据
     statistic();
     wx.setStorageSync('sence', options.scene) 
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
   },
 
   // 导航切换

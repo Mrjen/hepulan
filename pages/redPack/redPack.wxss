@@ -1,13 +1,16 @@
 /* pages/redPack/redPack.wxss */
-
+@import '../pointMall/pointMall.wxss';
 page {
-    background-image: linear-gradient(180deg, #4c296c 0, #9c3874 49%, #742974 100%);
+    background: #762f6f;
+    /* background-image: linear-gradient(180deg, #4c296c 0, #9c3874 49%, #742974 100%); */
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/redPack-bg20180122.png');
+    background-size: 750rpx auto;
 }
 
 .container {
     min-height: 1000rpx;
     justify-content: flex-start;
-    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/redPack-top-bg.png');
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/redPack-top-bg20180122.png');
     background-size: 100% auto;
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -91,7 +94,7 @@ page {
 /* 邀请内容 */
 .invite-view {
     width: 704rpx;
-    height: 408rpx;
+    padding-bottom: 40rpx;
     background: #f2ebf0;
     border-radius: 10rpx;
     padding-top: 60rpx;
@@ -147,8 +150,12 @@ page {
 .page-invate {
     width: 638rpx;
     height: 93rpx;
+    margin:10rpx auto !important;
+    line-height: 93rpx;
+    border-radius: 50rpx;
     background-color: transparent;
-    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/redPack-invite-btn2.png');
+    background: #d33127;
+    color: #fff;
     background-size: 100% 100%;
 }
 
@@ -158,7 +165,6 @@ page {
 
 
 /* 商品列表 */
-
 .product-view .header {
     width: 739rpx;
     height: 35rpx;
@@ -167,7 +173,7 @@ page {
     margin: 90rpx auto 50rpx auto;
 }
 
-.product-list {
+/* .product-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -222,6 +228,10 @@ page {
     display: flex;
 }
 
+.noproduct{
+    background: #676766 !important;
+}
+
 .product .price .tip {
     color: #f2a72b;
     display: inline-block;
@@ -260,7 +270,7 @@ page {
 
 .current-price text {
     font-size: 20rpx;
-}
+} */
 
 
 /* 瓜分成功 */
@@ -377,6 +387,15 @@ button:after{
     margin: 0 auto;
     border-radius: 50rpx;
     margin-bottom:20rpx;
+}
+
+.inline-btn{
+    display: inline;
+    padding:0;
+    margin: 0;
+    background: transparent;
+    color: #d33127;
+    font-size: 28rpx;
 }
 
 
@@ -609,7 +628,6 @@ button:after{
 }
 
 .top-nav{
-    width: 588rpx;
     height: 47rpx;
     background-image: url('https://qncdn.playonwechat.com/hepulanhufu/top-title.png');
     background-size: 100% 100%;

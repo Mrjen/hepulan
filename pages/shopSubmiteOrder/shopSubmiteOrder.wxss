@@ -267,6 +267,11 @@ view{
 	margin:10rpx 0;
 }
 
+.coupon-item:last-child{
+	display: flex;
+	margin-bottom: 100rpx;
+}
+
 .coupon .coupon_left{
 	width: 140rpx;
 	height: 162rpx;
@@ -346,4 +351,195 @@ view{
 	font-size: 20rpx;
 	color: #393939;
 	margin-top: 14rpx;
+}
+
+.input-view{
+	width: 100%;
+	padding:10rpx 0;
+}
+
+.input-view input{
+	background: #fff;
+	font-size: 26rpx;
+	box-sizing: border-box;
+	padding: 0 20rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+}
+
+/* 没有输入兑换码提示弹窗 */
+.exchange-code{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.5);
+	z-index: 101;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.code-win{
+	width: 600rpx;
+	min-height: 300rpx;
+	background-color: #fff;
+	border-radius: 10rpx;
+	padding-top: 50rpx;
+	position: relative;
+}
+
+.code-win .icon{
+   width: 200rpx;
+   margin:0 auto;
+   display: block;
+}
+
+.code-win .text{
+	padding: 40rpx 60rpx;
+	font-size: 28rpx;
+	line-height: 40rpx;
+	text-align: center;
+}
+
+.ask-code{
+	width: 500rpx;
+	font-size: 29rpx;
+	background: #50a76f;
+	color: #fff;
+	border-radius: 50rpx;
+	margin-bottom: 50rpx;
+}
+
+.ask-code::after{
+	display: none;
+}
+
+.close-code{
+	color: #000;
+	position: absolute;
+	right: 20rpx;
+	top: 20rpx;
+	width: 21px;
+	height: 21px;
+}
+
+.close-code::before{
+	content: '';
+  position: absolute;
+  top: 10px;
+  width: 21px;
+  height: 1px;
+  background-color: currentColor;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.close-code:after{
+	content: '';
+  position: absolute;
+  top: 10px;
+  width: 21px;
+  height: 1px;
+  background-color: currentColor;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+/* 红包口令弹层 */
+.kouling{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .3);
+	z-index: 102;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.kouling-in{
+	width: 600rpx;
+	min-height: 300rpx;
+	background: #fff;
+	border-radius: 10rpx;
+  padding-bottom: 20rpx;
+  position: relative;
+}
+
+.kouling-icon{
+	width: 200rpx;
+	display: block;
+	margin:0 auto;
+}
+
+.kouling-title{
+	text-align: center;
+	padding:20rpx 0;
+}
+
+.kouling-input{
+	height: 60rpx;
+	margin: 20rpx auto 10rpx auto;
+}
+
+.kouling-input input{
+	display: block;
+	width: 400rpx;
+	height: 100%;
+	border: 1px solid #333;
+	border-radius: 10rpx;
+	padding: 0 20rpx;
+	margin:0 auto;
+}
+
+.input-tips{
+	font-size: 24rpx;
+	text-align: center;
+	color: #999;
+	margin-bottom: 50rpx;
+}
+
+.save-kouling{
+	border-radius: 50rpx;
+	background:#52a672;
+	color: #fff;
+	height: 60rpx;
+	margin:20rpx auto;
+	line-height: 60rpx;
+	width: 450rpx;
+}
+
+.close-kouling{
+color: #000;
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  width: 21px;
+  height: 21px;
+}
+
+.close-kouling:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 21px;
+  height: 1px;
+  background-color: currentColor;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.close-kouling:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 21px;
+  height: 1px;
+  background-color: currentColor;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }

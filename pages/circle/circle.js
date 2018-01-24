@@ -1,7 +1,7 @@
 // pages/circle/circle.js
 var app = getApp();
 var common = require('../../common.js');
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
     data: {
         sign: "",
@@ -217,6 +217,9 @@ Page({
         statistic();
         wx.setStorageSync('sence', options.scene) 
         
+        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        fromPageData()
+
          wx.showShareMenu({
             withShareTicket: true
         })

@@ -1,6 +1,6 @@
 // pages/skinTestDetail/skinTestDetail.js
 var common = require('../../common.js');
-import { statistic } from '../../tunji'
+import { statistic, fromPageData } from '../../tunji'
 Page({
     data: {
         testStart: false,
@@ -116,7 +116,10 @@ Page({
         let that = this;
         // 上报后台数据
         statistic();
-        wx.setStorageSync('sence', options.scene) 
+        wx.setStorageSync('sence', options.scene)
+
+        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        fromPageData()
         
         that.setData({
             pagecolor: options.pagecolor,
