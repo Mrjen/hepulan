@@ -43,7 +43,8 @@ function fromPageData(params={}) {
         unionid = wx.getStorageSync('unionid'),
         scene = wx.getStorageSync('sence'),
         sign = wx.getStorageSync('sign'),
-        is_fresh = wx.getStorageSync('is_fresh')
+        is_fresh = wx.getStorageSync('is_fresh'),
+        gender = wx.getStorageSync('gender')
     console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh', is_fresh)
 
     if (openid && unionid && scene && sign && is_fresh>-1){
@@ -56,7 +57,8 @@ function fromPageData(params={}) {
             is_fresh: is_fresh,
             time: timestamp,
             token: md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp),
-            app: 'hplcenter'
+            app: 'hplcenter',
+            gender: gender
         }
         wx.request({
             url: 'https://tj.zealcdn.cn/?_a_=serverReport',

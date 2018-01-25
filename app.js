@@ -86,6 +86,7 @@ App({
                                                 };
                                                 wx.setStorageSync("nickName", userInfo.nickName);
                                                 wx.setStorageSync("avatarUrl", userInfo.avatarUrl);
+                                                wx.setStorageSync("gender", userInfo.gender);
                                                 res.userInfo.username = userInfo.nickName;
                                                 res.userInfo.id = wx.getStorageSync('user_id');
                                                 
@@ -149,6 +150,7 @@ App({
                                         var userInfo = res.userInfo;
                                         wx.setStorageSync('avatarUrl', userInfo.avatarUrl);
                                         wx.setStorageSync('nickName', userInfo.nickName);
+                                        wx.setStorageSync("gender", userInfo.gender);
                                         userData = {
                                             nickName: userInfo.nickName,
                                             avatarUrl: userInfo.avatarUrl,
