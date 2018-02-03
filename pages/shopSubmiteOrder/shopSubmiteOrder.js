@@ -25,7 +25,6 @@ Page({
         winStatus: false,
         kouLing:false,  //口令弹层
         addressid:null,//收货地址id
-        openAnimation: {},
         inputExchangeCode: null, //兑换码
         couponIsOpen: false, //选择红包抵扣是否显示
         couponH: 0,
@@ -124,20 +123,8 @@ Page({
                 })
             }
         })
-    },
 
-    // 输入兑换码
-    inputExchangeCode(e) {
-        this.setData({
-            inputExchangeCode: e.detail.value
-        })
-    },
-
-    // 打开红包抵扣
-    openCouponBar() {
-        console.log('打开')
-        let that = this;
-
+        // 获取优惠券数据
         http({
             type: 'get-user-coupon-list', data: {
                 status: 1
@@ -156,39 +143,43 @@ Page({
                     element.active = false;
                 })
             }
-            var openAnimation = wx.createAnimation({
-                transformOrigin: "50% 50%",
-                duration: 1000,
-                timingFunction: "ease",
-                delay: 0
-            })
-            openAnimation.translateY(-380).step();
+
             that.setData({
-                openAnimation: openAnimation.export(),
-                couponH: 500,
-                couponIsOpen: true,
                 coupon: coupon
             })
         })
     },
 
-    //  关闭红包抵扣
-    closeCouponBar() {
-        console.log('关闭')
-        let that = this;
-        var openAnimation = wx.createAnimation({
-            transformOrigin: "50% 50%",
-            duration: 1000,
-            timingFunction: "ease",
-            delay: 0
-        })
-        openAnimation.translateY(0).step();
-        that.setData({
-            openAnimation: openAnimation.export(),
-            couponH: 0,
-            couponIsOpen: false
+    // 输入兑换码
+    inputExchangeCode(e) {
+        this.setData({
+            inputExchangeCode: e.detail.value
         })
     },
+
+    // 打开红包抵扣
+    // openCouponBar() {
+    //     console.log('打开')
+    //     let that = this;
+    // },
+
+    //  关闭红包抵扣
+    // closeCouponBar() {
+    //     console.log('关闭')
+    //     let that = this;
+    //     var openAnimation = wx.createAnimation({
+    //         transformOrigin: "50% 50%",
+    //         duration: 1000,
+    //         timingFunction: "ease",
+    //         delay: 0
+    //     })
+    //     openAnimation.translateY(0).step();
+    //     that.setData({
+    //         openAnimation: openAnimation.export(),
+    //         couponH: 0,
+    //         couponIsOpen: false
+    //     })
+    // },
 
     // 选择这个优惠券
     selsctRadio(e) {

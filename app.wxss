@@ -1,5 +1,5 @@
 /**app.wxss**/
-.container {
+/* .container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   justify-content: space-between;
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-}
+} */
 
 .share_icon,.home_icon{
   width: 70rpx;
@@ -60,4 +60,10 @@
   position: fixed;
   bottom: 100rpx;
   right: 40rpx;
+}
+
+button[open-type='contact']::after,button[open-type='share']::after{
+  display: none;
+  padding:0;
+  border-radius: 0;
 }

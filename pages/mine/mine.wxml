@@ -1,22 +1,26 @@
 <!--pages/mine/mine.wxml-->
-<import src="../template/template.wxml"/>
 <view class="container">
-    <view class="userinfo">
-        <view class="user_circle1">
-            <view class="user_circle2">
-               <view class="user_circle3">
-                 <image class="userimg" src="{{userInfo.userImg}}"></image>
-               </view>
-            </view>
-        </view>
-       <view>
-          <view class="user_name">{{userInfo.userName}}</view>
-          <view class="user_tag">{{userInfo.userTag}}</view>
-       </view>
-    </view>
-    <view class="opation_list_box">
-      <navigator class="opation_list" hover-class="none" wx:for="{{opationList}}" url="{{item.navUrl}}" >{{item.text}}</navigator>
-    </view>
-    
-  <!-- <template is="share_icon"/> -->
+  <!-- 个人信息 -->
+  <view class='userinfo'>
+      <view class='avatar'>
+         <image class='user-image' 
+                src="{{userInfo.userImg}}">
+         </image>
+      </view>
+      <view class="naickname">{{userInfo.nickName}}</view>
+  </view>
+ 
+  <!-- 功能区 -->
+  <view class="nav-view">
+     <navigator wx:for="{{navData}}"
+                class="item"
+                hover-class="none"
+                url="{{item.url}}"
+                wx:key="{{index}}">
+        <view class="icon"><image src="{{item.icon}}"></image></view>
+        <view class="text">{{item.text}}</view>
+     </navigator>
+  </view>
+
+
 </view>

@@ -18,7 +18,7 @@ function toShare() {
 
 // 获取用户信息
 function getUser() {
-  var wx_name = wx.getStorageSync('wx_name');
+  var wx_name = wx.getStorageSync('nickName');
   var avatarUrl = wx.getStorageSync('avatarUrl');
   if (!wx_name && !avatarUrl) {
     wx.login({
@@ -149,7 +149,7 @@ function getUser() {
 };
 
 // 请求
-function http(http, cb) {
+function http(http={},cb) {
   wx.request({
     url: Api.apiUrl,
     method: 'POST',

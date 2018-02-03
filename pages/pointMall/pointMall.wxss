@@ -12,19 +12,37 @@ page{
    background-repeat: no-repeat;
 }
 
-.avatarUrl{
-  width: 136rpx;
-  height: 136rpx;
-  border-radius: 50%;
-  display: block;
-  margin:0 auto;
-  margin-top: 120rpx;
+/* 个人资料 */
+.userinfo{
+  width: 750rpx;
+  height: 478rpx;
+  background-image: url('https://qncdn.playonwechat.com/hepulanhufu/mine-userinfo-bg.png');
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.nickName{
-  text-align: center;
-  font-size: 28rpx;
-  margin-top: 30rpx;
+.avatar{
+  width: 257rpx;
+  height: 267rpx;
+  position: relative;
+}
+
+.avatar .user-image{
+  display: block;
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 50%;
+  position: absolute;
+  margin:46rpx 0 0 46rpx;
+}
+
+.avatar .user-cicle{
+  width: 257rpx;
+  height: 267rpx;
+  position: absolute;
 }
 
 .point_count{
@@ -32,8 +50,16 @@ page{
   font-size: 32rpx;
   margin-top: 16rpx;
   margin-bottom: 16rpx;
+  color: #fff;
 }
 
+.invate{
+  font-size: 26rpx;
+  text-align: center;
+  color: #fff;
+}
+
+/* 主体内容 */
 .point_detail{
   width: 280rpx;
   height: 62rpx;
@@ -60,14 +86,8 @@ page{
   background-size: 100% 100%;
 }
 
-.invate{
-  font-size: 26rpx;
-  text-align: center;
-}
-
 .opation_nav{
   display: flex;
-  border-top: 20rpx solid #f4f5f9;
 }
 
 .opation_nav .navigator{

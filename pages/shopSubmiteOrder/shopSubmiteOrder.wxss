@@ -129,6 +129,7 @@ view{
 	justify-content: flex-end;
 	font-size: 30rpx;
 	z-index: 100;
+  border-top: 1px solid #f7f7f7;
 }
 
 .submite{
@@ -232,10 +233,6 @@ view{
 	width:100%;
 	background: #fff;
 	padding:0 30rpx;
-  max-height: 480rpx;
-	position: absolute;
-	bottom: -500rpx;
-	left: 0;
   border-top: 1px solid rgba(0, 0, 0, .05);
 }
 
@@ -248,10 +245,18 @@ view{
 }
 
 .coupon_view{
-	background: #f7f7f7;
+	/* background: #f7f7f7; */
+  background: #fff;
 	box-sizing: border-box;
 	padding:16rpx;
-	overflow-y: scroll;
+  padding-top: 0;
+  border-top: 30rpx solid #f7f7f7;
+}
+
+.mine-redpack{
+	text-align: center;
+	font-size: 28rpx;
+	padding: 20rpx 0;
 }
 
 .coupon{
@@ -264,12 +269,14 @@ view{
 
 .coupon-item{
 	display: flex;
-	margin:10rpx 0;
+  border:10rpx solid #f7f7f7;
+  border-bottom: 0;
 }
 
 .coupon-item:last-child{
 	display: flex;
 	margin-bottom: 100rpx;
+   border-bottom:10rpx solid #f7f7f7;
 }
 
 .coupon .coupon_left{
@@ -345,6 +352,7 @@ view{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+  background: #f7f7f7;
 }
 
 .select_tip{
@@ -353,7 +361,7 @@ view{
 	margin-top: 14rpx;
 }
 
-.input-view{
+/* .input-view{
 	width: 100%;
 	padding:10rpx 0;
 }
@@ -365,10 +373,11 @@ view{
 	padding: 0 20rpx;
 	height: 60rpx;
 	line-height: 60rpx;
-}
+} */
+
 
 /* 没有输入兑换码提示弹窗 */
-.exchange-code{
+/* .exchange-code{
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -445,7 +454,7 @@ view{
   background-color: currentColor;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-}
+} */
 
 /* 红包口令弹层 */
 .kouling{

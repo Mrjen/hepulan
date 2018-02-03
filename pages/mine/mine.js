@@ -1,145 +1,78 @@
 // pages/mine/mine.js
-var common = require('../../common.js');
 var app = getApp()
 import { statistic, fromPageData } from '../../tunji'
-
+import { common, http, getUser } from '../../common'
 Page({
     data: {
-        // isRegister由后端传输，应该是个布尔值
-        isRegister: true,
-        // 用户信息预保留，根据后端数据进行后续
-        userInfo: [{
-            'userImg': '',
-            'userName': '',
-            'userTag': ''
-        }],
-        opationList: [{
-                text: '积分商城',
-                navUrl: '../pointMall/pointMall'
-            }, {
-                text: '分享海报',
-                navUrl: '../sharePoster/sharePoster'
-            },
-            {
-               text:'积分记录',
-              navUrl:'../goldList/goldList'
-            },
-            {
-               text:'打卡记录',
-              navUrl:'../diaryMarkList/diaryMarkList'
-            },
-            {
-               text:'我的红包',
-               navUrl:'../mycoupon/mycoupon'
-            },
-        ]
-
+        userInfo: {},
+        navData:[{
+            icon:'https://qncdn.playonwechat.com/hepulanhufu/mine-punch-icon.png',
+            url:'../DiaryMark/DiaryMark',
+            text:'护肤打卡'
+        },{
+            icon:'https://qncdn.playonwechat.com/hepulanhufu/mine-nav-shop.png',
+            url: '../pointMall/pointMall',
+            text: '积分商城'
+        }, {
+            icon: 'https://qncdn.playonwechat.com/hepulanhufu/mine-redpack-icon.png',
+            url: '../mycoupon/mycoupon',
+            text: '我的红包'
+        }, {
+            icon: 'https://qncdn.playonwechat.com/hepulanhufu/mine-skin-icon.png',
+            url: '../skinTest/skinTest',
+            text: '肌肤档案'
+        }]
     },
-    onLoad: function(options) {
-        wx.showShareMenu({
-            withShareTicket: true
-        })
-
+    onLoad: function (options) {
         // 上报后台数据
         statistic();
-        wx.setStorageSync('sence', options.scene) 
+        wx.setStorageSync('sence', options.scene)
 
         // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
         fromPageData()
-
-        var that = this;
-        // 页面初始化 options为页面跳转所带来的参数
-        var signData = wx.getStorageSync("loginData");
-        var avatarUrl = wx.getStorageSync("avatarUrl");
-        var nickName = wx.getStorageSync("nickName");
-        var mobile = wx.getStorageSync("mobile");
-        var userTag = ""
-        // if (mobile == "" || mobile == undefined) {
-        //     userTag = "未注册用户"
-        // } else {
-        //     userTag = "普通用户"
-        // }
-        var userInfo = {
-            userImg: avatarUrl,
-            userName: nickName,
-            userTag: userTag
-        };
-        that.setData({
-            userInfo: userInfo
-        })
     },
-    onReady: function() {
+    onReady: function () {
         // 页面渲染完成
     },
-    onShow: function() {
-        // 页面显示
+    onShow: function () {
         let that = this;
-        wx.getSetting({
-            success(res) {
-            	console.log(res)
-            	if (res.authSetting['scope.userInfo']) {
-                    wx.getUserInfo({
-                    	success(res){
-                    		// let userInfo = res.userInfo;
-                    		let userInfo = {
-                    			userName:res.userInfo.nickName,
-                    			userImg:res.userInfo.avatarUrl
-                    		}
-                    		that.setData({
-                    			userInfo
-                    		})
-                    	}
-                    })
-            	}else{
-            		wx.showModal({
-					  title: '提示',
-					  content: '系统检测到您没有授权给禾葡兰小程序，是否去授权？',
-					  success: function(res) {
-					    if (res.confirm) {
-					       wx.openSetting({
-							  success: (res) => {
-							  }
-							})
-					    } else if (res.cancel) {
-					      console.log('用户点击取消')
-					    }
-					  }
-					})
-            	}
-            }
+        getUser();
+     
+        let userInfo = {
+            userImg:wx.getStorageSync('avatarUrl'),
+            nickName:wx.getStorageSync('nickName')
+        }
+        that.setData({
+            userInfo
+        })
+    },
+
+    // 跳转详情页
+    ToDetail(ev) {
+        let id = ev.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: `../pointMallDetail/pointMallDetail?id=${id}`
         })
     },
 
     // 返回首页
-    backHome: function() {
+    backHome: function () {
         common.backHome();
     },
 
     // 分享海报
-    toShare: function() {
+    toShare: function () {
         common.toShare();
     },
 
-    onHide: function() {
+    onHide: function () {
         // 页面隐藏
     },
-    onUnload: function() {
+    onUnload: function () {
         // 页面关闭
     },
-    // 自定义函数
 
-    // 获取注册函数
-    getRegister: function() {
-        var self = this
-        var userInfo = this.data.userInfo
-        if (this.data.isRegister == false) {
-            this.setData({
-                "userInfo[0].userTag": "非注册用户"
-            })
-        } else {
-            this.setData({
-                "userInfo[0].userTag": "普通用户"
-            })
-        }
+    onShareAppMessage() {
+
     }
 })

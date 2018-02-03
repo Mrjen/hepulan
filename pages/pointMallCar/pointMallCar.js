@@ -2,6 +2,7 @@
 var app = getApp();
 let common = require('../../common.js');
 import { statistic, fromPageData } from '../../tunji'
+import {http} from '../../common'
 Page({
     data: {
         list: [],
@@ -27,145 +28,110 @@ Page({
         let that = this;
         let sign = wx.getStorageSync("sign");
         let AllMoney = new Number();
-
-        wx.request({
-            url: app.data.apiUrl,
-            method: "POST",
-            data: {
-                sign: sign,
-                key: app.data.apiKey,
-                type: "get-cart-list"
-            },
-            success(res) {
-                let list = res.data.data;
-                console.log(list)
-                for (var i = 0; i < list.length; i++) {
-                    list[i].goods_num = Number(list[i].goods_num);
-                    list[i].is_select = Number(list[i].is_select);
-                    list[i].score = Number(list[i].score);
-                }
-                console.log(list);
-                AllMoney = that.countGoods(list);
-                that.setData({
-                    list,
-                    AllMoney
-                })
+        http({
+            type:'get-cart-list'
+        },function(res){
+            console.log('111',res)
+            let list = res.data.data;
+            for (var i = 0; i < list.length; i++) {
+                list[i].goods_num = Number(list[i].goods_num);
+                list[i].is_select = Number(list[i].is_select);
+                list[i].score = Number(list[i].score);
             }
+            console.log(list);
+            AllMoney = that.countGoods(list);
+            that.setData({
+                list,
+                AllMoney
+            })
         })
     },
 
     // 勾选商品
     selectGoods(ev) {
-        console.log(ev)
         let that = this;
-        let _index = ev.currentTarget.dataset.index;
-        let gid = ev.currentTarget.dataset.gid;
+        let Edata = ev.currentTarget.dataset;
         let list = that.data.list;
         let AllMoney = new Number();
-        list[_index].is_select = (list[_index].is_select == '1' ? '0' : '1');
-        console.log(list[_index].is_select);
-        wx.request({
-            url: app.data.apiUrl,
-            method: "POST",
-            data: {
-                sign: wx.getStorageSync("sign"),
-                key: app.data.apiKey,
-                type: "save-cart-select",
-                data: {
-                    gid: gid,
-                    is_select: list[_index].is_select,
-                    mode: "one"
-                }
-            },
-            success(res) {
-                console.log(res);
-                AllMoney = that.countGoods(list);
-                console.log(AllMoney)
-                that.setData({
-                    list,
-                    AllMoney
-                })
+        list[Edata.index].is_select = (list[Edata.index].is_select == '1' ? '0' : '1');
+        console.log(list[Edata.index].is_select);
+        http({
+            type:'save-cart-select',
+            data:{
+                gid: Edata.gid,
+                is_select: list[Edata.index].is_select,
+                mode: "one"
             }
+        },function(res){
+            console.log(res);
+            AllMoney = that.countGoods(list);
+            console.log(AllMoney)
+            that.setData({
+                list,
+                AllMoney
+            })
         })
-
     },
 
     // 加商品
     addGoods(ev) {
         let that = this;
+        let Edata = ev.currentTarget.dataset;
         let list = that.data.list;
-        let _index = ev.currentTarget.dataset.index;
-        let gid = ev.currentTarget.dataset.gid;
         let AllMoney = new Number();
-        list[_index].goods_num += 1;
-        wx.request({
-            url: app.data.apiUrl,
-            method: "POST",
-            data: {
-                sign: wx.getStorageSync("sign"),
-                key: app.data.apiKey,
-                type: "save-cart-num",
-                data: {
-                    gid: gid,
-                    goods_num: list[_index].goods_num
-                }
-            },
-            success(res) {
-                console.log(res);
-                AllMoney = that.countGoods(list);
-                console.log(list);
-                that.setData({
-                    list,
-                    AllMoney
-                })
+        list[Edata.index].goods_num += 1;
+        http({
+            type:'save-cart-num',
+            data:{
+                gid: Edata.gid,
+                goods_num: list[Edata.index].goods_num
             }
+        },function(res){
+            console.log(res);
+            AllMoney = that.countGoods(list);
+            console.log(list);
+            that.setData({
+                list,
+                AllMoney
+            })
         })
     },
 
     // 减商品
     cutGoods(ev) {
-        console.log(ev)
         let that = this;
+        let Edata = ev.currentTarget.dataset;
         let list = that.data.list;
-        let _index = ev.currentTarget.dataset.index;
-        let gid = ev.currentTarget.dataset.gid;
         let AllMoney = new Number();
         // console.log(list[_index].goods_num)
-        if (list[_index].goods_num > 1) {
-            list[_index].goods_num -= 1;
-            wx.request({
-                url: app.data.apiUrl,
-                method: "POST",
-                data: {
-                    sign: wx.getStorageSync("sign"),
-                    key: app.data.apiKey,
-                    type: "save-cart-num",
-                    data: {
-                        gid: gid,
-                        goods_num: list[_index].goods_num
-                    }
-                },
-                success(res) {
-                    console.log(res)
-                    if (res.data.status === 1) {
-                        AllMoney = that.countGoods(list);
-                        that.countGoods(list);
-                        that.setData({
-                            list,
-                            AllMoney
-                        })
-                    } else {
-                        wx.showToast({
-                            title: res.data.msg,
-                            icon: 'success',
-                            duration: 1000
-                        })
-                    }
-
+        if (list[Edata.index].goods_num > 1) {
+            list[Edata.index].goods_num -= 1;
+            http({
+                type:'save-cart-num',
+                data:{
+                    gid: Edata.gid,
+                    goods_num: list[Edata.index].goods_num
+                }
+            },function(res){
+                console.log(res)
+                if (res.data.status === 1) {
+                    AllMoney = that.countGoods(list);
+                    that.countGoods(list);
+                    that.setData({
+                        list,
+                        AllMoney
+                    })
+                } else {
+                    wx.showToast({
+                        title: res.data.msg,
+                        icon: 'success',
+                        duration: 1000
+                    })
                 }
             })
-        } else if (list[_index].goods_num < 1) {
-            list[_index].goods_num = 1;
+
+        } else if (list[Edata.index].goods_num < 1) {
+            list[Edata.index].goods_num = 1;
         }
     },
 

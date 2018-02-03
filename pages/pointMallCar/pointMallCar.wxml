@@ -1,6 +1,8 @@
 <!--pages/pointMallCar/pointMallCar.wxml-->
-<view class="list">
-    <view class="list_out" wx:for="{{list}}">
+
+<block>
+<view class="list" wx:if="{{list.length>0}}">
+    <view class="list_out" wx:for="{{list}}" wx:key="{{index}}">
         <view class="delete" bindtap="deleteProduct" data-gid="{{item.gid}}" data-index="{{index}}">删除</view>
         <view class="list_item" bindtouchstart="touchS" style="{{item.txtStyle}}" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
             <radio value="" color="#086446" checked="{{item.is_select=='1'?true:false}}" bindtap="selectGoods" data-index="{{index}}" data-gid="{{item.gid}}" />
@@ -20,6 +22,16 @@
         </view>
     </view>
 </view>
+
+<view class="nothing" wx:else>
+    <image class="nothing-icon" 
+           mode="widthFix" 
+           src="https://qncdn.playonwechat.com/hepulanhufu/pointmall-anthing-bg.png"/>
+    <navigator class="to-shop"
+               hover-class="none"
+               url="../pointMall/pointMall">去商城逛逛>></navigator>
+</view>
+</block>
 
 <view class="bottom_nav">
     <view bindtap="allSelect">

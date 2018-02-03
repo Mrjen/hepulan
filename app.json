@@ -1,24 +1,25 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/photoWall/photoWall",
+    "pages/moreTeacher/moreTeacher",
+    "pages/mine/mine",
+    
     "pages/shopSubmiteOrder/shopSubmiteOrder",
-    "pages/pointMallCar/pointMallCar",
     "pages/pointMall/pointMall",
+    "pages/circle/circle",
+    "pages/redPack/redPack",
+    "pages/pointMallCar/pointMallCar",
+    "pages/DiaryMark/DiaryMark",
+    "pages/photoWall/photoWall",
     "pages/applyDetail/applyDetail",
     "pages/single/single",
     "pages/heChartTeach/heChartTeach",
     "pages/goldList/goldList",
-    "pages/Recommend/Recommend",
     "pages/ShopLogistics/ShopLogistics",
     "pages/heChart/heChart",
     "pages/friendShare/friendShare",
     "pages/shopExchange/shopExchange",
-    "pages/DiaryMark/DiaryMark",
-    "pages/redPack/redPack",
     "pages/mycoupon/mycoupon",
-    "pages/mine/mine",
-    "pages/circle/circle",
     "pages/webContact/WebContact",
     "pages/sharePage/sharePage",
     "pages/getPoint/getPoint",
@@ -55,7 +56,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1b1a20",
     "navigationBarTitleText": "禾葡兰护肤中心",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "navigationStyle ": true
   },
   "tabBar": {
     "backgroundColor": "#1b1a20",

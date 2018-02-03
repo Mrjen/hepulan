@@ -20,6 +20,7 @@
 	left: 50%;
 	transform: translateX(-50%);
 	display: flex;
+  z-index: 10;
 }
 
 .search_box input{
@@ -41,14 +42,53 @@
 
 .nav_box{
 	width: 750rpx;
-	height: 544rpx;
-	background: #666;
-	background: url(https://qncdn.playonwechat.com/hepulan/circle_bg.png);
-	background-size: 750rpx 396rpx;
+	height: 612rpx;
+	background: url(https://qncdn.playonwechat.com/hepulanhufu/circle-bg.png);
+	background-size: 750rpx 612rpx;
 	background-position: 0 0;
 	background-repeat: no-repeat;
-	border:1px solid #fff;
+  padding-top: 1rpx;
 	box-sizing: border-box;
+  position: relative;
+  z-index: 3;
+}
+
+.circle-nav{
+	display: flex;
+	justify-content: center;
+}
+
+.circle-nav .active{
+	border-color: #fff;
+	color: #fff;
+}
+
+.nav-item{
+	font-size: 28rpx;
+	min-width: 120rpx;
+	color: #e3d5aa;
+	padding:5rpx 20rpx;
+	margin:0 20rpx;
+	border:1px solid #e3d5aa;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.nav-item::before{
+	content: "";
+	display: block;
+	width: 10rpx;
+	height: 10rpx;
+	background: #e3d5aa;
+	position: absolute;
+	transform: rotate(45deg);
+	left: -25rpx;
+}
+
+.nav-item:nth-of-type(1)::before{
+	display: none;
 }
 
 .nav_in{
@@ -58,10 +98,18 @@
 	justify-content: space-around;
 	background: #fff;
 	margin:0 auto;
-	margin-top: 320rpx;
+	margin-top: 40rpx;
 	border-radius: 20rpx;
 	align-items: center;
 	box-shadow: 0 0 10rpx rgba(0,0,0,.1);
+}
+
+.nav_text{
+	color: #fff;
+	margin-top: 380rpx;
+	text-align: center;
+	font-size: 26rpx;
+	margin-bottom: 20rpx;
 }
 
 .nav_in view{
@@ -100,6 +148,10 @@
 	display: block;
 	width: 86rpx;
 	height: 86rpx;
+}
+
+.circle-main{
+	padding-top: 100rpx;
 }
 
 .space_dyn{

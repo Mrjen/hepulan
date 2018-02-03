@@ -1,0 +1,74 @@
+/* pages/moreTeacher/moreTeacher.wxss */
+view{
+    box-sizing: border-box;
+}
+
+.top-banner{
+    width: 750rpx;
+    height: 236rpx;
+    background-size: 100% 100%;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/more-teacher-banner01.png');
+    margin-bottom: 20rpx;
+}
+
+.banner2{
+    width: 750rpx;
+    height: 236rpx;
+    background-size: 100% 100%;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/more-teacher-banner02.png');
+}
+
+/* 老师轮播01 */
+.teach-view01{
+   margin-bottom: 20rpx;
+}
+
+.teach-view01 .teach-item{
+    width: 170rpx;
+    height: 272rpx;
+    background: #fff;
+    border-radius: 14rpx;
+    overflow: hidden;
+    box-shadow: 0 0 14rpx rgba(180, 159, 132, .4);
+}
+
+.teach-view01 .slide-image{
+    width: 135rpx;
+    height: 135rpx;
+    display: block;
+    border-radius: 50%;
+    margin:0 auto;
+    border:1px solid #b49f84;
+}
+
+.teach-view01 .teach-nav{
+    width: 100%;
+    background: #b49f84;
+    color: #fff;
+    font-size: 18rpx;
+    height: 30rpx;
+    text-align: center;
+    margin-bottom: 12rpx;
+}
+
+.teach-view01 .teach-discribe{
+    font-size: 20rpx;
+    text-align: center;
+    margin: 10rpx 0;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
+.teach-view01 .ask-teach{
+    padding:0;
+    height: 50rpx;
+    font-size: 20rpx;
+    background: #b49f84;
+    color: #fff;
+    border-radius: 0;
+}
+
+.teach-view02 .teach-nav,.teach-view02 .ask-teach{
+    background: #006d4a;
+}

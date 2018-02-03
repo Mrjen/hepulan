@@ -6,37 +6,17 @@ import { http } from '../../common.js'
 import { statistic, fromPageData, userEvent } from '../../tunji'
 Page({
     data: {
-        content: false,
-        mobile: "",
-        teacherId: "",
-        wxcode: "",
         redpack: false,  //红包
-        copyTeach: false,
-        teach_static: false,
-        closeGetPoint: "block",//获取积分icon的显示状态
-        templateData: [{
-            teacher_id: "",
-            title_tip: '请咨询您的专属护肤老师'
-        }],
-        navList: [{
-            text: "肌肤测试",
-            navUrl: ""
-        },
-        {
-            text: "护肤打卡",
-            navUrl: ""
-        }, {
-            text: "加入会员",
-            navUrl: ""
-        }
-        ],
+        playVideo:false,  //video封面是否显示
+        skinCare:false,
+        banner: ['http://p1jrmxejh.bkt.clouddn.com/hepulanhufu/index-banner.png',
+                 'https://qncdn.playonwechat.com/hepulanhufu/index-banner1.png'],
         imgUrls: ['https://qncdn.playonwechat.com/hepulan/home_baner01.png',
             'https://qncdn.playonwechat.com/hepulan/home_baner02.png',
             'https://qncdn.playonwechat.com/hepulan/home_baner03.png',
             'https://qncdn.playonwechat.com/hepulan/home_baner04.png'
         ]
     },
-
 
     // 统计
     tongJi(ev) {
@@ -47,26 +27,27 @@ Page({
         mta.Event.stat("contact_click", { codeid: 'true' })
     },
 
-    formSubmit(ev) {
-        userEvent({ event: 'zixun' })
-        //  console.log('form发生了submit事件，携带数据为：', ev.detail.formId)
-        common.getSign(function () {
-            var sign = wx.getStorageSync("sign");
-            wx.setStorageSync('form_id', ev.detail.formId);
-            wx.request({
-                url: 'https://hepulan.playonwechat.com/site/save-form-id?sign=' + sign,
-                data: {
-                    form_id: ev.detail.formId,
-                    id: wx.getStorageSync('user_id')
-                },
-                success(res) {
-                    console.log(res)                    
-                    // wx.navigateTo({
-                    //     url:'../webContact/WebContact'
-                    // })
-                }
-            })
+    // 播放视频
+    playVideo(){
+       this.setData({
+           playVideo:true,
+           skinCare:false
+       })
+    },
+
+    // 视频播放完了
+    playEnd(){
+        this.setData({
+            playVideo: false,
+            skinCare: false
         })
+    },
+
+    skinCare(){
+       this.setData({
+           skinCare:true,
+           playVideo: false
+       })
     },
 
     // 点击打开红包
@@ -168,116 +149,6 @@ Page({
 
         });
     },
-    // 皮肤测试
-    skinTest: function () {
-        wx.navigateTo({
-            url: '../skinTest/skinTest'
-        })
-    },
-
-    // 老师推荐
-    teacheRed: function () {
-        var that = this;
-        var mobile = app.data.mobile;
-        var pagePath = "../Recommend/Recommend";
-        wx.navigateTo({
-            url: `../Recommend/Recommend`
-        })
-    },
-
-    joinVip: function (page) {
-        var that = this;
-        var mobile = app.data.mobile;
-        var pagePath = "../member/member";
-        var pages = page.currentTarget.dataset.page;
-        wx.navigateTo({
-            url: `../member/member`
-        })
-    },
-
-    Check: function () {
-        var that = this;
-        var mobile = app.data.mobile;
-        var pagePath = "../qiandao/qiandao"
-        //console.log(mobile);
-
-        wx.navigateTo({
-            url: `../qiandao/qiandao`
-        })
-    },
-
-    CheckIn() {
-        wx.navigateTo({
-            url: `../checkIn/checkIn`
-        })
-    },
-
-    Apply: function (page) {
-        //console.log(page);
-        var that = this;
-        var mobile = app.data.mobile;
-        var pagePath = "../apply/apply"
-        var pages = page.currentTarget.dataset.page;
-
-        wx.navigateTo({
-            url: `../apply/apply`
-        })
-    },
-
-    askMine: function (ask) {
-        //console.log(ask);
-        var that = this;
-        var mobile = app.data.mobile;
-        var pagePath = "../index/index"
-        //console.log(mobile);
-        if (mobile == "" || mobile == undefined) {
-            that.setData({
-                content: false
-            })
-        }
-        var teacherId = wx.getStorageSync("teacherId");
-        var templateData = [];
-        templateData[0] = {};
-        templateData[0].teacher_id = teacherId;
-        console.log(that.data.templateData)
-        if (teacherId == "") {
-            that.setData({
-                teach_static: true
-            })
-        } else {
-            that.setData({
-                teach_static: false
-            })
-        }
-    },
-
-    toLogin: function (page) {
-        var pages = page.target.dataset.page;
-        //console.log(pages);
-        var pagePath = "../index/index"
-        wx.navigateTo({
-            url: '../login/login?pagePath=' + pagePath + "&pages=" + pages
-        })
-    },
-
-
-    // 关闭获取积分按钮
-    closeGetPoint() {
-        let that = this;
-        that.setData({
-            closeGetPoint: "none"
-        })
-    },
-
-    // 返回首页
-    backHome: function () {
-        common.backHome();
-    },
-
-    // 分享海报
-    toShare: function () {
-        common.toShare();
-    },
 
     onHide: function () {
         // 页面隐藏
@@ -285,5 +156,8 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
+    onShareAppMessage(){
+
+    }
 
 });

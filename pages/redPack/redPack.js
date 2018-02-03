@@ -267,7 +267,7 @@ Page({
     // 统计点击领取红包的次数
     mta.Event.stat("get_redpack", {})
     http({
-      type: 'action-dismantle-active-coupon',
+      type: 'action-dismantle-active-coupon-test',
       data: {
         formid: e.detail.formId,
         unique_code: that.data.unique_code
@@ -312,13 +312,13 @@ Page({
       } else {
         wx.showModal({
           title: '领取失败',
-          content: '您已经拆过该好友的红包了哦,是否自己拆红包？',
+          content: params.data.msg,
           success: function (res) {
             if (res.confirm) {
               console.log('用户点击确定');
-              wx.switchTab({
-                 url: '../index/index'
-              })
+              // wx.switchTab({
+              //    url: '../index/index'
+              // })
             } else if (res.cancel) {
               console.log('用户点击取消')
             }

@@ -122,6 +122,21 @@
 	/*align-items: center;*/
 }
 
+.nothing-icon{
+	width: 380rpx;
+	display: block;
+	margin:200rpx auto 100rpx auto;
+}
+
+.to-shop{
+	width: 200rpx;
+	height: 80rpx;
+	font-size: 28rpx;
+	text-align: center;
+	color: #086446;
+	margin: 0 auto;
+}
+
 /*购物车*/
 .bottom_nav{
 	width:100%;

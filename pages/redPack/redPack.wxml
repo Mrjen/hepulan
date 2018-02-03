@@ -91,7 +91,8 @@
                     <view class="tip-content">还差{{couponInfo.coupon_need_more}}人即可瓜分50元红包，快邀请好友来拆</view>
                     <view class="coundown">{{countTime}}后结束</view>
                 </view>
-                <view class="active_isend" wx:else>拆红包失败！请在24小时内邀请好友参与</view>
+                <view class="active_isend" wx:if="{{couponInfo.coupon_survival_time==0?true:false}}">拆红包失败！请在24小时内邀请好友参与</view>
+                <!-- <view class="active_isend" wx:if="{{}}">加载中···</view> -->
             </block>
             <form  bindsubmit="tunjiShare" report-submit="true">
                 <button wx:if="{{couponInfo.coupon_survival_time>0?true:false}}" class="page-invate" formType="submit" open-type="share">邀请微信好友一起拆</button>

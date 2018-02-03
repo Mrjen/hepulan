@@ -76,10 +76,6 @@ function fromPageData(params={}) {
             }
         })
     }
-    
-
-    
-    
 }
 
 // 用户事件

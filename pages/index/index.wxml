@@ -1,116 +1,119 @@
 <!--index.wxml-->
-<import src="../template/template.wxml"/>
-<scroll-view scroll-y="true" class="container">
-   <view class="logo">
-       <image src="../img/logo.png"></image>
-   </view>
+<view class="container">
+        <swiper class="banner" 
+                autoplay="true" 
+                interval="5000" 
+                duration="1000" 
+                circular="true"
+                indicator-active-color="#006d4a"
+                indicator-dots="true">
+            <block>
+                <swiper-item>
+                    <image src="{{banner[0]}}" class="slide-image"/>
+                    <button class="ask-btn" open-type="contact"></button>
+                </swiper-item>
+                <swiper-item>
+                    <image src="{{banner[1]}}" class="slide-image" />
+                    <!-- <button class="ask-btn" open-type="contact"></button> -->
+                </swiper-item>
+            </block>
+        </swiper>
 
-   <form  class="content_box"  
-          bindsubmit="formSubmit" 
-          report-submit="true">
-      <button class="contact_me" formType="submit">
-           <!-- <button class="ask_mine navitor1" 
-                        wx:if="{{!content}}" 
-                        data-page="ask_me" 
-                        bindtap="toLogin" 
-                        hover-class="none">在线咨询</button>
-           <button class="ask_mine navitor2" 
-                   wx:elif="{{teach_static}}" 
-                   open-type="contact" 
-                   bindtap="" 
-                   hover-class="none">在线咨询</button>
-           <button class="ask_mine navitor3" 
-                   wx:else="" 
-                   open-type="contact" 
-                   hover-class="none">在线咨询</button> -->
+    <view class="search-view">
+        <navigator class="search">您的肌肤问题</navigator>
+        <text>搜索</text>
+    </view>
+    
+    <!-- 功能按钮 -->
+    <view class="btn-view">
+        <navigator url="../skinTest/skinTest">肌肤测试</navigator>
+        <navigator url="../pointMall/pointMall">积分商城</navigator>
+        <navigator url="../DiaryMark/DiaryMark">护肤打卡</navigator>
+    </view>
 
-            <button class="ask_mine navitor3"  
-                    open-type="contact" 
-                    hover-class="none" 
-                    bindtap="tongJi">立即咨询肌肤问题</button> 
-            <!-- <navigator class="ask_mine navitor3">立即咨询肌肤问题</navigator>  -->
-      </button>
-
-        <!-- 咨询 -->
-        <view class="contact_view">
-             <view>1000名专业护肤老师在线解答</view>
-             <view>30秒内无应答可领取一份礼品</view>
-             <image class="online_icon" src="../img/home_icon_ask.png"></image>
-             <view class="online_time">在线时间： 9:30 ~ 18:00</view>
+    <view class="teacher-view">
+        <view class="top-tip">
+            <view class="xian"></view>
+            <navigator url="">更多老师>></navigator>
         </view>
-   </form >
+        <view class="teacher-swiper">
+            <swiper class="teacher-banner" 
+                    autoplay="true" 
+                    interval="4000" 
+                    duration="1000" 
+                    circular="true">
+                <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+                    <swiper-item>
+                        <image src="{{item}}" class="slide-image"/>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <view class="bottom-tip">
+            <navigator url=""></navigator>
+            <view class="xian"></view>
+        </view>
+    </view>
 
-   <!-- 按钮区 -->
-   <view class="home_btn">
-       <vies class="test_btn navitor" 
-             bindtap="skinTest" 
-             data-page="skinTest" 
-             hover-class="none">肌肤测试</vies>
-       <!-- <vies class="apply_btn navitor"  bindtap="Apply"  data-page="Apply" hover-class="none">申请试用</vies> -->
-       <vies class="join_btn navitor" 
-             bindtap="joinVip"  
-             data-page="joinVip" 
-             hover-class="none">加入会员</vies>
+    <view class="video-view">
+        <view class="context">
+            <view class="text01 text">千名美肤导师在线解答</view>
+            <view class="text02 text">一对一解决肌肤问题</view>
+            
+            <view class="video">
+                <image class="video-cover" bindtap="playVideo" wx:if="{{!playVideo}}" src="https://qncdn.playonwechat.com/hepulanhufu/index-video-bg.png"></image>
+                <video wx:else autoplay="{{playVideo}}" bindended="playEnd" src="https://qncdn.playonwechat.com/hepulanhufu/index-video.mp4"></video>
+            </view>
 
-       <vies class="check_btn navitor"  
-             bindtap="Check"  
-             data-page="Check" 
-             hover-class="none">护肤打卡</vies>
+            <view class="video-tip">
+                <text>12658</text>
+                位女性成功治愈皮肤>>
+            </view>
 
-       <vies class="check_btn navitor"  
-             bindtap="CheckIn"  
-             data-page="Check" 
-             hover-class="none">签到获积分</vies>
-   </view>
+            <button class="video-contact" open-type="contact">
+                <text></text>
+                <view>咨询肌肤问题</view>
+            </button>
 
-   <!-- 老师推荐 -->
-   <navigator class="teacher" bindtap="teacheRed">
-     <image class="team_img" 
-            class="swiper_top" 
-            src="https://qncdn.playonwechat.com/hepulan/home_banner_top1.png"></image>
+            <view class="text03 text">祛痘 · 淡斑 · 美白 · 抗皱</view>
+        </view>
+    </view>
 
-     <swiper class="swiper" 
-             indicator-dots="{{indicatorDots}}"
-             autoplay="true" 
-             interval="2000" 
-             circular='true'
-             duration="1000">
-     <block wx:for="{{imgUrls}}" wx:key="index">
-       <swiper-item>
-         <image src="{{item}}" class="slide-image" width="355" height="150"/>
-       </swiper-item>
-     </block>
-    </swiper>
+    <view class="zuge"></view>
 
-     <view class="teach_recom">
-         <view>点击>>进入老师推荐页面</view>
-     </view>
-     
-   </navigator>
+    <!-- 品牌故事 -->
+    <view class="brand-story">
+        <view class="story-logo"></view>
+        <view class="story-content">
+            <navigator class="see-detail" url="">查看详情</navigator>
+        </view>
+    </view>
 
-   <!-- 公司团队 -->
-   <image class="team_pingpai" 
-          src="https://hepulan.playonwechat.com/static/home_pingpai.png"></image>
+    <!-- 肌肤测试 -->
+    <view class="skin-care">
+        <image class="skin-care-video-cover"  
+               wx:if="{{!skinCare}}"
+               bindtap="skinCare"
+               src="https://qncdn.playonwechat.com/hepulanhufu/index-video-cover.png"></image>
+        <video class="skin-care-video" 
+               wx:else
+               autoplay="{{skinCare}}"
+               bindended="playEnd" 
+               src="https://gcdn.playonwechat.com/SKINCASE%E5%8A%A8%E7%94%BB%E6%89%8B%E6%9C%BA.mp4#t=1"></video>
+        <navigator class="skin-care-btn">肌肤测试</navigator>
+    </view>
 
-<!-- 获取积分弹窗 -->
-<navigator class="get_point" 
-           style="display:{{closeGetPoint}}" 
-           url="../getPoint/getPoint" 
-           hover-class="none">
-        <text class="colse_get_point" catchtap="closeGetPoint"></text>
-        <image src="https://hepulan.playonwechat.com/static/getpoint/get_point.png"></image>
-</navigator>
+    <!-- 页面按钮 -->
 
-<!-- <template is="share_icon"/> -->
-<!-- 已有护肤老师弹窗 -->
-<block wx:for="{{templateData}}" wx:key="{{index}}">
-    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}"/>
-</block>
+    <!-- <view class="btn1"></view>
+    <view class="btn2"></view>
+    <view class="btn3"></view> -->
 
-<!-- 点我有惊喜 -->
-<image class="hert" src="https://qncdn.playonwechat.com/hepulan/hert.png"></image>
+</view>
+
 
 <!-- 红包 -->
+
 <form bindsubmit="getFromId" report-submit="true" wx:if="{{redpack}}">
     <view class="red-pack" style="display:{{redpack?'flex':'none'}}">
         <view class="pack-inner">
@@ -124,6 +127,3 @@
     </view>
 </form>
 
-
-
-</scroll-view>

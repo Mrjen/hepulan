@@ -1,2 +1,3 @@
 <!--pages/webContact/WebContact.wxml-->
 <web-view src="{{webUrl}}"></web-view>
+<!-- <web-view src="https://hpchat.playonwechat.com/test.html"></web-view> -->

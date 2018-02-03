@@ -1,6 +1,6 @@
 /* pages/DiaryMark/DiaryMark.wxss */
 page{
-	background-image: url(https://qncdn.playonwechat.com/hupulan/DiaryMarkdaka-input-bg.jpg);
+	background-image: url(https://qncdn.playonwechat.com/hepulanhufu/diarymark-bg.png);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	display: flex;
@@ -14,13 +14,16 @@ page{
 .diry_box{
 	width: 620rpx;
 	height: 1100rpx;
-	background: #52aeed;
+	background: #fff;
 	border-radius: 10px;
-  box-shadow: 0 3px #145b89;
 	display: flex;
 	justify-content: center;
 	box-sizing: border-box;
 	padding-top: 10rpx;
+}
+
+.qiandao-day{
+	text-align: center;
 }
 
 .diry_in_box{
@@ -29,7 +32,6 @@ page{
 	background: #fff;
 	border-radius: 10px;
 	background-color: #fff;
-	box-shadow: 0 3px #4695cc;
 }
 
 .diry_in_box textarea{

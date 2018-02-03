@@ -1,0 +1,47 @@
+<!--pages/moreTeacher/moreTeacher.wxml-->
+<view class="container">
+    <!-- 顶部图片 -->
+    <view class="top-banner"></view>
+    <!-- 老师轮播 -->
+    <view class="teach-view01">
+        <swiper autoplay="5000" 
+                interval="5000" 
+                circular="true"
+                display-multiple-items="4"
+                duration="4000">
+            <block wx:for="{{teacher1}}" 
+                   wx:key="{{index}}">
+                <swiper-item>
+                    <view class="teach-item">
+                        <view class="teach-nav">圣迪斯哥美容博士</view>
+                        <image src="{{item.image}}" class="slide-image"/>
+                        <view class="teach-discribe">{{item.discribe}}:{{item.name}}</view>
+                        <button class="ask-teach" open-type="contact">立即咨询</button>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <!-- 顶部图片 -->
+    <view class="top-banner banner2"></view>
+    <!-- 老师轮播 -->
+    <view class="teach-view01 teach-view02">
+        <swiper autoplay="6000" 
+                interval="6000" 
+                circular="true" 
+                display-multiple-items="4" 
+                duration="4000">
+            <block wx:for="{{teacher1}}" wx:key="{{index}}">
+                <swiper-item>
+                    <view class="teach-item">
+                        <view class="teach-nav">圣迪斯哥美容博士</view>
+                        <image src="{{item.image}}" class="slide-image" />
+                        <view class="teach-discribe">{{item.discribe}}:{{item.name}}</view>
+                        <button class="ask-teach" open-type="contact">立即咨询</button>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+</view>
