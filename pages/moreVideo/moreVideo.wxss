@@ -7,7 +7,7 @@ view{
     width: 750rpx;
     height: 430rpx;
     background-size: 100% 100%;
-    margin-bottom: 20rpx;
+   
 }
 
 /* 导航 */
@@ -18,6 +18,8 @@ view{
     background-color: #227b68;
     padding:0 20rpx;
     align-items: center;
+    justify-content: space-around;
+     margin-bottom: 20rpx;
 }
 
 .video-nav .item{
@@ -58,14 +60,14 @@ view{
 }
 
 .video-list .cover-view .play-btn{
-    width: 90rpx;
-    height: 77rpx;
+    width: 52rpx;
+    height: 52rpx;
     position: absolute;
     z-index: 2;
     left: 50%;
-    bottom: 60rpx;
+    bottom: 80rpx;
     transform: translateX(-50%);
-    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/video-play-icon.png');
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAMAAAANf8AYAAAAqFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8j1z1tAAAAN3RSTlMAkSsDuKGB92Ix5+PYzLSodFtORx/Uq2tnWDwOCOyMhFVBJRgS3caYbfLPwb6jeVIb6bCeNhW6YF8mfgAAAjJJREFUSMeVlmlbskAUhidAFlkEUQTNpVwrM1vv///P3qTydWIG6PnixRzua45nRai08hYj27ZHC28iWul29NLlR36WDxqJxQeluvfh/Tdq9WsJdwj4HXd8ND+fro/j/PEEhoWWMB6ALDWlw+t+BEQaD0dAx1AYvAycRIV0ILgRaj35MKseW/BoCp0mEXQUiC3qdFWBMhiJetm/3IshFk26gqeLIMOjaNYDvJ8fAtaiha7vsM7ZB0O0UR++s2He0RPtFBKcr3mXLLPAGqsZD74sw1+BLwC2KyW04eU7aJ50vgVg6qqYAlZlrtaVPJSyDEXoHJLyupmagXm1ACNehVg69HUMQaVF41PkUhhoGegdZePN6fWcqVnD4OzkCXNK65xQ1DGwufRj4lCIGfsGhu7llPPJxZxNE0N6YR1yEDb3TYyzlJhYxKwbmPVlmZjP5CLBmdQythTWJfTFGxh1+bmVjePT65MpiZYJ0+rg9D/vtdhqmOlOVJSV/XmgKxS9AFeKFjLvyL+qQe7KOQCRp5kIZU+HZNL5wIFgoRtXH+VvAku5Dg+Jbtuca2Laeu7szwWQgNd2vqX/a8hvOUf3l25mbea19Md3cGi3F+TFuGtA5jD/457bQudv+3RlKZDSvaFubxddaTFKgeD1VmF4i8ApNJtiA/TSX0l5soCXo9ApDwD/1R0vy++dwc2o9wyEC1GnZH/+rhpOKRWloklGHD3zI7/nDkQrrd4KN7Zjd2FMVOZ/jb9yx2/LEE8AAAAASUVORK5CYII=');
     background-size: 100% 100%;
 }
 
@@ -73,4 +75,27 @@ view{
     display: block;
     width: 750rpx;
     height: 424rpx;
+}
+
+.play-num{
+    position: absolute;
+    text-align: center;
+    bottom: 30rpx;
+    color: #fff;
+    width: 100%;
+    z-index: 3;
+    font-size: 26rpx;
+}
+
+/* 咨询按钮 */
+.zixun{
+    width: 58rpx;
+    height: 173rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/more-video-contact-icon.png');
+    background-size: 100% 100%;
+    position: fixed;
+    right: 0;
+    top: 100rpx;
+    background-color: transparent;
+    z-index: 100;
 }

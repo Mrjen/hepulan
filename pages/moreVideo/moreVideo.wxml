@@ -21,11 +21,13 @@
             <view class="cover-view"
                   wx:if="{{!item.play}}"
                   data-idx="{{index}}"
+                  data-vid="{{item.vid}}"
                   bindtap="playVideo">
                 <image class="cover" 
                        src="{{item.cover}}">
                 </image>
                 <view class="play-btn"></view>
+                <view class="play-num">已有{{item.play_number}}人观看</view>
             </view>
             <video wx:else
                    src="{{item.url}}"
@@ -35,3 +37,5 @@
         </view>
     </view>
 </view>
+
+<button class="zixun" open-type="contact"></button>

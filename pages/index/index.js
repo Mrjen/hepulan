@@ -18,7 +18,8 @@ Page({
             'https://qncdn.playonwechat.com/hepulan/home_baner02.png',
             'https://qncdn.playonwechat.com/hepulan/home_baner03.png',
             'https://qncdn.playonwechat.com/hepulan/home_baner04.png'
-        ]
+        ],
+        canIUse: wx.canIUse('display-multiple-items')
     },
 
     // 统计
@@ -74,6 +75,13 @@ Page({
                 })
             })
         }
+    },
+
+    // 查看老师详情
+    toTeachDetail(e) {
+        wx.navigateTo({
+            url: `../teacherDetail/teacherDetail?tid=${e.currentTarget.dataset.tid}`
+        })
     },
 
     // 关闭红包
@@ -171,6 +179,13 @@ Page({
                 random_number: res.data.random_number
             })
         })
+
+        if (!wx.canIUse('swiper.display-multiple-items')) {
+            console.log('不支持')
+            wx.redirectTo({
+                url: '../update/update'
+            })
+        }
     },
 
     onHide: function () {

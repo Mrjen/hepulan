@@ -26,7 +26,7 @@ Page({
          page:1
        }
      },function(res){
-       console.log(res)
+       console.log('订单数据',res)
        that.setData({
          orderData: res.data.data.user_order_list
        })

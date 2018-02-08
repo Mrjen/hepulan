@@ -1,0 +1,24 @@
+<!--pages/search/search.wxml-->
+<view class="search-view">
+    <input class="search" bindinput="searchTeach" type="text"/>
+    <text>搜索</text>
+</view>
+
+<view class="seach-rule">
+   <view class="nav-tip">相关老师</view> 
+   <navigator wx:for="{{teachList}}" 
+              class="item"
+              wx:key="{{index}}"
+              url="../teacherDetail/teacherDetail?tid={{item.st_id}}">
+       <view class="avatar">
+           <image src="{{item.avatar}}" 
+                  mode="widthFix">
+            </image>
+       </view>
+       <view class="info">
+           <view class="nickname">{{item.nickname}}<text>美肤导师</text></view>
+           <view class="teach-tip">{{item.type=='0'?'圣迪斯哥美容博士':'禾葡兰高级护肤老师'}}</view>
+       </view>
+   </navigator>
+</view>
+

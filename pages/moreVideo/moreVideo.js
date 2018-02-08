@@ -89,8 +89,18 @@ Page({
        el.play = false;
     })
     videoData.videos[Edata.idx].play = true;
+    videoData.videos[Edata.idx].play_number++;
     that.setData({
       videoData
+    })
+
+    wxRequest({
+      url: api.videoNum,
+      data:{
+        vid:Edata.vid
+      }
+    },function(res){
+       console.log('统计视频播放',res)
     })
   },
 

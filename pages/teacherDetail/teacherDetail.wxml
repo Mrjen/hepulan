@@ -3,7 +3,7 @@
     <view class="teacher-view">
         <image class="teach-image" src="{{teachData.info_picture}}"></image>
         <button class="prew btn" bindtap="prevImg">查看证书</button>
-        <button class="contact btn" open-type="contact">付费咨询</button>
+        <!-- <button class="contact btn" open-type="contact">付费咨询</button> -->
     </view>
     <!-- 历程 -->
     <view class="experice">

@@ -211,3 +211,16 @@
   -webkit-box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.2) ;
   box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.2) ;
 }
+
+/* 咨询按钮 */
+.zixun{
+    width: 58rpx;
+    height: 173rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/more-video-contact-icon.png');
+    background-size: 100% 100%;
+    position: fixed;
+    right: 0;
+    top: 220rpx;
+    background-color: transparent;
+    z-index: 100;
+}

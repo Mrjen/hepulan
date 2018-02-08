@@ -96,6 +96,41 @@
 					"pathName": "pages/circle/circle",
 					"query": "",
 					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "禾圈",
+					"pathName": "pages/circle/circle",
+					"query": "",
+					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "老师详情页",
+					"pathName": "pages/teacherDetail/teacherDetail",
+					"query": "tid=1",
+					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/search/search",
+					"query": "unique_code=5a7429b5c7b9b",
+					"scene": "1014"
+				},
+				{
+					"id": 13,
+					"name": "老师",
+					"pathName": "pages/moreTeacher/moreTeacher",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 14,
+					"name": "微信版本低",
+					"pathName": "pages/update/update",
+					"query": "tid=1",
+					"scene": "1014"
 				}
 			]
 		}

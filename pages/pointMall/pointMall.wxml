@@ -231,12 +231,29 @@
 
 
  <!-- 获取更多积分弹层 -->
- <view class="jifen-view" wx:if="{{closeJiFenView}}" bindtap="closeJiFenView">
+ <view class="jifen-view" wx:if="{{closeJiFenView}}">
      <view class="jifen-rule">
-         <view class="title">如何获取更多积分</view>
-         <view class="rule-view">1.如何获取更多积分如何获取更多积分如何获取更多积分</view>
-        <view class="rule-view">1.如何获取更多积分如何获取更多积分如何获取更多积分</view>
-        <view class="rule-view">1.如何获取更多积分如何获取更多积分如何获取更多积分</view>
-        <view class="rule-view">1.如何获取更多积分如何获取更多积分如何获取更多积分</view>
+        <view class="title">如何获取更多积分</view>
+        <view class="rule-content">
+            <view class="rule-title">1.签到获取积分说明：</view>
+            <view class="rule-view">用户可通过每日签到，审核通过即可获得积分，坚持连续签到打卡积分获得更高，
+                <navigator url="../DiaryMark/DiaryMark">立即去签到>></navigator>
+            </view>
+            <view class="rule-title">2.红包获取积分说明：</view>
+            <view class="rule-view">用户可通过首页红包活动，邀请新好友一起拆红包共享积分，
+                <navigator bindtap="backHome" url="">立即拆红包>></navigator>
+            </view>
+            <view class="rule-title">3.圈子获取积分说明：</view>
+            <view class="rule-view">用户翻阅禾圈时，点赞，查看图片，有机会挖去到不同面值积分。
+                <navigator bindtap="toHeCircle" url="">立即去禾圈>></navigator>
+            </view>
+            <view class="rule-title">4.咨询获取积分说明：</view>
+            <view class="rule-view">用户可在每日8：00-9：00，20：00-22：00 点击咨询与老师聊天，即可立即获得积分。
+                <navigator url="">立即去咨询>></navigator>【尚未开启】</view>
+            <view class="rule-title">5.分享积分说明：</view>
+            <view class="rule-view">用户可通过屏幕右上方转发按钮，转发至好友，有机会获得不同面值积分。【尚未开启】</view>
+        </view>
+        
+        <view class="close-jifen" bindtap="closeJiFenView"></view>
      </view>
  </view>

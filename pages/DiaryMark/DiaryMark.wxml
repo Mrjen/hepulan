@@ -3,7 +3,7 @@
 
 <view class="diry_box">
    <view class="diry_in_box">
-       <view class="qiandao-day">连续签到12天</view>
+       <!-- <view class="qiandao-day">连续签到12天</view> -->
        <textarea bindinput="bindTextAreaBlur"  
                  placeholder="你的护肤历程是对其他禾粉姐妹的鼓励，是变美的动力，大家渴望看到你洋洋洒洒的护肤记录，所以不要吝啬你的文采哦~听说带禾宝宝上精品推荐更威风哦！">
        </textarea>

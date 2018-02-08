@@ -537,9 +537,11 @@ page{
 .jifen-rule{
    width: 683rpx;
    height: 1000rpx;
+   overflow-y: scroll;
    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/get-score-rule-bg.png');
    background-size: 100% 100%;
    padding: 50rpx 100rpx;
+   position: relative;
 }
 
 .jifen-rule .title{
@@ -550,9 +552,33 @@ page{
    margin-bottom: 50rpx;
 }
 
+.rule-title{
+  font-size: 30rpx;
+}
+
+.close-jifen{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  opacity: 0;
+  background: red;
+}
+
 .rule-view{
-  font-size: 28rpx;
+  font-size: 26rpx;
   padding: 10rpx 0;
   line-height: 1.5;
   text-align: justify;
+}
+
+.rule-view navigator{
+  color: #48a86c;
+  display: inline;
+}
+
+.rule-content{
+  max-height: 770rpx;
+  overflow-y: scroll;
 }

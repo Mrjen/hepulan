@@ -1,0 +1,7 @@
+/* pages/update/update.wxss */
+.container{
+    width: 100%;
+    height: 500rpx;
+    text-align: center;
+    line-height: 500rpx;
+}

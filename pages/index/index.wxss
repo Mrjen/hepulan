@@ -145,6 +145,7 @@ page{
     display: flex;
     height: 80rpx;
     justify-content: space-around;
+    align-items: center;
 }
 
 .btn-view navigator{
@@ -406,36 +407,6 @@ page{
 
 
 /* 肌肤测试 */
-.btn1{
-    width: 96rpx;
-    height: 76rpx;
-    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/index-skin-care-icon.png');
-    background-size: 100% 100%;
-    position: fixed;
-    right: 20rpx;
-    bottom: 150rpx;
-}
-
-.btn2{
-    width: 96rpx;
-    height: 79rpx;
-    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/index-point-mall-icon.png');
-    background-size: 100% 100%;
-    position: fixed;
-    right: 20rpx;
-    bottom: 250rpx;
-}
-
-.btn3{
-    width: 96rpx;
-    height: 76rpx;
-    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/index-daily-card-icon.png');
-    background-size: 100% 100%;
-    position: fixed;
-    right: 20rpx;
-    bottom: 350rpx;
-}
-
 .skin-care-video{
     width: 750rpx;
     height: 421rpx;

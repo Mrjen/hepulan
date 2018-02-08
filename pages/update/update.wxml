@@ -1,0 +1,2 @@
+<!--pages/update/update.wxml-->
+<view class="container">您的微信版本过低，请升级微信</view>

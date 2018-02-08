@@ -19,17 +19,10 @@
         </swiper>
 
     <view class="search-view">
-        <navigator class="search">您的肌肤问题</navigator>
+        <navigator class="search">护肤老师</navigator>
         <text>搜索</text>
     </view>
     
-    <!-- 功能按钮 -->
-    <view class="btn-view">
-        <navigator url="../skinTest/skinTest">肌肤测试</navigator>
-        <navigator url="../pointMall/pointMall">积分商城</navigator>
-        <navigator url="../DiaryMark/DiaryMark">护肤打卡</navigator>
-    </view>
-
     <view class="teacher-view">
         <view class="top-tip">
             <view class="xian"></view>
@@ -49,7 +42,7 @@
                                     <image src="{{item.avatar}}" bindtap="toTeachDetail" data-tid="{{item.st_id}}" class="slide-image">
                                     </image>
                                     <view class="teach-discribe">
-                                        导师:{{item.nickname}}
+                                        {{item.nickname}}
                                     </view>
                                     <button class="ask-teach" open-type="contact">
                                         立即咨询
@@ -62,7 +55,7 @@
 
             <!-- 老师轮播2 -->
             <view class="teach-view01 teach-view02">
-                <swiper autoplay="6000" interval="6000" circular="true" display-multiple-items="4" duration="4000">
+                <swiper autoplay="6000" interval="5000" circular="true" display-multiple-items="4" duration="4000">
                     <block wx:for="{{teachList.skin_teachers}}" wx:key="{{index}}">
                         <swiper-item>
                             <view class="teach-item">
@@ -70,7 +63,7 @@
                                 <image src="{{item.avatar}}" bindtap="toTeachDetail" data-tid="{{item.st_id}}" class="slide-image">
                                 </image>
                                 <view class="teach-discribe">
-                                    导师:{{item.nickname}}
+                                    {{item.nickname}}
                                 </view>
                                 <button class="ask-teach" open-type="contact">
                                     立即咨询
@@ -94,20 +87,26 @@
                 </block>
             </swiper> -->
 
-
         </view>
-        <view class="bottom-tip">
+        <!-- <view class="bottom-tip">
             <navigator url=""></navigator>
             <view class="xian"></view>
-        </view>
+        </view> -->
 
-        <!-- <view class="top-tip">
+        <view class="top-tip">
             <view class="xian"></view>
             <navigator url="../moreVideo/moreVideo">
                 更多视频>>
             </navigator>
-        </view> -->
+        </view>
     </view>
+
+        <!-- 功能按钮 -->
+        <view class="btn-view">
+            <navigator url="../skinTest/skinTest">肌肤测试</navigator>
+            <navigator url="../pointMall/pointMall">积分商城</navigator>
+            <navigator url="../DiaryMark/DiaryMark">护肤打卡</navigator>
+        </view>
 
     <view class="video-view">
         <view class="context">
@@ -189,7 +188,7 @@
 
 <!-- 红包 -->
 
-<!-- <form bindsubmit="getFromId" report-submit="true" wx:if="{{redpack}}">
+<form bindsubmit="getFromId" report-submit="true" wx:if="{{redpack}}">
     <view class="red-pack" style="display:{{redpack?'flex':'none'}}">
         <view class="pack-inner">
             <image class="red-logo" src="https://qncdn.playonwechat.com/hepulanhufu/red-pack-logo.png">
@@ -201,7 +200,7 @@
             <view class="closeRedPack" bindtap="closeRedPack"></view>
         </view>
     </view>
-</form> -->
+</form>
 
 <form bindsubmit="getFromId" report-submit="true">
     <button class="redpack-icon" formType="submit"></button>

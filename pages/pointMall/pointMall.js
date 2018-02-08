@@ -325,6 +325,13 @@ Page({
         common.backHome();
     },
 
+    // 去禾圈
+    toHeCircle(){
+        wx.switchTab({
+            url: '../circle/circle'
+        })
+    },
+
     // 分享海报
     toShare: function() {
         common.toShare();

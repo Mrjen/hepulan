@@ -13,6 +13,10 @@ const indexRand = doman + 'index-rand'
 const moreVideo = doman + 'video-list'
 // 获取视频页面导航
 const videoNav = doman + 'video-types'
+// 统计播放次数
+const videoNum = doman + 'add-play-number'
+// 搜索老师
+const searchTeach = doman + 'skin-teacher-search'
 
 
 module.exports = {
@@ -21,5 +25,7 @@ module.exports = {
 	teachDeatil,
 	indexRand,
 	moreVideo,
-	videoNav
+	videoNav,
+	videoNum,
+	searchTeach
 }

@@ -1,0 +1,116 @@
+/* pages/search/search.wxss */
+view{
+  box-sizing: border-box;
+}
+
+.search-view{
+    width: 750rpx;
+    height: 80rpx;
+    background: #006d4a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 20rpx;
+}
+
+.search-view .search{
+    width: 597rpx;
+    height: 54rpx;
+    display: block;
+    background:#fff;
+    border-radius: 6rpx;
+    font-size: 27rpx;
+    line-height: 54rpx;
+    padding-left: 20rpx;
+    color: #999;
+    border:none;
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search::before{
+    content:' ';
+    display: block;
+    width: 28rpx;
+    height: 28rpx;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAdCAMAAACOj/wDAAAAaVBMVEX///+ZmZn9/f21tbX39/fe3t7i4uK6urqwsLDy8vLZ2dmhoaHo6OjDw8Otra3s7Ozk5OTLy8vHx8fAwMC4uLirq6uoqKikpKT5+fnu7u7r6+vPz8/Gxsa8vLybm5vw8PDb29vT09OcnJzFcY8DAAAA90lEQVQoz22SWXKDMBAFX0vsW7DB4H27/yFTIWSCQf2helKXSjOl0YR79iXcs0ukDQUw3roGuK5dyhC7KVWe8vThMnYyEljalEILcu7ONvF8zzjjLTNqxZ4vk7HW4C1pQ2Nn5VbuyOfktzIhmVMfkFbHsDLR3hVWLit5xdV2RvUpaXQ/2GZOMz0uof2vO1486CmElzHY8489PJUtZcRfWxmp+1k4RGbzkjqf0lEx3HSizM26Dpq6iF81+J5zC8sezh0TPpFGuHy9Pz8rqtr8N7xxihouCvFgdFJKF7Qt2TQQadAW1NPkKciVlyoGhfHcKI9SmIzDUd+Dxwi9ZTSqRAAAAABJRU5ErkJggg==');
+    background-size: 100% 100%;
+    margin-right: 10rpx;
+}
+
+.search-view text{
+    color: #fff;
+    font-size: 28rpx;
+    display: inline-block;
+    margin-right: 16rpx;
+}
+
+/* 老师列表 */
+.seach-rule{
+    width: 100%;
+}
+
+.item{
+    position: relative;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAArCAMAAACkTONEAAAAclBMVEUAAACZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZkjQ/XgAAAAJXRSTlMABvkd9fDr2YpvFZ+QZjIr49+4rKh/d15JPjknJA3mz8SxmFVERbulpgAAAK5JREFUOMuV09ESgiAQBVCiItTUstISycz4/1+snR7v3XHk8R6GAXbXmLwtN4asMaWGQEyJQyMwIeSjwIXAQeCqQYGw/YNBOAu8CZwEjgiDBuEp4BFqJ3BbAdVeoNUgQ+g1eOwESg06hI/95bZGuFv+cOOlTBjPst/zY2zg8Qy3IdfUn9WTWP+dSokd/r5ereBo2QfoBugebEMeFwvdvDQWLx5HZbpk/0RiE7OOxF8gGh3pTCyOwQAAAABJRU5ErkJggg==');
+    background-size: 23rpx 43rpx;
+    background-position: 700rpx center;
+    background-repeat: no-repeat;
+}
+
+.nav-tip{
+    width: 750rpx;
+    height: 88rpx;
+    font-size: 28rpx;
+    padding: 0 20rpx;
+    line-height: 88rpx;
+    background: #f1f1f1;
+    color: #666;
+}
+
+.seach-rule .item{
+    display: flex;
+    padding:20rpx;
+}
+
+.avatar{
+    width: 155rpx;
+    height: 155rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20rpx;
+    border:1px solid #bdaa92;
+}
+
+.avatar image{
+    display: block;
+    width: 100%;
+}
+
+.item .nickname{
+    color: #666;
+    margin: 20rpx 0;
+}
+
+.item .nickname text{
+   display: inline-block;
+   font-size: 26rpx;
+   margin-left: 30rpx;
+   color: #666;
+}
+
+.item .teach-tip{
+    font-size: #aaaaaa;
+    font-size: 28rpx;
+}
+
+.item::after{
+    content: '';
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-bottom: 1px solid #f7f7f7;
+}

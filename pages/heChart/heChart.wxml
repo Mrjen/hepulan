@@ -65,3 +65,5 @@
 <!-- <template is="share_icon"/> -->
 
 </view>
+
+<button class="zixun" open-type="contact"></button>

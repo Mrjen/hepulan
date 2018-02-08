@@ -304,6 +304,7 @@
                 bindtap="prewImg"
                 data-idx="{{imgslist}}"
                 data-url="{{item.imgslist}}"
+                 style="width:{{item.imgslist.length==1?'400':'172'}}rpx;height:{{item.imgslist.length==1?'400':'172'}}rpx"
                 data-imglist="{{item.imgslist}}">
               <image mode="widthFix" 
                      src="{{imgslist}}">

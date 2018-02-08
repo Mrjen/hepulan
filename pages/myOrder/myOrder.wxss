@@ -4,7 +4,7 @@ view{
 }
 
 page{
-    background: #006d4a;
+    background: #f7f7f7;
 }
 
 .nothing{

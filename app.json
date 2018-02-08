@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/search/search",
     "pages/mine/mine",
+     "pages/update/update",
     "pages/moreVideo/moreVideo",
     "pages/skinTest/skinTest",
     "pages/circle/circle",
