@@ -2,7 +2,7 @@
 <import src="../template/template.wxml"/>
 <view class="container">
   <!-- 顶部导航栏 -->
-  <view class="top_nav">
+  <!-- <view class="top_nav">
     <view>
        <image src="../img/heChart_icon_search.png"></image>
     </view>
@@ -15,9 +15,9 @@
              {{item.navText}}
        </view>
     </view>
-  </view>
+  </view> -->
   <!-- 轮播图 -->
-  <swiper class="swiper" 
+  <!-- <swiper class="swiper" 
           indicator-dots="{{indicatorDots}}" 
           autoplay="{{autoplay}}" 
           interval="{{interval}}" 
@@ -29,7 +29,7 @@
          <view class="img_tip">{{item.imgtip}}</view>
       </swiper-item>
     </block>
-  </swiper>
+  </swiper> -->
 
 <!-- 标签 -->
 <scroll-view scroll-x="true" class="tag_scroll">

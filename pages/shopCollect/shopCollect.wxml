@@ -2,17 +2,28 @@
 <!-- 我的收藏 -->
 <view class="nav_tip border_bottom">我的收藏</view>
 <view class="shop_list">
-    <view class="list_item" wx:for="{{shopList}}"  wx:key="index">
+    <view class="list_item" 
+          wx:for="{{shopList}}"  
+          wx:key="index">
+
           <image class="item_img" src="{{item.imgurl}}"></image>
+
           <view class="item_info">
               <view class="item_title">{{item.name}}</view>
-              <!-- <view class="item_type">{{item.type}}</view> -->
+
               <view class="item_bottom">
                    <view>
                       <view class="item_jifen">{{item.score}}积分</view>
                    </view>
+
                   <view class="exchange_box">
-                     <view class="exchange_btn exchange_btn1" bindtap="exchangeBtn" data-jifen="{{item.count}}" data-id="{{item.id}}" data-index="{{index}}">删除</view>
+                     <view class="exchange_btn exchange_btn1" 
+                           bindtap="exchangeBtn" 
+                           data-jifen="{{item.count}}" 
+                           data-id="{{item.id}}" 
+                           data-index="{{index}}">
+                           删除
+                      </view>
                   </view>
               </view>      
           </view>
@@ -21,20 +32,36 @@
 
 <!-- 商品兑换区 -->
 <view class="nav_tip border_bottom">你可能还需要</view>
+
 <view class="shop_list">
-    <view class="list_item" wx:for="{{pointCount}}" wx:key="index">
-          <image class="item_img" src="{{item.imgurl}}"></image>
+    <view class="list_item" 
+          wx:for="{{pointCount}}" 
+          wx:key="index">
+          <image class="item_img" 
+                 src="{{item.imgurl}}">
+          </image>
+
           <view class="item_info">
               <view class="item_title">{{item.name}}</view>
-              <!-- <view class="item_type">{{item.type}}</view> -->
               <view class="item_bottom">
                    <view>
                       <view class="item_jifen">{{item.score}}积分</view>
-                       <view class="item_zan">{{item.exchanged_num}}人点赞<text class="zan_icon"></text></view> 
+                       <view class="item_zan">
+                           {{item.exchanged_num}}人点赞
+                           <text class="zan_icon"></text>
+                       </view> 
                    </view>
                   <view class="exchange_box">
-                     <view class="exchange_num">{{item.exchanged_num}}人已兑换</view>
-                     <view class="exchange_btn" bindtap="exchangeBtn" data-jifen="{{item.count}}" data-id="{{item.id}}" data-index="{{index}}">加入收藏夹</view>
+                     <view class="exchange_num">
+                         {{item.exchanged_num}}人已兑换
+                     </view>
+                     <view class="exchange_btn" 
+                           bindtap="exchangeBtn" 
+                           data-jifen="{{item.count}}"
+                           data-id="{{item.id}}" 
+                           data-index="{{index}}">
+                           加入收藏夹
+                     </view>
                   </view>
               </view>      
           </view>

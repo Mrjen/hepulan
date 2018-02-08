@@ -1,12 +1,22 @@
 /**index.wxss**/
+@import '../moreTeacher/moreTeacher.wxss';
+
 view{
     box-sizing: border-box;
+}
+
+page{
+    width: 750rpx;
+    overflow-x: hidden;
+}
+
+.container{
+  padding-bottom: 80rpx;
 }
 
 .banner{
     width: 750rpx;
     height: 300rpx;
-    /* background-image: url(''); */
     background-size: 100% 100%;
     display: flex;
     align-items: center;
@@ -24,7 +34,7 @@ view{
 .banner .ask-btn{
     width: 182rpx;
     height: 62rpx;
-    background-image: url('http://p1jrmxejh.bkt.clouddn.com/hepulanhufu/ask-btn-bg.png');
+    /* background-image: url('http://p1jrmxejh.bkt.clouddn.com/hepulanhufu/ask-btn-bg.png'); */
     background-size: 100% 100%;
     background-color: transparent;
     padding:0;
@@ -106,6 +116,8 @@ view{
     border-radius: 50%;
     position: absolute;
     right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .top-tip navigator{
@@ -116,7 +128,6 @@ view{
 /* 老师轮播 */
 .teacher-swiper{
     width: 750rpx;
-    height: 290rpx;
 }
 
 .teacher-banner{
@@ -132,6 +143,7 @@ view{
 /* 功能按钮 */
 .btn-view{
     display: flex;
+    height: 80rpx;
     justify-content: space-around;
 }
 
@@ -150,11 +162,12 @@ view{
 
 /* bottom-tip */
 .bottom-tip{
+  width: 750rpx;
     height: 60rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -30rpx;
+    margin-top: -10rpx;
 }
 
 .bottom-tip .xian{
@@ -177,6 +190,14 @@ view{
     border-radius: 50%;
     position: absolute;
     left: 0;
+    top: 50%;
+   transform: translateY(-50%);
+}
+
+.bottom-tip navigator{
+    font-size: 22rpx;
+    color: #999;
+    width: 100rpx;
 }
 
 /* 视频区域 */
@@ -200,6 +221,11 @@ view{
     color: #666 !important;
 }
 
+.zuge-view{
+  width: 750rpx;
+  overflow: hidden;
+}
+
 .zuge{
     width: 14rpx;
     height: 14rpx;
@@ -210,6 +236,7 @@ view{
     display: flex;
     align-items: center;
     margin-top: 40rpx;
+    justify-content: space-between;
 }
 
 .zuge::before{
@@ -217,8 +244,10 @@ view{
     width: 360rpx;
     height: 1px;
     background: #006d4a;
-    position: absolute;
-    left: 30rpx;
+     position: absolute;
+    left: 30rpx; 
+    top: 50%;
+    transform: translateY(-50%)
 }
 
 .zuge::after{
@@ -226,8 +255,10 @@ view{
     width: 360rpx;
     height: 1px;
     background: #006d4a;
-    position: absolute;
-    right:30rpx;
+     position: absolute;
+    right:30rpx; 
+    top: 50%;
+    transform: translateY(-50%)
 }
 
 .video-tip{
@@ -326,6 +357,54 @@ view{
     margin:40rpx auto 0 auto;
 }
 
+/* skin case */
+.skin-case{
+    width: 750rpx;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.skin-case .xian{
+    width: 500rpx;
+    height: 1px;
+    flex-shrink: 0;
+    background: #006d4a;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.skin-case .xian::before{
+    content: "";
+    display: block;
+    width: 14rpx;
+    height: 14rpx;
+    background: #006d4a;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.skin-case .skin-nav{
+    font-size: 26rpx;
+    color: #666;
+    display: inline-flex;
+    flex-shrink: 0;
+    text-align: right;
+    padding-right: 20rpx;
+    box-sizing: border-box;
+}
+
+.skin-case .skin-nav text{
+    display: inline-block;
+    margin-left: 10rpx;
+}
+
+
 /* 肌肤测试 */
 .btn1{
     width: 96rpx;
@@ -384,8 +463,8 @@ view{
 }
 
 .pack-inner {
-    width: 483rpx;
-    height: 644rpx;
+    width: 580rpx;
+    height: 775rpx;
     box-sizing: border-box;
     padding: 20rpx;
     position: relative;
@@ -398,8 +477,7 @@ view{
     width: 80rpx;
     height: 80rpx;
     display: block;
-    margin: 0 auto;
-    margin-bottom: 24rpx;
+    margin: 50rpx auto 24rpx auto;
 }
 
 .red-title {
@@ -433,11 +511,11 @@ view{
 .closeRedPack{
     width: 42rpx;
     height: 42rpx;
-    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/red-pack-close.png');
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeBAMAAADJHrORAAAALVBMVEUAAACPOSSPOSSPOSSPOSSPOSSPOSSPOSSPOSSPOSSPOSSPOSSPOSSPOSSPOSR8kkWHAAAADnRSTlMABbarvgru96d8+Z2ahwI2NFkAAACWSURBVBjTRc+xCQJRFETRMTBfBcF0wXhBC7AEE23CEkwEm7AMwWrMFRYDeTXI7ix3fvY4N/ij1015x4se74Zzfui1r5b7VD8tawzMtdWsqxb+NHIAy0HYQdgBTGBOYCZYmQk2ZoIyE5gzzH/IsGKFeeeAYYtpBcO8IsO8AvYKmJmwA5jAnMCcoBuY4KvrwAS97k/lrc9/Yc5ejwTf6/QAAAAASUVORK5CYII=');
     background-size: 100% 100%;
     position: absolute;
-    top: -22rpx;
-    right:-22rpx;
+    top: 30rpx;
+    left:30rpx;
 }
 
 @keyframes bounceIn {
@@ -489,4 +567,53 @@ view{
         transform: scale3d(1, 1, 1);
         z-index: 100;
     }
+}
+
+/* 小红包 */
+.redpack-icon{
+    width: 56rpx;
+    height: 75rpx;
+    position: fixed;
+    right: 20rpx;
+    top: 190rpx;
+    padding: 0;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/index-redpack-icon.png');
+    background-size: 100% 100%;
+    animation: tada 1.5s infinite;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+@keyframes tada {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1)
+  }
+  10%,
+  20% {
+    -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    -ms-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg)
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    -ms-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg)
+  }
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    -ms-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg)
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1)
+  }
 }

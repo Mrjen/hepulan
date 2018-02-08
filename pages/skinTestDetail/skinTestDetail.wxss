@@ -1,6 +1,10 @@
 /* pages/skinTestDetail/skinTestDetail.wxss */
 page{
-	background: #f8f8f8;
+  background-color: #f8f8f8;
+  background-image: url('https://qncdn.playonwechat.com/hepulanhufu/skin-test-bg.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 750rpx 559rpx;
 }
 
 view{
@@ -70,7 +74,12 @@ view{
 	padding:28rpx 0;
 	line-height: 36rpx;
 	position: relative;
-	text-indent: 30rpx;
+  text-indent: 30rpx;
+  display: block;
+}
+
+.question .item_item.nav-active{
+  color: #006d4a;
 }
 
 .question .item_item:before{
@@ -81,6 +90,25 @@ view{
 	left:0;
 	top: 0;
 	transform: scaleY(.5);
+}
+
+/* 按钮 */
+.btn-view{
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+}
+
+.btn-view .btn{
+  width: 180rpx;
+  height: 46rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 46rpx;
+  background: #006d4a;
+  color: #fff;
+  box-shadow: 0 0 16rpx rgba(0, 109, 74, .8);
 }
 
 /*弹窗*/

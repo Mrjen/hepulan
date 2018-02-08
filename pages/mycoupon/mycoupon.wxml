@@ -1,6 +1,10 @@
 <!--pages/mycoupon/mycoupon.wxml-->
 <view class="page_nav">
-    <view wx:for="{{nav}}" bindtap="changeNav" data-idx="{{index}}" class="nav-item {{item.active?'active':''}}" wx:key="{{index}}">
+    <view wx:for="{{nav}}" 
+          bindtap="changeNav" 
+          data-idx="{{index}}" 
+          class="nav-item {{item.active?'active':''}}" 
+          wx:key="{{index}}">
         <text>{{item.text}}</text>
     </view>
 </view>
@@ -8,8 +12,12 @@
 <view class="card_view">
     <!-- 默认未使用 -->
     <view class="card nouse">
-        <view class="card_item" wx:for="{{coupon}}">
+        <view class="card_item" 
+              wx:for="{{coupon}}" 
+              wx:key="{{index}}">
+
             <view class="card_tip"></view>
+
             <view class="card_content">
                 <view class="card_left">
                     <view class="money-view">
@@ -18,16 +26,25 @@
                     </view>
                     <view class="card_type">通用券</view>
                 </view>
+
                 <view class="card_right">
                     <view class="content-top">
                         <view class="content-left">
-                            <view class="title">积分红包
+                            <view class="title">
+                                积分红包
                                 <text>{{item.score}}积分</text>
                             </view>
-                            <view class="content_tip">全场通用，在禾葡兰积分商城使用</view>
+                            <view class="content_tip">
+                                全场通用，在禾葡兰积分商城使用
+                            </view>
                         </view>
-                        <view class="content-right" wx:if="{{item.status=='1'}}">仅剩{{item.time}}</view>
+                        
+                        <view class="content-right" 
+                              wx:if="{{item.status=='1'}}">
+                              仅剩{{item.time}}
+                        </view>
                     </view>
+
                     <view class="content-bottom">
                        <view class="date">{{item.begin}}-{{item.endtime}}</view>
                        <block>

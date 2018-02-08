@@ -1,0 +1,98 @@
+/* pages/skinCase/SkinCase.wxss */
+view{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.video01{
+    width: 750rpx;
+    height: 1142rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/skin-case-video01-cover.png');
+    background-size: 100% 100%;
+}
+
+.video01 video{
+    width: 750rpx;
+    display: block;
+    height: 1334rpx;
+}
+
+.video01-cover{
+    width: 750rpx;
+    height: 1142rpx;
+}
+
+.skin-test{
+    width: 182rpx;
+    height: 48rpx;
+    background: #006d4a;
+    color: #fff;
+    text-align: center;
+    line-height: 48rpx;
+    font-size: 24rpx;
+    margin:40rpx auto;
+    display: block;
+}
+
+/* 塑源 */
+.block02{
+    width: 750rpx;
+    height: 1137rpx;
+    padding-top: 150rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/skin-case-block2.png');
+    background-size: 100% 100%;
+}
+
+.video-cover02{
+    width: 666rpx;
+    height: 405rpx;
+    margin:0 auto;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/skin-case-video02-cover.png');
+    background-size: 100% 100%;
+}
+
+.video02 video{
+    width: 666rpx;
+    height: 405rpx;
+    display: block;
+    margin:0 auto;
+}
+
+/* 凝质 */
+.ningzhi{
+    width: 750rpx;
+    height: 1141rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/skin-case-block03.png');
+    background-size: 100% 100%;
+}
+
+/* skin case */
+.skincase{
+    width: 750rpx;
+    height: 2204rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/skin-case-block04.png');
+    background-size: 100% 100%;
+    padding: 232rpx 0 0 25rpx;
+}
+
+.video03 .video03-cover{
+    width: 500rpx;
+    height: 274rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/skin-case-video03-cover.png');
+    background-size: 100% 100%;
+}
+
+.video03 video{
+    display: block;
+    width: 500rpx;
+    height: 274rpx;
+}
+
+/* 内涵 */
+.neihan{
+    width: 750rpx;
+    height: 1552rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/skin-case-block05.png');
+    background-size: 100% 100%;
+}

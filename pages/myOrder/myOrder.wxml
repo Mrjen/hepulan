@@ -1,0 +1,38 @@
+<!--pages/myOrder/myOrder.wxml-->
+<block>
+  <view class="nothing" wx:if="{{orderData.length==0}}">
+      <image src="https://qncdn.playonwechat.com/hepulanhufu/order-nothing.png"></image>
+      <view class="to_shop"><navigator url="../pointMall/pointMall">去购物>></navigator></view>
+  </view>  
+
+<view wx:else class="container">
+    <view class="order-item" 
+          wx:for="{{orderData}}"
+          wx:key="{{index}}">
+         <view class="order-num">{{item.order_num}}</view>
+         <view class="product" 
+               wx:for="{{item.order_detail}}" 
+               wx:key="{{index}}"
+               wx:for-item="item">
+             <view class="product-img">
+                 <image src="{{item.imgurl}}" mode="widthFix"></image>
+             </view>
+             <view class="product-content">
+                 <view class="product-name">{{item.goods_name}}</view>
+                 <view class="type">{{item.goods_desc}}</view>
+             </view>
+             <view class="product-info">
+                 <view class="num">x{{item.goods_num}}</view>
+                 <view class="integral">{{item.integral}}</view>
+             </view>
+         </view>
+         <view class="op-view">
+             <view class="time">下单时间 {{item.order_time}}</view>
+             <navigator class="wuliu" 
+                        url="../ShopLogistics/ShopLogistics?order_num={{item.order_num}}">
+                        查看物流>>
+             </navigator>
+         </view>
+    </view>
+</view>
+</block>

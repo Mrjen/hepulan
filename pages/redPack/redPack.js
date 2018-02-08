@@ -13,6 +13,7 @@ Page({
     getRedPack: false, //从别人分享进入
     redPackShow: false,
     redpackHeader:1,
+    redPackRuleContent:'',//规则内容
     inviteView: true,  //自己进入
     isChaiWan:true, //用户进来的时候红包拆完了设置false
     inviteTip: false,
@@ -445,6 +446,21 @@ Page({
         shopNowList: res.data.data.goods_list_now,
         shopSoonList: res.data.data.goods_list_soon,
         shopBeforeList: res.data.data.goods_list_before
+      })
+    })
+
+    // 获取红包规则
+    http({
+      type: 'get-options-by-code',
+      data: {
+        option_key: 'ylhb_rule'
+      }
+    }, function (res) {
+      console.log('获取规则', res.data.data.option_info.option_value)
+      let rule = res.data.data.option_info.option_value
+      rule = rule.split('|');
+      that.setData({
+        redPackRuleContent: rule
       })
     })
   },

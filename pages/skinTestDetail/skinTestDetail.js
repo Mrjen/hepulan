@@ -4,8 +4,8 @@ import { statistic, fromPageData } from '../../tunji'
 Page({
     data: {
         testStart: false,
-        questionIndex: 1,
-        allScore: 0,
+        questionIndex: 1,  // 当前题目索引
+        isSelect:false,  //当前是否选中选项
         navLeft: 340,
         typeList: [{
             icon: "https://qncdn.playonwechat.com/hepulan/skin_test_type1.png",
@@ -144,26 +144,53 @@ Page({
         })
     },
 
-    // 点击题目选项
-    selectItem(ev) {
+    //  上一题
+    prevQuestion() {
+        let that = this,
+        test = that.data.test,
+        navLeft = that.data.navLeft + 98,
+        questionIndex = that.data.questionIndex;
+        test[questionIndex - 1].active = false;
+        test[questionIndex-2].active = false;
+        test[questionIndex - 2].options.map(el=>{
+            el.active = false;
+        })
+        that.setData({
+            navLeft:navLeft,
+            questionIndex: questionIndex-1,
+            test: test
+        })
+    },
+
+    // 下一题
+    nextQuestion(ev) {
         // console.log(ev)
         let that = this;
         let test = that.data.test;
         let navLeft = that.data.navLeft;
-        let allScore = that.data.allScore;
         let questionIndex = that.data.questionIndex;
         let item_score = ev.currentTarget.dataset.score;
+        
+        if (!that.data.isSelect){
+            wx.showToast({
+                title: '请先选择一项',
+                icon: 'success',
+                duration: 500
+            })
+            return false;
+        }
 
-        allScore = Number(allScore) + Number(item_score);
         if (questionIndex === test.length) {
             questionIndex = test.length;
+            let _score = that.TotalScore(test);
+            console.log('这里计算分数',_score)
             // test[test.length-1].active = true;
             navLeft = navLeft;
             let http = {
                 type: "save-skintest-info",
                 data: {
                     quest_id: that.data.testId,
-                    result: allScore
+                    result: _score
                 }
             }
             common.http(http, function(res) {
@@ -173,9 +200,10 @@ Page({
                         win.title = res.data.data.title;
                         win.discribe = res.data.data.result;
                     console.log(win)
+
                     that.setData({
                       testStart:true,
-                      win
+                      win:win
                     })
                 }else{
                   wx.showToast({
@@ -198,8 +226,41 @@ Page({
             questionIndex,
             test,
             navLeft,
-            allScore
+            isSelect: false
         })
+    },
+
+    // 选中题目内容
+    selectItem(e){
+      console.log(e.currentTarget.dataset)
+      let Edata = e.currentTarget.dataset,
+          that = this,
+          questionIndex = that.data.questionIndex,
+          test = that.data.test,
+          currentQuest = test[questionIndex - 1].options;
+        currentQuest.map(el=>{
+            el.active = false;
+        })
+        currentQuest[Edata.opx].active = true;
+        test[questionIndex - 1].options = currentQuest;
+      that.setData({
+          test,
+          isSelect:true
+      })
+    },
+
+    // 计算总分
+    TotalScore(arr){
+        let score = new Number();
+        console.log(arr)
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].options.length; j++) {
+                if (arr[i].options[j].active){
+                    score += Number(arr[i].options[j].score);
+                }
+            }            
+        }
+        return score;
     },
 
     closeWin(){

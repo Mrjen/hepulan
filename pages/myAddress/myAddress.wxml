@@ -1,12 +1,25 @@
 <!--pages/sureExchange/sureExchange.wxml-->
 <import src="../template/template.wxml"/>
 
-<view class="nav">我的收货地址<navigator url="../pointMall/pointMall">积分商城</navigator></view>
+<view class="nav">
+    我的收货地址
+    <navigator url="../pointMall/pointMall">
+        积分商城
+    </navigator>
+</view>
 
-<view class="add_address" bindtap="ToAddaddress"><image src="https://qncdn.playonwechat.com/poin_mall_addAddress.png"></image>新增收货地址</view>
+<view class="add_address" 
+      bindtap="ToAddaddress">
+      <image src="https://qncdn.playonwechat.com/poin_mall_addAddress.png"></image>
+      新增收货地址
+</view>
 
 <view class="address_list">
-    <view class="list_item" wx:for="{{address}}" wx:key="index" bindtap="selectAddress" data-index="{{index}}">
+    <view class="list_item" 
+          wx:for="{{address}}" 
+          wx:key="index" 
+          bindtap="selectAddress" 
+          data-index="{{index}}">
         <view>{{item.address}}{{item.detail}}</view>
         <view><text>{{item.contact}}</text>{{item.mobile}}</view>
     </view>

@@ -13,8 +13,15 @@
     <view class="page_tip">积分记录</view>
     <view class="list">
         <view class="item" wx:for="{{score_list}}">
-            <view class="jifen" wx:if="{{item.ma_score<0}}">-{{item.ma_score}}</view>
-            <view class="jifen" wx:if="{{item.ma_score>0}}">+{{item.ma_score}}</view>
+            <view class="jifen" 
+                  wx:if="{{item.ma_score<0}}">
+                      -{{item.ma_score}}
+            </view>
+
+            <view class="jifen" 
+                  wx:if="{{item.ma_score>0}}">
+                  +{{item.ma_score}}
+            </view>
             <view class="item_bottm">
                 <view>通过{{item.op_rmk}}</view>
                 <view>{{item.create_date}}</view>

@@ -8,11 +8,16 @@
             interval="{{interval}}" 
             duration="{{duration}}" 
             bindchange="changeCurrent">
-      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            
+      <block wx:for="{{imgUrls}}" 
+             wx:key="{{index}}">
         <swiper-item>
-          <image src="{{item}}" bindtap="bindchange" class="slide-image" />
+          <image src="{{item}}" 
+                 bindtap="bindchange" 
+                 class="slide-image" />
         </swiper-item>
       </block>
+
     </swiper>
     <view class="ppt_dots">{{current+1}}/{{imgLen}}</view>
   </view>
@@ -21,7 +26,10 @@
     <!-- 老师及观众 -->
     <view class="persion_opation">
       <view class="teacher_box">
-        <image wx:for="{{teacher_img}}" wx:key="{{index}}" src="{{item.guest_avatar}}"></image>
+        <image wx:for="{{teacher_img}}" 
+               wx:key="{{index}}" 
+               src="{{item.guest_avatar}}">
+        </image>
       </view>
 
       <view class="barrage_btn">
@@ -34,7 +42,8 @@
                 bindtap="openPop">弹</view>
         </block>
 
-        <view class="pop_nav_out" animation="{{popWidth}}">
+        <view class="pop_nav_out" 
+              animation="{{popWidth}}">
             <view class="pop_nav">
               <view class="edit_btn"></view>
               <view class="persion_pop">当前人气</view>
@@ -130,7 +139,10 @@
               </view>
               
             </view>
-            <view class="audio_len" wx:if="{{item.audioLen > 0}}">{{item.audioLen}}"</view>
+            <view class="audio_len" 
+                  wx:if="{{item.audioLen > 0}}">
+                  {{item.audioLen}}
+            </view>
           </view>
         </view>
       </view>
@@ -142,20 +154,29 @@
   <!-- </view> -->
 
   <!-- 讨论弹屏 -->
-  <view class="discuss_win" wx:if="{{discussStatic}}">
-      <view class="callback_btn" bindtap="backLive">回到直播</view>
-      <scroll-view class="discuss_main"  scroll-y="true">
+  <view class="discuss_win" 
+        wx:if="{{discussStatic}}">
+      <view class="callback_btn" 
+            bindtap="backLive">
+            回到直播
+      </view>
+      <scroll-view class="discuss_main"  
+                   scroll-y="true">
         <block>
          <view class="discuss_item" 
                wx:for="{{discuss}}" 
                wx:key="{{index}}">
-           <image class="dis_pers_img" src="{{item.dis_pers_img}}"></image>
+           <image class="dis_pers_img" 
+                  src="{{item.dis_pers_img}}">
+            </image>
 
            <view class="discuss_cotent_item">
               <view class="dis_cussname">{{item.dis_pers_name}}</view>
               <view>{{item.dis_pers_time}}</view>
               <view class="pers_content">
-                <template is="wxParse" data="{{wxParseData:item.article.nodes}}"></template>
+                <template is="wxParse" 
+                          data="{{wxParseData:item.article.nodes}}">
+                </template>
               </view>
            </view>
          </view>
@@ -203,7 +224,9 @@
                 <!-- <label class="radio" bindtap="radioChange">
                    <view class="radio_radio"><view wx:if="{{checked}}"></view></view><view style="display:inline-block">向嘉宾或主持人提问</view>
                 </label> -->
-                <view class="switch_emoji" bindtap="switchEmoji"></view>
+                <view class="switch_emoji" 
+                      bindtap="switchEmoji">
+                </view>
             </view>
            </view>
 

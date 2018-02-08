@@ -36,7 +36,10 @@
 <!-- 底部导航 -->
 <view class="bottom_nav">
     <view>应付：{{cart_select_sum-dikou}}积分</view>
-    <view class="submite" bindtap="inputCode">提交订单</view>
+    <view class="submite" 
+          bindtap="inputCode">
+          提交订单
+    </view>
 </view>
 
 <!-- 口令弹层 -->
@@ -44,11 +47,17 @@
     <view class='kouling-in'>
         <image src='https://qncdn.playonwechat.com/hepulanhufu/kouling-icon.png'
                mode='widthFix'
-               class='kouling-icon'></image>
+               class='kouling-icon'>
+        </image>
+
         <view class='kouling-title'>今天的红包口令是？...</view>
+
         <view class='kouling-input'>
-            <input type="text"  bindinput="inputExchangeCode" placeholder='输入红包口令'/>
+            <input type="text"  
+                   bindinput="inputExchangeCode" 
+                   placeholder='输入红包口令'/>
         </view>
+        
         <view class='input-tips'>输入当日红包口令才可以使用红包哦~</view>
         <button class='save-kouling' bindtap='SaveOrder'>提交红包口令</button>
         <button class='save-kouling' open-type='contact'>获取红包口令</button>
@@ -58,12 +67,19 @@
 
 <view class="coupon_view">
     <view class="mine-redpack">我的红包</view>
-<view class="coupon_box">
-    <view class="top_nav">
-        <view class="nav_left">共{{coupon.length}}个红包/已抵扣{{dikou?dikou:'0'}}积分</view>
+
+    <view class="coupon_box">
+        <view class="top_nav">
+            <view class="nav_left">
+                共{{coupon.length}}个红包/已抵扣{{dikou?dikou:'0'}}积分
+            </view>
+        </view>
     </view>
-</view>
-    <view class="coupon-item" wx:for="{{coupon}}" wx:key="{{index}}">
+
+    <view class="coupon-item" 
+          wx:for="{{coupon}}" 
+          wx:key="{{index}}">
+
         <view class="coupon">
             <view class="coupon_left">
                 <view class="left_top">
@@ -72,6 +88,7 @@
                 </view>
                 <view class="left_bottom">通用券</view>
             </view>
+
             <view class="coupon_right">
                 <view class="right_top">
                     <view class="right_content">
@@ -87,8 +104,13 @@
             </view>
         </view>
         <view class="select">
-            <radio bindtap="selsctRadio" data-idx="{{index}}" data-id="{{item.id}}" data-jifen="{{item.score}}" checked="{{item.active}}"
-                color="#f98d30" />
+            <radio bindtap="selsctRadio" 
+                   data-idx="{{index}}" 
+                   data-id="{{item.id}}" 
+                   data-jifen="{{item.score}}" 
+                   checked="{{item.active}}"
+                   color="#f98d30" />
+
             <view class="select_tip">勾选使用</view>
         </view>
     </view>
@@ -97,13 +119,19 @@
 
 
 <!-- 弹窗 -->
-<view class="order_win" wx:if="{{winStatus}}">
+<view class="order_win" 
+      wx:if="{{winStatus}}">
     <view class="win_in">
         <view>{{winText.title}}</view>
         <view class="tip">{{winText.text1}}</view>
         <view class="tip">{{winText.text2}}</view>
-        <image mode="widthFix" src="{{winText.img}}"></image>
-        <view class="sure_btn" bindtap="sureBtn">{{winText.btnText}}</view>
+        <image mode="widthFix" 
+               src="{{winText.img}}">
+        </image>
+        <view class="sure_btn" 
+              bindtap="sureBtn">
+              {{winText.btnText}}
+        </view>
     </view>
 </view>
 

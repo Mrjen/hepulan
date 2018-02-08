@@ -15,10 +15,12 @@
    <!-- <view class="nickName">{{nickName}}</view> -->
     <view class="point_count">我的积分：{{pointCount}}</view>
     <navigator class="invate" 
-               url="../sharePage/sharePage" 
+               bindtap="getMoreScore" 
                hover-class="none">
         如何赚取更多积分>>
     </navigator>
+    <!-- 签到 -->
+    <view class="daka" bindtap="toDaka"></view>
 </view>
 
 
@@ -64,8 +66,9 @@
 <view class="shop_list">
     <view class="list_item" 
           wx:for="{{shopNowList}}" 
-          wx:key="index">
-
+          bindtap="ToDetail"
+          data-id="{{item.kid}}"
+          wx:key="{{index}}">
           <image class="item_img" src="{{item.img}}"></image>
 
           <view class="item_info">
@@ -90,16 +93,12 @@
                   </view>
               </view>
 
-              <view class="zan_hert" 
+              <!-- <view class="zan_hert" 
                     bindtap="selectType" 
                     data-id="{{item.kid}}">
                     <image src="https://qncdn.playonwechat.com/hepulan/point_mall_shopcart.png"></image>
-              </view>
+              </view> -->
 
-              <navigator class="invate_btn" 
-                         url="../sharePage/sharePage" 
-                         hover-class="none">
-              </navigator>
           </view>
     </view>
 </view>
@@ -229,3 +228,15 @@
 
 <!-- 回首页按钮 -->
  <template is="share_icon"/> 
+
+
+ <!-- 获取更多积分弹层 -->
+ <view class="jifen-view" wx:if="{{closeJiFenView}}" bindtap="closeJiFenView">
+     <view class="jifen-rule">
+         <view class="title">如何获取更多积分</view>
+         <view class="rule-view">1.如何获取更多积分如何获取更多积分如何获取更多积分</view>
+        <view class="rule-view">1.如何获取更多积分如何获取更多积分如何获取更多积分</view>
+        <view class="rule-view">1.如何获取更多积分如何获取更多积分如何获取更多积分</view>
+        <view class="rule-view">1.如何获取更多积分如何获取更多积分如何获取更多积分</view>
+     </view>
+ </view>

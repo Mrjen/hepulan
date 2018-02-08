@@ -3,12 +3,15 @@
 <view class="container">
 <!-- 内区 -->
 <navigator class="header">肌肤解读</navigator>
+
 <view class="content">{{skin_arr.skin_analysis}}</view>
 
 <navigator class="header" url="">常见问题</navigator>
+
 <view class="content">{{skin_arr.common_problem}}</view>
 
 <navigator class="header" url="">温馨提示</navigator>
+
 <view class="content tip">此份测试报告仅靠提问的方式得出，报告结果可能与实际肌肤情况存在偏差，建议截图报告结果给专属护肤老师一对一的解答与更深入的肤质了解判断。</view>
 
 <navigator class="retest" url="../skinTest/skinTest">觉得不准确？点击重新测试</navigator>

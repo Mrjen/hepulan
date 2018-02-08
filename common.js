@@ -148,7 +148,7 @@ function getUser() {
   }
 };
 
-// 请求
+// 请求   禾葡兰技术那边请求
 function http(http={},cb) {
   wx.request({
     url: Api.apiUrl,
@@ -164,6 +164,23 @@ function http(http={},cb) {
     }
   })
 };
+
+
+// 我们技术部门的请求
+function wxRequest(data={},cb) {
+    wx.request({
+      url: data.url,
+      data: data.data,
+      method: data.method ? data.method:'get', 
+      success: function(res){
+      },
+      fail: function(res) {
+      },
+      complete: function(res) {
+        cb(res)
+      }
+    })
+}
 
 // 获取sign
 function getSign(callback) {
@@ -353,6 +370,7 @@ module.exports = {
   getVipId,
   getUser,
   http,
-  getThirdKey
+  getThirdKey,
+  wxRequest
 }
 

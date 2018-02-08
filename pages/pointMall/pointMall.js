@@ -9,6 +9,7 @@ Page({
         shopList: [],
         start: 0,
         selectWin: false, //选择类型弹层
+        closeJiFenView:false, //获取更多积分弹层
         selectWinData: [],
         opation_nav: [{
             url: "../shopCollect/shopCollect",
@@ -78,6 +79,27 @@ Page({
 
     onReady: function() {
 
+    },
+
+    // 关闭积分规则
+    closeJiFenView(){
+        this.setData({
+            closeJiFenView:false
+        })
+    },
+
+    // 签到
+    toDaka(){
+        wx.navigateTo({
+            url: '../DiaryMark/DiaryMark'
+        })
+    },
+
+    // 获取更多积分
+    getMoreScore(){
+       this.setData({
+           closeJiFenView:true
+       })
     },
 
     // 选择款式

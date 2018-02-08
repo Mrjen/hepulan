@@ -1,0 +1,23 @@
+/* pages/Brand/Brand.wxss */
+.image{
+  width: 750rpx;
+}
+
+.contact{
+  width: 200rpx;
+  height: 50rpx;
+  background: red;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+.contact01{
+   top: 306rpx;
+}
+
+.contact02{
+   top: 5261rpx;
+}

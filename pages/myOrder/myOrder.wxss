@@ -1,0 +1,126 @@
+/* pages/myOrder/myOrder.wxss */
+view{
+    box-sizing: border-box;
+}
+
+page{
+    background: #006d4a;
+}
+
+.nothing{
+    width: 694rpx;
+    min-height: 500rpx;
+    background: #fff;
+    margin:50rpx auto;
+    padding: 50rpx 20rpx 20rpx 20rpx;
+}
+
+.nothing image{
+    display: block;
+    width: 367rpx;
+    height: 286rpx;
+    margin:0 auto 0 auto;
+}
+
+.to_shop{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.to_shop navigator{
+    font-size: 28rpx;
+    color: #006d4a;
+    display: block;
+    margin-top: 30rpx;
+}
+
+.order-item{
+    width: 694rpx;
+    min-height: 100rpx;
+    background-color: #fff;
+    margin:50rpx auto 0 auto;
+    padding:20rpx;
+}
+
+.order-num{
+    font-size: 24rpx;
+    padding-bottom: 20rpx;
+}
+
+.product{
+    display: flex;
+    padding:20rpx 0;
+    position: relative;
+}
+
+.product::after{
+    content: '';
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: scaleY(.5);
+}
+
+.product-img{
+    width: 138rpx;
+    overflow: hidden;
+    margin-right: 20rpx;
+}
+
+.product-content{
+    flex:1;
+}
+
+.product-img image{
+    display: block;
+    width: 100%;
+}
+
+.product-name{
+    font-size: 26rpx;
+}
+
+.type{
+    font-size: 24rpx;
+    color: #666;
+}
+
+.product-info{
+    width: 120rpx;
+    text-align: right;
+}
+
+.num{
+    font-size: 26rpx;
+}
+
+.integral{
+    font-size: 26rpx;
+    margin-top: 10rpx;
+    color: red;
+}
+
+.op-view{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20rpx;
+}
+
+.wuliu{
+    padding:8rpx 14rpx;
+    border-radius: 40rpx;
+    border:1px solid #2f8b7c;
+    display: inline-block;
+    font-size: 24rpx;
+    color: #2f8b7c;
+}
+
+.time{
+    font-size: 24rpx;
+    color: #666;
+}

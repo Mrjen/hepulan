@@ -132,7 +132,7 @@ page{
 }
 
 .see_btn_success{
-  background:#58b17e;
+  background:#006d4a;
   color:#fff;
 }
 

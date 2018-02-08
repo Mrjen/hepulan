@@ -2,20 +2,53 @@
 
 <block>
 <view class="list" wx:if="{{list.length>0}}">
-    <view class="list_out" wx:for="{{list}}" wx:key="{{index}}">
-        <view class="delete" bindtap="deleteProduct" data-gid="{{item.gid}}" data-index="{{index}}">删除</view>
-        <view class="list_item" bindtouchstart="touchS" style="{{item.txtStyle}}" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
-            <radio value="" color="#086446" checked="{{item.is_select=='1'?true:false}}" bindtap="selectGoods" data-index="{{index}}" data-gid="{{item.gid}}" />
+    <view class="list_out" 
+          wx:for="{{list}}" 
+          wx:key="{{index}}">
+        <view class="delete" 
+              bindtap="deleteProduct" 
+              data-gid="{{item.gid}}" 
+              data-index="{{index}}">
+              删除
+        </view>
+
+        <view class="list_item" 
+              bindtouchstart="touchS" 
+              style="{{item.txtStyle}}" 
+              bindtouchmove="touchM" 
+              bindtouchend="touchE" 
+              data-index="{{index}}">
+
+            <radio value="" 
+                   color="#086446" 
+                   checked="{{item.is_select=='1'?true:false}}" 
+                   bindtap="selectGoods" 
+                   data-index="{{index}}" 
+                   data-gid="{{item.gid}}" />
+
             <image src="{{item.img}}"></image>
             <view class="item_right">
                 <view class="item_title">{{item.name}}</view>
                 <view class="item_price">{{item.score}}积分</view>
                 <view class="item_type">
-                    <view class="item_color" bindtap="ChangeType" data-id="{{item.kid}}" data-gid="{{item.gid}}" data-index="{{index}}">{{item.color}}</view>
+
+                    <view class="item_color" 
+                          bindtap="ChangeType" 
+                          data-id="{{item.kid}}" 
+                          data-gid="{{item.gid}}" 
+                          data-index="{{index}}">
+                          {{item.color}}
+                    </view>
+
                     <view class="goods_num">
-                        <view bindtap="cutGoods" data-index="{{index}}" data-gid="{{item.gid}}">-</view>
+                        <view bindtap="cutGoods" 
+                              data-index="{{index}}" 
+                              data-gid="{{item.gid}}">-</view>
+
                         <view>{{item.goods_num}}</view>
-                        <view bindtap="addGoods" data-index="{{index}}" data-gid="{{item.gid}}">+</view>
+                        <view bindtap="addGoods" 
+                              data-index="{{index}}" 
+                              data-gid="{{item.gid}}">+</view>
                     </view>
                 </view>
             </view>
@@ -35,10 +68,16 @@
 
 <view class="bottom_nav">
     <view bindtap="allSelect">
-        <radio color="#086446" checked="{{allSelect}}" />全选</view>
+        <radio color="#086446" 
+               checked="{{allSelect}}"/>
+               全选
+    </view>
+
     <view class="cart_right">
         <view>合计：{{AllMoney}}积分</view>
-        <view class="settle" bindtap="Tosetttle">结算
+        <view class="settle" 
+              bindtap="Tosetttle">
+            结算
             <text>(包邮)</text>
         </view>
     </view>
@@ -49,17 +88,31 @@
     <view class="product_info">
        <view class="top_info">
         <view class="product">
-            <image src="{{selectWinData.imgurl}}" bindtap="prewImg" data-url="{{selectWinData.original_imgurl}}"></image>
+            <image src="{{selectWinData.imgurl}}" 
+                   bindtap="prewImg" 
+                   data-url="{{selectWinData.original_imgurl}}">
+            </image>
+
             <view class="info">
                <view>{{selectWinData.score}}积分</view>
                <view>库存{{selectWinData.amount}}件</view>
                <view>已选：{{selectWinData.color}}</view>
             </view>
         </view>
+
         <text class="type_tag">颜色</text>
+
         <view class="product_type"> 
-            <view wx:for="{{selectWinData.details}}" wx:key="index" class="type_item {{item.active?'type_active':''}}" bindtap="changeType" data-index="{{index}}" data-id="{{item.id}}">{{item.color}}</view>
+            <view wx:for="{{selectWinData.details}}" 
+                  wx:key="index" 
+                  class="type_item {{item.active?'type_active':''}}" 
+                  bindtap="changeType" 
+                  data-index="{{index}}" 
+                  data-id="{{item.id}}">
+                  {{item.color}}
+            </view>
         </view>
+        
         </view>
         <view class="sure_type" bindtap="SaveGoodsInfo">确定</view>
         <view class="close_select" bindtap="selectWin"></view>

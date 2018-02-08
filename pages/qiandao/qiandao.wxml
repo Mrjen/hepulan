@@ -13,7 +13,12 @@
           <!-- {{sign}} -->
       <form  class="formSubmit" report-submit="true">
         <!-- date!=calendarSignData[date] -->
-          <button bindtap="toDiary"  class="checkBtn" wx:if="{{date!=calendarSignData[date]}}" formType="submit"></button>
+          <button bindtap="toDiary"  
+                  class="checkBtn" 
+                  wx:if="{{date!=calendarSignData[date]}}" 
+                  formType="submit">
+          </button>
+
           <view  class="checkedBtn" wx:else=""></view>
       </form>
   </view>
@@ -43,19 +48,42 @@
     </view> -->
     <view class="week">
       <!--填补空格-->
-      <view style="height:0;" wx:for="{{nbsp}}" wx:key="index">\n</view>
+      <view style="height:0;" 
+            wx:for="{{nbsp}}" 
+            wx:key="index">\n</view>
+
       <!--开心循环日期-->
-      <view wx:for="{{date-1}}" class="data_text" style="color:#666;"  wx:key="index">
-        <text wx:if="{{item+1==calendarSignData[item+1]}}" style="color:#666;font-size:32rpx;background-image:url(https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-marked.png);background-size:100% 100%;text-align:center;"><!--已签到-->{{item+1}}</text>
+      <view wx:for="{{date-1}}" 
+            class="data_text" 
+            style="color:#666;"  
+            wx:key="index">
+        <text wx:if="{{item+1==calendarSignData[item+1]}}" 
+              style="color:#666;font-size:32rpx;background-image:url(https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-marked.png);background-size:100% 100%;text-align:center;">
+              <!--已签到-->{{item+1}}
+        </text>
         <text wx:else="">
           <text style="">{{item+1}}</text>
         </text>
       </view>
-      <view class="data" style="padding-bottom:8rpx;" bindtap="toDiary">
-        <text wx:if="{{date==calendarSignData[date]}}" style="color:#67c23a;font-size:22rpx; background-image:url(https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-marked.png);background-size:100% 100%;">已签</text>
-        <text wx:else="" style="color:#ff9393;background-image:url(https://qncdn.playonwechat.com/icon-wmark.png);background-size:100% 100%;">{{date}}</text>
+
+      <view class="data" 
+            style="padding-bottom:8rpx;" 
+            bindtap="toDiary">
+        <text wx:if="{{date==calendarSignData[date]}}" 
+              style="color:#67c23a;font-size:22rpx; background-image:url(https://qncdn.playonwechat.com/hupulan/DiaryMarkicon-marked.png);background-size:100% 100%;">
+              已签
+        </text>
+
+        <text wx:else="" 
+              style="color:#ff9393;background-image:url(https://qncdn.playonwechat.com/icon-wmark.png);background-size:100% 100%;">
+              {{date}}
+        </text>
       </view>
-      <view class="data_text" wx:for="{{monthDaySize-date}}" wx:key="index">{{item+date+1}}</view>
+      <view class="data_text" 
+            wx:for="{{monthDaySize-date}}" 
+            wx:key="index">
+            {{item+date+1}}
+      </view>
     </view>
   </view>
 
@@ -68,7 +96,11 @@
 <!-- 弹窗 -->
 <view class="help_win" wx:if="{{helpWin}}">
     <view class="help_win_in">
-        <view class="help_title">金币获取方式<view bindtap="close_help" class="close_help"></view></view>
+        <view class="help_title">
+          金币获取方式
+          <view bindtap="close_help" class="close_help"></view>
+        </view>
+        
         <view class="help_content">
            <view>签到领取，第一天领取10个连续签到领取金币数量增加5个,每天最高可领40个金币,签到中断则重新从第一天开始计算</view>
            <view>助力奖励，每位好友助力增加3金币，每天最高增加30金币</view>

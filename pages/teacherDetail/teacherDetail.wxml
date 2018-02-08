@@ -1,0 +1,48 @@
+<!--pages/teacherDetail/teacherDetail.wxml-->
+<view class="container">
+    <view class="teacher-view">
+        <image class="teach-image" src="{{teachData.info_picture}}"></image>
+        <button class="prew btn" bindtap="prevImg">查看证书</button>
+        <button class="contact btn" open-type="contact">付费咨询</button>
+    </view>
+    <!-- 历程 -->
+    <view class="experice">
+        <view class="item" 
+              wx:for="{{teachData.resume}}"
+              wx:key="{{index}}">
+            <view class="year">{{item.date}}</view>
+            <view class="introduct">
+                <view class="content">
+                     {{item.content}}
+                </view>
+                <view class="annex">
+                    <view class="item-image" wx:if="{{item.type=='pic'}}">
+                        <image mode="widthFix"
+                               bindtap="prevContextImg"
+                               data-src="{{item.url}}"
+                               src="{{item.url}}"></image>
+                    </view>
+                    
+                    <view class="video" 
+                          wx:elif="{{item.type=='video'}}">
+                        <view class="video-option" 
+                              wx:if="{{!item.play}}">
+                            <view class="play-btn"></view>
+                            <image class="video-cover" 
+                                   bindtap="playVideo"
+                                   data-idx="{{index}}"
+                                   src="{{item.cover}}">
+                            </image>
+                        </view>
+                        <video wx:else 
+                               autoplay="{{item.play}}" 
+                               bindended="videoPlayEnd"
+                               src="{{item.url}}">
+                        </video>
+                    </view>
+                </view>
+            </view>
+        </view>
+  
+    </view>
+</view>

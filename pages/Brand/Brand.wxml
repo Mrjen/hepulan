@@ -1,0 +1,8 @@
+<!--pages/Brand/Brand.wxml-->
+<image class="image"
+        src="https://qncdn.playonwechat.com/hepulanhufu/brand-image.png"
+        mode='widthFix'></image>
+
+<button class="contact contact01" open-type='contact'></button>
+
+<button class="contact contact02" open-type='contact'></button>

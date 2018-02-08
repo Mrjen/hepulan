@@ -1,51 +1,30 @@
 // pages/moreTeacher/moreTeacher.js
+import { http, wxRequest} from '../../common'
+import { statistic, fromPageData } from '../../tunji'
+import api from '../../api'
+
 Page({
   data: {
-    teacher1: [{
-      image: 'http://iph.href.lu/300x300',
-      id: 1,
-      discribe: '美肤导师',
-      name: '佳佳'
-    }, {
-      image: 'http://iph.href.lu/300x300',
-      id: 1,
-      discribe: '美肤导师',
-      name: '佳佳'
-    }, {
-      image: 'http://iph.href.lu/300x300',
-      id: 1,
-      discribe: '美肤导师',
-      name: '佳佳'
-    }, {
-      image: 'http://iph.href.lu/300x300',
-      id: 1,
-      discribe: '美肤导师',
-      name: '佳佳'
-    }, {
-      image: 'http://iph.href.lu/300x300',
-      id: 1,
-      discribe: '美肤导师',
-      name: '佳佳'
-    }, {
-      image: 'http://iph.href.lu/300x300',
-      id: 1,
-      discribe: '美肤导师',
-      name: '佳佳'
-    }, {
-      image: 'http://iph.href.lu/300x300',
-      id: 1,
-      discribe: '美肤导师',
-      name: '佳佳'
-    }, {
-      image: 'http://iph.href.lu/300x300',
-      id: 1,
-      discribe: '美肤导师',
-      name: '佳佳'
-    }]
+    teachList:{}
   },
 
   onLoad: function (options) {
-  
+
+    // 后台数据统计上报
+    statistic();
+    wx.setStorageSync('sence', options.scene)
+
+    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    fromPageData()
+
+    
+  },
+
+  // 查看老师详情
+  toTeachDetail(e){
+    wx.navigateTo({
+      url: `../teacherDetail/teacherDetail?tid=${e.currentTarget.dataset.tid}`
+    })
   },
 
   onReady: function () {
@@ -53,7 +32,19 @@ Page({
   },
 
   onShow: function () {
-  
+    let that = this;
+      wxRequest({
+         url:api.teachList
+      },function(res){ 
+        if (res.data.status){
+          let teachList = res.data.data;
+          that.setData({
+            teachList
+          })
+        }else{
+           console.log('请求老师列表数据出错')
+        }
+      })
   },
 
   onHide: function () {

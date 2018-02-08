@@ -1,10 +1,19 @@
 <import src="../template/template.wxml"/>
 <view class="container">
-  <swiper class="swiper" autoplay="{{autoplay}}" interval="{{interval}}" current="{{swiperCurrent}}" duration="{{duration}}" bindchange="swiperChange">
-    <block wx:for="{{swiperTab}}" wx:key="unique">
+  <swiper class="swiper" 
+          autoplay="{{autoplay}}" 
+          interval="{{interval}}" 
+          current="{{swiperCurrent}}" 
+          duration="{{duration}}" 
+          bindchange="swiperChange">
+    <block wx:for="{{swiperTab}}" wx:key="{{index}}">
       <swiper-item>
         <view class="shop_img">
-          <swiper class="productIm" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <swiper class="productIm" 
+                  indicator-dots="{{indicatorDots}}" 
+                  autoplay="{{autoplay}}" 
+                  interval="{{interval}}" 
+                  duration="{{duration}}">
             <block>
               <swiper-item>
                 <image src="{{item.img}}" class="slide-image" />
@@ -18,12 +27,35 @@
         </view>
         <view>
           <!-- <view class="shop_price">${{item.price}}</view> -->
-          <view class="shop_gold">金币{{item.coins}} <text class="hot_num" hidden="{{item.is_exchange == 0}}">/ 热力{{item.hot_points}}</text></view>
+          <view class="shop_gold">金币{{item.coins}} 
+              <text class="hot_num" 
+                   hidden="{{item.is_exchange == 0}}">
+                   / 热力{{item.hot_points}}
+              </text>
+          </view>
         </view>
-        <view class="mine_coins">我的金币：{{coins}}<text hidden="{{item.is_exchange == 0}}"> / 我的热力: {{hot_points}}</text></view>
-        <view class="exchenge_btn" bindtap="check" data-id="{{item.prod_id}}" data-hot="{{item.hot_points}}" data-price="{{item.coins}}" data-exchange="{{item.is_exchange}}">立即兑换</view>
+        <view class="mine_coins">
+           我的金币：{{coins}}
+           <text hidden="{{item.is_exchange == 0}}"> 
+             / 我的热力: {{hot_points}}
+           </text>
+        </view>
 
-        <view class="hot_btn" bindtap="getHot" data-price="{{item.coins}}" hidden="{{item.is_exchange == 0}}">获取热力</view>
+        <view class="exchenge_btn" 
+              bindtap="check" 
+              data-id="{{item.prod_id}}" 
+              data-hot="{{item.hot_points}}" 
+              data-price="{{item.coins}}" 
+              data-exchange="{{item.is_exchange}}">
+              立即兑换
+        </view>
+
+        <view class="hot_btn" 
+              bindtap="getHot" 
+              data-price="{{item.coins}}" 
+              hidden="{{item.is_exchange == 0}}">
+              获取热力
+        </view>
       </swiper-item>
     </block>
   </swiper>

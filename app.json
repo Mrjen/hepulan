@@ -1,12 +1,18 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/moreTeacher/moreTeacher",
     "pages/mine/mine",
+    "pages/moreVideo/moreVideo",
+    "pages/skinTest/skinTest",
+    "pages/circle/circle",
+    "pages/moreTeacher/moreTeacher",
+    "pages/teacherDetail/teacherDetail",
+    "pages/myOrder/myOrder",
+    "pages/skinCase/SkinCase",
+    "pages/Brand/Brand",
     
     "pages/shopSubmiteOrder/shopSubmiteOrder",
     "pages/pointMall/pointMall",
-    "pages/circle/circle",
     "pages/redPack/redPack",
     "pages/pointMallCar/pointMallCar",
     "pages/DiaryMark/DiaryMark",
@@ -29,7 +35,6 @@
     "pages/myAddress/myAddress",
     "pages/earnPoint/earnPoint",
     "pages/knowledge/knowledge",
-    "pages/skinTest/skinTest",
     "pages/skinResult/skinResult",
     "pages/skinResultDetailGuide/skinResultDetailGuide",
     "pages/skinResultDetailAnalysis/skinResultDetailAnalysis",

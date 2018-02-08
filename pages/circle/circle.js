@@ -5,8 +5,6 @@ import { statistic, fromPageData } from '../../tunji'
 import {http} from '../../common'
 Page({
     data: {
-        sign: "",
-        userInfo: "",
         nickName: "", //用户名
         writeContent: "", //评论内容
         showWrite: false, //评论窗口
@@ -20,8 +18,8 @@ Page({
         isWritting: true,
         writeCircle: true,
         start: 0,
-        share_type: 0,
-        navIndex:1, //主导航index
+        share_type: 1, //护肤心得1  新品测评2   空瓶记3    限时活动4
+        navIndex:0,  //主导航index
         circleNav:[{
             id:1,
             text:'禾粉圈',
@@ -61,9 +59,10 @@ Page({
     // 图片预览
     prewImg: function(ev) {
         let Edata = ev.currentTarget.dataset;
+        let idx = Edata.imglist.indexOf(Edata.idx)
         wx.previewImage({
-            current: Edata.url, // 当前显示图片的http链接
-            urls: Edata.imglist // 需要预览的图片http链接列表
+            current: Edata.imglist[idx],
+            urls: Edata.imglist 
         })
     },
 
@@ -186,19 +185,9 @@ Page({
     writeCircle: function() {
         var that = this;
         var sign = wx.getStorageSync('sign');
-        //console.log(sign);
-        if (sign == "") {
-            wx.showToast({
-                title: '未授权用户禁止发言',
-                icon: 'success',
-                duration: 2000
-            })
-        } else {
-            wx.navigateTo({
-                url: '../writeDyn/writeDyn'
-            });
-            //console.log(_writeText);
-        }
+          wx.navigateTo({
+            url: '../DiaryMark/DiaryMark'
+          });
     },
 
     onReady: function() {
@@ -250,6 +239,107 @@ Page({
                     wx.hideLoading()
                 }, 800)
             })
+        })
+    },
+
+    // 切换一级导航
+    changeCircleNav(e) {
+        let that = this;
+        let apiType = '';
+        let Edata = e.currentTarget.dataset,
+            circleNav = that.data.circleNav;
+        circleNav.forEach(element => {
+            element.active = false;
+        });
+        circleNav[Edata.idx].active = true;
+        that.setData({
+            circleNav: circleNav,
+            navIndex: Edata.idx
+        })
+        if (Edata.idx == 0) {
+            apiType = 'get-social-list'
+        } else if (Edata.idx == 1) {
+            apiType = 'get-hemiao-social-list'
+        } else if (Edata.idx == 2) {
+            apiType = 'get-helan-social-list'
+        }
+
+        http({
+            type: apiType
+        }, function (res) {
+            console.log('切换导航数据', res)
+            let spaceDyn = res.data.data.social_list;
+            spaceDyn = that.Handel(spaceDyn)
+            that.setData({
+                spaceDyn: spaceDyn,
+                start: 5
+            })
+        })
+    },
+
+    // 切换导航
+    changeNav(ev) {
+        let that = this;
+        let index = ev.currentTarget.dataset.index;
+        let _index = index + 1;
+        let navList = that.data.navList;
+        for (var i = 0; i < navList.length; i++) {
+            navList[i].active = false;
+        }
+        navList[index].active = true;
+        that.setData({
+            navList
+        })
+
+        http({
+            type: 'get-social-list',
+            data: {
+                share_type: _index,
+                start: 0,
+                length: 5
+            }
+        }, function (res) {
+            console.log(res);
+            let spaceDyn = res.data.data.social_list;
+            spaceDyn = that.Handel(spaceDyn)
+            that.setData({
+                spaceDyn: spaceDyn,
+                start: 0,
+                share_type: _index
+            });
+        })
+    },
+
+    // 页面显示
+    onShow(){
+        
+       
+    },
+
+    // 播放视频
+    playVideo(e){
+       let Edata = e.currentTarget.dataset,
+           spaceDyn = this.data.spaceDyn,
+           that = this;
+        spaceDyn.map(el=>{
+            el.play_video = false;
+        })
+        spaceDyn[Edata.idx].play_video = true;
+        that.setData({
+            spaceDyn
+        })
+    },
+
+    // 视频播放完毕
+    videoPlayEnd(e){
+        let Edata = e.currentTarget.dataset,
+            spaceDyn = this.data.spaceDyn,
+            that = this;
+        spaceDyn.map(el => {
+            el.play_video = false;
+        })
+        that.setData({
+            spaceDyn
         })
     },
 
@@ -328,97 +418,97 @@ Page({
         })
     },
 
-    // 切换一级导航
-    changeCircleNav(e){
-       let that = this;
-       let Edata = e.currentTarget.dataset,
-           circleNav = that.data.circleNav;
-        circleNav.forEach(element => {
-            element.active = false;
-        });
-        circleNav[Edata.idx].active = true;
-        that.setData({
-            circleNav: circleNav,
-            navIndex: Edata.idx
-        })
-    },
-
-    // 切换导航
-    changeNav(ev) {
-        let that = this;
-        let index = ev.currentTarget.dataset.index;
-        let _index = index + 1;
-        let navList = that.data.navList;
-        for (var i = 0; i < navList.length; i++) {
-            navList[i].active = false;
-        }
-        navList[index].active = true;
-        that.setData({
-            navList
-        })
-
-        http({
-            type:'get-social-list',
-            data: {
-                share_type: _index,
-                start: 0,
-                length: 5
-            }
-        },function(res){
-            console.log(res);
-            let spaceDyn = res.data.data.social_list;
-            spaceDyn = that.Handel(spaceDyn)
-            that.setData({
-                spaceDyn: spaceDyn,
-                start: 0,
-                share_type: _index
-            });
-        })
-    },
 
     // 页面上拉触底事件的处理函数
     onReachBottom: function(ev) {
         var that = this;
         var start = that.data.start;
+        let navIndex = that.data.navIndex;
+        let share_type = that.data.share_type;
         var oldspaceDyn = that.data.spaceDyn;
+        let apiType = '';
         wx.showLoading({
             title: '数据加载中',
         })
 
-        http({
-            type:'get-social-list',
-            data:{
-                start: that.data.start,
-                length: 5,
-                share_type: that.data.share_type,
-                search: that.data.searchCentent ? that.data.searchCentent : ''
+        if (navIndex==0){
+            // 加载禾粉圈分类数据
+            http({
+                type: 'get-social-list',
+                data: {
+                    start: that.data.start,
+                    length: 5,
+                    share_type: that.data.share_type,
+                    search: that.data.searchCentent ? that.data.searchCentent : ''
+                }
+            }, function (res) {
+                console.log(res);
+                setTimeout(function () {
+                    wx.hideLoading()
+                }, 300);
+                var spaceDyn = res.data.data.social_list;
+                if (spaceDyn.length === 0) {
+                    wx.showLoading({
+                        title: '没有更多数据',
+                    });
+                    setTimeout(function () {
+                        wx.hideLoading()
+                    }, 1000);
+                    return false;
+                } else {
+                    spaceDyn = that.Handel(spaceDyn)
+                    start += 5;
+                    spaceDyn = oldspaceDyn.concat(spaceDyn);
+                }
+                console.log(start)
+                that.setData({
+                    start: start,
+                    spaceDyn: spaceDyn
+                })
+            })
+        } else{
+            //加载禾苗圈或者禾兰圈数据
+            if (navIndex==1){
+                apiType = 'get-hemiao-social-list' //禾苗圈
+                console.log('加载禾苗圈数据')
+            } else if (navIndex == 2){
+                apiType = 'get-helan-social-list'  //禾兰圈
+                console.log('加载禾兰圈数据')
             }
-        },function(res){
-            console.log(res);
-            setTimeout(function () {
-                wx.hideLoading()
-            }, 300);
-            var spaceDyn = res.data.data.social_list;
-            if (spaceDyn.length === 0) {
-                wx.showLoading({
-                    title: '没有更多数据',
-                });
+            http({
+                type: apiType,
+                data:{
+                    start: that.data.start,
+                    length: 5
+                }
+            },function(res){
+                console.log('加载数据',res)
+                var spaceDyn = res.data.data.social_list;
+                if (spaceDyn.length === 0) {
+                    wx.showLoading({
+                        title: '没有更多数据',
+                    });
+                    setTimeout(function () {
+                        wx.hideLoading()
+                    }, 1000);
+                    return false;
+                } else {
+                    spaceDyn = that.Handel(spaceDyn)
+                    start += 5;
+                    spaceDyn = oldspaceDyn.concat(spaceDyn);
+                }
+                console.log(start)
+                that.setData({
+                    start: start,
+                    spaceDyn: spaceDyn
+                })
                 setTimeout(function () {
                     wx.hideLoading()
                 }, 1000);
-                return false;
-            } else {
-                spaceDyn = that.Handel(spaceDyn)
-                start += 5;
-                spaceDyn = oldspaceDyn.concat(spaceDyn);
-            }
-            console.log(start)
-
-            that.setData({
-                start: start,
-                spaceDyn: spaceDyn
             })
-        })
+        }
+
+        
     },
 
     // 返回首页

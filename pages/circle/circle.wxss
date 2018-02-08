@@ -85,6 +85,7 @@
 	position: absolute;
 	transform: rotate(45deg);
 	left: -25rpx;
+	top: 20rpx;
 }
 
 .nav-item:nth-of-type(1)::before{
@@ -156,12 +157,12 @@
 
 .space_dyn{
 	display: flex;
-	box-sizing: border-box;
   padding: 18rpx 28rpx;
 	background-color: #fff;
 	box-shadow:2px 2px 5px #eee;
 	position: relative;
-	width: 100vw;
+	width: 750rpx;
+  box-sizing: border-box;
 }
 
 .space_dyn:before {
@@ -171,13 +172,13 @@
   left: 0;
   right: 0;
   border-bottom: 1px solid #c8c7cc;
-  -webkit-transform: scaleY(.5);
-  -webkit-transform-origin: 0 0;
+  transform: scaleY(.5);
+  transform-origin: 0 0;
   pointer-events: none;
 }
 
 .space_content{
-  padding-left: 29rpx;
+  padding-left: 28rpx;
 	flex: 1;
   box-sizing: border-box;
 }
@@ -199,11 +200,20 @@
 	flex-wrap:wrap;
 }
 
-.content_img image{
-	display: block;
+.content_img_view{
 	width: 172rpx;
 	height: 172rpx;
 	margin: 5rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+  background-color:#f7f7f7;
+}
+
+.content_img image{
+	  display: block;
+    width: 100%;
 }
 
 .discuss_box{
@@ -318,20 +328,6 @@
 	top: 20rpx;
 }
 
-
-/*.comment::before{
-	content: " ";
-	display: block;
-	width: 100%;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	border-bottom: 1px solid red;
-	transform: translateY(.5);
-	transform-origin: 0 0;
-}*/
-
 .diss_input_opa{
 	display: flex;
 	justify-content: flex-end;
@@ -354,18 +350,6 @@
 	box-sizing: border-box;
 	position: relative;
 }
-
-/*.persion_diss:before {
-  content: "";
-  position: absolute;
-  bottom: top;
-  left: 0;
-  right: 0;
-  border-bottom: 1px solid rgba(200,199,204,.4);
-  -webkit-transform: scaleY(.5);
-  -webkit-transform-origin: 0 0;
-  pointer-events: none;
-}*/
 
 .persion_diss .diss_item:nth-of-type(1){
 	padding:10rpx 0;
@@ -434,3 +418,41 @@
 	width: 60rpx;
 	height: 60rpx;
 }
+
+/* 视频 */
+.video-view,.video-view .video-op,.video-view .video,.video-view .video video{
+	width: 534rpx;
+	height: 286rpx;
+}
+
+.video-view {
+	position: relative;
+}
+
+.video-view .video-play{
+	display: block;
+	width: 100rpx;
+	height: 100rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin:-50rpx 0 0 -50rpx;
+}
+
+.video-view .video-op{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.video-view .video-cover{
+	display: block;
+	width: 100%;
+	height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+

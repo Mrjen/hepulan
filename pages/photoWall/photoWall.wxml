@@ -1,7 +1,9 @@
 <view class='activity' style='background: url({{poster}}) no-repeat; background-size: cover;'>
   <view class='activityRules'>
     <view class='rule'>
-      <button class='button inGroup' bindtap='potowall' open-type='contact'>
+      <button class='button inGroup' 
+              bindtap='potowall' 
+              open-type='contact'>
         联系客服
       </button>
     </view>

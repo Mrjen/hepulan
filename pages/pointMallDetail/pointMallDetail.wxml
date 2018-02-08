@@ -1,14 +1,29 @@
 <!--pages/pointMallDetail/pointMallDetail.wxml-->
 <view class="cont">
-    <image class="product_img" src="{{productInfo.original_imgurl}}"></image>
-    <view class="product_titie border_bottom"><view>{{productInfo.name}}</view><view>快递包邮</view></view>
+    <image class="product_img" 
+           src="{{productInfo.original_imgurl}}">
+    </image>
+
+    <view class="product_titie border_bottom">
+        <view>{{productInfo.name}}</view>
+        <view>快递包邮</view>
+    </view>
+
     <view class="product_tip">
         <text>兑换所需积分</text>
         <text>剩余{{productInfo.amount}}库存</text>
     </view>
+
     <view class="type_box">
-        <view class="type_item {{item.active?'type_active':''}}" wx:for="{{productInfo.details}}" wx:key="index" bindtap="changeType" data-index="{{index}}">{{item.color}}</view>
+        <view class="type_item {{item.active?'type_active':''}}" 
+              wx:for="{{productInfo.details}}" 
+              wx:key="index" 
+              bindtap="changeType" 
+              data-index="{{index}}">
+              {{item.color}}
+        </view>
     </view>
+
      <!-- 数量 -->
      <view class="num_box">
         <text>兑换数量</text>
@@ -21,29 +36,66 @@
     
 
     <view class="detail_nav border_bottom">
-        <view wx:for="{{detailNav}}" wx:key="index" bindtap="changeNav" class="{{item.active?'detail_nav_active':''}}" data-index="{{index}}">{{item.text}}</view>
+        <view wx:for="{{detailNav}}" 
+              wx:key="index" 
+              bindtap="changeNav" 
+              class="{{item.active?'detail_nav_active':''}}" 
+              data-index="{{index}}">
+              {{item.text}}
+        </view>
     </view>
-    <view wx:if="{{detailNav[0].active}}" class="content_img">
-         <image wx:for="{{productInfo.images}}" wx:key="index" mode="widthFix" src="{{item.imgArr}}"></image>
+
+    <view wx:if="{{detailNav[0].active}}" 
+          class="content_img">
+         <image wx:for="{{productInfo.images}}" 
+                wx:key="index" 
+                mode="widthFix" 
+                src="{{item.imgArr}}">
+         </image>
     </view>
-    <view wx:if="{{detailNav[1].active}}" class="product_size">
-          <view class="size_item" wx:for="{{productInfo.attribute}}" wx:key="index"><text>{{item.label}}：</text><text>{{item.value}}</text></view>
+
+    <view wx:if="{{detailNav[1].active}}" 
+          class="product_size">
+          <view class="size_item" 
+                wx:for="{{productInfo.attribute}}" 
+                wx:key="index">
+
+                <text>{{item.label}}：</text>
+                <text>{{item.value}}</text>
+          </view>
     </view>
 
  <!-- 底导航 -->
  <view class="bottm_nav">
      <view bindtap="changeCollect">
-     	<image wx:if="{{productInfo.is_collect}}" src="https://qncdn.playonwechat.com/point_mall_collect.png"></image>
-     	<image wx:else src="https://qncdn.playonwechat.com/point_mall_nocollect.png"></image>
+         <image wx:if="{{productInfo.is_collect}}" 
+                src="https://qncdn.playonwechat.com/point_mall_collect.png">
+         </image>
+
+         <image wx:else 
+                src="https://qncdn.playonwechat.com/point_mall_nocollect.png">
+        </image>
      	<text>收藏</text>
      </view>
+
      <view bindtap="toShopCart">
      	<image src="https://qncdn.playonwechat.com/point_mall_bottomnav_shopcart.png"></image>
      	<text>购物车</text>
-     	<text class="cart_num" wx:if="{{productInfo.cart_count}}">{{productInfo.cart_count}}</text>
+         <text class="cart_num" 
+               wx:if="{{productInfo.cart_count}}">
+               {{productInfo.cart_count}}
+         </text>
      </view>
-     <view bindtap="SaveCart" data-productnum="{{productNum}}">加入购物车</view>
-     <view bindtap="exchangeBtn" data-productnum="{{productNum}}">立即兑换</view>
+
+     <view bindtap="SaveCart" 
+           data-productnum="{{productNum}}">
+           加入购物车
+     </view>
+
+     <view bindtap="exchangeBtn" 
+           data-productnum="{{productNum}}">
+           立即兑换
+     </view>
      <!--  exchangeBtn-->
  </view>
 </view>

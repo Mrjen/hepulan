@@ -59,6 +59,16 @@ page{
   color: #fff;
 }
 
+.daka{
+  width: 70rpx;
+  height: 80rpx;
+  background: red;
+  position: absolute;
+  right: 66rpx;
+  top: 124rpx;
+  opacity: 0;
+}
+
 /* 主体内容 */
 .point_detail{
   width: 280rpx;
@@ -509,3 +519,40 @@ page{
   margin:0 20rpx;
 }
 
+
+/* 积分弹层 */
+.jifen-view{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.2);
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jifen-rule{
+   width: 683rpx;
+   height: 1000rpx;
+   background-image: url('https://qncdn.playonwechat.com/hepulanhufu/get-score-rule-bg.png');
+   background-size: 100% 100%;
+   padding: 50rpx 100rpx;
+}
+
+.jifen-rule .title{
+   text-align: center;
+   font-size: 36rpx;
+   font-weight: normal;
+   color: #ce0000;
+   margin-bottom: 50rpx;
+}
+
+.rule-view{
+  font-size: 28rpx;
+  padding: 10rpx 0;
+  line-height: 1.5;
+  text-align: justify;
+}

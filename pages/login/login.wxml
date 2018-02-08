@@ -1,37 +1,73 @@
 <!--pages/login/login.wxml-->
 <view class="container">
-    <image class="banner" src="https://qncdn.playonwechat.com/hepulan/login_banner.png" mode="widthFix"></image>
+    <image class="banner" 
+           src="https://qncdn.playonwechat.com/hepulan/login_banner.png" 
+           mode="widthFix">
+    </image>
+
     <view>
-      <button wx:if="{{register_type===1?true:false}}" open-type="getPhoneNumber" class="getphone" bindgetphonenumber="getPhoneNumber">
-          <image src="https://qncdn.playonwechat.com/hepulan/login-icon-weixin1.png"></image>快捷获取手机号
+      <button wx:if="{{register_type===1?true:false}}" 
+              open-type="getPhoneNumber" 
+              class="getphone" 
+              bindgetphonenumber="getPhoneNumber">
+          <image src="https://qncdn.playonwechat.com/hepulan/login-icon-weixin1.png"></image>
+          快捷获取手机号
       </button>
-      <view class="birthday birthday1" wx:if="{{register_type===1?true:false}}"><text>手机号</text><view>{{phoneNumber}}</view></view>
+
+      <view class="birthday birthday1" 
+            wx:if="{{register_type===1?true:false}}">
+            <text>手机号</text>
+            <view>{{phoneNumber}}</view>
+      </view>
   </view>
-  <view class="phone" wx:if="{{register_type===1?false:true}}">
+
+  <view class="phone" 
+        wx:if="{{register_type===1?false:true}}">
       <view class="birthday birthday1">
         <text>手机号</text>
-        <input class="phone_input" type="number" maxlength="11" name="" bindinput="bindPhoneInput"/>
+        <input class="phone_input" 
+               type="number" 
+               maxlength="11" 
+               name="" 
+               bindinput="bindPhoneInput"/>
         <view class="verify_code">
-            <view bindtap="getPhoneCode" wx:if="{{code1}}">获取验证码</view>
+            <view bindtap="getPhoneCode" 
+                  wx:if="{{code1}}">
+                  获取验证码
+            </view>
             <view wx:if="{{code2}}">{{second}}秒</view>
         </view>
     </view>
      <view class="birthday birthday1">
         <text>验证码</text>
-        <input class="phone_input" type="number" name="" bindinput="bindKeyInput"/>
+        <input class="phone_input" 
+               type="number" 
+               name="" 
+               bindinput="bindKeyInput"/>
     </view>
   </view>
 
     <view class="birthday">
         <text>生日</text>
-        <picker mode="date" bindchange="bindDateChange"  start="1949-09-01" end="2100-09-01" value="{{date}}" custom-item="{{customItem}}">
+        <picker mode="date" 
+                bindchange="bindDateChange"  
+                start="1949-09-01" 
+                end="2100-09-01" 
+                value="{{date}}" 
+                custom-item="{{customItem}}">
             <view class="picker">
                 {{date}}
             </view>
         </picker>
     </view>
     <view class="tip">温馨提示：完善会员信息可享受会员礼包</view>
-    <button class="login" bindtap="loginIn">登录</button>
+    <button class="login" 
+            bindtap="loginIn">
+            登录
+    </button>
 
-    <view class="phone_login" bindtap="inputPhone">输入手机号注册</view>
+    <view class="phone_login" 
+          bindtap="inputPhone">
+          输入手机号注册
+    </view>
 </view>

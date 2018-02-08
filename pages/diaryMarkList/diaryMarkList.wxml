@@ -10,7 +10,9 @@
 <view class="diar_tip">{{signin_text}}</view>
 
 <view class="list">
-    <view class="item" wx:for="{{signin_list}}">
+    <view class="item" 
+          wx:for="{{signin_list}}" 
+          wx:key="{{index}}">
        <view class="item_left">
            <view>{{item.day}}</view>
            <view>{{item.month}}月</view>

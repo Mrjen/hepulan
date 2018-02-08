@@ -64,9 +64,14 @@
                       style="color:#fff;font-size:22rpx; border-radius:50%;background-color:#ff9393">
                       已签
                 </text>
-                <text wx:else="" style="color:#ff9393;" bindtap="toDiary">{{date}}</text>
+                <text wx:else="" 
+                      style="color:#ff9393;" 
+                      bindtap="toDiary">{{date}}</text>
             </view>
-            <view wx:for="{{monthDaySize-date}}">{{item+date+1}}</view>
+            <view wx:for="{{monthDaySize-date}}" 
+                  wx:key="{{index}}">
+                  {{item+date+1}}
+            </view>
         </view>
     </view>
 

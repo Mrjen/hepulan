@@ -4,7 +4,9 @@
 <scroll-view scroll-y="true" class="container">
 
   <view class="article">
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+    <template is="wxParse" 
+              data="{{wxParseData:article.nodes}}">
+    </template>
   </view>
   <block>
     <button wx:if="{{teach_static}}" 
@@ -21,7 +23,9 @@
   </block>
 
   <block wx:for="{{templateData}}">
-    <template wx:if="{{copyTeach}}" is="teachInfo" data="{{...item}}" />
+    <template wx:if="{{copyTeach}}" 
+              is="teachInfo" 
+              data="{{...item}}" />
   </block>
   
   <view class="bottom_margin"></view>

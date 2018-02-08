@@ -1,14 +1,16 @@
 <!--pages/skinResultDetailGuide/skinResultDetailGuide.wxml-->
 <import src="../template/template.wxml" />
 <view class="container">
-<!-- 内区 -->
-<navigator class="header">护肤指南</navigator>
-<view class="content">{{skin_arr.skin_guide}}</view>
+    <!-- 内区 -->
+    <navigator class="header">护肤指南</navigator>
 
-<navigator class="header" url="">温馨提示</navigator>
-<view class="content tip">此份测试报告仅靠提问的方式得出，报告结果可能与实际肌肤情况存在偏差，建议截图报告结果给专属护肤老师一对一的解答与更深入的肤质了解判断。</view>
+    <view class="content">{{skin_arr.skin_guide}}</view>
 
-<navigator class="retest" url="../skinTest/skinTest">觉得不准确？点击重新测试</navigator>
+    <navigator class="header" url="">温馨提示</navigator>
+
+    <view class="content tip">此份测试报告仅靠提问的方式得出，报告结果可能与实际肌肤情况存在偏差，建议截图报告结果给专属护肤老师一对一的解答与更深入的肤质了解判断。</view>
+
+    <navigator class="retest" url="../skinTest/skinTest">觉得不准确？点击重新测试</navigator>
 
     <template is="share_icon" />
 </view>

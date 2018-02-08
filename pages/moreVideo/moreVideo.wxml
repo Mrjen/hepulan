@@ -1,0 +1,37 @@
+<!--pages/moreVideo/moreVideo.wxml-->
+<view class="container">
+    <!-- BANNER -->
+    <view class="banner" style="background-image:url({{videoData.banner}});"></view>
+    
+    <!-- 导航 -->
+    <view class="video-nav">
+        <view wx:for="{{navData}}"
+              class="item {{item.active?'active':''}}"
+              bindtap="changeNav"
+              data-id="{{item.vt_id}}"
+              data-idx="{{index}}"
+              wx:key="{{index}}">{{item.name}}</view>
+    </view>
+
+    <!-- 视频列表 -->
+    <view class="video-list">
+        <view class="video-item"
+              wx:for="{{videoData.videos}}"
+              wx:key="{{index}}">
+            <view class="cover-view"
+                  wx:if="{{!item.play}}"
+                  data-idx="{{index}}"
+                  bindtap="playVideo">
+                <image class="cover" 
+                       src="{{item.cover}}">
+                </image>
+                <view class="play-btn"></view>
+            </view>
+            <video wx:else
+                   src="{{item.url}}"
+                   bindended="videoPlayEnd"
+                   data-idx="{{index}}"
+                   autoplay="{{item.play}}"></video>
+        </view>
+    </view>
+</view>

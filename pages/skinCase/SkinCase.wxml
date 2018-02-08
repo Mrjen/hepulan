@@ -1,0 +1,47 @@
+<!--pages/skinCase/SkinCase.wxml-->
+<view class="container">
+    <view class="video01" style="height:{{playData.video1?'1334':1142}}rpx">
+        <view wx:if="{{!playData.video1}}" 
+              bindtap="playVideo1" 
+              class="video01-cover"></view>
+        <video wx:else
+               autoplay="{{playData.video1}}"
+               bindended="playEnd"
+               show-progress="{{false}}"
+               src="https://qncdn.playonwechat.com/hepulanhufu/skincase-video01.mp4"></video>
+    </view>
+    <navgitor class="skin-test" url="">肌肤测试</navgitor>
+
+    <!-- 塑原 -->
+    <view class="block02">
+        <view class="video02">
+            <view class="video-cover02" 
+                  bindtap="playVideo2"
+                  wx:if="{{!playData.video2}}"></view>
+            <video wx:else 
+                   autoplay="{{playData.video2}}"
+                   src="https://qncdn.playonwechat.com/hepulanhufu/skincase-video02.mp4"></video>
+        </view>
+    </view>
+
+    <!-- 凝质 -->
+    <view class="ningzhi"></view>
+
+    <!-- skin Case -->
+    <view class="skincase">
+        <view class="video03">
+            <view class="video03-cover"
+                   bindtap="playVideo3"
+                   wx:if="{{!playData.video3}}"></view>
+            <video wx:else 
+                   autoplay="{{playData.video3}}"
+                   src="https://gcdn.playonwechat.com/SKINCASE%E5%8A%A8%E7%94%BB%E6%89%8B%E6%9C%BA.mp4#t=1"></video>
+        </view>
+    </view>
+
+    <!-- 内涵 -->
+    <view class="neihan"></view>
+</view>
+
+
+<!-- https://qncdn.playonwechat.com/hepulanhufu/skin-case-video02-cover.png -->

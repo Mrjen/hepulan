@@ -20,7 +20,11 @@ Page({
         }, {
             icon: 'https://qncdn.playonwechat.com/hepulanhufu/mine-skin-icon.png',
             url: '../skinTest/skinTest',
-            text: '肌肤档案'
+            text: '肌肤测试'
+        },{
+            icon:'https://qncdn.playonwechat.com/hepulanhufu/mine-order-icon.png',
+            url:'../myOrder/myOrder',
+            text: '我的订单'
         }]
     },
     onLoad: function (options) {

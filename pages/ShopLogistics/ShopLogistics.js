@@ -106,10 +106,12 @@ Page({
      };
      common.http(http,function(res){
         if (res.data.status===1) {
-           wx.showToast({
-            title: '订单取消成功',
-            icon: 'success',
-            duration: 2000
+          wx.showModal({
+            title:'提示',
+            content:res.data.msg,
+            success(res){
+              console.log('取消订单',res)
+            }
           })
            that.setData({
               opration_usable:0,

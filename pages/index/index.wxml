@@ -5,17 +5,16 @@
                 interval="5000" 
                 duration="1000" 
                 circular="true"
-                indicator-active-color="#006d4a"
-                indicator-dots="true">
+                indicator-active-color="#006d4a">
             <block>
                 <swiper-item>
-                    <image src="{{banner[0]}}" class="slide-image"/>
+                    <image src="https://qncdn.playonwechat.com/hepulanhufu/index-banner.png" class="slide-image"/>
                     <button class="ask-btn" open-type="contact"></button>
                 </swiper-item>
-                <swiper-item>
+                <!-- <swiper-item>
                     <image src="{{banner[1]}}" class="slide-image" />
-                    <!-- <button class="ask-btn" open-type="contact"></button> -->
-                </swiper-item>
+                    <button class="ask-btn" open-type="contact"></button>
+                </swiper-item> -->
             </block>
         </swiper>
 
@@ -34,25 +33,80 @@
     <view class="teacher-view">
         <view class="top-tip">
             <view class="xian"></view>
-            <navigator url="">更多老师>></navigator>
+            <navigator url="../moreTeacher/moreTeacher">
+                在线服务导师
+            </navigator>
         </view>
         <view class="teacher-swiper">
-            <swiper class="teacher-banner" 
+
+                <!-- 老师轮播 -->
+                <view class="teach-view01">
+                    <swiper autoplay="5000" interval="5000" circular="true" display-multiple-items="4" duration="4000">
+                        <block wx:for="{{teachList.sdsg_teachers}}" wx:key="{{index}}">
+                            <swiper-item>
+                                <view class="teach-item">
+                                    <view class="teach-nav">圣迪斯哥美容博士</view>
+                                    <image src="{{item.avatar}}" bindtap="toTeachDetail" data-tid="{{item.st_id}}" class="slide-image">
+                                    </image>
+                                    <view class="teach-discribe">
+                                        导师:{{item.nickname}}
+                                    </view>
+                                    <button class="ask-teach" open-type="contact">
+                                        立即咨询
+                                    </button>
+                                </view>
+                            </swiper-item>
+                        </block>
+                    </swiper>
+                </view>
+
+            <!-- 老师轮播2 -->
+            <view class="teach-view01 teach-view02">
+                <swiper autoplay="6000" interval="6000" circular="true" display-multiple-items="4" duration="4000">
+                    <block wx:for="{{teachList.skin_teachers}}" wx:key="{{index}}">
+                        <swiper-item>
+                            <view class="teach-item">
+                                <view class="teach-nav">禾葡兰高级护肤师</view>
+                                <image src="{{item.avatar}}" bindtap="toTeachDetail" data-tid="{{item.st_id}}" class="slide-image">
+                                </image>
+                                <view class="teach-discribe">
+                                    导师:{{item.nickname}}
+                                </view>
+                                <button class="ask-teach" open-type="contact">
+                                    立即咨询
+                                </button>
+                            </view>
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </view>
+
+            <!-- <swiper class="teacher-banner" 
                     autoplay="true" 
                     interval="4000" 
                     duration="1000" 
                     circular="true">
-                <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+                <block wx:for="{{imgUrls}}" 
+                       wx:key="{{index}}">
                     <swiper-item>
                         <image src="{{item}}" class="slide-image"/>
                     </swiper-item>
                 </block>
-            </swiper>
+            </swiper> -->
+
+
         </view>
         <view class="bottom-tip">
             <navigator url=""></navigator>
             <view class="xian"></view>
         </view>
+
+        <!-- <view class="top-tip">
+            <view class="xian"></view>
+            <navigator url="../moreVideo/moreVideo">
+                更多视频>>
+            </navigator>
+        </view> -->
     </view>
 
     <view class="video-view">
@@ -61,12 +115,20 @@
             <view class="text02 text">一对一解决肌肤问题</view>
             
             <view class="video">
-                <image class="video-cover" bindtap="playVideo" wx:if="{{!playVideo}}" src="https://qncdn.playonwechat.com/hepulanhufu/index-video-bg.png"></image>
-                <video wx:else autoplay="{{playVideo}}" bindended="playEnd" src="https://qncdn.playonwechat.com/hepulanhufu/index-video.mp4"></video>
+                <image class="video-cover" 
+                       bindtap="playVideo" 
+                       wx:if="{{!playVideo}}" 
+                       src="https://qncdn.playonwechat.com/hepulanhufu/index-video-bg.png">
+                </image>
+                <video wx:else 
+                       autoplay="{{playVideo}}" 
+                       bindended="playEnd" 
+                       src="https://qncdn.playonwechat.com/hepulanhufu/index-video.mp4">
+                </video>
             </view>
 
             <view class="video-tip">
-                <text>12658</text>
+                <text>{{random_number}}</text>
                 位女性成功治愈皮肤>>
             </view>
 
@@ -79,14 +141,25 @@
         </view>
     </view>
 
+<view class="zuge-view">
     <view class="zuge"></view>
+</view>
+    
 
     <!-- 品牌故事 -->
     <view class="brand-story">
         <view class="story-logo"></view>
         <view class="story-content">
-            <navigator class="see-detail" url="">查看详情</navigator>
+            <navigator class="see-detail" url="../Brand/Brand">查看详情</navigator>
         </view>
+    </view>
+
+    <!-- skin case  -->
+    <view class="skin-case">
+         <view class="xian"></view>
+         <navigator class="skin-nav"
+                    hover-class="none"
+                    url='../skinCase/SkinCase'>了解SkinCase>></navigator>
     </view>
 
     <!-- 肌肤测试 -->
@@ -94,36 +167,46 @@
         <image class="skin-care-video-cover"  
                wx:if="{{!skinCare}}"
                bindtap="skinCare"
-               src="https://qncdn.playonwechat.com/hepulanhufu/index-video-cover.png"></image>
+               src="https://qncdn.playonwechat.com/hepulanhufu/index-video-cover.png">
+        </image>
+
         <video class="skin-care-video" 
                wx:else
                autoplay="{{skinCare}}"
                bindended="playEnd" 
-               src="https://gcdn.playonwechat.com/SKINCASE%E5%8A%A8%E7%94%BB%E6%89%8B%E6%9C%BA.mp4#t=1"></video>
-        <navigator class="skin-care-btn">肌肤测试</navigator>
+               src="https://gcdn.playonwechat.com/SKINCASE%E5%8A%A8%E7%94%BB%E6%89%8B%E6%9C%BA.mp4#t=1">
+        </video>
+        <navigator class="skin-care-btn" 
+                   url="../skinTest/skinTest">
+                   肌肤测试
+        </navigator>
     </view>
 
     <!-- 页面按钮 -->
-
     <!-- <view class="btn1"></view>
     <view class="btn2"></view>
     <view class="btn3"></view> -->
 
-</view>
-
-
 <!-- 红包 -->
 
-<form bindsubmit="getFromId" report-submit="true" wx:if="{{redpack}}">
+<!-- <form bindsubmit="getFromId" report-submit="true" wx:if="{{redpack}}">
     <view class="red-pack" style="display:{{redpack?'flex':'none'}}">
         <view class="pack-inner">
-            <image class="red-logo" src="https://qncdn.playonwechat.com/hepulanhufu/red-pack-logo.png"></image>
+            <image class="red-logo" src="https://qncdn.playonwechat.com/hepulanhufu/red-pack-logo.png">
+            </image>
             <view class="red-title">禾葡兰</view>
             <view class="red-title">给你发了一个红包</view>
             <view class="red-content">恭喜发财，大吉大利</view>
-            <button  formType="submit" class="open-btn"></button>
+            <button formType="submit" class="open-btn"></button>
             <view class="closeRedPack" bindtap="closeRedPack"></view>
         </view>
     </view>
+</form> -->
+
+<form bindsubmit="getFromId" report-submit="true">
+    <button class="redpack-icon" formType="submit"></button>
 </form>
+</view>
+
+
 

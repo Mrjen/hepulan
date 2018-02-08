@@ -20,7 +20,8 @@
            wx:key="{{index}}">{{item.text}}</view>
   </view>
 
-  <view class="nav_in" wx:if="{{navIndex==0}}">
+  <view class="nav_in" 
+        wx:if="{{navIndex==0}}">
     <view wx:for="{{navList}}" 
           wx:key="{{index}}" 
           class="{{item.active?'nav_active':''}}" 
@@ -32,8 +33,12 @@
   </view>
 </view>
 
-<view class='circle-main circle-main{{navIndex}}' wx:if="{{navIndex==0}}">
-  <view class="space_dyn" wx:for="{{spaceDyn}}" wx:key="{{index}}">
+<!-- 禾粉圈  禾粉圈 -->
+<view class='circle-main circle-main{{navIndex}}' 
+      wx:if="{{navIndex==0}}">
+  <view class="space_dyn" 
+        wx:for="{{spaceDyn}}" 
+        wx:key="{{index}}">
     <view class="user_img">
       <image src="{{item.headimgurl}}"></image>
     </view>
@@ -44,15 +49,23 @@
 
       <view class="content_img" hidden="{{item.imgs==''}}">
         <!-- <image src="http://cdn.suoluomei.com/public/hplwx/images/fire.png"></image> -->
-        <image wx:for="{{item.imgslist}}" 
-              bindtap="prewImg" 
+        <view class="content_img_view" 
+              wx:for="{{item.imgslist}}"
               wx:key="{{index}}"
-              wx:for-item="imgslist" 
-              wx:for-index="spaceDyn" 
-              data-imglist="{{item.imgslist}}" 
-              data-url="{{imgslist}}" 
-              src="{{imgslist}}"></image>
+              wx:for-index="{{index}}"
+              wx:for-item="imgslist"
+              bindtap="prewImg"
+              data-idx="{{imgslist}}"
+              data-url="{{item.imgslist}}"
+              style="width:{{item.imgslist.length==1?'400':'172'}}rpx;height:{{item.imgslist.length==1?'400':'172'}}rpx"
+              data-imglist="{{item.imgslist}}">
+          <image mode="widthFix"
+                 src="{{imgslist}}">
+          </image>
+        </view>
       </view>
+
+<!-- mode="widthFix" data-imglist="{{imgslist}}" data-url="{{imgslist}}" -->
 
       <view class="discuss_box">
         <view class="write_time">{{item.dynTime}}</view>
@@ -64,7 +77,8 @@
             <view class="like_btn {{item.is_praise>0?'like_btn_selsct':''}}"></view>点赞
           </view>
           <view class="diss_bx" 
-                wx:if="{{item.commentusable?true:false}}" bindtap="dissWrite" 
+                wx:if="{{item.commentusable?true:false}}" 
+                bindtap="dissWrite" 
                 data-inx="{{item.userName}}" 
                 data-idwrite="{{index}}">
             <view class="discuss_btn">
@@ -74,8 +88,13 @@
         </view>
       </view>
       <view class="like_persion">
-        <view class="like_item" wx:if="{{item.praise}}">{{item.praise}}</view>
-        <view wx:if="{{item.is_praise.length>50?true:false}}">共{{item.praise_num}}人点赞</view>
+        <view class="like_item" 
+              wx:if="{{item.praise}}">
+              {{item.praise}}
+        </view>
+        <view wx:if="{{item.is_praise.length>50?true:false}}">
+           共{{item.praise_num}}人点赞
+        </view>
       </view>
 
       <view class="persion_diss">
@@ -86,13 +105,21 @@
       </view>
 
     </view>
-    <view class="diss_win" wx:if="{{showWrite}}">
+    <view class="diss_win" 
+          wx:if="{{showWrite}}">
       <view class="write_box">
         <view class="comment">评论</view>
         <textarea bindinput="bindTextAreaBlur" />
         <view class="diss_input_opa">
-          <view class="diss_input_cencel" bindtap="writeCencel">取消</view>
-          <view class="diss_input_sure" bindtap="writeSure" data-pername="{{index}}">确定</view>
+          <view class="diss_input_cencel" 
+                bindtap="writeCencel">
+                取消
+          </view>
+          <view class="diss_input_sure" 
+                bindtap="writeSure" 
+                data-pername="{{index}}">
+                确定
+          </view>
         </view>
       </view>
     </view>
@@ -100,30 +127,72 @@
   </view>
 </view>
 
-<!-- navIndex==1  -->
-<view class='circle-main circle-main{{navIndex}}' wx:if="{{navIndex==1}}">
-  <view class="space_dyn" wx:for="{{spaceDyn}}" wx:key="{{index}}">
+<!-- 禾苗圈 禾苗圈  navIndex==1-->
+<view class='circle-main circle-main{{navIndex}}' 
+      wx:if="{{navIndex==1}}">
+  <view class="space_dyn" 
+        wx:for="{{spaceDyn}}" 
+        wx:key="{{index}}">
     <view class="user_img">
       <image src="{{item.headimgurl}}"></image>
     </view>
 
-    <view class="space_content" wx:if="{{false}}">
+    <view class="space_content">
       <view class="user_name">{{item.nickname}}</view>
       <view class="content_view">{{item.content}}</view>
-
-      <view class="content_img" hidden="{{item.imgs==''}}">
-        <!-- <image src="http://cdn.suoluomei.com/public/hplwx/images/fire.png"></image> -->
-        <image wx:for="{{item.imgslist}}" bindtap="prewImg" wx:key="{{index}}" wx:for-item="imgslist" wx:for-index="spaceDyn" data-imglist="{{item.imgslist}}"
-          data-url="{{imgslist}}" src="{{imgslist}}"></image>
-      </view>
+        <block>
+            <view class="content_video" 
+                  wx:if="{{item.media_type=='video'}}">
+              <view class="video-view">
+                <view class="video-op" 
+                      bindtap="playVideo" 
+                      data-idx="{{index}}" 
+                      wx:if="{{!item.play_video}}">
+                  <image class="video-play" 
+                        src="../img/home_icon_videoplay.png">
+                  </image>
+                  <image class="video-cover" src="{{item.video_cover}}">
+                  </image>
+                </view>         
+          
+                <view class="video" wx:else>
+                  <video autoplay="{{item.play_video}}" data-idx="{{index}}" bindended="videoPlayEnd" src="{{item.video_url}}">
+                  </video>
+                </view>
+              </view>
+            </view>
+        
+          <view class="content_img" wx:if="{{item.media_type=='pic'}}">
+            <view class="content_img_view" 
+                   wx:for="{{item.imgslist}}" 
+                   wx:key="{{index}}" 
+                   wx:for-index="{{index}}" 
+                   wx:for-item="imgslist"
+                   bindtap="prewImg" 
+                   data-idx="{{imgslist}}" 
+                   data-url="{{item.imgslist}}" 
+                   style="width:{{item.imgslist.length==1?'400':'172'}}rpx;height:{{item.imgslist.length==1?'400':'172'}}rpx"
+                   data-imglist="{{item.imgslist}}">
+              <image mode="widthFix" src="{{imgslist}}">
+              </image>
+            </view>
+          </view>
+        </block>
 
       <view class="discuss_box">
         <view class="write_time">{{item.dynTime}}</view>
         <view class="discuss_opation">
-          <view class="like_box" bindtap="dianZan" data-zan="{{index}}" data-pid="{{item.pid}}">
+          <view class="like_box" 
+                bindtap="dianZan" 
+                data-zan="{{index}}" 
+                data-pid="{{item.pid}}">
             <view class="like_btn {{item.is_praise>0?'like_btn_selsct':''}}"></view>点赞
           </view>
-          <view class="diss_bx" wx:if="{{item.commentusable?true:false}}" bindtap="dissWrite" data-inx="{{item.userName}}" data-idwrite="{{index}}">
+          <view class="diss_bx" 
+                wx:if="{{item.commentusable?true:false}}" 
+                bindtap="dissWrite" 
+                data-inx="{{item.userName}}" 
+                data-idwrite="{{index}}">
             <view class="discuss_btn">
               <image src="../img/circle_icon_discuss.png"></image>
             </view>评论
@@ -131,23 +200,31 @@
         </view>
       </view>
       <view class="like_persion">
-        <view class="like_item" wx:if="{{item.praise}}">{{item.praise}}</view>
+        <view class="like_item" 
+              wx:if="{{item.praise}}">
+              {{item.praise}}
+        </view>
         <view wx:if="{{item.is_praise.length>50?true:false}}">共{{item.praise_num}}人点赞</view>
       </view>
 
       <view class="persion_diss">
-        <view class="diss_item" wx:for="{{item.comments}}" wx:key="{{index}}" wx:for-item="comments">{{comments.username}}：{{comments.comment}}</view>
+        <view class="diss_item" 
+              wx:for="{{item.comments}}" 
+              wx:key="{{index}}" 
+              wx:for-item="comments">
+              {{comments.username}}：{{comments.comment}}
+        </view>
       </view>
 
     </view>
 
-    <view class="space_content" wx:if="{{true}}">
+    <!-- <view class="space_content" wx:if="{{true}}">
       <view class="user_name">{{item.nickname}}</view>
       <view class="content_view">{{item.content}}</view>
     
       <view class="content_video">
          <view class="video">
-            <view class="video_cover" bindtap="videoPlay">1111</view>
+            <view class="video_cover" bindtap="videoPlay"></view>
             <video wx:if="{{videoPlay}}" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>
          </view>
       </view>
@@ -157,15 +234,18 @@
 
       </view>
  
-    </view>
+    </view> -->
 
     <view class="diss_win" wx:if="{{showWrite}}">
       <view class="write_box">
         <view class="comment">评论</view>
         <textarea bindinput="bindTextAreaBlur" />
         <view class="diss_input_opa">
-          <view class="diss_input_cencel" bindtap="writeCencel">取消</view>
-          <view class="diss_input_sure" bindtap="writeSure" data-pername="{{index}}">确定</view>
+          <view class="diss_input_cencel" 
+                bindtap="writeCencel">取消</view>
+          <view class="diss_input_sure" 
+                bindtap="writeSure" 
+                data-pername="{{index}}">确定</view>
         </view>
       </view>
     </view>
@@ -173,8 +253,13 @@
   </view>
 </view>
 
-<view class='circle-main circle-main{{navIndex}}' wx:if="{{navIndex==2}}">
-  <view class="space_dyn" wx:for="{{spaceDyn}}" wx:key="{{index}}">
+
+<!-- 禾兰圈 禾兰圈  navIndex==2 -->
+<view class='circle-main circle-main{{navIndex}}' 
+      wx:if="{{navIndex==2}}">
+  <view class="space_dyn" 
+        wx:for="{{spaceDyn}}" 
+        wx:key="{{index}}">
     <view class="user_img">
       <image src="{{item.headimgurl}}"></image>
     </view>
@@ -183,19 +268,64 @@
       <view class="user_name">{{item.nickname}}</view>
       <view class="content_view">{{item.content}}</view>
 
-      <view class="content_img" hidden="{{item.imgs==''}}">
-        <!-- <image src="http://cdn.suoluomei.com/public/hplwx/images/fire.png"></image> -->
-        <image wx:for="{{item.imgslist}}" bindtap="prewImg" wx:key="{{index}}" wx:for-item="imgslist" wx:for-index="spaceDyn" data-imglist="{{item.imgslist}}"
-          data-url="{{imgslist}}" src="{{imgslist}}"></image>
-      </view>
+      <block>
+        <view class="content_video" 
+              wx:if="{{item.media_type=='video'}}">
+          <view class="video-view">
+            <view class="video-op" 
+                  bindtap="playVideo" 
+                  data-idx="{{index}}" 
+                  wx:if="{{!item.play_video}}">
+              <image class="video-play" 
+                     src="../img/home_icon_videoplay.png">
+              </image>
+              <image class="video-cover" 
+                     src="{{item.video_cover}}">
+              </image>
+            </view>
+
+            <view class="video" wx:else>
+              <video autoplay="{{item.play_video}}" 
+                     data-idx="{{index}}" 
+                     bindended="videoPlayEnd" 
+                     src="{{item.video_url}}">
+              </video>
+            </view>
+          </view>
+        </view>
+
+        <view class="content_img" 
+              wx:if="{{item.media_type=='pic'}}">
+          <view class="content_img_view"
+                wx:for="{{item.imgslist}}"
+                wx:key="{{index}}"
+                wx:for-index="{{index}}"
+                wx:for-item="imgslist"
+                bindtap="prewImg"
+                data-idx="{{imgslist}}"
+                data-url="{{item.imgslist}}"
+                data-imglist="{{item.imgslist}}">
+              <image mode="widthFix" 
+                     src="{{imgslist}}">
+              </image>
+          </view>
+        </view>
+      </block>
 
       <view class="discuss_box">
         <view class="write_time">{{item.dynTime}}</view>
         <view class="discuss_opation">
-          <view class="like_box" bindtap="dianZan" data-zan="{{index}}" data-pid="{{item.pid}}">
+          <view class="like_box" 
+                bindtap="dianZan" 
+                data-zan="{{index}}" 
+                data-pid="{{item.pid}}">
             <view class="like_btn {{item.is_praise>0?'like_btn_selsct':''}}"></view>点赞
           </view>
-          <view class="diss_bx" wx:if="{{item.commentusable?true:false}}" bindtap="dissWrite" data-inx="{{item.userName}}" data-idwrite="{{index}}">
+          <view class="diss_bx" 
+                wx:if="{{item.commentusable?true:false}}" 
+                bindtap="dissWrite" 
+                data-inx="{{item.userName}}" 
+                data-idwrite="{{index}}">
             <view class="discuss_btn">
               <image src="../img/circle_icon_discuss.png"></image>
             </view>评论
@@ -203,12 +333,20 @@
         </view>
       </view>
       <view class="like_persion">
-        <view class="like_item" wx:if="{{item.praise}}">{{item.praise}}</view>
+        <view class="like_item" 
+              wx:if="{{item.praise}}">
+              {{item.praise}}
+        </view>
         <view wx:if="{{item.is_praise.length>50?true:false}}">共{{item.praise_num}}人点赞</view>
       </view>
 
       <view class="persion_diss">
-        <view class="diss_item" wx:for="{{item.comments}}" wx:key="{{index}}" wx:for-item="comments">{{comments.username}}：{{comments.comment}}</view>
+        <view class="diss_item" 
+              wx:for="{{item.comments}}" 
+              wx:key="{{index}}" 
+              wx:for-item="comments">
+              {{comments.username}}：{{comments.comment}}
+        </view>
       </view>
 
     </view>
@@ -217,8 +355,13 @@
         <view class="comment">评论</view>
         <textarea bindinput="bindTextAreaBlur" />
         <view class="diss_input_opa">
-          <view class="diss_input_cencel" bindtap="writeCencel">取消</view>
-          <view class="diss_input_sure" bindtap="writeSure" data-pername="{{index}}">确定</view>
+          <view class="diss_input_cencel" 
+                bindtap="writeCencel">取消</view>
+          <view class="diss_input_sure" 
+                bindtap="writeSure" 
+                data-pername="{{index}}">
+                确定
+          </view>
         </view>
       </view>
     </view>
@@ -226,6 +369,8 @@
   </view>
 </view>
 
-<view bindtap="writeCircle" class="write_dyn" wx:if="{{writeCircle}}">
+<view bindtap="writeCircle" 
+      class="write_dyn" 
+      wx:if="{{writeCircle}}">
   <image src="../img/circle_icon_write.png"></image>
 </view>

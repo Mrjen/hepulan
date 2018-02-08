@@ -32,16 +32,16 @@
               </picker>
 
               <picker bindchange="bindPickerCity" 
-                     value="{{indexCity}}" 
-                     range="{{City}}">
+                      value="{{indexCity}}" 
+                      range="{{City}}">
                 <view class="picker">
                   {{City[indexCity]}}
                 </view>
               </picker>
 
               <picker bindchange="bindPickerCounty" 
-                     value="{{indexCounty}}" 
-                     range="{{County}}">
+                      value="{{indexCounty}}" 
+                      range="{{County}}">
                 <view class="picker">
                   {{County[indexCounty]}}
                 </view>

@@ -1,8 +1,14 @@
 <!--pages/skinTestDetail/skinTestDetail.wxml-->
-<view class="nav" style="background-color:#ffd800;">
-    <view class="tag_box" style="margin-left:{{navLeft}}rpx;transition: .5s;">
-        <view class="test_tag" wx:for="{{test}}">
-            <view style="color:{{index+1==questionIndex?'#ffd800':''}}">{{index+1}}</view>
+<view class="nav" 
+      style="background-color:#006d4a;">
+    <view class="tag_box" 
+          style="margin-left:{{navLeft}}rpx;transition: .5s;">
+        <view class="test_tag" 
+              wx:for="{{test}}" 
+              wx:key="{{index}}">
+            <view style="color:{{index+1==questionIndex?'#006d4a':''}}">
+                {{index+1}}
+            </view>
             <view wx:if="{{item.active}}"></view>
         </view>
     </view>
@@ -11,21 +17,44 @@
 
 <!-- 题目区域 -->
 <view class="question">
-    <view class="question_item" wx:for="{{test}}" wx:if="{{index+1==questionIndex?true:false}}">
+    <view class="question_item" 
+          wx:for="{{test}}" 
+          wx:key="{{index}}"
+          wx:if="{{index+1==questionIndex?true:false}}">
        <view class="title">{{item.question}}</view>
-       <view class="item_item" wx:for="{{item.options}}" wx:for-item="options" wx:key="index" bindtap="selectItem" data-score="{{options.score}}">{{options.op}}</view>
+       <navigator class="item_item" 
+             hover-class="nav-active"
+             wx:for="{{item.options}}" 
+             wx:for-item="options" 
+             wx:key="{{index}}" 
+             bindtap="selectItem" 
+             data-opx="{{index}}"
+             style="color:{{options.active?'#006d4a':'#333'}}"
+             data-score="{{options.score}}">
+             {{options.op}}
+        </navigator>
     </view>
+</view>
+
+<!-- 按钮区域 -->
+<view class="btn-view">
+    <view class="prev-question btn" 
+          wx:if="{{questionIndex==1?false:true}}"
+          bindtap="prevQuestion">上一题</view>
+    <view class="next-question btn" bindtap="nextQuestion">下一题</view>
 </view>
 
 <!-- 弹窗 -->
 <view class="test_win" wx:if="{{testStart}}">
     <view class="win_in">
-        <view class="colse_btn" bindtap="closeWin"></view>
-        <image class="win_icon" src="{{win.icon}}"></image>
-        <view class="win_title" style="color:{{win.color}}">{{win.title}}结果</view>
+        <view class="colse_btn" 
+              bindtap="closeWin"></view>
+        <image class="win_icon" 
+               src="{{win.icon}}"></image>
+        <view class="win_title" 
+              style="color:{{win.color}}">
+              {{win.title}}结果
+        </view>
         <view class="discribe">{{win.discribe}}</view>
-<!--         <block>
-            <view class="test_btn" style="background-color:{{win.color}}">开始测试</view>
-        </block> -->
     </view>
 </view>

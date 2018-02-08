@@ -10,7 +10,11 @@
     <view class="gold_tip">我通过分享禾葡兰小程序赚到{{boostCoins}}热力</view>
     <view>
                                             <!-- wx:if="{{!hashelp}}" -->
-        <view class="shre_btn" bindtap="helpHe" wx:if="{{!hashelp}}">为他助力</view>
+        <view class="shre_btn" 
+              bindtap="helpHe" 
+              wx:if="{{!hashelp}}">
+              为他助力
+        </view>
         <view class="hasshre_btn" wx:else="">已为他助力</view>
     </view>
 

@@ -26,9 +26,12 @@
       <view class="bold_text introduct">开始时间</view>
       <view class="teach_introduct">{{teachTime}}</view>
 
-      <view wx:if="{{countDown_tatic}}" class="countDown">
+      <view wx:if="{{countDown_tatic}}" 
+            class="countDown">
         <view class="count_down">倒计时</view>
-        <view class="time_box" wx:for="{{Countdown}}" wx:key="{{index}}">
+        <view class="time_box" 
+              wx:for="{{Countdown}}" 
+              wx:key="{{index}}">
           <view class="time_item">
               {{item.day}}
             <text>天</text>
@@ -60,7 +63,9 @@
                wx:key="{{index}}" 
                src="{{item.avatar}}">
         </image>
-        <view wx:if="{{moreIcon}}" class="more_persion"></view>
+        <view wx:if="{{moreIcon}}" 
+              class="more_persion">
+        </view>
       </view>
 
     </view>

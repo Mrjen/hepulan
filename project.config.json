@@ -31,7 +31,7 @@
 					"id": 0,
 					"name": "从别人分享进入",
 					"pathName": "pages/redPack/redPack",
-					"query": "unique_code=5a6e8a438cf0d",
+					"query": "unique_code=5a77ad05424de",
 					"scene": "1014"
 				},
 				{
@@ -54,6 +54,48 @@
 					"pathName": "pages/photoWall/photoWall",
 					"query": "scene=d5c2bf5e0974a09f0df9729fbb8bf3df",
 					"scene": "1001"
+				},
+				{
+					"id": 4,
+					"name": "进入老师详情页",
+					"pathName": "pages/teacherDetail/teacherDetail",
+					"query": "tid=16",
+					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "肌肤测试",
+					"pathName": "pages/skinTestDetail/skinTestDetail",
+					"query": "testId=51&pagecolor=#b0ebff&index=0",
+					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "积分商城",
+					"pathName": "pages/pointMall/pointMall",
+					"query": "",
+					"scene": "1014"
+				},
+				{
+					"id": 7,
+					"name": "订单",
+					"pathName": "pages/myOrder/myOrder",
+					"query": "",
+					"scene": "1014"
+				},
+				{
+					"id": 8,
+					"name": "视频",
+					"pathName": "pages/moreVideo/moreVideo",
+					"query": "",
+					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "禾圈",
+					"pathName": "pages/circle/circle",
+					"query": "",
+					"scene": "1014"
 				}
 			]
 		}

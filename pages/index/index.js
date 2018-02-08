@@ -2,13 +2,16 @@
 var app = getApp();
 var common = require('../../common.js');
 var mta = require('../../utils/mta_analysis.js');
-import { http } from '../../common.js'
+import { http, wxRequest } from '../../common.js'
 import { statistic, fromPageData, userEvent } from '../../tunji'
+import api from '../../api'
 Page({
     data: {
         redpack: false,  //红包
         playVideo:false,  //video封面是否显示
         skinCare:false,
+        teachList:[], //老师数据
+        random_number:12568,
         banner: ['http://p1jrmxejh.bkt.clouddn.com/hepulanhufu/index-banner.png',
                  'https://qncdn.playonwechat.com/hepulanhufu/index-banner1.png'],
         imgUrls: ['https://qncdn.playonwechat.com/hepulan/home_baner01.png',
@@ -103,6 +106,7 @@ Page({
 
     onLoad: function (options) {
         console.log("onload页面参数", options)
+        let that = this;
 
         // 后台数据统计上报
         statistic();
@@ -128,7 +132,7 @@ Page({
                 })
             }
         }
-        var that = this;
+        
         wx.showShareMenu({
             withShareTicket: true,
         });
@@ -137,6 +141,20 @@ Page({
                 redpack: true
             })
         }, 1000);
+
+        // 获取老师数据
+        wxRequest({
+            url: api.teachList
+        }, function (res) {
+            if (res.data.status) {
+                let teachList = res.data.data;
+                that.setData({
+                    teachList
+                })
+            } else {
+                console.log('请求老师列表数据出错')
+            }
+        })
     },
 
     onReady: function () {
@@ -145,9 +163,14 @@ Page({
 
     onShow() {
         let that = this;
-        common.getSign(function (sign) {
-
-        });
+        wxRequest({
+            url: api.indexRand
+        },function(res) {
+             console.log(res)
+            that.setData({
+                random_number: res.data.random_number
+            })
+        })
     },
 
     onHide: function () {
