@@ -2,7 +2,7 @@
 <view class="container">
     <view class="teacher-view">
         <image class="teach-image" src="{{teachData.info_picture}}"></image>
-        <button class="prew btn" bindtap="prevImg">查看证书</button>
+         <button class="prew btn" bindtap="prevImg">查看证书</button> 
         <!-- <button class="contact btn" open-type="contact">付费咨询</button> -->
     </view>
     <!-- 历程 -->
@@ -16,12 +16,14 @@
                      {{item.content}}
                 </view>
                 <view class="annex">
-                    <view class="item-image" wx:if="{{item.type=='pic'}}">
+                     <view class="item-image" 
+                           wx:if="{{item.type=='pic'}}"
+                           style="display: {{item.url?'block':'none'}}">
                         <image mode="widthFix"
                                bindtap="prevContextImg"
                                data-src="{{item.url}}"
                                src="{{item.url}}"></image>
-                    </view>
+                    </view> 
                     
                     <view class="video" 
                           wx:elif="{{item.type=='video'}}">

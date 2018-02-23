@@ -26,27 +26,6 @@ App({
             "eventID": "500521564",
         });
 
-        // wx.login({
-        //     success: function (res) {
-        //         wx.request({
-        //             url: 'https://hpchat.playonwechat.com/admin/Apiuser/code?code=013UpFrc0Rr6Wt15Omrc0goRrc0UpFrW',
-        //             data: {
-        //                 code: res.code
-        //             },
-        //             success(res) {
-        //                 console.log("这里拿到用户id", res)
-        //                 wx.setStorageSync('user_id', res.data.id)
-        //             }
-        //         })
-        //     },
-        //     fail: function () {
-        //         // fail
-        //     },
-        //     complete: function () {
-        //         // complete
-        //     }
-        // })
-
         wx.login({
             success: function (res) {
                 let code = res.code;
@@ -63,7 +42,7 @@ App({
                             }
                         },
                         success: function (res) {
-                            console.log('授权数据', res);
+                            console.log('登录数据', res.data.data);
                             if (res.data.status === 2) {
                                 console.log("用户常规授权失败");
                                 common.getThirdKey(function (res) {
@@ -120,7 +99,6 @@ App({
                                                         wx.setStorageSync('unionid', res.data.data.unionid);
                                                         wx.setStorageSync('openid', res.data.data.app_openid);
                                                         wx.setStorageSync('is_fresh', res.data.data.is_fresh);
-                                                        fromPageData();
                                                         if (res.data.data.sign) {
                                                             wx.setStorageSync("sign", res.data.data.sign);
                                                         }
@@ -128,7 +106,9 @@ App({
                                                 })
                                             },
                                             complete(){
-                                                // fromPageData();
+                                                if (wx.getStorageSync('sence')) {
+                                                    fromPageData();
+                                                }
                                                 console.log('授权完成')
                                             }
                                         })
@@ -161,22 +141,6 @@ App({
                                         };
                                         res.userInfo.username = userInfo.nickName;
                                         res.userInfo.id = wx.getStorageSync('user_id');
-                                        console.log(res.userInfo, 11111111111);
-
-                                        //更新数据库用户信息
-                                        // wx.request({
-                                        //     url: 'https://hpchat.playonwechat.com/admin/Apiuser/userAdd',
-                                        //     data: res.userInfo,
-                                        //     success: function (res) {
-                                        //         console.log('用户数据更新成功',res)
-                                        //         wx.setStorageSync('sign', res.data.data.sign);
-                                        //         wx.setStorageSync('unionid', res.data.data.unionid);
-                                        //         wx.setStorageSync('openid', res.data.data.app_openid);
-                                        //         wx.setStorageSync('is_fresh', res.data.data.is_fresh);
-                                        //         console.log(res.data.data.sign,'00000')
-                                        //         fromPageData();
-                                        //     }
-                                        // })
 
                                         wx.request({
                                             url: that.data.apiUrl,

@@ -244,8 +244,9 @@
                 <navigator bindtap="backHome" url="">立即拆红包>></navigator>
             </view>
             <view class="rule-title">3.圈子获取积分说明：</view>
-            <view class="rule-view">用户翻阅禾圈时，点赞，查看图片，有机会挖去到不同面值积分。
+            <view class="rule-view">用户翻阅禾圈时，点赞，查看图片，有机会挖取到不同面值积分。
                 <navigator bindtap="toHeCircle" url="">立即去禾圈>></navigator>
+                【尚未开启】
             </view>
             <view class="rule-title">4.咨询获取积分说明：</view>
             <view class="rule-view">用户可在每日8：00-9：00，20：00-22：00 点击咨询与老师聊天，即可立即获得积分。

@@ -19,7 +19,7 @@
         </swiper>
 
     <view class="search-view">
-        <navigator class="search">护肤老师</navigator>
+        <navigator class="search" url="../search/search">护肤老师</navigator>
         <text>搜索</text>
     </view>
     

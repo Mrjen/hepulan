@@ -47,7 +47,7 @@ function fromPageData(params={}) {
         gender = wx.getStorageSync('gender')
     console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh', is_fresh)
 
-    if (openid && unionid && scene && sign && is_fresh>-1){
+    if (openid && scene && sign && is_fresh>-1){
         console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh',is_fresh)
         params.data = {
             openid: openid,
