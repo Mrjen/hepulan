@@ -12,7 +12,9 @@
     "pages/myOrder/myOrder",
     "pages/skinCase/SkinCase",
     "pages/Brand/Brand",
-    
+    "pages/systemInfo/systemInfo",
+    "pages/systemInfoDetail/systemInfoDetail",
+    "pages/systemInfoWeb/systemInfoWeb",
     "pages/shopSubmiteOrder/shopSubmiteOrder",
     "pages/pointMall/pointMall",
     "pages/redPack/redPack",

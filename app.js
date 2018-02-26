@@ -2,7 +2,8 @@
 let common = require('common.js');
 var mta = require('utils/mta_analysis.js');
 import Api from './api'
-import { fromPageData } from './tunji'
+import { fromPageData } from './tunji.js'
+import {getUser} from './common.js'
 
 App({
     data: {
@@ -69,16 +70,6 @@ App({
                                                 res.userInfo.username = userInfo.nickName;
                                                 res.userInfo.id = wx.getStorageSync('user_id');
                                                 
-                                                //更新数据库用户信息
-                                                // wx.request({
-                                                //     url: 'https://hpchat.playonwechat.com/admin/Apiuser/userAdd',
-                                                //     data: res.userInfo,
-                                                //     success: function (res) {
-                                                //         console.log(res)
-                                                //         console.log('用户数据更新成功')
-                                                //     }
-                                                // })
-
                                                 wx.request({
                                                     url: that.data.apiUrl,
                                                     method: "POST",
@@ -164,13 +155,11 @@ App({
                                     },
                                     fail: function () {
                                         console.log("用户拒绝授权");
-
+                                        getUser();
                                     },
                                     complete(){
                                         // fromPageData();
-                                        if (wx.getStorageSync('sence')) {
-                                            fromPageData();
-                                        }
+                                        fromPageData();
                                     }
                                 })
                             }

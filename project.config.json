@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 18,
 			"list": [
 				{
 					"id": 0,
@@ -49,9 +49,9 @@
 					"scene": "1014"
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "测试上报数据",
-					"pathName": "pages/photoWall/photoWall",
+					"pathName": "pages/index/index",
 					"query": "scene=d5c2bf5e0974a09f0df9729fbb8bf3df",
 					"scene": "1001"
 				},
@@ -99,13 +99,6 @@
 				},
 				{
 					"id": -1,
-					"name": "禾圈",
-					"pathName": "pages/circle/circle",
-					"query": "",
-					"scene": "1014"
-				},
-				{
-					"id": -1,
 					"name": "老师详情页",
 					"pathName": "pages/teacherDetail/teacherDetail",
 					"query": "tid=1",
@@ -131,6 +124,41 @@
 					"pathName": "pages/update/update",
 					"query": "tid=1",
 					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "系统消息",
+					"pathName": "pages/systemInfo/systemInfo",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "系统消息-网页详情",
+					"pathName": "pages/systemInfoWeb/systemInfoWeb",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 17,
+					"name": "系统消息-详情",
+					"pathName": "pages/systemInfoDetail/systemInfoDetail",
+					"query": "id=1636136",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "签到",
+					"pathName": "pages/qiandao/qiandao",
+					"query": "",
+					"scene": "1001"
 				}
 			]
 		}

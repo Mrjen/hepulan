@@ -16,7 +16,7 @@
     <!-- 视频列表 -->
     <view class="video-list">
         <view class="video-item"
-              wx:for="{{videoData.videos}}"
+              wx:for="{{oldVideos}}"
               wx:key="{{index}}">
             <view class="cover-view"
                   wx:if="{{!item.play}}"

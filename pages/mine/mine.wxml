@@ -12,14 +12,76 @@
  
   <!-- 功能区 -->
   <view class="nav-view">
-     <navigator wx:for="{{navData}}"
+     <!-- <navigator wx:for="{{navData}}"
                 class="item"
                 hover-class="none"
                 url="{{item.url}}"
                 wx:key="{{index}}">
         <view class="icon"><image src="{{item.icon}}"></image></view>
         <view class="text">{{item.text}}</view>
-     </navigator>
+     </navigator> -->
+
+     <!-- 护肤打卡 -->
+    <navigator class="item" 
+               hover-class="none" 
+               url="../DiaryMark/DiaryMark">
+      <view class="icon">
+        <image src="https://qncdn.playonwechat.com/hepulanhufu/mine-punch-icon.png"></image>
+      </view>
+      <view class="text">护肤打卡</view>
+    </navigator>
+
+    <!-- 积分商城 -->
+    <navigator class="item" 
+               hover-class="none" 
+               url="../pointMall/pointMall">
+      <view class="icon">
+        <image src="https://qncdn.playonwechat.com/hepulanhufu/mine-nav-shop.png"></image>
+      </view>
+      <view class="text">积分商城</view>
+    </navigator>
+
+    <!-- 我的红包 -->
+    <navigator class="item" 
+               hover-class="none" 
+               url="../mycoupon/mycoupon">
+      <view class="icon">
+        <image src="https://qncdn.playonwechat.com/hepulanhufu/mine-redpack-icon.png"></image>
+      </view>
+      <view class="text">我的红包</view>
+    </navigator>
+
+    <!-- 肌肤测试 -->
+    <navigator class="item" 
+               hover-class="none" 
+               url="../skinTest/skinTest">
+      <view class="icon">
+        <image src="https://qncdn.playonwechat.com/hepulanhufu/mine-skin-icon.png"></image>
+      </view>
+      <view class="text">肌肤测试</view>
+    </navigator>
+
+    <!-- 我的订单 -->
+    <navigator class="item" 
+               hover-class="none" 
+               url="../myOrder/myOrder">
+      <view class="icon">
+        <image src="https://qncdn.playonwechat.com/hepulanhufu/mine-order-icon.png"></image>
+      </view>
+      <view class="text">我的订单</view>
+    </navigator>
+
+    <!-- 系统消息 -->
+    <navigator class="item" 
+               hover-class="none" 
+               url="../systemInfo/systemInfo">
+      <view class="icon">
+        <image wx:if="{{msgNum}}" src="https://qncdn.playonwechat.com/hepulanhufu/mine-icon-notice-active.png"></image>
+        <image wx:else src="https://qncdn.playonwechat.com/hepulanhufu/mine-icon-notice.png"></image>
+       
+      </view>
+      <view class="text">系统消息</view>
+    </navigator>
   </view>
 
 

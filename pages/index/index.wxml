@@ -18,10 +18,10 @@
             </block>
         </swiper>
 
-    <view class="search-view">
+     <!-- <view class="search-view">
         <navigator class="search" url="../search/search">护肤老师</navigator>
         <text>搜索</text>
-    </view>
+    </view>  -->
     
     <view class="teacher-view">
         <view class="top-tip">
@@ -95,9 +95,9 @@
 
         <view class="top-tip">
             <view class="xian"></view>
-            <navigator url="../moreVideo/moreVideo">
+            <!-- <navigator url="../moreVideo/moreVideo">
                 更多视频>>
-            </navigator>
+            </navigator> -->
         </view>
     </view>
 
@@ -131,12 +131,12 @@
                 位女性成功治愈皮肤>>
             </view>
 
-            <button class="video-contact" open-type="contact">
-                <text></text>
-                <view>咨询肌肤问题</view>
-            </button>
+            <navigator url="../moreVideo/moreVideo" class="video-contact">
+                <!-- <text></text> -->
+                <view>更多视频</view>
+            </navigator>
 
-            <view class="text03 text">祛痘 · 淡斑 · 美白 · 抗皱</view>
+            <!-- <view class="text03 text">祛痘 · 淡斑 · 美白 · 抗皱</view> -->
         </view>
     </view>
 
@@ -188,7 +188,7 @@
 
 <!-- 红包 -->
 
-<form bindsubmit="getFromId" report-submit="true" wx:if="{{redpack}}">
+<!-- <form bindsubmit="getFromId" report-submit="true" wx:if="{{redpack}}">
     <view class="red-pack" style="display:{{redpack?'flex':'none'}}">
         <view class="pack-inner">
             <image class="red-logo" src="https://qncdn.playonwechat.com/hepulanhufu/red-pack-logo.png">
@@ -200,11 +200,12 @@
             <view class="closeRedPack" bindtap="closeRedPack"></view>
         </view>
     </view>
-</form>
+</form> -->
 
-<form bindsubmit="getFromId" report-submit="true">
+<!-- <form bindsubmit="getFromId" report-submit="true">
     <button class="redpack-icon" formType="submit"></button>
-</form>
+</form> -->
+
 </view>
 
 

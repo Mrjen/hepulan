@@ -1,0 +1,2 @@
+<!--pages/systemInfoWeb/systemInfoWeb.wxml-->
+<web-view src="{{webUrl}}"></web-view>

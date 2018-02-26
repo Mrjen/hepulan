@@ -144,6 +144,8 @@ Page({
         wx.showShareMenu({
             withShareTicket: true,
         });
+        
+        // 显示红包
         setTimeout(() => {
             that.setData({
                 redpack: true

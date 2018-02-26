@@ -99,7 +99,7 @@ page{
 }
 
 .top-tip .xian{
-    width: 570rpx;
+    width: 560rpx;
     height: 1px;
     background: #006d4a;
     position: relative;
@@ -123,6 +123,9 @@ page{
 .top-tip navigator{
     font-size: 26rpx;
     color: #666;
+    flex:1;
+    flex-shrink: 0;
+    text-align: right;
 }
 
 /* 老师轮播 */
@@ -297,6 +300,7 @@ page{
     padding: 0;
     box-sizing: border-box;
     margin: 20rpx auto;
+    margin-top: 40rpx;
 }
 
 .video-contact text{

@@ -12,12 +12,12 @@ Page({
     redPackRule: false,  //规则
     getRedPack: false, //从别人分享进入
     redPackShow: false,
-    redpackHeader:1,
-    redPackRuleContent:'',//规则内容
+    redpackHeader: 1,
+    redPackRuleContent: '',//规则内容
     inviteView: true,  //自己进入
-    isChaiWan:true, //用户进来的时候红包拆完了设置false
+    isChaiWan: true, //用户进来的时候红包拆完了设置false
     inviteTip: false,
-    redpackCard:true, //我自己的红包卡片
+    redpackCard: true, //我自己的红包卡片
     coupon_need_more: '',
     isSuccess: false,
     countTime: '00:00:00',  //倒计时
@@ -52,7 +52,7 @@ Page({
     product: []
   },
   // 倒计时
-  timeform(coupon_survival_time,that){
+  timeform(coupon_survival_time, that) {
     let countTime = that.data.countTime;
     let formTime = setInterval(function () {
       if (coupon_survival_time > 0) {
@@ -69,9 +69,9 @@ Page({
       }
     }, 1000)
   },
- 
+
   // 获取头像
-  getPersion(coupon_user_list,persion,that){
+  getPersion(coupon_user_list, persion, that) {
     for (let i = 0, len = coupon_user_list.length; i < len; i++) {
       persion[i].avatar = coupon_user_list[i].headimgurl;
       persion[i].is_group_header = coupon_user_list[i].is_leader;
@@ -98,11 +98,11 @@ Page({
       title: '加载中',
     })
 
-     
+
 
     // 上报后台数据
     statistic();
-    wx.setStorageSync('sence', options.scene) 
+    wx.setStorageSync('sence', options.scene)
 
     let that = this;
     if (!options.unique_code) {
@@ -123,8 +123,8 @@ Page({
         that.setData({
           coupon_survival_time: couponInfo.coupon_survival_time
         })
-        that.timeform(couponInfo.coupon_survival_time,that);
-        persion = that.getPersion(couponInfo.coupon_user_list, persion,that);
+        that.timeform(couponInfo.coupon_survival_time, that);
+        persion = that.getPersion(couponInfo.coupon_user_list, persion, that);
         console.log('coupon_status', couponInfo.coupon_status)
         if (couponInfo.coupon_status) {
           console.log('自己进来,组团成功')
@@ -153,16 +153,16 @@ Page({
 
     } else if (options.unique_code) {
       // 有红包id 从分享进入
-      getSign(function(sign) {
-         console.log('sign',sign)
-         wx.setStorageSync('sign', sign);
+      getSign(function (sign) {
+        console.log('sign', sign)
+        wx.setStorageSync('sign', sign);
         http({
           type: 'get-coupon-info', data: {
             unique_code: options.unique_code
           }
         }, function (res) {
           console.log('从分享进入', res);
-     
+
           setTimeout(function () {
             wx.hideLoading()
           }, 1000)
@@ -213,7 +213,7 @@ Page({
               that.setData({
                 redpackCard: false,
                 isChaiWan: false,
-                redpackHeader:0
+                redpackHeader: 0
               })
             } else {
               console.log('组团成功，并且我参与了');
@@ -244,7 +244,7 @@ Page({
         })
       })
       console.log(wx.getStorageSync('sign'));
-      
+
     }
   },
 
@@ -268,7 +268,7 @@ Page({
     // 统计点击领取红包的次数
     mta.Event.stat("get_redpack", {})
     http({
-      type: 'action-dismantle-active-coupon-test',
+      type: 'action-dismantle-active-coupon',
       data: {
         formid: e.detail.formId,
         unique_code: that.data.unique_code
@@ -286,7 +286,7 @@ Page({
           })
           that.timeform(couponInfo.coupon_survival_time, that);
           console.log(couponInfo.coupon_user_list, persion)
-          persion = that.getPersion(couponInfo.coupon_user_list,persion,that);
+          persion = that.getPersion(couponInfo.coupon_user_list, persion, that);
           console.log('coupon_status', couponInfo.coupon_status)
           if (couponInfo.coupon_status) {
             console.log('组团成功')
@@ -421,7 +421,7 @@ Page({
 
   },
 
-  toHome(){
+  toHome() {
     wx.switchTab({
       url: '../index/index'
     })

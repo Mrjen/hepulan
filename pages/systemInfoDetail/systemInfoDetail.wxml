@@ -1,0 +1,9 @@
+<!--pages/systemInfoDetail/systemInfoDetail.wxml-->
+<import src="../../utils/wxParse.wxml" />
+<import src="../template/template.wxml" />
+
+<view class="container">
+    <view class="rules-view">
+        <template is="wxParse" data="{{wxParseData:content.nodes}}"></template> 
+    </view>
+</view>

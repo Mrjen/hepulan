@@ -77,7 +77,6 @@ function getUser() {
                     },
                     success: function (res) {
                       console.log('用户信息',res)
-                    
                     }
                   })
                 },
@@ -115,8 +114,7 @@ function getUser() {
                                     info: userData
                                   },
                                   success: function (res) {
-                                    console.log("保存用户信息");
-
+                                    console.log('用户拒绝授权后重新授权，上报数据')
                                     if (wx.getStorageSync('sence')) {
                                       fromPageData();
                                     }
@@ -135,6 +133,9 @@ function getUser() {
                       }
                     }
                   })
+                },
+                complete(){
+                  fromPageData()
                 }
               })
             }

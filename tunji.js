@@ -45,9 +45,9 @@ function fromPageData(params={}) {
         sign = wx.getStorageSync('sign'),
         is_fresh = wx.getStorageSync('is_fresh'),
         gender = wx.getStorageSync('gender')
-    console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh', is_fresh)
 
     if (openid && scene && sign && is_fresh>-1){
+        //有参数才上报
         console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh',is_fresh)
         params.data = {
             openid: openid,
@@ -65,14 +65,14 @@ function fromPageData(params={}) {
             data: params.data,
             method: 'POST',
             success: function (res) {
-                console.log('上报来源数据', res)
+                console.log('上报来源数据成功', res)
             },
             fail: function () {
                 // fail
             },
-            complete: function () {
+            complete: function (res) {
                 // complete
-                console.log('上报来源数据  complete')
+                console.log('complete', res)
             }
         })
     }

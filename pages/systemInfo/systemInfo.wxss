@@ -1,0 +1,143 @@
+/* pages/systemInfo/systemInfo.wxss */
+view{
+    box-sizing: border-box;
+}
+
+.birth{
+    width: 656rpx;
+    height: 340rpx;
+    display: block;
+    position: relative;
+    border-radius: 14rpx;
+    background-image: url('https://qncdn.playonwechat.com/hepulanhufu/systemInfo-birth-bg.png');
+    background-size: 100% 100%;
+    margin:20rpx auto;
+    box-shadow: 0 0 15rpx rgba(0, 0, 0, .16);
+}
+
+.left-tip{
+    width: 120rpx;
+    height: 40rpx;
+    font-size: 20rpx;
+    line-height: 40rpx;
+    color: #fff;
+    background-color: #dbadda;
+    position: absolute;
+    left: 0;
+    top: 20rpx;
+    text-indent: 10rpx;
+    border-radius: 0 20rpx 20rpx 0;
+}
+
+.show-btn{
+   width: 140rpx;
+   height: 40rpx;
+   font-size: 24rpx;
+   background-color: #52c789;
+   color: #fff;
+   position: absolute;
+   right: 20rpx;
+   bottom: 20rpx;
+   text-align: center;
+   line-height: 40rpx;
+   border-radius: 20rpx;
+   box-shadow: 0 0 18rpx rgba(82, 199, 137, 1);
+}
+
+/* 系统消息列表 */
+.system-info{
+    margin-top: 40rpx;
+}
+
+.info-item{
+   width: 640rpx;
+   height: 180rpx;
+   margin: 20rpx auto;
+   position: relative;
+   display: flex;
+   align-items: center;
+   padding:10rpx 20rpx;
+   border-radius: 14rpx;
+   background-color: #fff;
+   box-shadow:0 0 18rpx rgba(0, 0, 0, .1);
+}
+
+.info-item.no-read::before{
+    content: '';
+    display: block;
+    width: 10rpx;
+    height: 10rpx;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    right: 10rpx;
+    top: 10rpx;
+}
+
+.item-cover{
+    width: 225rpx;
+    height: 142rpx;
+    overflow: hidden;
+    display: flex;
+    border-radius: 14rpx;
+    justify-content: center;
+    align-content: center;
+    flex-shrink: 0;
+}
+
+.item-content{
+    flex:1;
+    height: 100%;
+    max-width: 410rpx;
+    padding:12rpx 0 0 20rpx;
+}
+
+.item-cover image{
+    display: block;
+    width: 100%;
+}
+
+.title-view{
+    display: flex;
+    align-items: center;
+}
+
+.tag-view{
+    display: inline-flex;
+    align-items: center;
+    height: 46rpx;
+}
+
+.tag-view text{
+    background-color: #ff8a5e;
+    color: #fff;
+    font-size: 22rpx;
+    padding: 4rpx 18rpx;
+    border-radius: 50rpx;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10rpx;
+}
+
+.item-title{
+    display: inline-block;
+    flex: 1;
+    font-size: 30rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-content-text{
+    font-size: 24rpx;
+    color: #666;
+    line-height: 30rpx;
+    height: 60rpx;
+    overflow: hidden;
+    margin-top: 10rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}

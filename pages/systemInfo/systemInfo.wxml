@@ -1,0 +1,36 @@
+<!--pages/systemInfo/systemInfo.wxml-->
+<view class="container">
+    <!-- 生日提醒 -->
+
+    <!-- <navigator url="" class="birth">
+        <view class="left-tip">生日 · 通知</view>
+        <view class="show-btn">点击查看</view>
+    </navigator> -->
+    
+    <!-- 系统消息 -->
+    <view class="system-info">
+             <view wx:for="{{rules}}"
+                   bindtap="toInfoDetail"
+                   data-url="{{item.jumpurl}}"
+                   data-id="{{item.id}}"
+                   wx:key="{{index}}"
+                   class="info-item {{item.is_read=='0'?'no-read':''}}">
+            <view class="item-cover">
+                <image mode="widthFix" 
+                       src="{{item.imgurl}}"></image>
+            </view>
+            <view class="item-content">
+                <view class="title-view">
+                    <text class="tag-view">
+                        <text style="background-color:{{item.color}}">{{item.tag}}</text>
+                    </text>
+                    <text class="item-title">{{item.type_name}}</text>
+                </view>
+                <view class="item-content-text">{{item.title}}</view>
+                <view class="show-btn">点击查看</view>
+            </view>
+        </view>
+    </view>
+
+</view>
+

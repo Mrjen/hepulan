@@ -9,7 +9,7 @@ Page({
     videoData:'',
     navData:[],
     page:2,
-    vt_id:'',
+    vt_id:'0',
     loadMore:true
   },
 
@@ -28,8 +28,10 @@ Page({
       },function(res){
         console.log(res)
         let videoData = res.data.data;
+        let oldVideos = videoData.videos;
         that.setData({
-          videoData
+          videoData,
+          oldVideos
         })
       })
 
@@ -69,10 +71,12 @@ Page({
           },function(res){
             console.log('切换导航数据',res)
             videoData.videos = res.data.data.videos;
+            let oldVideos = videoData.videos;
             that.setData({
               navData,
               page:1,
               videoData,
+              oldVideos,
               vt_id: Edata.id
             })
           })
@@ -133,7 +137,7 @@ Page({
        let that = this,
            videoData = that.data.videoData,
            page = that.data.page,
-           oldVideos = videoData.videos;
+           oldVideos = that.data.oldVideos;
            if(that.data.loadMore){
                 that.setData({
                   loadMore:false
@@ -146,8 +150,8 @@ Page({
                    limit: 10
                  }
                },function(res) {
-                 if (res.data.data.videos.length){
-                   oldVideos = [...oldVideos, ...res.data.data.videos]
+                 if (res.data.data.videos.length>0){
+                   oldVideos = [...oldVideos, ...res.data.data.videos];
                    page++;
                  }else{
                    oldVideos = oldVideos
