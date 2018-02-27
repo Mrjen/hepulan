@@ -1,180 +1,118 @@
-//index.js
-//获取应用实例
-var common = require('../../common.js');
-var app = getApp();
-var calendarSignData;
-var date;
-var calendarSignDay;
-import { statistic, fromPageData } from '../../tunji'
+import {http} from '../../common';
+import { statistic, fromPageData } from '../../tunji';
+import tip from '../../utils/tips.js';
+
 Page({
-    data: {
-        sign: "",
-        helpWin: false,
-        goldWin: true,
-        adyAllday: 0,
-        userInfo: [{
-            avatarUrl: "",
-            nickName: ""
-        }],
-        goldImg: [{
-            id: 10,
-            static: "none",
-            imgsrc: '../img/gold10.gif',
-        }, {
-            id: 15,
-            static: "none",
-            imgsrc: 'https://hepulan.playonwechat.com//static/gold15.gif',
-        }, {
-            id: 20,
-            static: "none",
-            imgsrc: 'https://hepulan.playonwechat.com//static/gold20.gif',
-        }, {
-            id: 25,
-            static: "none",
-            imgsrc: 'https://hepulan.playonwechat.com//static/gold25.gif',
-        }, {
-            id: 30,
-            static: "none",
-            imgsrc: 'https://hepulan.playonwechat.com//static/gold30.gif',
-        }, {
-            id: 35,
-            static: "none",
-            imgsrc: 'https://hepulan.playonwechat.com//static/gold35.gif',
-        }, {
-            id: 40,
-            static: "none",
-            imgsrc: 'https://hepulan.playonwechat.com//static/gold40.gif',
-        }]
-    },
-
-    toDiary() {
-        let that = this;
-        let is_singin_today = that.data.is_singin_today;
-        if (is_singin_today=='0') {
-            wx.navigateTo({
-                url: '../DiaryMark/DiaryMark'
-            })
-        }
-
-    },
+  data: {
+     info:{},
+     signData:[],
+     punchData:{},
+     popup:false
+  },
 
     onLoad: function (options) {
-        //wx.clearStorage();
-        var that = this;
-        
-        // 上报后台数据
-        statistic();
-        wx.setStorageSync('sence', options.scene) 
 
-        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
-        fromPageData()
     },
 
-    onShow: function() {
-        var that = this;
-        common.getSign(function(sign) {
-            console.log("signsignsignsign", wx.getStorageSync("sign"));
-            sign = wx.getStorageSync("sign")
+    onReady: function () {
+
+    },
+
+    onShow: function () {
+        let signData = Array(20),
+            that = this;
+        for (let i = 0; i < signData.length;i++){
+            signData[i] = {}
+        }
+        let info = {
+            avatarUrl: wx.getStorageSync('avatarUrl'),
+            nickName: wx.getStorageSync('nickName')
+        }
+        http({
+            type:'get-app-signin-list'
+        },function(res){
+            // console.log('签到数据',res)
+            let punchData = res.data.data;
+            punchData = that.sign(punchData, signData);
             that.setData({
-                sign
+                punchData,
+                signData,
+                info
             })
-            var mydate = new Date();
-            var year = mydate.getFullYear();
-            var month = mydate.getMonth() + 1;
-            date = mydate.getDate();
-            console.log("date" + date)
-            var day = mydate.getDay();
-            //  console.log(day)
-            var nbsp;
+        })
+    },
 
-            if ((date - day) <= 0) {
-                nbsp = day - date + 1;
-            } else {
-                nbsp = 7 - ((date - day) % 7) + 1;
+    // 计算签到
+    sign(punchData, signData){
+        let keepSign = punchData.sign_keep % 20;
+        let keepNum = Math.floor(punchData.sign_keep / 20);
+        let initNum = punchData.sign_keep - keepSign;
+        signData.map((el, index) => {
+            el.index = initNum + (++index)
+            if (index <= keepSign) {
+                el.hasSign = 1;
             }
+        })
+        return punchData;
+    },
 
-            var monthDaySize;
-            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-                monthDaySize = 31;
-            } else if (month == 4 || month == 6 || month == 9 || month == 11) {
-                monthDaySize = 30;
-            } else if (month == 2) {
-                // 计算是否是闰年,如果是二月份则是29天
-                if ((year - 2000) % 4 == 0) {
-                    monthDaySize = 29;
-                } else {
-                    monthDaySize = 28;
-                }
-            };
-            var calendarSignData = new Array(monthDaySize);
-            for (var i = 0; i < calendarSignData.length; i++) {
-                calendarSignData[i] = null;
+    //   签到
+    savePunch(e) {
+        console.log(e.detail.formId)
+        let that = this,
+         signData = that.data.signData,
+         punchData = that.data.punchData;
+         
+        console.log(signData)
+        http({
+            type:'save-app-signin',
+            data:{
+                form_id: e.detail.formId
             }
-
-            // 获取签到列表
-            wx.request({
-                url: app.data.apiUrl,
-                method: "POST",
-                data: {
-                    key: app.data.apiKey,
-                    sign: sign,
-                    type: "get-punchs"
-                },
-                success: function(res) {
-                    console.log(res)
-                    console.log(calendarSignData);
-                    console.log(calendarSignDay);
-                    var dayindex = [];
-                    var hasDaty = res.data.data.signin_list;
-                    let is_singin_today = res.data.data.is_signin_today;
-                    console.log(hasDaty);
-                    for (var i = 0; i < hasDaty.length; i++) {
-                        dayindex[i] = hasDaty[i].split("-");
-                        dayindex[i] = dayindex[i][2];
-                        var idx = parseInt(dayindex[i]);
-                        calendarSignData[idx] = idx;
-                    }
-
-                    that.setData({
-                        sign: sign,
-                        year: year,
-                        month: month,
-                        nbsp: nbsp,
-                        monthDaySize: monthDaySize,
-                        date: date,
-                        calendarSignData: calendarSignData,
-                        calendarSignDay: calendarSignDay,
-                        is_singin_today
-                    })
-                }
-            })
-
+        },function(res){
+            console.log(res.data.data.punchData);
+            if(res.data.status===1){
+                punchData.sign_keep++;
+                punchData.is_signin = 1;
+                punchData.usable_score += res.data.data.score;
+                punchData = that.sign(punchData, signData);
+                that.setData({
+                    punchData,
+                    signData,
+                    popup:true,
+                    getStore: res.data.data.score
+                })
+            }else{
+               console.log(res.data.msg)
+               tip.alert(res.data.msg)
+            }
         })
     },
 
-    // 返回首页
-    backHome: function() {
-        common.backHome();
+    // 关闭弹窗
+    closePopup(){
+       this.setData({
+           popup:false
+       })
     },
 
-    // 分享海报
-    toShare: function() {
-        common.toShare();
-    },
+  onHide: function () {
+    
+  },
 
-    // 弹窗
-    helpCoins: function() {
-        var that = this;
-        that.setData({
-            helpWin: true
-        })
-    },
+  onUnload: function () {
+    
+  },
 
-    close_help: function() {
-        var that = this;
-        that.setData({
-            helpWin: false
-        })
-    }
+  onPullDownRefresh: function () {
+    
+  },
 
+  onReachBottom: function () {
+    
+  },
+
+  onShareAppMessage: function () {
+    
+  }
 })

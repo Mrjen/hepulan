@@ -39,6 +39,7 @@ Page({
     onReady: function () {
         // 页面渲染完成
     },
+
     onShow: function () {
         let that = this;
         getUser();
@@ -47,12 +48,12 @@ Page({
             userImg:wx.getStorageSync('avatarUrl'),
             nickName:wx.getStorageSync('nickName')
         }
-
+        
         // 获取是否有未读消息
         http({
-            type:'get-message-unread-num'
-        },function(res){
-            console.log('是否有未读消息',res)
+            type: 'get-message-unread-num'
+        }, function (res) {
+            console.log('是否有未读消息', res)
             let msgNum = res.data.data.user_message_unread_num;
             wx.setTabBarBadge({
                 index: 4,

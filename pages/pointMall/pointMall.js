@@ -91,7 +91,7 @@ Page({
     // 签到
     toDaka(){
         wx.navigateTo({
-            url: '../DiaryMark/DiaryMark'
+            url: '../qiandao/qiandao'
         })
     },
 

@@ -17,6 +17,7 @@
            <image class="uploadimg" 
                   bindlongtap="deleteImg"  
                   wx:for="{{imgres}}" 
+                  wx:key="{{index}}"
                   src="{{item.img}}" 
                   data-index="{{index}}">
            </image>

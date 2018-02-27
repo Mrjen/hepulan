@@ -1,15 +1,16 @@
 // pages/systemInfoWeb/systemInfoWeb.js
 Page({
   data: {
-    webUrl:''
+    webUrl:'https://wxtest.suoluomei.com/hpl/index.php?s=/Weixin/Home/index'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
+    console.log('网页链接', wx.getStorageSync('webUrl'))
       this.setData({
-        webUrl:options.webUrl
+        webUrl: wx.getStorageSync('webUrl')
       })
   },
 

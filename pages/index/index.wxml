@@ -105,7 +105,7 @@
         <view class="btn-view">
             <navigator url="../skinTest/skinTest">肌肤测试</navigator>
             <navigator url="../pointMall/pointMall">积分商城</navigator>
-            <navigator url="../DiaryMark/DiaryMark">护肤打卡</navigator>
+            <navigator url="../qiandao/qiandao">每日签到</navigator>
         </view>
 
     <view class="video-view">

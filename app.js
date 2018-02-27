@@ -97,9 +97,7 @@ App({
                                                 })
                                             },
                                             complete(){
-                                                if (wx.getStorageSync('sence')) {
-                                                    fromPageData();
-                                                }
+                                                fromPageData();
                                                 console.log('授权完成')
                                             }
                                         })

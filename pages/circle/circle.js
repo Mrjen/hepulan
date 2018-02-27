@@ -376,6 +376,7 @@ Page({
     Handel(spaceDyn){
         for (let i = 0; i < spaceDyn.length; i++) {
             spaceDyn[i].imgslist = [];
+            spaceDyn[i].content = spaceDyn[i].content.replace(/<br>/g,'\n');
             if (spaceDyn[i].urls) {
                 for (let j = 0; j < spaceDyn[i].urls.length; j++) {
                     spaceDyn[i].imgslist.push(spaceDyn[i].urls[j].url);

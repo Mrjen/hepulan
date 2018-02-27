@@ -15,21 +15,38 @@
                    data-id="{{item.id}}"
                    wx:key="{{index}}"
                    class="info-item {{item.is_read=='0'?'no-read':''}}">
-            <view class="item-cover">
-                <image mode="widthFix" 
-                       src="{{item.imgurl}}"></image>
+                   <view class="item-top" 
+                         bindtouchstart="touchS" 
+                         bindtouchmove="touchM"
+                         bindtouchend="touchE"
+                         data-index="{{index}}"
+                         style="{{item.txtStyle}}">
+                            <view class="item-cover">
+                              <image mode="widthFix" 
+                                 src="{{item.imgurl}}"></image>
+                            </view>
+
+                        <view class="item-content">
+                            <view class="title-view">
+                                <text class="tag-view">
+                                    <text style="background-color:{{item.color}}">{{item.tag}}</text>
+                                </text>
+                                <text class="item-title">{{item.type_name}}</text>
+                            </view>
+                            <view class="item-content-text">{{item.title}}</view>
+                            <view class="show-btn">点击查看</view>
+                        </view>
+                   </view>
+
+                   <!-- 滑动部分 -->
+                   <view catchtap="delItem" 
+                         class="del-item" 
+                         data-id="{{item.id}}"
+                         data-index="{{index}}">
+                       删除
+                   </view>
+                   
             </view>
-            <view class="item-content">
-                <view class="title-view">
-                    <text class="tag-view">
-                        <text style="background-color:{{item.color}}">{{item.tag}}</text>
-                    </text>
-                    <text class="item-title">{{item.type_name}}</text>
-                </view>
-                <view class="item-content-text">{{item.title}}</view>
-                <view class="show-btn">点击查看</view>
-            </view>
-        </view>
     </view>
 
 </view>

@@ -144,7 +144,7 @@ Page({
         wx.showShareMenu({
             withShareTicket: true,
         });
-        
+
         // 显示红包
         setTimeout(() => {
             that.setData({
@@ -188,6 +188,19 @@ Page({
                 url: '../update/update'
             })
         }
+
+        // 获取是否有未读消息
+        http({
+            type: 'get-message-unread-num'
+        }, function (res) {
+            console.log('是否有未读消息', res)
+            let msgNum = res.data.data.user_message_unread_num;
+            console.log(msgNum)
+            wx.setTabBarBadge({
+                index: 4,
+                text: msgNum
+            })
+        })
     },
 
     onHide: function () {

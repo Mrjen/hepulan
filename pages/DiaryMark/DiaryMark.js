@@ -23,6 +23,14 @@ Page({
     var that = this;
     var uploadimg = that.data.imgres;
     console.log(uploadimg)
+
+    // console.log('输入框内容', ev.detail.value)
+
+    // let neirong = ev.detail.value.toString();
+    // console.log('neirong',neirong)
+    // neirong = neirong.replace(/\n/, '');
+    // console.log('neirong2', neirong)
+
     if (!ev.detail.value && uploadimg.length < 1) {
       that.setData({
         cardStatus: "草率完成",

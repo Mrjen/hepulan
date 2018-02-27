@@ -36,6 +36,7 @@
     <view class="label_nav" style="width:{{tagWidth}}">
       <view class="label_item {{item.select==0?'':'active'}}" 
             wx:for="{{labelItem}}" 
+            wx:key="{{index}}"
             bindtap="labelItem" 
             data-text="{{item.worlds}}" 
             data-id="{{item.id}}" 
@@ -47,7 +48,9 @@
 
 <!-- 视频列表 -->
 <view class="video_list">
-  <view class="video_box" wx:for="{{videoList}}">
+  <view class="video_box" 
+        wx:for="{{videoList}}"
+        wx:key="{{index}}">
     <navigator class="video_item"  
                style="background-image:url({{item.videoPoster}})" 
                url="../heChartTeach/heChartTeach?topicId={{item.id}}" 
