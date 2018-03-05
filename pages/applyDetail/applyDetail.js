@@ -25,7 +25,7 @@ Page({
      
     // 后台数据统计上报
     statistic();
-    wx.setStorageSync('sence', options.scene)   
+    wx.setStorageSync('scene', options.scene)   
 
     var smpid = options.smpid;
     var sign = app.data.sign;

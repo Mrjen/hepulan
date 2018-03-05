@@ -4,14 +4,22 @@ Page({
     webUrl:'https://wxtest.suoluomei.com/hpl/index.php?s=/Weixin/Home/index'
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     console.log('网页链接', wx.getStorageSync('webUrl'))
+     let that = this;
       this.setData({
         webUrl: wx.getStorageSync('webUrl')
       })
+    
+    http({
+      type: 'get-message-info',
+      data: {
+        message_id: options.id
+      }
+    }, function (res) {
+      console.log(res)
+
+    })
   },
 
   /**

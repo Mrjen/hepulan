@@ -36,9 +36,9 @@ Page({
 
     // 后台数据统计上报
     statistic();
-    wx.setStorageSync('sence', options.scene) 
+    wx.setStorageSync('scene', options.scene) 
 
-    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    // 渠道统计  一定要放在wx.setStorageSync('scene', options.scene) 之后
     fromPageData()
 
     wx.showShareMenu({

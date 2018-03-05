@@ -66,7 +66,7 @@ Page({
             data:{
               page:1,
               vt_id:Edata.id,
-              limit:5
+              limit:10
             }
           },function(res){
             console.log('切换导航数据',res)
@@ -74,8 +74,8 @@ Page({
             let oldVideos = videoData.videos;
             that.setData({
               navData,
-              page:1,
               videoData,
+              page: 2,
               oldVideos,
               vt_id: Edata.id
             })
@@ -88,14 +88,14 @@ Page({
     console.log(e)
      let that = this,
          Edata = e.currentTarget.dataset,
-         videoData = that.data.videoData;
-    videoData.videos.map(el=>{
+       oldVideos = that.data.oldVideos;
+    oldVideos.map(el=>{
        el.play = false;
     })
-    videoData.videos[Edata.idx].play = true;
-    videoData.videos[Edata.idx].play_number++;
+    oldVideos[Edata.idx].play = true;
+    oldVideos[Edata.idx].play_number++;
     that.setData({
-      videoData
+      oldVideos
     })
 
     wxRequest({
@@ -138,6 +138,7 @@ Page({
            videoData = that.data.videoData,
            page = that.data.page,
            oldVideos = that.data.oldVideos;
+           console.log('page',page)
            if(that.data.loadMore){
                 that.setData({
                   loadMore:false

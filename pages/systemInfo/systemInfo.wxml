@@ -14,7 +14,7 @@
                    data-url="{{item.jumpurl}}"
                    data-id="{{item.id}}"
                    wx:key="{{index}}"
-                   class="info-item {{item.is_read=='0'?'no-read':''}}">
+                   class="info-item {{item.is_read=='0'?'no-read':'readed'}}">
                    <view class="item-top" 
                          bindtouchstart="touchS" 
                          bindtouchmove="touchM"

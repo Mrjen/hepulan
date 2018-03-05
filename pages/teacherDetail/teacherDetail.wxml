@@ -18,7 +18,7 @@
                 <view class="annex">
                      <view class="item-image" 
                            wx:if="{{item.type=='pic'}}"
-                           style="display: {{item.url?'block':'none'}}">
+                           style="display: {{item.url?'flex':'none'}}">
                         <image mode="widthFix"
                                bindtap="prevContextImg"
                                data-src="{{item.url}}"

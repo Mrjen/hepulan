@@ -43,7 +43,7 @@ App({
                             }
                         },
                         success: function (res) {
-                            console.log('登录数据', res.data.data);
+                            // console.log('登录数据', res.data.data);
                             if (res.data.status === 2) {
                                 console.log("用户常规授权失败");
                                 common.getThirdKey(function (res) {
@@ -156,27 +156,27 @@ App({
                                         getUser();
                                     },
                                     complete(){
-                                        // fromPageData();
+                                        console.log('用户授权完成')
                                         fromPageData();
                                     }
                                 })
                             }
-
-
-
                         },
                     })
 
                 } else {
                     console.log('获取用户登录态失败！' + res.errMsg);
                 }
+            },
+            complete(res){
+                  console.log('login 完成')
             }
         });
     },
 
     // app onShow
     onShow() {
-        console.log('app onShow');
+
     },
 
     globalData: {

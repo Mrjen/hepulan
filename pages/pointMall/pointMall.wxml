@@ -236,23 +236,24 @@
         <view class="title">如何获取更多积分</view>
         <view class="rule-content">
             <view class="rule-title">1.签到获取积分说明：</view>
-            <view class="rule-view">用户可通过每日签到，审核通过即可获得积分，坚持连续签到打卡积分获得更高，
-                <navigator url="../DiaryMark/DiaryMark">立即去签到>></navigator>
+            <view class="rule-view">用户可通过连续每日签到获得积分，坚持连续签到积分获得更高。
+                <navigator url="../qiandao/qiandao">立即去签到>></navigator>
             </view>
-            <view class="rule-title">2.红包获取积分说明：</view>
-            <view class="rule-view">用户可通过首页红包活动，邀请新好友一起拆红包共享积分，
-                <navigator bindtap="backHome" url="">立即拆红包>></navigator>
+            <view class="rule-title">2.护肤打卡积分说明：</view>
+            <view class="rule-view">用户可通过禾苗圈发送护肤打卡动态获得积分，审核通过积分更高。
+                <navigator url="../DiaryMark/DiaryMark">立即去打卡>></navigator>
             </view>
-            <view class="rule-title">3.圈子获取积分说明：</view>
-            <view class="rule-view">用户翻阅禾圈时，点赞，查看图片，有机会挖取到不同面值积分。
-                <navigator bindtap="toHeCircle" url="">立即去禾圈>></navigator>
-                【尚未开启】
+            <view class="rule-title">3.购买护肤产品积分说明：</view>
+            <view class="rule-view">用户可通过在专业护肤老师购买产品获取相应大量积分。
+                <navigator bindtap="closeJiFenView">立即去购买>></navigator>
             </view>
-            <view class="rule-title">4.咨询获取积分说明：</view>
+            <view class="rule-title">4.建议采纳积分获得说明：</view>
+            <view class="rule-view">用户可通过使用平台，向护肤老师及时提出平台BUG及平台建议，一经采纳可获得大量积分。<button class="jianyi" open-type="contact">立即去建议>></button></view>
+            <view class="rule-title">5.咨询获取积分说明：</view>
             <view class="rule-view">用户可在每日8：00-9：00，20：00-22：00 点击咨询与老师聊天，即可立即获得积分。
-                <navigator url="">立即去咨询>></navigator>【尚未开启】</view>
-            <view class="rule-title">5.分享积分说明：</view>
-            <view class="rule-view">用户可通过屏幕右上方转发按钮，转发至好友，有机会获得不同面值积分。【尚未开启】</view>
+                <button class="jianyi" open-type="contact">立即去咨询>></button>【尚未开启】</view>
+            <view class="rule-title">6.圈子获取积分说明：</view>
+            <view class="rule-view">用户翻阅禾圈时，点赞，查看图片，有机会随机获得积分。<navigator bindtap="toHeCircle">立即去禾圈>></navigator></view>
         </view>
         
         <view class="close-jifen" bindtap="closeJiFenView"></view>

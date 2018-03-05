@@ -1,5 +1,6 @@
 {
   "pages": [
+            
     "pages/index/index",
     "pages/search/search",
     "pages/mine/mine",
@@ -7,8 +8,9 @@
     "pages/moreVideo/moreVideo",
     "pages/skinTest/skinTest",
     "pages/circle/circle",
+    "pages/checkIn/checkIn",
     "pages/moreTeacher/moreTeacher",
-    "pages/teacherDetail/teacherDetail",
+"pages/teacherDetail/teacherDetail",
     "pages/myOrder/myOrder",
     "pages/skinCase/SkinCase",
     "pages/Brand/Brand",
@@ -33,7 +35,7 @@
     "pages/webContact/WebContact",
     "pages/sharePage/sharePage",
     "pages/getPoint/getPoint",
-    "pages/checkIn/checkIn",
+
     "pages/qiandao/qiandao",
     "pages/diaryMarkList/diaryMarkList",
     "pages/myAddress/myAddress",

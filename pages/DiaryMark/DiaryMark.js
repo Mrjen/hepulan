@@ -24,13 +24,6 @@ Page({
     var uploadimg = that.data.imgres;
     console.log(uploadimg)
 
-    // console.log('输入框内容', ev.detail.value)
-
-    // let neirong = ev.detail.value.toString();
-    // console.log('neirong',neirong)
-    // neirong = neirong.replace(/\n/, '');
-    // console.log('neirong2', neirong)
-
     if (!ev.detail.value && uploadimg.length < 1) {
       that.setData({
         cardStatus: "草率完成",
@@ -199,9 +192,9 @@ Page({
   onLoad: function(options) {
     // 上报后台数据
     statistic();
-    wx.setStorageSync('sence', options.scene) 
+    wx.setStorageSync('scene', options.scene) 
 
-    // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+    // 渠道统计  一定要放在wx.setStorageSync('scene', options.scene) 之后
     fromPageData()
   },
 

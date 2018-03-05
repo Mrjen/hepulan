@@ -115,7 +115,7 @@ function getUser() {
                                   },
                                   success: function (res) {
                                     console.log('用户拒绝授权后重新授权，上报数据')
-                                    if (wx.getStorageSync('sence')) {
+                                    if (wx.getStorageSync('scene')) {
                                       fromPageData();
                                     }
                                   }

@@ -31,9 +31,9 @@ Page({
     onLoad: function (options) {
         // 上报后台数据
         statistic();
-        wx.setStorageSync('sence', options.scene)
+        wx.setStorageSync('scene', options.scene)
 
-        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        // 渠道统计  一定要放在wx.setStorageSync('scene', options.scene) 之后
         fromPageData()
     },
     onReady: function () {
@@ -54,7 +54,7 @@ Page({
             type: 'get-message-unread-num'
         }, function (res) {
             console.log('是否有未读消息', res)
-            let msgNum = res.data.data.user_message_unread_num;
+            let msgNum = res.data.data.user_message_unread_num.toString();
             wx.setTabBarBadge({
                 index: 4,
                 text: msgNum

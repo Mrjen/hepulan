@@ -582,3 +582,11 @@ page{
   max-height: 770rpx;
   overflow-y: scroll;
 }
+.jianyi{
+  display: inline-block;
+  padding:0;
+  margin:0;
+  font-size: 26rpx;
+  line-height: 30rpx;
+  color: #48a86c;
+}

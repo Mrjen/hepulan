@@ -118,33 +118,28 @@ Page({
 
         // 后台数据统计上报
         statistic();
-        wx.setStorageSync('sence', options.scene)       
+        wx.setStorageSync('scene', options.scene)
 
-        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
-        fromPageData()
-
-        // 初始化腾讯统计
-        mta.Page.init();
-
-        if (options.codeId) {
-            console.log('options.codeId', options.codeId)
-            let codeid = `codeid_${options.codeId}`;
-            // let load_code = codeid.split("_");
-            console.log("onload", codeid)
-            wx.setStorageSync("codeid", codeid)
-            mta.Event.stat(codeid, {});
-
-            if (options.codeId == 'goto') {
-                wx.switchTab({
-                    url: '../circle/circle'
+        wx.login({
+            success: function(res){
+                let code = res.code;
+                console.log('index login',code)
+                http({
+                    type:'auth',
+                    data:{
+                        code:code
+                    }
+                },function(res){
+                    fromPageData({ 
+                        scene: options.scene, 
+                        openid: res.data.data.app_openid, 
+                        unionid: res.data.data.unionid
+                    });
                 })
-            }
-        }
+            },
+        })
+  
         
-        wx.showShareMenu({
-            withShareTicket: true,
-        });
-
         // 显示红包
         setTimeout(() => {
             that.setData({
@@ -189,18 +184,21 @@ Page({
             })
         }
 
-        // 获取是否有未读消息
-        http({
-            type: 'get-message-unread-num'
-        }, function (res) {
-            console.log('是否有未读消息', res)
-            let msgNum = res.data.data.user_message_unread_num;
-            console.log(msgNum)
-            wx.setTabBarBadge({
-                index: 4,
-                text: msgNum
+        // 获取是否有未读消息   延迟是因为获取不到sign
+        setTimeout(() => {
+            http({
+                type: 'get-message-unread-num'
+            }, function (res) {
+                console.log('是否有未读消息', res.data.data)
+                let msgNum = res.data.data.user_message_unread_num.toString();
+                console.log(msgNum)
+                wx.setTabBarBadge({
+                    index: 4,
+                    text: msgNum
+                })
             })
-        })
+        }, 800);
+        
     },
 
     onHide: function () {

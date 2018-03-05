@@ -22,7 +22,6 @@ Page({
         WxParse.wxParse("content", "html", res.data.data.message_info.msg, that, 0);
       })
 
-    // WxParse.wxParse("content", "html", that.data.msg, that, 0);
   },
 
   onReady: function () {

@@ -10,7 +10,6 @@ function statistic(params={}) {
         SystemInfo.app = 'hplcenter';
         SystemInfo.token = md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp);
     params.data = SystemInfo;
-    console.log('url',url)
     wx.request({
         url: 'https://tj.zealcdn.cn/?_a_=clientReport',
         data: params.data,
@@ -39,14 +38,16 @@ function getCurrentPageUrl() {
 function fromPageData(params={}) {
     var timestamp = Date.parse(new Date());
     params.data = params.data ? params.data:{};
-    let openid =  wx.getStorageSync('openid'),
-        unionid = wx.getStorageSync('unionid'),
-        scene = wx.getStorageSync('sence'),
+    let openid = wx.getStorageSync('openid') ? wx.getStorageSync('openid') : params.openid,
+        unionid = wx.getStorageSync('unionid') ? wx.getStorageSync('unionid') : params.unionid,
+        scene = wx.getStorageSync('scene') ? wx.getStorageSync('scene') : params.scene,
         sign = wx.getStorageSync('sign'),
         is_fresh = wx.getStorageSync('is_fresh'),
         gender = wx.getStorageSync('gender')
 
-    if (openid && scene && sign && is_fresh>-1){
+    console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh', is_fresh)
+
+    if (openid && scene && is_fresh>-1){
         //有参数才上报
         console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh',is_fresh)
         params.data = {
@@ -80,7 +81,7 @@ function fromPageData(params={}) {
 
 // 用户事件
 function userEvent(params = {}) {
-    var timestamp = Date.parse(new Date());
+    let timestamp = Date.parse(new Date());
     params.time = timestamp;
     console.log('秒数',timestamp)
     params.sign = wx.getStorageSync('sign');

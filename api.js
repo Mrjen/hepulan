@@ -17,6 +17,8 @@ const videoNav = doman + 'video-types'
 const videoNum = doman + 'add-play-number'
 // 搜索老师
 const searchTeach = doman + 'skin-teacher-search'
+// 禾圈点赞或预览图片加积分
+const zanAndPrewAddScore = doman + 'add-score-rand'
 
 
 module.exports = {
@@ -27,5 +29,6 @@ module.exports = {
 	moreVideo,
 	videoNav,
 	videoNum,
-	searchTeach
+	searchTeach,
+	zanAndPrewAddScore
 }

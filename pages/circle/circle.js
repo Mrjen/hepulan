@@ -2,7 +2,8 @@
 var app = getApp();
 var common = require('../../common.js');
 import { statistic, fromPageData } from '../../tunji'
-import {http} from '../../common'
+import { http, wxRequest} from '../../common';
+import api from '../../api';
 Page({
     data: {
         nickName: "", //用户名
@@ -53,7 +54,9 @@ Page({
             img: "https://qncdn.playonwechat.com/hepulan/circle_time_active.png",
             text: "限时活动",
             active: false
-        }]
+        }],
+        jiFenImage: ['../img/score1.png', '../img/score2.png', '../img/score3.png', '../img/score4.png', '../img/score5.png'],
+        toastIcon:null
     },
 
     // 图片预览
@@ -164,6 +167,7 @@ Page({
         var sign = wx.getStorageSync('sign');
         zan = zan > 0 ? true : false;
         var nickName = that.data.nickName;
+        let jiFenImage = that.data.jiFenImage;
         http({
             type:'save-plaza-post-like',
             data:{
@@ -179,6 +183,31 @@ Page({
                 pid: Edata.pid
             })
         })
+
+        // 请求是否给用户加积分
+        if (!zan) {
+            wxRequest({
+                url: api.zanAndPrewAddScore,
+                data: {
+                    openid: wx.getStorageSync('openid'),
+                    sign: wx.getStorageSync('sign')
+                }
+            }, function (res) {
+                console.log('点赞是否加积分', res);
+                if (res.data.status == '1') {
+                    that.setData({
+                        toastIcon: jiFenImage[res.data.score - 1]
+                    })
+                    setTimeout(() => {
+                        that.setData({
+                            toastIcon: null
+                        })
+                    }, 1000);
+                }
+
+            })
+        }
+       
     },
 
     // 判断用户是否授权否则不能写动态
@@ -199,9 +228,9 @@ Page({
         const that = this;
         // 上报后台数据
         statistic();
-        wx.setStorageSync('sence', options.scene) 
+        wx.setStorageSync('scene', options.scene) 
         
-        // 渠道统计  一定要放在wx.setStorageSync('sence', options.scene) 之后
+        // 渠道统计  一定要放在wx.setStorageSync('scene', options.scene) 之后
         fromPageData()
 
         let nickName = wx.getStorageSync("nickName"),

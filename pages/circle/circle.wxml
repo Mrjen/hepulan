@@ -370,8 +370,18 @@
   </view>
 </view>
 
+<!-- 发禾圈 -->
 <view bindtap="writeCircle" 
       class="write_dyn" 
       wx:if="{{writeCircle}}">
   <image src="../img/circle_icon_write.png"></image>
 </view>
+
+<!-- 积分弹窗 -->
+<view class="show-toast" wx:if="{{toastIcon}}">
+   <view class="toast">
+     <image mode="widthFix" src="{{toastIcon}}"></image>
+   </view>
+</view>
+
+
