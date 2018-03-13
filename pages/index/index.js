@@ -119,21 +119,18 @@ Page({
         // 后台数据统计上报
         statistic();
         wx.setStorageSync('scene', options.scene)
-
         wx.login({
             success: function(res){
-                let code = res.code;
-                console.log('index login',code)
                 http({
                     type:'auth',
                     data:{
-                        code:code
+                        code: res.code
                     }
                 },function(res){
+                    console.log('auth', res.data.data.app_openid)
                     fromPageData({ 
                         scene: options.scene, 
-                        openid: res.data.data.app_openid, 
-                        unionid: res.data.data.unionid
+                        openid: res.data.data.app_openid
                     });
                 })
             },
@@ -185,7 +182,7 @@ Page({
         }
 
         // 获取是否有未读消息   延迟是因为获取不到sign
-        setTimeout(() => {
+        if (wx.getStorageSync('sign')) {
             http({
                 type: 'get-message-unread-num'
             }, function (res) {
@@ -197,8 +194,8 @@ Page({
                     text: msgNum
                 })
             })
-        }, 800);
-        
+        }
+           
     },
 
     onHide: function () {

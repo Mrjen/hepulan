@@ -34,6 +34,7 @@
                                 <text class="item-title">{{item.type_name}}</text>
                             </view>
                             <view class="item-content-text">{{item.title}}</view>
+                            <view class="create_time">{{item.create_time}}</view>
                             <view class="show-btn">点击查看</view>
                         </view>
                    </view>

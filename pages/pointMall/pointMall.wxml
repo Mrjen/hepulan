@@ -253,7 +253,7 @@
             <view class="rule-view">用户可在每日8：00-9：00，20：00-22：00 点击咨询与老师聊天，即可立即获得积分。
                 <button class="jianyi" open-type="contact">立即去咨询>></button>【尚未开启】</view>
             <view class="rule-title">6.圈子获取积分说明：</view>
-            <view class="rule-view">用户翻阅禾圈时，点赞，查看图片，有机会随机获得积分。<navigator bindtap="toHeCircle">立即去禾圈>></navigator></view>
+            <view class="rule-view">用户翻阅禾圈时，点赞，有机会获得积分。<navigator bindtap="toHeCircle">立即去禾圈>></navigator></view>
         </view>
         
         <view class="close-jifen" bindtap="closeJiFenView"></view>

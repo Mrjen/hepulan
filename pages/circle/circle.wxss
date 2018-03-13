@@ -395,7 +395,6 @@
 	display: -webkit-box;
 	margin-right: 10rpx;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
 	overflow: hidden;
 	color:#0f699e;
 }

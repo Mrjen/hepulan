@@ -124,6 +124,11 @@ view{
     padding:12rpx 0 0 20rpx;
 }
 
+.create_time{
+    font-size: 22rpx;
+    color: #999;
+}
+
 .item-cover image{
     display: block;
     width: 100%;

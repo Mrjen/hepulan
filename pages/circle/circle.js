@@ -190,7 +190,8 @@ Page({
                 url: api.zanAndPrewAddScore,
                 data: {
                     openid: wx.getStorageSync('openid'),
-                    sign: wx.getStorageSync('sign')
+                    sign: wx.getStorageSync('sign'),
+                    id: Edata.pid
                 }
             }, function (res) {
                 console.log('点赞是否加积分', res);

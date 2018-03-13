@@ -234,6 +234,30 @@
 					"name": "我的",
 					"pathName": "pages/mine/mine",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "systemInfoWeb",
+					"pathName": "pages/systemInfoWeb/systemInfoWeb",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "shopExchange",
+					"pathName": "pages/shopExchange/shopExchange",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "circleRules",
+					"pathName": "pages/circleRules/circleRules",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "SkinCase",
+					"pathName": "pages/skinCase/SkinCase",
+					"query": ""
 				}
 			]
 		}
