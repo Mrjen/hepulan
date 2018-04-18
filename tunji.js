@@ -1,4 +1,6 @@
 import {md5} from './md5'
+import api from './api'
+
 // 统计页面函数
 function statistic(params={}) {
     let url = getCurrentPageUrl();
@@ -103,9 +105,30 @@ function userEvent(params = {}) {
      })
 }
 
+// 统计用户咨询按钮
+function userClickCantact() {
+     wx.request({
+         url: api.tunJiContact,
+         data: {
+             openid: wx.getStorageSync('openid')
+         },
+         method: 'GET',
+         success: function(res){
+             // success
+             console.log('上报客服统计', res)
+         },
+         fail: function() {
+             // fail
+         },
+         complete: function() {
+             // complete
+         }
+     })
+}
 
 module.exports = {
     statistic,
     fromPageData,
-    userEvent
+    userEvent,
+    userClickCantact
 }

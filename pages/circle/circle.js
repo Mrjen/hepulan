@@ -227,6 +227,27 @@ Page({
 
     onLoad(options) {
         const that = this;
+
+        http({
+            type: 'get-social-list',
+            data: {
+                start: 0,
+                length: 5
+            }
+        }, function (res) {
+            console.log('禾圈数据', res.data.data.social_list);
+            start += 5;
+            let spaceDyn = res.data.data.social_list;
+            spaceDyn = that.Handel(spaceDyn)
+            that.setData({
+                spaceDyn,
+                start
+            });
+            setTimeout(function () {
+                wx.hideLoading()
+            }, 100)
+        })
+
         // 上报后台数据
         statistic();
         wx.setStorageSync('scene', options.scene) 
@@ -244,32 +265,8 @@ Page({
             nickName: nickName,
             avatar: avatar
         })
-        common.getSign(function() {
-            let sign = wx.getStorageSync('sign');
-            that.setData({
-                sign: sign
-            })
 
-            http({
-                type:'get-social-list',
-                data:{
-                    start: 0,
-                    length: 5
-                }
-            },function(res){
-                console.log('禾圈数据', res.data.data.social_list);
-                start += 5;
-                let spaceDyn = res.data.data.social_list;
-                spaceDyn = that.Handel(spaceDyn)
-                that.setData({
-                    spaceDyn,
-                    start
-                });
-                setTimeout(function () {
-                    wx.hideLoading()
-                }, 800)
-            })
-        })
+        
     },
 
     // 切换一级导航
@@ -278,9 +275,9 @@ Page({
         let apiType = '';
         let Edata = e.currentTarget.dataset,
             circleNav = that.data.circleNav;
-        circleNav.forEach(element => {
+        circleNav.map(element=>{
             element.active = false;
-        });
+        })
         circleNav[Edata.idx].active = true;
         that.setData({
             circleNav: circleNav,
@@ -484,7 +481,7 @@ Page({
                     });
                     setTimeout(function () {
                         wx.hideLoading()
-                    }, 1000);
+                    }, 100);
                     return false;
                 } else {
                     spaceDyn = that.Handel(spaceDyn)
@@ -521,7 +518,7 @@ Page({
                     });
                     setTimeout(function () {
                         wx.hideLoading()
-                    }, 1000);
+                    }, 100);
                     return false;
                 } else {
                     spaceDyn = that.Handel(spaceDyn)
@@ -535,7 +532,7 @@ Page({
                 })
                 setTimeout(function () {
                     wx.hideLoading()
-                }, 1000);
+                }, 100);
             })
         }
 

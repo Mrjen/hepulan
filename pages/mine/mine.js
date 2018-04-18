@@ -15,9 +15,9 @@ Page({
             url: '../pointMall/pointMall',
             text: '积分商城'
         }, {
-            icon: 'https://qncdn.playonwechat.com/hepulanhufu/mine-redpack-icon.png',
+            icon: 'https://qncdn.playonwechat.com/hepulan/mine-shop-icon.png',
             url: '../mycoupon/mycoupon',
-            text: '我的红包'
+            text: '商城'
         }, {
             icon: 'https://qncdn.playonwechat.com/hepulanhufu/mine-skin-icon.png',
             url: '../skinTest/skinTest',
@@ -67,6 +67,20 @@ Page({
         that.setData({
             userInfo
         })
+    },
+
+    toCompanyShop(){
+      wx.navigateToMiniProgram({
+          appId: 'wx6de91c88beaa27fe ',
+          path: 'pages/index/index',
+          success(res) {
+            // 打开成功
+            console.log('打开成功')
+          },
+          fail(res){
+            console.log(res)
+          }
+      })
     },
 
     // 跳转详情页

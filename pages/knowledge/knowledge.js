@@ -1,7 +1,7 @@
 var common = require('../../common.js');
 var main_content = [];
 var app = getApp();
-import { statistic, fromPageData } from '../../tunji'
+import { statistic, fromPageData, userClickCantact } from '../../tunji'
 Page({
     data: {
         searchWord: "",
@@ -205,6 +205,10 @@ Page({
         }
     },
 
+    // 点击咨询客服接口
+    clickCantact() {
+        userClickCantact();
+    },
 
 
     onReachBottom: function() {
@@ -268,23 +272,6 @@ Page({
         wx.navigateTo({
             url: "../single/single?id=" + idx,
         })
-
-        // wx.request({
-        //     url: app.data.apiUrl,
-        //     method:"POST",
-        //     data: {
-        //         sign:wx.getStorageSync("sign"),
-        //         key:app.data.apiKey,
-        //         type:"get-knowledge-detail",
-        //         data:{
-        //           id: idx
-        //         }
-        //     },
-        //     success: function(res) {
-        //         //console.log(idx)
-                
-        //     }
-        // })
     },
 
     // 返回首页

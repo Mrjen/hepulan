@@ -3,7 +3,7 @@ var app = getApp();
 var common = require('../../common.js');
 var mta = require('../../utils/mta_analysis.js');
 import { http, wxRequest } from '../../common.js'
-import { statistic, fromPageData, userEvent } from '../../tunji'
+import { statistic, fromPageData, userEvent, userClickCantact } from '../../tunji'
 import api from '../../api'
 Page({
     data: {
@@ -29,6 +29,11 @@ Page({
         codeid = codeid.toLocaleString();
         codeid = codeid.toLowerCase();
         mta.Event.stat("contact_click", { codeid: 'true' })
+    },
+
+    // 点击咨询客服接口
+    clickCantact(){
+        userClickCantact();
     },
 
     // 播放视频

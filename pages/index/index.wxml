@@ -9,7 +9,7 @@
             <block>
                 <swiper-item>
                     <image src="https://qncdn.playonwechat.com/hepulanhufu/index-banner.png" class="slide-image"/>
-                    <button class="ask-btn" open-type="contact"></button>
+                    <button class="ask-btn" open-type="contact" bindtap='clickCantact'></button>
                 </swiper-item>
                 <!-- <swiper-item>
                     <image src="{{banner[1]}}" class="slide-image" />
@@ -24,16 +24,16 @@
     </view>  -->
     
     <view class="teacher-view">
-        <view class="top-tip">
+        <!-- <view class="top-tip">
             <view class="xian"></view>
             <navigator url="../moreTeacher/moreTeacher">
                 在线服务导师
             </navigator>
-        </view>
+        </view> -->
         <view class="teacher-swiper">
 
                 <!-- 老师轮播 -->
-                <view class="teach-view01">
+                <!-- <view class="teach-view01">
                     <swiper autoplay="5000" interval="5000" circular="true" display-multiple-items="4" duration="4000">
                         <block wx:for="{{teachList.sdsg_teachers}}" wx:key="{{index}}">
                             <swiper-item>
@@ -51,10 +51,10 @@
                             </swiper-item>
                         </block>
                     </swiper>
-                </view>
+                </view> -->
 
             <!-- 老师轮播2 -->
-            <view class="teach-view01 teach-view02">
+            <!-- <view class="teach-view01 teach-view02">
                 <swiper autoplay="6000" interval="5000" circular="true" display-multiple-items="4" duration="4000">
                     <block wx:for="{{teachList.skin_teachers}}" wx:key="{{index}}">
                         <swiper-item>
@@ -72,7 +72,7 @@
                         </swiper-item>
                     </block>
                 </swiper>
-            </view>
+            </view> -->
 
             <!-- <swiper class="teacher-banner" 
                     autoplay="true" 
@@ -93,12 +93,12 @@
             <view class="xian"></view>
         </view> -->
 
-        <view class="top-tip">
-            <view class="xian"></view>
-            <!-- <navigator url="../moreVideo/moreVideo">
+        <!-- <view class="top-tip">
+             <view class="xian"></view> 
+             <navigator url="../moreVideo/moreVideo">
                 更多视频>>
-            </navigator> -->
-        </view>
+            </navigator> 
+        </view> -->
     </view>
 
         <!-- 功能按钮 -->
@@ -140,9 +140,9 @@
         </view>
     </view>
 
-<view class="zuge-view">
+<!-- <view class="zuge-view">
     <view class="zuge"></view>
-</view>
+</view> -->
     
 
     <!-- 品牌故事 -->
@@ -154,12 +154,12 @@
     </view>
 
     <!-- skin case  -->
-    <view class="skin-case">
+    <!-- <view class="skin-case">
          <view class="xian"></view>
          <navigator class="skin-nav"
                     hover-class="none"
                     url='../skinCase/SkinCase'>了解SkinCase>></navigator>
-    </view>
+    </view> -->
 
     <!-- 肌肤测试 -->
     <view class="skin-care">

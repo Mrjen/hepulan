@@ -19,6 +19,8 @@ const videoNum = doman + 'add-play-number'
 const searchTeach = doman + 'skin-teacher-search'
 // 禾圈点赞或预览图片加积分
 const zanAndPrewAddScore = doman + 'add-score-rand'
+// 点击客服按钮
+const tunJiContact = doman + 'add-click-records';
 
 
 module.exports = {
@@ -30,5 +32,6 @@ module.exports = {
 	videoNav,
 	videoNum,
 	searchTeach,
-	zanAndPrewAddScore
+	zanAndPrewAddScore,
+  tunJiContact
 }

@@ -1,6 +1,5 @@
 {
   "pages": [
-            
     "pages/index/index",
     "pages/search/search",
     "pages/mine/mine",
@@ -68,7 +67,7 @@
     "navigationBarBackgroundColor": "#1b1a20",
     "navigationBarTitleText": "禾葡兰护肤中心",
     "navigationBarTextStyle": "white",
-    "navigationStyle ": true
+    "navigationStyle ": "custom" 
   },
   "tabBar": {
     "backgroundColor": "#1b1a20",

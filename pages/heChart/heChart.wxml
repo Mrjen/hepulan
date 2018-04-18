@@ -69,4 +69,4 @@
 
 </view>
 
-<button class="zixun" open-type="contact"></button>
+<button class="zixun" bindtap="clickCantact" open-type="contact"></button>

@@ -1,7 +1,7 @@
 // pages/heChart/heChart.js
 var common = require('../../common.js');
 var app = getApp();
-import { statistic, fromPageData } from '../../tunji'
+import { statistic, fromPageData, userClickCantact } from '../../tunji'
 Page({
 
   /**
@@ -84,6 +84,11 @@ Page({
     // 渠道统计  一定要放在wx.setStorageSync('scene', options.scene) 之后
     fromPageData()
 
+  },
+
+  // 点击咨询客服接口
+  clickCantact() {
+    userClickCantact();
   },
 
   // 点击标签加载数据  美容、护肤
