@@ -71,7 +71,7 @@ Page({
 
     toCompanyShop(){
       wx.navigateToMiniProgram({
-          appId: 'wx6de91c88beaa27fe ',
+          appId: 'wx6de91c88beaa27fe',
           path: 'pages/index/index',
           success(res) {
             // 打开成功

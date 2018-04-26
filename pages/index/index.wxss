@@ -10,6 +10,73 @@ page{
     overflow-x: hidden;
 }
 
+.home{
+    width: 750rpx;
+    height: 1150rpx;
+    left: 0;
+    top: 0;
+    padding-top: 1px ;
+    position: relative;
+    background-image: url('https://qncdn.playonwechat.com/hufuzhongxin/hpl-shuidi.png');
+    background-size:100% 100%;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 100rpx;
+}
+
+.logo{
+    left:270rpx;
+    top: 220rpx;
+    width: 236rpx;
+    height: 148rpx;
+    position: absolute;
+}
+
+.tip-text{
+    margin-top: 450rpx;
+}
+
+.tip-text .tip1{
+    font-size: 24rpx;
+    text-align: center;
+    color: #046045;
+    font-weight: 600;
+}
+
+.zixun{
+    width: 220rpx;
+    height: 90rpx;
+    padding: 0;
+    margin: 0;
+    /* background: #006d4a; */
+    color: #fff;
+    font-size: 36rpx;
+    left: 50%;
+    top: 628rpx;
+    margin-left: -110rpx;
+    position: absolute;
+    background-image: -webkit-linear-gradient(-90deg, #1b9570 0, #107c5d 100%);
+}
+
+.zhanshi{
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    top: 860rpx;
+    width: 750rpx;
+    overflow: hidden;
+}
+
+.img1000{
+    width: 169rpx;
+    height: 92rpx;
+}
+
+.img30{
+    width: 171rpx;
+    height: 94rpx;
+}
+
+
 .container{
   padding-bottom: 80rpx;
 }
@@ -215,8 +282,7 @@ page{
 
 .text02{
     font-size: 34rpx;
-    font-weight: bold;
-    margin:20rpx auto;
+    margin:20rpx auto 40rpx auto;
 }
 
 .text03{

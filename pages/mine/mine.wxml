@@ -31,15 +31,7 @@
       <view class="text">护肤打卡</view>
     </navigator>
 
-        <!-- 商城 -->
-    <navigator class="item" 
-               hover-class="none" 
-               bindtap="toCompanyShop">
-      <view class="icon">
-        <image src="https://qncdn.playonwechat.com/hepulan/mine-shop-icon.png"></image>
-      </view>
-      <view class="text">官网商城</view>
-    </navigator>
+
     
     <!-- 积分商城 -->
     <navigator class="item" 
@@ -51,7 +43,15 @@
       <view class="text">积分商城</view>
     </navigator>
 
-
+        <!-- 商城 -->
+    <navigator class="item" 
+               hover-class="none" 
+               bindtap="toCompanyShop">
+      <view class="icon">
+        <image src="https://qncdn.playonwechat.com/hepulan/mine-shop-icon.png"></image>
+      </view>
+      <view class="text">官网商城</view>
+    </navigator>
 
     <!-- 肌肤测试 -->
     <navigator class="item" 
