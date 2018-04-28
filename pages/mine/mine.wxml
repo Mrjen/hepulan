@@ -3,11 +3,11 @@
   <!-- 个人信息 -->
   <view class='userinfo'>
       <view class='avatar'>
-         <image class='user-image' 
-                src="{{userInfo.userImg}}">
-         </image>
+         <open-data type="userAvatarUrl"></open-data>
       </view>
-      <view class="naickname">{{userInfo.nickName}}</view>
+      <view class="naickname">
+        <open-data type="userNickName"></open-data>
+      </view>
   </view>
  
   <!-- 功能区 -->
@@ -56,7 +56,7 @@
     <!-- 肌肤测试 -->
     <navigator class="item" 
                hover-class="none" 
-               url="../skinTest/skinTest">
+               bindtap="openSkinTestApplet">
       <view class="icon">
         <image src="https://qncdn.playonwechat.com/hepulanhufu/mine-skin-icon.png"></image>
       </view>

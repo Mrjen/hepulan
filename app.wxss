@@ -52,7 +52,9 @@
   right: 40rpx;
 }
 
-button[open-type='contact']::after,button[open-type='share']::after{
+button:after,
+button[open-type='contact']::after,
+button[open-type='share']::after{
   display: none;
   padding:0;
   border-radius: 0;

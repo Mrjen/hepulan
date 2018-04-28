@@ -59,7 +59,6 @@
           <view class="size_item" 
                 wx:for="{{productInfo.attribute}}" 
                 wx:key="index">
-
                 <text>{{item.label}}：</text>
                 <text>{{item.value}}</text>
           </view>
@@ -86,16 +85,33 @@
                {{productInfo.cart_count}}
          </text>
      </view>
-
+ 
+     <block>
+         <!-- wx:if="{{is_app_auth}}" -->
      <view bindtap="SaveCart" 
+           class="save-cart"
+           wx:if="{{is_app_auth}}"
            data-productnum="{{productNum}}">
            加入购物车
      </view>
-
-     <view bindtap="exchangeBtn" 
-           data-productnum="{{productNum}}">
-           立即兑换
-     </view>
-     <!--  exchangeBtn-->
+     <button wx:else 
+             class="save-cart"
+             hover-class="none"
+            open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+           加入购物车
+     </button>
+    </block>
+     
+    <block>
+        <view bindtap="exchangeBtn" 
+            class="liji"
+             wx:if="{{is_app_auth}}"
+            data-productnum="{{productNum}}">
+            立即兑换
+        </view>
+        <button class="liji" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo" >
+            立即兑换
+        </button>
+    </block>
  </view>
 </view>

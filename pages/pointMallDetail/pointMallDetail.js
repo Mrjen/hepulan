@@ -1,6 +1,7 @@
 // pages/pointMallDetail/pointMallDetail.js
 var app = getApp();
 import { statistic, fromPageData } from '../../tunji'
+import { http } from "../../common";
 Page({
     data: {
         detailNav: [{
@@ -10,16 +11,17 @@ Page({
             text: "产品规格",
             active: false
         }],
-        productNum: 1
+        productNum: 1,
+        is_app_auth: null //用户是否授权
     },
 
-    onLoad: function(options) {
+    onLoad: function (options) {
         console.log(options);
         let kid = options.id;
 
         // 上报后台数据
         statistic();
-        wx.setStorageSync('scene', options.scene) 
+        wx.setStorageSync('scene', options.scene)
 
         // 渠道统计  一定要放在wx.setStorageSync('scene', options.scene) 之后
         fromPageData()
@@ -29,7 +31,6 @@ Page({
             kid
         })
     },
-
     // 减商品
     cutproduct() {
         let that = this;
@@ -42,7 +43,6 @@ Page({
             productNum
         })
     },
-
     // 加商品
     addProduct() {
         let that = this;
@@ -52,7 +52,6 @@ Page({
             productNum
         })
     },
-
     // 切换导航
     changeNav(ev) {
         let that = this;
@@ -66,7 +65,6 @@ Page({
             detailNav
         })
     },
-
     // 加入购物车
     SaveCart() {
         let that = this;
@@ -94,11 +92,11 @@ Page({
                             icon: 'success',
                             duration: 1000
                         })
-                        
-                       productInfo.cart_count = res.data.data.cart_count;
-                       that.setData({
-                         productInfo
-                       })
+
+                        productInfo.cart_count = res.data.data.cart_count;
+                        that.setData({
+                            productInfo
+                        })
                     } else {
                         wx.showToast({
                             title: res.data.msg,
@@ -117,8 +115,6 @@ Page({
         }
 
     },
-
-
     // 收藏或者取消收藏
     changeCollect(ev) {
         let that = this;
@@ -154,11 +150,9 @@ Page({
         })
 
     },
-
-    onReady: function() {
+    onReady: function () {
 
     },
-
     // 立即兑换
     exchangeBtn() {
         let that = this;
@@ -172,14 +166,14 @@ Page({
                     sign: wx.getStorageSync("sign"),
                     key: app.data.apiKey,
                     type: "save-cart",
-                    data:{
+                    data: {
                         gid: type_id,
                         goods_num: num
                     }
                 },
                 success(res) {
                     console.log(res.data.status)
-                    if (res.data.status===1||(res.data.status===0&&res.data.msg=="已加入购物车")) {
+                    if (res.data.status === 1 || (res.data.status === 0 && res.data.msg == "已加入购物车")) {
                         wx.navigateTo({
                             url: '../pointMallCar/pointMallCar'
                         })
@@ -201,7 +195,6 @@ Page({
         }
 
     },
-
     // 选择款式
     changeType(ev) {
         console.log(ev)
@@ -224,8 +217,7 @@ Page({
         })
     },
 
-    onShow: function() {
-        console.log(111)
+    onShow() {
         let that = this;
         let kid = that.data.kid;
         wx.request({
@@ -256,32 +248,47 @@ Page({
                 console.log(res)
             }
         })
-    },
 
+        // 检查用户是否授权
+        that.setData({
+           is_app_auth: wx.getStorageSync("is_app_auth")
+        })
+        console.log('检查授权',wx.getStorageSync("is_app_auth"))
+    },
     //去购物车
     toShopCart() {
         wx.navigateTo({
             url: '../pointMallCar/pointMallCar'
         })
     },
-
-    onHide: function() {
-
+    // 授权
+    getUserInfo(e){
+       console.log(e.detail.userInfo)
+       let that = this;
+       let userInfo = e.detail.userInfo;
+       if(!userInfo) return;
+       userInfo.is_app_auth = 0;
+       http({
+           type:'save-user-info',
+           data:{
+                info:userInfo
+           }
+       },function(res){
+           console.log('res', res)
+           that.setData({
+               is_app_auth: 1
+           })
+       })
     },
-
-    onUnload: function() {
-
+    onHide: function () {
     },
-
-    onPullDownRefresh: function() {
-
+    onUnload: function () {
     },
-
-    onReachBottom: function() {
-
+    onPullDownRefresh: function () {
     },
-
-    onShareAppMessage: function() {
+    onReachBottom: function () {
+    },
+    onShareAppMessage: function () {
 
     }
 })

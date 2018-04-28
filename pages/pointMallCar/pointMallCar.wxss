@@ -169,6 +169,7 @@
 	width: 238rpx;
 	text-align: center;
 	margin-left: 20rpx;
+	border-radius: 0;
 }
 
 .bottom_nav .cart_right .settle text{

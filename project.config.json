@@ -269,6 +269,27 @@
 					"pathName": "pages/knowledge/knowledge",
 					"query": "",
 					"scene": "1014"
+				},
+				{
+					"id": 36,
+					"name": "商城",
+					"pathName": "pages/pointMall/pointMall",
+					"query": "",
+					"scene": "1014"
+				},
+				{
+					"id": 37,
+					"name": "商品详情页",
+					"pathName": "pages/pointMallDetail/pointMallDetail",
+					"query": "id=56",
+					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/pointMallCar/pointMallCar",
+					"query": "",
+					"scene": "1014"
 				}
 			]
 		}

@@ -1,146 +1,108 @@
 <!--pages/pointMall/pointMall.wxml-->
-<import src="../template/template.wxml"/>
+<import src="../template/template.wxml" />
 
 <!-- 个人信息 -->
 <view class='userinfo'>
     <view class='avatar'>
-        <image class='user-image' 
-               src="{{avatarUrl}}">
+        <image class='user-image' src="{{avatarUrl}}">
         </image>
-        <image class='user-cicle' 
-               src='https://qncdn.playonwechat.com/hepulanhufu/ming-avatar-circle.png'>
+        <image class='user-cicle' src='https://qncdn.playonwechat.com/hepulanhufu/ming-avatar-circle.png'>
         </image>
     </view>
 
-   <!-- <view class="nickName">{{nickName}}</view> -->
     <view class="point_count">我的积分：{{pointCount}}</view>
-    <navigator class="invate" 
-               bindtap="getMoreScore" 
-               hover-class="none">
+    <navigator class="invate" bindtap="getMoreScore" hover-class="none">
         如何赚取更多积分>>
     </navigator>
     <!-- 签到 -->
     <view class="daka" bindtap="toDaka"></view>
 </view>
 
-
-<!-- <view class="point_detail" 
-      bindtap="toShopExchange">
-      点击查看积分详情
-</view> -->
-
 <!-- 功能导航 -->
- <view class="opation_nav">
-    <view class="navigator" 
-          wx:for="{{opation_nav}}" 
-          bindtap="navTo" 
-          data-index="{{index}}">
-          <text style="background-image:url({{item.icon}});background-size: 100%"></text>
-          {{item.text}}
+<view class="opation_nav">
+    <view class="navigator" wx:for="{{opation_nav}}" bindtap="navTo" data-index="{{index}}">
+        <text style="background-image:url({{item.icon}});background-size: 100%"></text>
+        {{item.text}}
     </view>
-</view> 
+</view>
 <!-- 轮播区 -->
 <view class="swiper">
-    <swiper autoplay="true" 
-            interval="2000" 
-            duration="1000" 
-            vertical="true" 
-            circular="true">
-        <block wx:for="{{dataText}}" 
-               wx:key="index">
-          <swiper-item>
-              <view class="text_item">{{item}}</view>
-          </swiper-item>
+    <swiper autoplay="true" interval="2000" duration="1000" vertical="true" circular="true">
+        <block wx:for="{{dataText}}" wx:key="index">
+            <swiper-item>
+                <view class="text_item">{{item}}</view>
+            </swiper-item>
         </block>
     </swiper>
 </view>
 
 <!-- 商品兑换区 -->
 <view class="nav_tip border_bottom">
-     <text class="line"></text>
-     <image src="https://qncdn.playonwechat.com/hepulan/point_mall_hotexpect.png"></image>
-     热门兑换
-     <text class="line"></text>
+    <text class="line"></text>
+    <image src="https://qncdn.playonwechat.com/hepulan/point_mall_hotexpect.png"></image>
+    热门兑换
+    <text class="line"></text>
 </view>
 
 <view class="shop_list">
-    <view class="list_item" 
-          wx:for="{{shopNowList}}" 
-          bindtap="ToDetail"
-          data-id="{{item.kid}}"
-          wx:key="{{index}}">
-          <image class="item_img" src="{{item.img}}"></image>
+    <view class="list_item" wx:for="{{shopNowList}}" bindtap="ToDetail" data-id="{{item.kid}}" wx:key="{{index}}">
+        <image class="item_img" src="{{item.img}}"></image>
 
-          <view class="item_info">
-              <view class="item_title">{{item.name}}</view>
-              <view class="item_bottom">
-                   <view>
-                      <view class="item_jifen">{{item.count}}积分</view>
-                       <view class="item_zan">
-                            {{item.praise_num}}人点赞
-                            <text class="zan_icon"></text>
-                       </view> 
-                   </view>
-
-                  <view class="exchange_box">
-                     <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
-                     <view class="exchange_btn" 
-                           bindtap="exchangeBtn" 
-                           data-jifen="{{item.count}}" 
-                           data-id="{{item.kid}}">
-                           兑换
+        <view class="item_info">
+            <view class="item_title">{{item.name}}</view>
+            <view class="item_bottom">
+                <view>
+                    <view class="item_jifen">{{item.count}}积分</view>
+                    <view class="item_zan">
+                        {{item.praise_num}}人点赞
+                        <text class="zan_icon"></text>
                     </view>
-                  </view>
-              </view>
+                </view>
 
-              <!-- <view class="zan_hert" 
-                    bindtap="selectType" 
-                    data-id="{{item.kid}}">
-                    <image src="https://qncdn.playonwechat.com/hepulan/point_mall_shopcart.png"></image>
-              </view> -->
-
-          </view>
+                <view class="exchange_box">
+                    <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
+                    <block>
+                        <view class="exchange_btn" bindtap="exchangeBtn" data-jifen="{{item.count}}" data-id="{{item.kid}}">
+                            兑换
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </view>
     </view>
 </view>
 
 <!-- 往期礼品 -->
 <view class="nav_tip border_bottom">
-     <text class="line"></text>
-     <image src="https://qncdn.playonwechat.com/hepulan/point_mall_oldgift.png"></image>
-     往期礼品
-     <text class="line"></text>
+    <text class="line"></text>
+    <image src="https://qncdn.playonwechat.com/hepulan/point_mall_oldgift.png"></image>
+    往期礼品
+    <text class="line"></text>
 </view>
 
 <view class="shop_list">
-    <view class="list_item has_salse" 
-          wx:for="{{shopBeforeList}}" 
-          wx:key="index" 
-          bindtap="ToDetail" 
-          data-id="{{item.kid}}">
-          <image class="item_img" src="{{item.img}}"></image>
-          <view class="item_info">
-              <view class="item_title">{{item.name}}</view>
-              <view class="item_bottom">
-                   <view>
-                      <view class="item_jifen">{{item.count}}积分</view>
-                       <view class="item_zan">
-                           {{item.praise_num}}人点赞
-                           <text class="zan_icon"></text>
-                       </view> 
-                   </view>
-                  <view class="exchange_box">
-                     <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
-                     <view class="exchange_btn has_exchange_btn" 
-                           bindtap="exchangeBtn" 
-                           data-jifen="{{item.count}}" 
-                           data-id="{{item.id}}">
-                           已售罄
-                     </view>
-                  </view>
-              </view>
-              <!-- <view class="zan_hert" bindtap="selectType" data-id="{{item.id}}"><image src="https://qncdn.playonwechat.com/hepulan/point_mall_shopcart.png"></image></view> -->
-               
-          </view>
+    <view class="list_item has_salse" wx:for="{{shopBeforeList}}" wx:key="index" bindtap="ToDetail" data-id="{{item.kid}}">
+        <image class="item_img" src="{{item.img}}"></image>
+        <view class="item_info">
+            <view class="item_title">{{item.name}}</view>
+            <view class="item_bottom">
+                <view>
+                    <view class="item_jifen">{{item.count}}积分</view>
+                    <view class="item_zan">
+                        {{item.praise_num}}人点赞
+                        <text class="zan_icon"></text>
+                    </view>
+                </view>
+                <view class="exchange_box">
+                    <view class="exchange_num">{{item.hasexchange}}人已兑换</view>
+                    <view class="exchange_btn has_exchange_btn" bindtap="exchangeBtn" data-jifen="{{item.count}}" data-id="{{item.id}}">
+                        已售罄
+                    </view>
+                </view>
+            </view>
+            <!-- <view class="zan_hert" bindtap="selectType" data-id="{{item.id}}"><image src="https://qncdn.playonwechat.com/hepulan/point_mall_shopcart.png"></image></view> -->
+
+        </view>
     </view>
 </view>
 
@@ -153,73 +115,58 @@
 </view>
 
 <view class="shop_list">
-    <view class="list_item" 
-          wx:for="{{shopSoonList}}" 
-          wx:key="index">
-          <image class="item_img" src="{{item.img}}"></image>
-          <view class="item_info">
-              <view class="item_title">{{item.name}}</view>
-              <view class="item_bottom">
-                   <view>
-                       <view class="soon_tip">喜欢就点赞吧~达到一定数量将会开启兑换哦</view>
-                       <view class="item_jifen">{{item.count}}积分</view>
-                       <view class="item_zan">
-                           {{item.praise_num}}人点赞
-                           <text class="zan_icon"></text>
-                       </view> 
-                   </view>
-                  <view class="exchange_box">
-                     <!-- <view class="exchange_num">{{item.hasexchange}}人已兑换</view> -->
-                     <view class="exchange_btn zan_num" 
-                           data-jifen="{{item.count}}" 
-                           data-id="{{item.id}}">
-                           <text class="text_bg">{{item.praise_num}}</text>
-                           <text class="text_precent" style="width:{{item.praise_percent}}%"></text>
-                     </view>
-                  </view>
-              </view>
+    <view class="list_item" wx:for="{{shopSoonList}}" wx:key="index">
+        <image class="item_img" src="{{item.img}}"></image>
+        <view class="item_info">
+            <view class="item_title">{{item.name}}</view>
+            <view class="item_bottom">
+                <view>
+                    <view class="soon_tip">喜欢就点赞吧~达到一定数量将会开启兑换哦</view>
+                    <view class="item_jifen">{{item.count}}积分</view>
+                    <view class="item_zan">
+                        {{item.praise_num}}人点赞
+                        <text class="zan_icon"></text>
+                    </view>
+                </view>
+                <view class="exchange_box">
+                    <!-- <view class="exchange_num">{{item.hasexchange}}人已兑换</view> -->
+                    <view class="exchange_btn zan_num" data-jifen="{{item.count}}" data-id="{{item.id}}">
+                        <text class="text_bg">{{item.praise_num}}</text>
+                        <text class="text_precent" style="width:{{item.praise_percent}}%"></text>
+                    </view>
+                </view>
+            </view>
 
-              <view class="zan_hert zan_box" 
-                    bindtap="zanProduct" 
-                    data-id="{{item.kid}}" 
-                    data-index="{{index}}">
-                  <image wx:if="{{item.is_praise=='0'?true:false}}" 
-                         src="https://qncdn.playonwechat.com/hepulan/point_mall_hert_air.png">
-                  </image>
-                 <image wx:else 
-                        src="https://qncdn.playonwechat.com/hepulan/point_mall_hert.png">
-                 </image>
-              </view>
-          </view>
+            <view class="zan_hert zan_box" bindtap="zanProduct" data-id="{{item.kid}}" data-index="{{index}}">
+                <image wx:if="{{item.is_praise=='0'?true:false}}" src="https://qncdn.playonwechat.com/hepulan/point_mall_hert_air.png">
+                </image>
+                <image wx:else src="https://qncdn.playonwechat.com/hepulan/point_mall_hert.png">
+                </image>
+            </view>
+        </view>
     </view>
 </view>
 
 <!-- 选择款 -->
 <view class="select_win" wx:if="{{selectWin}}">
     <view class="product_info">
-       <view class="top_info">
-        <view class="product">
-            <image src="{{selectWinData.imgurl}}" 
-                   bindtap="prewImg" 
-                   data-url="{{selectWinData.original_imgurl}}">
-            </image>
-            <view class="info">
-               <view>{{selectWinData.score}}积分</view>
-               <view>库存{{selectWinData.amount}}件</view>
-               <view>已选：{{selectWinData.color}}</view>
+        <view class="top_info">
+            <view class="product">
+                <image src="{{selectWinData.imgurl}}" bindtap="prewImg" data-url="{{selectWinData.original_imgurl}}">
+                </image>
+                <view class="info">
+                    <view>{{selectWinData.score}}积分</view>
+                    <view>库存{{selectWinData.amount}}件</view>
+                    <view>已选：{{selectWinData.color}}</view>
+                </view>
             </view>
-        </view>
-        <text class="type_tag">颜色</text>
-        <view class="product_type"> 
-            <view wx:for="{{selectWinData.details}}" 
-                  wx:key="index" 
-                  class="type_item {{item.active?'type_active':''}}" 
-                  bindtap="changeType" 
-                  data-index="{{index}}" 
-                  data-id="{{item.id}}">
-                  {{item.color}}
+            <text class="type_tag">颜色</text>
+            <view class="product_type">
+                <view wx:for="{{selectWinData.details}}" wx:key="index" class="type_item {{item.active?'type_active':''}}" bindtap="changeType"
+                    data-index="{{index}}" data-id="{{item.id}}">
+                    {{item.color}}
+                </view>
             </view>
-        </view>
         </view>
         <view class="sure_type" bindtap="AddShopCart">确定</view>
         <view class="close_select" bindtap="selectWin"></view>
@@ -227,12 +174,12 @@
 </view>
 
 <!-- 回首页按钮 -->
- <template is="share_icon"/> 
+<template is="share_icon" />
 
 
- <!-- 获取更多积分弹层 -->
- <view class="jifen-view" wx:if="{{closeJiFenView}}">
-     <view class="jifen-rule">
+<!-- 获取更多积分弹层 -->
+<view class="jifen-view" wx:if="{{closeJiFenView}}">
+    <view class="jifen-rule">
         <view class="title">如何获取更多积分</view>
         <view class="rule-content">
             <view class="rule-title">1.签到获取积分说明：</view>
@@ -248,14 +195,18 @@
                 <navigator bindtap="closeJiFenView">立即去购买>></navigator>
             </view>
             <view class="rule-title">4.建议采纳积分获得说明：</view>
-            <view class="rule-view">用户可通过使用平台，向护肤老师及时提出平台BUG及平台建议，一经采纳可获得大量积分。<button class="jianyi" open-type="contact">立即去建议>></button></view>
+            <view class="rule-view">用户可通过使用平台，向护肤老师及时提出平台BUG及平台建议，一经采纳可获得大量积分。
+                <button class="jianyi" open-type="contact">立即去建议>></button>
+            </view>
             <view class="rule-title">5.咨询获取积分说明：</view>
             <view class="rule-view">用户可在每日8：00-9：00，20：00-22：00 点击咨询与老师聊天，即可立即获得积分。
                 <button class="jianyi" open-type="contact">立即去咨询>></button>【尚未开启】</view>
             <view class="rule-title">6.圈子获取积分说明：</view>
-            <view class="rule-view">用户翻阅禾圈时，点赞，有机会获得积分。<navigator bindtap="toHeCircle">立即去禾圈>></navigator></view>
+            <view class="rule-view">用户翻阅禾圈时，点赞，有机会获得积分。
+                <navigator bindtap="toHeCircle">立即去禾圈>></navigator>
+            </view>
         </view>
-        
+
         <view class="close-jifen" bindtap="closeJiFenView"></view>
-     </view>
- </view>
+    </view>
+</view>

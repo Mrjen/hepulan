@@ -1,8 +1,8 @@
 <view class="container">
   <!-- 个人信息 -->
     <view class="info-view">
-        <view class="avatar"><image src="{{info.avatarUrl}}"></image></view>
-        <view class="nickname">{{info.nickName}}</view>
+        <view class="avatar"><open-data type="userAvatarUrl"></open-data></view>
+        <view class="nickname"><open-data type="usernickName"></open-data></view>
         <view class="sign-tip">连续签到{{punchData.sign_keep}}天啦~</view>
         <view class="tab">
            <view class="tab-left"><text class="icon"></text>积分数：<text class="jifen">{{punchData.usable_score}}</text></view>
@@ -12,12 +12,14 @@
 
   <!-- 签到列表 -->
   <view class="sign-view">
-      <view class="sign-box">
-          <view wx:if="{{punchData.is_signin}}" class="has-sign sign-btn">已签到</view>
-          <form wx:else bindsubmit="savePunch" report-submit="true">
-             <button class="no-sign sign-btn" formType="submit">立即签到</button>
-          </form>
-      </view>
+      <block>
+        <view class="sign-box">
+            <view wx:if="{{punchData.is_signin}}" class="has-sign sign-btn">已签到</view>
+            <form wx:else bindsubmit="savePunch" report-submit="true">
+                <button class="no-sign sign-btn" formType="submit">立即签到</button>
+            </form>
+        </view>
+    </block>
       <view class="sign-list">
           <view wx:for="{{signData}}"
                 wx:key="{{index}}"

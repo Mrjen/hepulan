@@ -33,6 +33,8 @@ view{
   height: 146rpx;
   position: relative;
   margin-top: 60rpx;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .avatar .user-image{

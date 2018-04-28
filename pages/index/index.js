@@ -31,6 +31,17 @@ Page({
         mta.Event.stat("contact_click", { codeid: 'true' })
     },
 
+    // 打开肌肤测试小程序
+    openSkinTestApplet(){
+      wx.navigateToMiniProgram({
+        appId: "wx7a824def006ef999",
+        path: "pages/index/index",
+        success(res) {
+          console.log('打开成功')
+        }
+      });
+    },
+
     // 点击咨询客服接口
     clickCantact(){
         userClickCantact();

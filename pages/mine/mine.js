@@ -40,14 +40,19 @@ Page({
         // 页面渲染完成
     },
 
-    onShow: function () {
-        let that = this;
-        getUser();
-     
-        let userInfo = {
-            userImg:wx.getStorageSync('avatarUrl'),
-            nickName:wx.getStorageSync('nickName')
+    // 打开肌肤测试小程序
+    openSkinTestApplet(){
+      wx.navigateToMiniProgram({
+        appId: "wx7a824def006ef999",
+        path: "pages/index/index",
+        success(res) {
+          console.log('打开成功')
         }
+      });
+    },
+
+    onShow: function () {
+        let that = this;     
         
         // 获取是否有未读消息
         if (wx.getStorageSync('sign')) {
@@ -63,10 +68,6 @@ Page({
                 })
             })
         }
-
-        that.setData({
-            userInfo
-        })
     },
 
     toCompanyShop(){

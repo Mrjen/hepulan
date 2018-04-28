@@ -1,5 +1,5 @@
-import {md5} from './md5'
-import api from './api'
+import {md5} from './md5';
+import api from './api';
 
 // 统计页面函数
 function statistic(params={}) {
@@ -36,28 +36,29 @@ function getCurrentPageUrl() {
     return url
 }
 
+function getUserData(){
+    wx.login({
+        success(res){
+            
+        }
+    })
+}
+
 // 统计用户来源
 function fromPageData(params={}) {
     var timestamp = Date.parse(new Date());
     params.data = params.data ? params.data:{};
-    let openid = wx.getStorageSync('openid') ? wx.getStorageSync('openid') : params.openid,
-        unionid = wx.getStorageSync('unionid') ? wx.getStorageSync('unionid') : params.unionid,
-        scene = wx.getStorageSync('scene') ? wx.getStorageSync('scene') : params.scene,
-        sign = wx.getStorageSync('sign'),
-        is_fresh = wx.getStorageSync('is_fresh'),
-        gender = wx.getStorageSync('gender')
-
-    console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh', is_fresh)
-
-    if (openid && scene && is_fresh>-1){
+    let userData = wx.getStorageSync("userData");
+    // console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh', is_fresh)
+    if (userData.openid && scene && userData.is_fresh>-1){
         //有参数才上报
-        console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh',is_fresh)
+        // console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh',is_fresh)
         params.data = {
-            openid: openid,
-            unionid: unionid,
-            scene: scene,
-            sign: sign,
-            is_fresh: is_fresh,
+            openid: userData.openid,
+            unionid: userData.unionid,
+            scene: userData.scene || wx.getStorage({key: 'scene'}) || params.scene,
+            sign: userData.sign,
+            is_fresh: userData.is_fresh,
             time: timestamp,
             token: md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp),
             app: 'hplcenter',
@@ -69,9 +70,6 @@ function fromPageData(params={}) {
             method: 'POST',
             success: function (res) {
                 console.log('上报来源数据成功', res)
-            },
-            fail: function () {
-                // fail
             },
             complete: function (res) {
                 // complete

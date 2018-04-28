@@ -72,15 +72,24 @@
                checked="{{allSelect}}"/>
                全选
     </view>
-
+  <block>
     <view class="cart_right">
         <view>合计：{{AllMoney}}积分</view>
-        <view class="settle" 
-              bindtap="Tosetttle">
-            结算
-            <text>(包邮)</text>
-        </view>
+        <block>
+            <view class="settle" wx:if="{{is_app_auth=='1'?true:false}}" bindtap="Tosetttle">
+                结算
+                <text>(包邮)</text>
+            </view>
+            <button wx:else class="settle" 
+                    open-type="getUserInfo" 
+                    bindgetuserinfo="getUserInfo">
+                授权
+                <text>(包邮)</text>
+            </button>
+        </block>
     </view>
+  </block>
+    
 </view>
 
 <!-- 选择款 -->

@@ -196,12 +196,16 @@ view{
 	position: relative;
 }
 
-.bottm_nav view:nth-of-type(4){
+.liji {
 	width: 280rpx;
 	height: 100rpx;
-	font-size: 26rpx;
-	background: #48a86c;
+	line-height: 100rpx;
+	font-size: 30rpx;
+	background: #48a86c !important;
 	color: #fff;
+	padding: 0;
+	margin: 0;
+	border-radius: 0;
 }
 
 
@@ -227,14 +231,26 @@ view{
     margin:0 auto;
 }
 
-.bottm_nav view:nth-of-type(2) .cart_num{
+.save-cart{
+	background-color: #ff3c3c;
+	color: #fff;
+	font-size: 30rpx;
+	line-height: 100rpx;
+	border-radius: 0;
+	width: 280rpx;
+}
+
+.bottm_nav .cart_num{
 	display: inline-block;
 	position: absolute;
 	background: #ff3c3c;
 	color: #fff;
 	top: 4rpx;
 	right: 20rpx;
-	padding:2rpx 6rpx;
+	height: 24rpx;
+	text-align: center;
+	line-height: 10rpx;
+	min-width: 20rpx;
 	border-radius: 25rpx;
 	font-size: 16rpx;
 }
