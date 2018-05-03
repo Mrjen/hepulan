@@ -135,23 +135,8 @@ Page({
         // 后台数据统计上报
         statistic();
         wx.setStorageSync('scene', options.scene)
-        wx.login({
-            success: function(res){
-                http({
-                    type:'auth',
-                    data:{
-                        code: res.code
-                    }
-                },function(res){
-                    console.log('auth', res.data.data.app_openid)
-                    fromPageData({ 
-                        scene: options.scene, 
-                        openid: res.data.data.app_openid
-                    });
-                })
-            },
-        })
-  
+
+        fromPageData({ scene: options.scene });
         
         // 显示红包
         setTimeout(() => {

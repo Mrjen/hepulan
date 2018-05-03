@@ -290,6 +290,12 @@
 					"pathName": "pages/pointMallCar/pointMallCar",
 					"query": "",
 					"scene": "1014"
+				},
+				{
+					"id": -1,
+					"name": "禾葡兰推文",
+					"pathName": "pages/index/index",
+					"query": "scene=6d575644c540ac615122f680de169590"
 				}
 			]
 		}

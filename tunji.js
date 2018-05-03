@@ -36,47 +36,68 @@ function getCurrentPageUrl() {
     return url
 }
 
+
+// 获取用户相关信息
 function getUserData(){
-    wx.login({
-        success(res){
-            
-        }
-    })
+    
 }
+
 
 // 统计用户来源
 function fromPageData(params={}) {
-    var timestamp = Date.parse(new Date());
-    params.data = params.data ? params.data:{};
-    let userData = wx.getStorageSync("userData");
-    // console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh', is_fresh)
-    if (userData.openid && scene && userData.is_fresh>-1){
-        //有参数才上报
-        // console.log('openid', openid, 'unionid', unionid, 'scene', scene, 'is_fresh',is_fresh)
-        params.data = {
-            openid: userData.openid,
-            unionid: userData.unionid,
-            scene: userData.scene || wx.getStorage({key: 'scene'}) || params.scene,
-            sign: userData.sign,
-            is_fresh: userData.is_fresh,
-            time: timestamp,
-            token: md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp),
-            app: 'hplcenter',
-            gender: gender
+    wx.login({
+        success(res){
+            wx.request({
+                url:api.apiUrl,
+                method:'post',
+                data:{ key:'be15d4ca913c91494cb4f9cd6ce317c6',
+                  type: 'auth',
+                  data:{
+                      code: res.code
+                  }
+                },
+                success(res){
+                    console.log('获取到用户信息', res)
+                    var timestamp = Date.parse(new Date());
+                    let userData = res.data.data;
+                    userData.scene = wx.getStorageSync('scene') || params.scene;
+                    console.log('userData',userData)
+                    if (userData.app_openid && userData.scene && userData.is_fresh>-1){
+                        //有参数才上报
+                        params = {
+                            openid: userData.app_openid,
+                            unionid: userData.unionid,
+                            scene: userData.scene || wx.getStorage({key: 'scene'}) || params.scene,
+                            sign: userData.sign,
+                            is_fresh: userData.is_fresh,
+                            time: timestamp,
+                            token: md5('BDDkDyYTpgfoRiGDnvt9UdrwF#' + timestamp),
+                            app: 'hplcenter',
+                            gender: userData.gender || 0 
+                        }
+                        wx.request({
+                            url: 'https://tj.zealcdn.cn/?_a_=serverReport',
+                            data: params,
+                            method: 'POST',
+                            success: function (res) {
+                                console.log('上报来源数据成功', res)
+                            },
+                            complete: function (res) {
+                                // complete
+                                console.log('complete', res)
+                            }
+                        })
+                    }
+
+                }
+            })
         }
-        wx.request({
-            url: 'https://tj.zealcdn.cn/?_a_=serverReport',
-            data: params.data,
-            method: 'POST',
-            success: function (res) {
-                console.log('上报来源数据成功', res)
-            },
-            complete: function (res) {
-                // complete
-                console.log('complete', res)
-            }
-        })
-    }
+    })
+     
+
+    
+
+    
 }
 
 // 用户事件
@@ -103,6 +124,7 @@ function userEvent(params = {}) {
      })
 }
 
+
 // 统计用户咨询按钮
 function userClickCantact() {
      wx.request({
@@ -128,5 +150,6 @@ module.exports = {
     statistic,
     fromPageData,
     userEvent,
-    userClickCantact
+    userClickCantact,
+    getUserData
 }
